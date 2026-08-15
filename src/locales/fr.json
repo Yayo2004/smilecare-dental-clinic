@@ -1,0 +1,226 @@
+{
+  "meta": {
+    "title": "SmileCare Dental Clinic — Dentisterie moderne à Paris",
+    "description": "Une dentisterie moderne et douce pour toute la famille. Dentisterie générale, orthodontie, blanchiment, implants, pédodontie et urgences."
+  },
+  "nav": {
+    "home": "Accueil",
+    "services": "Services",
+    "about": "À propos",
+    "reservation": "Réservation",
+    "contact": "Contact",
+    "menuLabel": "Ouvrir le menu",
+    "closeLabel": "Fermer le menu",
+    "skipToContent": "Aller au contenu"
+  },
+  "hero": {
+    "badge": "Bienvenue à la clinique SmileCare",
+    "title1": "Un sourire éclatant",
+    "titleHighlight": "pour toute la famille",
+    "subtitle": "Une dentisterie moderne, douce et centrée sur le patient, au cœur de Paris. Technologies de pointe, tarifs transparents et une équipe qui prend vraiment soin de votre confort.",
+    "ctaPrimary": "Prendre rendez-vous",
+    "ctaSecondary": "Découvrir nos services",
+    "feature1": "Plus de 20 ans d'expérience",
+    "feature2": "Dentistes certifiés et doux",
+    "feature3": "Équipements de dernière génération",
+    "scrollHint": "Défiler"
+  },
+  "services": {
+    "eyebrow": "Nos traitements",
+    "title": "Des soins dentaires complets",
+    "subtitle": "Du simple contrôle au sourire entièrement redessiné — chaque traitement est personnalisé et réalisé avec les technologies les plus récentes.",
+    "items": [
+      {
+        "name": "Dentisterie générale",
+        "description": "Contrôles, détartrages, soins et prévention pour garder un sourire en bonne santé toute l'année."
+      },
+      {
+        "name": "Orthodontie",
+        "description": "Bagues traditionnelles et aligneurs invisibles pour un alignement parfait, chez l'adulte comme chez l'adolescent."
+      },
+      {
+        "name": "Blanchiment dentaire",
+        "description": "Un éclaircissement professionnel et sans risque qui illumine votre sourire de plusieurs teintes en une seule séance."
+      },
+      {
+        "name": "Implants dentaires",
+        "description": "Des solutions permanentes et naturelles pour remplacer les dents manquantes, posées sur des implants en titane."
+      },
+      {
+        "name": "Dentisterie pédiatrique",
+        "description": "Des soins doux et ludiques qui mettent les enfants en confiance et installent de bonnes habitudes très tôt."
+      },
+      {
+        "name": "Urgences dentaires",
+        "description": "Des rendez-vous le jour même pour les douleurs, dents cassées et accidents — chaque fois que vous en avez besoin."
+      }
+    ],
+    "learnMore": "En savoir plus"
+  },
+  "about": {
+    "eyebrow": "À propos",
+    "title": "Une équipe dévouée à votre sourire",
+    "paragraph1": "La clinique SmileCare a été fondée avec une mission : rendre la dentisterie de qualité accessible, confortable et sans stress. Notre cabinet moderne allie excellence médicale et atmosphère chaleureuse.",
+    "paragraph2": "Chaque traitement commence par une conversation. Nous écoutons, expliquons et vous impliquons dans chaque décision, pour que vous sachiez toujours exactement à quoi vous attendre — sans surprises, sans coûts cachés.",
+    "stats": [
+      { "value": 20, "suffix": "+", "label": "Années d'expérience" },
+      { "value": 15000, "suffix": "+", "label": "Patients soignés" },
+      { "value": 6, "suffix": "", "label": "Spécialistes dentaires" },
+      { "value": 98, "suffix": "%", "label": "Patients satisfaits" }
+    ],
+    "teamTitle": "Rencontrez nos dentistes",
+    "team": [
+      {
+        "name": "Dr Sophie Laurent",
+        "role": "Fondatrice · Dentisterie générale et esthétique",
+        "bio": "Avec plus de 20 ans de pratique, le Dr Laurent allie précision technique et approche douce et rassurante. Elle a fondé la clinique pour placer le confort du patient au premier plan."
+      },
+      {
+        "name": "Dr Marc Nguyen",
+        "role": "Orthodontiste",
+        "bio": "Le Dr Nguyen est spécialiste des aligneurs invisibles et des solutions orthodontiques discrètes qui permettent aux adolescents comme aux adultes d'obtenir un alignement parfait."
+      },
+      {
+        "name": "Dr Clara Moreau",
+        "role": "Dentiste pédiatrique",
+        "bio": "Le Dr Moreau transforme la visite chez le dentiste en aventure pour les plus petits. Son approche calme et ludique donne envie aux enfants de revenir à chaque contrôle."
+      }
+    ],
+    "cta": "Réserver une consultation"
+  },
+  "form": {
+    "eyebrow": "Réservation",
+    "title": "Réservez votre rendez-vous",
+    "subtitle": "Remplissez le formulaire et confirmez directement sur WhatsApp — nous vous répondons sous un jour ouvré.",
+    "name": "Nom complet",
+    "namePlaceholder": "ex. Marie Dupont",
+    "phone": "Téléphone",
+    "phonePlaceholder": "ex. 06 12 34 56 78",
+    "email": "E-mail",
+    "emailPlaceholder": "ex. marie.dupont@email.com",
+    "service": "Service souhaité",
+    "servicePlaceholder": "Choisissez un service",
+    "servicesOptions": [
+      "Dentisterie générale",
+      "Orthodontie",
+      "Blanchiment dentaire",
+      "Implants dentaires",
+      "Dentisterie pédiatrique",
+      "Urgences dentaires"
+    ],
+    "date": "Date souhaitée",
+    "datePlaceholder": "Choisissez une date",
+    "time": "Heure souhaitée",
+    "timePlaceholder": "Choisissez une heure",
+    "timeOptions": [
+      "08:30",
+      "09:30",
+      "10:30",
+      "11:30",
+      "14:00",
+      "15:00",
+      "16:00",
+      "17:30"
+    ],
+    "message": "Message / Notes",
+    "messagePlaceholder": "Décrivez vos besoins, symptômes ou questions (facultatif)",
+    "privacy": "En soumettant ce formulaire, vous acceptez d'être contacté(e) par notre clinique au sujet de votre demande de rendez-vous.",
+    "submit": "Confirmer sur WhatsApp",
+    "submitting": "Envoi en cours...",
+    "validation": {
+      "required": "Ce champ est requis.",
+      "name": "Veuillez saisir votre nom complet.",
+      "phone": "Veuillez saisir un numéro de téléphone valide.",
+      "phoneInvalid": "Veuillez saisir un numéro de téléphone valide (chiffres et + - . / espaces).",
+      "email": "Veuillez saisir une adresse e-mail valide.",
+      "service": "Veuillez sélectionner un service.",
+      "date": "Veuillez choisir une date souhaitée.",
+      "time": "Veuillez choisir une heure souhaitée."
+    },
+    "successTitle": "Merci !",
+    "successMessage": "Votre demande de rendez-vous est prête sur WhatsApp. Nous confirmerons bientôt votre réservation.",
+    "successSub": "Si WhatsApp ne s'est pas ouvert, vérifiez votre connexion et réessayez.",
+    "tryAgain": "Faire une autre demande",
+    "notes": {
+      "name": "Nom",
+      "phone": "Téléphone",
+      "email": "E-mail",
+      "service": "Service",
+      "date": "Date souhaitée",
+      "time": "Heure souhaitée",
+      "message": "Message",
+      "request": "Nouvelle demande de rendez-vous",
+      "greeting": "Bonjour, je souhaite prendre rendez-vous à la clinique SmileCare.",
+      "from": "Envoyé depuis le site internet"
+    }
+  },
+  "testimonials": {
+    "eyebrow": "Témoignages",
+    "title": "Ce que disent nos patients",
+    "subtitle": "Les expériences réelles de patients qui nous ont confié leur sourire.",
+    "verified": "Patient vérifié",
+    "items": [
+      {
+        "name": "Camille R.",
+        "rating": 5,
+        "date": "Juin 2026",
+        "text": "J'avais très peur du dentiste, mais toute l'équipe a été incroyablement patiente et douce. Mon blanchiment a été rapide et sans douleur. J'adore enfin mon sourire !"
+      },
+      {
+        "name": "Thomas B.",
+        "rating": 5,
+        "date": "Mai 2026",
+        "text": "La pose d'implant faisait un peu peur, mais le Dr Laurent a tout expliqué étape par étape et je n'ai ressenti aucune douleur. Le résultat est parfaitement naturel. Je recommande vivement."
+      },
+      {
+        "name": "Aïcha M.",
+        "rating": 5,
+        "date": "Mai 2026",
+        "text": "Ma fille demande elle-même quand on retourne chez le dentiste ! L'équipe pédiatrique est formidable avec les enfants. Et la réservation sur WhatsApp est très simple."
+      },
+      {
+        "name": "Julien K.",
+        "rating": 4,
+        "date": "Avril 2026",
+        "text": "Rendez-vous d'urgence très rapide pour une dent cassée, suivi très professionnel et tarifs honnêtes. Le matériel moderne change vraiment tout."
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Visitez notre clinique",
+    "subtitle": "Nous sommes faciles à joindre — par téléphone, par e-mail ou directement au cabinet.",
+    "addressLabel": "Adresse",
+    "address": "24 Rue de la Santé, 75013 Paris, France",
+    "phoneLabel": "Téléphone",
+    "emailLabel": "E-mail",
+    "hoursLabel": "Horaires d'ouverture",
+    "hours": [
+      { "days": "Lundi – Vendredi", "time": "08:30 – 19:00" },
+      { "days": "Samedi", "time": "09:00 – 13:00" },
+      { "days": "Dimanche", "time": "Fermé" }
+    ],
+    "emergency": "Urgence dentaire ? Appelez-nous au numéro ci-dessus.",
+    "mapTitle": "Localisation de la clinique sur Google Maps"
+  },
+  "footer": {
+    "tagline": "Une dentisterie douce et moderne pour toute la famille. Votre sourire est notre priorité.",
+    "quickLinks": "Liens rapides",
+    "contactTitle": "Contact",
+    "hoursTitle": "Horaires",
+    "followUs": "Suivez-nous",
+    "rights": "Tous droits réservés.",
+    "developed": "Réalisé avec soin",
+    "backToTop": "Retour en haut"
+  },
+  "whatsapp": {
+    "label": "Discuter avec nous sur WhatsApp",
+    "message": "Bonjour SmileCare ! J'aimerais en savoir plus sur vos soins dentaires."
+  },
+  "common": {
+    "readMore": "En savoir plus",
+    "close": "Fermer",
+    "next": "Suivant",
+    "previous": "Précédent"
+  }
+}

@@ -1,0 +1,226 @@
+{
+  "meta": {
+    "title": "SmileCare Dental Clinic — Modern Dentistry in Paris",
+    "description": "Modern, gentle dentistry for the whole family. General dentistry, orthodontics, whitening, implants, pediatric dentistry and emergency care."
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "reservation": "Book Appointment",
+    "contact": "Contact",
+    "menuLabel": "Open menu",
+    "closeLabel": "Close menu",
+    "skipToContent": "Skip to content"
+  },
+  "hero": {
+    "badge": "Welcome to SmileCare Clinic",
+    "title1": "A Bright, Healthy Smile",
+    "titleHighlight": "for the Whole Family",
+    "subtitle": "Modern, gentle and patient-centred dentistry in the heart of Paris. Advanced technology, transparent pricing and a team that truly cares about your comfort.",
+    "ctaPrimary": "Book an Appointment",
+    "ctaSecondary": "Explore Our Services",
+    "feature1": "Over 20 years of experience",
+    "feature2": "Certified, gentle dentists",
+    "feature3": "State-of-the-art equipment",
+    "scrollHint": "Scroll down"
+  },
+  "services": {
+    "eyebrow": "Our Treatments",
+    "title": "Complete Dental Care",
+    "subtitle": "From routine check-ups to full smile makeovers — every treatment is personalised and performed with the latest technology.",
+    "items": [
+      {
+        "name": "General Dentistry",
+        "description": "Check-ups, cleanings, fillings and preventive care to keep your smile healthy all year round."
+      },
+      {
+        "name": "Orthodontics",
+        "description": "Traditional braces and clear aligners to straighten teeth for both adults and teenagers."
+      },
+      {
+        "name": "Teeth Whitening",
+        "description": "Safe, professional whitening that brightens your smile by several shades in a single visit."
+      },
+      {
+        "name": "Dental Implants",
+        "description": "Permanent, natural-looking replacements for missing teeth, restored with titanium implants."
+      },
+      {
+        "name": "Pediatric Dentistry",
+        "description": "Gentle, fun dental care designed to make children feel safe and build healthy habits early."
+      },
+      {
+        "name": "Emergency Care",
+        "description": "Same-day appointments for pain, broken teeth and dental accidents — whenever you need us."
+      }
+    ],
+    "learnMore": "Learn more"
+  },
+  "about": {
+    "eyebrow": "About the Clinic",
+    "title": "A Team Devoted to Your Smile",
+    "paragraph1": "SmileCare Dental Clinic was founded with one mission: to make quality dentistry accessible, comfortable and worry-free. Our modern clinic combines medical excellence with a warm, welcoming atmosphere.",
+    "paragraph2": "Every treatment starts with a conversation. We listen, explain and involve you in every decision, so you always know exactly what to expect — no surprises, no hidden costs.",
+    "stats": [
+      { "value": 20, "suffix": "+", "label": "Years of Experience" },
+      { "value": 15000, "suffix": "+", "label": "Patients Treated" },
+      { "value": 6, "suffix": "", "label": "Dental Specialists" },
+      { "value": 98, "suffix": "%", "label": "Patient Satisfaction" }
+    ],
+    "teamTitle": "Meet Our Dentists",
+    "team": [
+      {
+        "name": "Dr. Sophie Laurent",
+        "role": "Founder · General & Aesthetic Dentistry",
+        "bio": "With over 20 years of practice, Dr. Laurent combines technical precision with a gentle, reassuring approach. She founded the clinic to put patient comfort first."
+      },
+      {
+        "name": "Dr. Marc Nguyen",
+        "role": "Orthodontist",
+        "bio": "Dr. Nguyen specialises in clear aligners and discreet orthodontic solutions that help both teenagers and adults achieve perfectly aligned smiles."
+      },
+      {
+        "name": "Dr. Clara Moreau",
+        "role": "Pediatric Dentist",
+        "bio": "Dr. Moreau turns the dentist visit into an adventure for little ones. Her calm, playful approach makes children look forward to every check-up."
+      }
+    ],
+    "cta": "Reserve a Consultation"
+  },
+  "form": {
+    "eyebrow": "Reservation",
+    "title": "Book Your Appointment",
+    "subtitle": "Fill in the form and confirm directly on WhatsApp — we'll get back to you within one working day.",
+    "name": "Full Name",
+    "namePlaceholder": "e.g. Marie Dupont",
+    "phone": "Phone",
+    "phonePlaceholder": "e.g. 06 12 34 56 78",
+    "email": "Email",
+    "emailPlaceholder": "e.g. marie.dupont@email.com",
+    "service": "Preferred Service",
+    "servicePlaceholder": "Select a service",
+    "servicesOptions": [
+      "General Dentistry",
+      "Orthodontics",
+      "Teeth Whitening",
+      "Dental Implants",
+      "Pediatric Dentistry",
+      "Emergency Care"
+    ],
+    "date": "Preferred Date",
+    "datePlaceholder": "Choose a date",
+    "time": "Preferred Time",
+    "timePlaceholder": "Choose a time",
+    "timeOptions": [
+      "08:30",
+      "09:30",
+      "10:30",
+      "11:30",
+      "14:00",
+      "15:00",
+      "16:00",
+      "17:30"
+    ],
+    "message": "Message / Notes",
+    "messagePlaceholder": "Tell us about your needs, symptoms or questions (optional)",
+    "privacy": "By submitting, you agree to be contacted by our clinic about your appointment request.",
+    "submit": "Confirm via WhatsApp",
+    "submitting": "Sending...",
+    "validation": {
+      "required": "This field is required.",
+      "name": "Please enter your full name.",
+      "phone": "Please enter a valid phone number.",
+      "phoneInvalid": "Please enter a valid phone number (digits and + - . / spaces).",
+      "email": "Please enter a valid email address.",
+      "service": "Please select a service.",
+      "date": "Please choose a preferred date.",
+      "time": "Please choose a preferred time."
+    },
+    "successTitle": "Thank you!",
+    "successMessage": "Your appointment request is ready on WhatsApp. We will confirm your booking very soon.",
+    "successSub": "If WhatsApp didn't open, please check your connection and try again.",
+    "tryAgain": "Make another request",
+    "notes": {
+      "name": "Name",
+      "phone": "Phone",
+      "email": "Email",
+      "service": "Service",
+      "date": "Preferred date",
+      "time": "Preferred time",
+      "message": "Message",
+      "request": "New appointment request",
+      "greeting": "Hello, I would like to book an appointment at SmileCare Dental Clinic.",
+      "from": "Sent from the website"
+    }
+  },
+  "testimonials": {
+    "eyebrow": "Testimonials",
+    "title": "What Our Patients Say",
+    "subtitle": "Real experiences from patients who trusted us with their smile.",
+    "verified": "Verified patient",
+    "items": [
+      {
+        "name": "Camille R.",
+        "rating": 5,
+        "date": "June 2026",
+        "text": "I was terrified of dentists, but the whole team was incredibly patient and gentle. My whitening session was quick and painless. I finally love my smile!"
+      },
+      {
+        "name": "Thomas B.",
+        "rating": 5,
+        "date": "May 2026",
+        "text": "Implant surgery sounded scary, but Dr. Laurent explained every step and I felt zero pain. The result looks completely natural. Highly recommended."
+      },
+      {
+        "name": "Aïcha M.",
+        "rating": 5,
+        "date": "May 2026",
+        "text": "My daughter actually asks when we're going back to the dentist! The pediatric team is wonderful with children. Booking on WhatsApp was super easy too."
+      },
+      {
+        "name": "Julien K.",
+        "rating": 4,
+        "date": "April 2026",
+        "text": "Fast emergency appointment for a broken tooth, very professional follow-up and fair pricing. The modern equipment makes all the difference."
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Visit Our Clinic",
+    "subtitle": "We're easy to reach — by phone, email or directly at the practice.",
+    "addressLabel": "Address",
+    "address": "24 Rue de la Santé, 75013 Paris, France",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "hoursLabel": "Opening Hours",
+    "hours": [
+      { "days": "Monday – Friday", "time": "08:30 – 19:00" },
+      { "days": "Saturday", "time": "09:00 – 13:00" },
+      { "days": "Sunday", "time": "Closed" }
+    ],
+    "emergency": "Dental emergency? Call us on the phone number above.",
+    "mapTitle": "Clinic location on Google Maps"
+  },
+  "footer": {
+    "tagline": "Gentle, modern dentistry for the whole family. Your smile is our priority.",
+    "quickLinks": "Quick Links",
+    "contactTitle": "Contact",
+    "hoursTitle": "Opening Hours",
+    "followUs": "Follow Us",
+    "rights": "All rights reserved.",
+    "developed": "Crafted with care",
+    "backToTop": "Back to top"
+  },
+  "whatsapp": {
+    "label": "Chat with us on WhatsApp",
+    "message": "Hello SmileCare! I would like to know more about your dental services."
+  },
+  "common": {
+    "readMore": "Read more",
+    "close": "Close",
+    "next": "Next",
+    "previous": "Previous"
+  }
+}
