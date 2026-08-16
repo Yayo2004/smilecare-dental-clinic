@@ -71,19 +71,19 @@
     "teamTitle": "Meet Our Dentists",
     "team": [
       {
-        "name": "Dr. Sophie Laurent",
+        "name": "Dr Fatima Zahra Benali",
         "role": "Founder · General & Aesthetic Dentistry",
-        "bio": "With over 20 years of practice, Dr. Laurent combines technical precision with a gentle, reassuring approach. She founded the clinic to put patient comfort first."
+        "bio": "With over 20 years of practice, Dr Benali combines technical precision with a gentle, reassuring approach. She founded the clinic to put patient comfort first."
       },
       {
-        "name": "Dr. Marc Nguyen",
+        "name": "Dr Mohamed Amine Tazi",
         "role": "Orthodontist",
-        "bio": "Dr. Nguyen specialises in clear aligners and discreet orthodontic solutions that help both teenagers and adults achieve perfectly aligned smiles."
+        "bio": "Dr Tazi specialises in clear aligners and discreet orthodontic solutions that help both teenagers and adults achieve perfectly aligned smiles."
       },
       {
-        "name": "Dr. Clara Moreau",
+        "name": "Dr Khadija Alaoui",
         "role": "Pediatric Dentist",
-        "bio": "Dr. Moreau turns the dentist visit into an adventure for little ones. Her calm, playful approach makes children look forward to every check-up."
+        "bio": "Dr Alaoui turns the dentist visit into an adventure for little ones. Her calm, playful approach makes children look forward to every check-up."
       }
     ],
     "cta": "Reserve a Consultation"
@@ -161,16 +161,16 @@
     "verified": "Verified patient",
     "items": [
       {
-        "name": "Camille R.",
+        "name": "Salma A.",
         "rating": 5,
         "date": "June 2026",
         "text": "I was terrified of dentists, but the whole team was incredibly patient and gentle. My whitening session was quick and painless. I finally love my smile!"
       },
       {
-        "name": "Thomas B.",
+        "name": "Youssef B.",
         "rating": 5,
         "date": "May 2026",
-        "text": "Implant surgery sounded scary, but Dr. Laurent explained every step and I felt zero pain. The result looks completely natural. Highly recommended."
+        "text": "Implant surgery sounded scary, but Dr Tazi explained every step and I felt zero pain. The result looks completely natural. Highly recommended."
       },
       {
         "name": "Aïcha M.",
@@ -179,7 +179,7 @@
         "text": "My daughter actually asks when we're going back to the dentist! The pediatric team is wonderful with children. Booking on WhatsApp was super easy too."
       },
       {
-        "name": "Julien K.",
+        "name": "Khalid D.",
         "rating": 4,
         "date": "April 2026",
         "text": "Fast emergency appointment for a broken tooth, very professional follow-up and fair pricing. The modern equipment makes all the difference."

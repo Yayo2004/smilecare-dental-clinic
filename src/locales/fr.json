@@ -71,19 +71,19 @@
     "teamTitle": "Rencontrez nos dentistes",
     "team": [
       {
-        "name": "Dr Sophie Laurent",
+        "name": "Dr Fatima Zahra Benali",
         "role": "Fondatrice · Dentisterie générale et esthétique",
-        "bio": "Avec plus de 20 ans de pratique, le Dr Laurent allie précision technique et approche douce et rassurante. Elle a fondé la clinique pour placer le confort du patient au premier plan."
+        "bio": "Avec plus de 20 ans de pratique, le Dr Benali allie précision technique et approche douce et rassurante. Elle a fondé la clinique pour placer le confort du patient au premier plan."
       },
       {
-        "name": "Dr Marc Nguyen",
+        "name": "Dr Mohamed Amine Tazi",
         "role": "Orthodontiste",
-        "bio": "Le Dr Nguyen est spécialiste des aligneurs invisibles et des solutions orthodontiques discrètes qui permettent aux adolescents comme aux adultes d'obtenir un alignement parfait."
+        "bio": "Le Dr Tazi est spécialiste des aligneurs invisibles et des solutions orthodontiques discrètes qui permettent aux adolescents comme aux adultes d'obtenir un alignement parfait."
       },
       {
-        "name": "Dr Clara Moreau",
+        "name": "Dr Khadija Alaoui",
         "role": "Dentiste pédiatrique",
-        "bio": "Le Dr Moreau transforme la visite chez le dentiste en aventure pour les plus petits. Son approche calme et ludique donne envie aux enfants de revenir à chaque contrôle."
+        "bio": "Le Dr Alaoui transforme la visite chez le dentiste en aventure pour les plus petits. Son approche calme et ludique donne envie aux enfants de revenir à chaque contrôle."
       }
     ],
     "cta": "Réserver une consultation"
@@ -161,16 +161,16 @@
     "verified": "Patient vérifié",
     "items": [
       {
-        "name": "Camille R.",
+        "name": "Salma A.",
         "rating": 5,
         "date": "Juin 2026",
         "text": "J'avais très peur du dentiste, mais toute l'équipe a été incroyablement patiente et douce. Mon blanchiment a été rapide et sans douleur. J'adore enfin mon sourire !"
       },
       {
-        "name": "Thomas B.",
+        "name": "Youssef B.",
         "rating": 5,
         "date": "Mai 2026",
-        "text": "La pose d'implant faisait un peu peur, mais le Dr Laurent a tout expliqué étape par étape et je n'ai ressenti aucune douleur. Le résultat est parfaitement naturel. Je recommande vivement."
+        "text": "La pose d'implant faisait un peu peur, mais le Dr Tazi a tout expliqué étape par étape et je n'ai ressenti aucune douleur. Le résultat est parfaitement naturel. Je recommande vivement."
       },
       {
         "name": "Aïcha M.",
@@ -179,7 +179,7 @@
         "text": "Ma fille demande elle-même quand on retourne chez le dentiste ! L'équipe pédiatrique est formidable avec les enfants. Et la réservation sur WhatsApp est très simple."
       },
       {
-        "name": "Julien K.",
+        "name": "Khalid D.",
         "rating": 4,
         "date": "Avril 2026",
         "text": "Rendez-vous d'urgence très rapide pour une dent cassée, suivi très professionnel et tarifs honnêtes. Le matériel moderne change vraiment tout."

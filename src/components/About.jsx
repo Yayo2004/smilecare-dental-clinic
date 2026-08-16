@@ -37,30 +37,11 @@ function Counter({ value, suffix }) {
   )
 }
 
-/** Avatar initials circle used in dentist bio cards. */
-function Avatar({ name }) {
-  const initials = name
-    .replace(/^(Dr|Docteur)\s+/i, '')
-    .split(' ')
-    .slice(0, 2)
-    .map((part) => part[0])
-    .join('')
-
-  const gradients = [
-    'from-primary to-primary-light',
-    'from-[#4FB3BF] to-[#2A9D8F]',
-    'from-[#3B82F6] to-[#4FB3BF]',
-  ]
-
-  return (
-    <span
-      className={`mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br text-2xl font-bold text-white shadow-card ${gradients[Math.abs(name.length) % gradients.length]}`}
-      aria-hidden="true"
-    >
-      {initials}
-    </span>
-  )
-}
+const DENTIST_PHOTOS = [
+  { src: '/images/dr-1.png', alt: 'Dr Fatima Zahra Benali' },
+  { src: '/images/dr-2.png', alt: 'Dr Mohamed Amine Tazi' },
+  { src: '/images/dr-3.png', alt: 'Dr Khadija Alaoui' },
+]
 
 /** About / Team section with animated stats and dentist bios. */
 export default function About() {
@@ -121,7 +102,12 @@ export default function About() {
                 <span className="absolute left-5 top-5 rounded-full bg-mint/70 p-2 text-primary">
                   <Quote className="h-4 w-4" aria-hidden="true" />
                 </span>
-                <Avatar name={member.name} />
+                <img
+                  src={DENTIST_PHOTOS[i % DENTIST_PHOTOS.length].src}
+                  alt={DENTIST_PHOTOS[i % DENTIST_PHOTOS.length].alt}
+                  className="mx-auto h-44 w-44 rounded-full object-cover object-top shadow-card sm:h-52 sm:w-52"
+                  loading="lazy"
+                />
                 <h4 className="mt-5 font-display text-lg font-bold text-navy">{member.name}</h4>
                 <p className="mt-1 text-sm font-semibold text-primary">{member.role}</p>
                 <p className="mt-3 leading-relaxed text-navy/65">{member.bio}</p>
