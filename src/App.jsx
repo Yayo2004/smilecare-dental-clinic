@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import BeforeAfter from './components/BeforeAfter'
 import Services from './components/Services'
 import About from './components/About'
 import ReservationForm from './components/ReservationForm'
@@ -26,6 +27,7 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
+        <BeforeAfter />
         <Services />
         <About />
         <ReservationForm />

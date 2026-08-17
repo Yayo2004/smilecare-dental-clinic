@@ -25,6 +25,19 @@
     "feature3": "Équipements de dernière génération",
     "scrollHint": "Défiler"
   },
+  "results": {
+    "eyebrow": "Nos résultats",
+    "title": "Avant / Après",
+    "subtitle": "Découvrez les transformations réelles de nos patients grâce à nos traitements.",
+    "cases": [
+      { "label": "Blanchiment dentaire" },
+      { "label": "Orthodontie" },
+      { "label": "Implant dentaire" }
+    ],
+    "before": "Avant",
+    "after": "Après",
+    "dragHint": "Glissez pour comparer"
+  },
   "services": {
     "eyebrow": "Nos traitements",
     "title": "Des soins dentaires complets",

@@ -25,6 +25,19 @@
     "feature3": "State-of-the-art equipment",
     "scrollHint": "Scroll down"
   },
+  "results": {
+    "eyebrow": "Our Results",
+    "title": "Before / After",
+    "subtitle": "See the real transformations our patients have achieved with our treatments.",
+    "cases": [
+      { "label": "Teeth Whitening" },
+      { "label": "Orthodontics" },
+      { "label": "Dental Implant" }
+    ],
+    "before": "Before",
+    "after": "After",
+    "dragHint": "Drag the slider to compare"
+  },
   "services": {
     "eyebrow": "Our Treatments",
     "title": "Complete Dental Care",
