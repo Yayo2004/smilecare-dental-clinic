@@ -13,14 +13,15 @@ const CASES = [
 /**
  * Both images sit in the exact same spot.
  * Left half = before, right half = after.
- * Drag anywhere on the image to move the dividing line.
+ * Auto-animates on load, then user can drag to compare.
  */
 function ComparisonSlider({ before, after, label, beforeLabel, afterLabel }) {
   const containerRef = useRef(null)
   const [pos, setPos] = useState(50)
   const [dragging, setDragging] = useState(false)
   const [imgWidth, setImgWidth] = useState(0)
-  const [hint, setHint] = useState(true)
+  const autoRef = useRef(true)
+  const resumeTimer = useRef(null)
 
   useEffect(() => {
     const el = containerRef.current
@@ -32,22 +33,49 @@ function ComparisonSlider({ before, after, label, beforeLabel, afterLabel }) {
     return () => ro.disconnect()
   }, [])
 
+  // Auto-sweep animation: the divider slides left ↔ right continuously
+  useEffect(() => {
+    let raf
+    const start = performance.now()
+    const animate = (now) => {
+      if (!autoRef.current) return
+      const elapsed = (now - start) / 1000
+      // Sine wave: sweeps between 8% and 92% over ~3 seconds
+      const cycle = Math.sin(elapsed * 1.2) * 0.5 + 0.5 // 0→1→0
+      setPos(8 + cycle * 84) // 8% → 92% → 8%
+      raf = requestAnimationFrame(animate)
+    }
+    raf = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(raf)
+  }, [dragging])
+
   const updatePos = useCallback((clientX) => {
     if (!containerRef.current) return
     const rect = containerRef.current.getBoundingClientRect()
     const x = Math.max(0, Math.min(clientX - rect.left, rect.width))
     setPos((x / rect.width) * 100)
-    setHint(false)
   }, [])
 
   const onPointerDown = useCallback(
     (e) => {
       e.preventDefault()
+      // Stop auto-animation on first interaction
+      autoRef.current = false
+      clearTimeout(resumeTimer.current)
       setDragging(true)
       updatePos(e.clientX ?? e.touches?.[0]?.clientX)
     },
     [updatePos],
   )
+
+  // After user stops dragging for 6s, restart the auto-sweep
+  useEffect(() => {
+    if (dragging) return
+    resumeTimer.current = setTimeout(() => {
+      autoRef.current = true
+    }, 6000)
+    return () => clearTimeout(resumeTimer.current)
+  }, [dragging])
 
   useEffect(() => {
     if (!dragging) return
@@ -120,16 +148,6 @@ function ComparisonSlider({ before, after, label, beforeLabel, afterLabel }) {
         <span className="absolute bottom-4 right-4 rounded-full bg-primary/90 px-4 py-1.5 text-sm font-bold text-white backdrop-blur-sm">
           {afterLabel}
         </span>
-
-        {/* Animated hint: slides automatically on first load */}
-        {hint && (
-          <motion.div
-            className="absolute top-0 bottom-0 w-0.5 bg-white/80"
-            initial={{ left: '10%' }}
-            animate={{ left: ['10%', '90%', '50%'] }}
-            transition={{ duration: 2, ease: 'easeInOut', delay: 0.8 }}
-          />
-        )}
       </div>
     </div>
   )
