@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
-import { ArrowLeftRight } from 'lucide-react'
+import { ArrowLeftRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import Reveal from './Reveal'
 
 const CASES = [
@@ -10,31 +10,29 @@ const CASES = [
   { before: '/images/before-3.webp', after: '/images/after-3.webp' },
 ]
 
-/** A single before/after image pair with a draggable comparison slider. */
-function ComparisonCard({ before, after, label, beforeLabel, afterLabel }) {
+/** Single before/after comparison: both images stacked, drag slider to reveal. */
+function ComparisonSlider({ before, after, label, beforeLabel, afterLabel }) {
   const containerRef = useRef(null)
   const [pos, setPos] = useState(50)
   const [dragging, setDragging] = useState(false)
-  const [width, setWidth] = useState(0)
+  const [imgWidth, setImgWidth] = useState(0)
 
-  // Track container width so the clipped "after" image stays pixel-aligned
   useEffect(() => {
     const el = containerRef.current
     if (!el) return
-    const ro = new ResizeObserver(([entry]) => setWidth(entry.contentRect.width))
+    const update = () => setImgWidth(el.getBoundingClientRect().width)
+    update()
+    const ro = new ResizeObserver(update)
     ro.observe(el)
     return () => ro.disconnect()
   }, [])
 
-  const updatePos = useCallback(
-    (clientX) => {
-      if (!containerRef.current) return
-      const rect = containerRef.current.getBoundingClientRect()
-      const x = Math.max(0, Math.min(clientX - rect.left, rect.width))
-      setPos((x / rect.width) * 100)
-    },
-    [],
-  )
+  const updatePos = useCallback((clientX) => {
+    if (!containerRef.current) return
+    const rect = containerRef.current.getBoundingClientRect()
+    const x = Math.max(0, Math.min(clientX - rect.left, rect.width))
+    setPos((x / rect.width) * 100)
+  }, [])
 
   const onPointerDown = useCallback(
     (e) => {
@@ -65,18 +63,14 @@ function ComparisonCard({ before, after, label, beforeLabel, afterLabel }) {
   }, [dragging, updatePos])
 
   return (
-    <motion.article
-      whileHover={{ y: -4 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      className="w-[300px] flex-shrink-0 snap-center sm:w-[380px]"
-    >
+    <div className="mx-auto max-w-2xl">
       <div
         ref={containerRef}
         className="relative aspect-[4/3] cursor-ew-resize overflow-hidden rounded-2xl shadow-soft select-none"
         onMouseDown={onPointerDown}
         onTouchStart={onPointerDown}
       >
-        {/* Before — full width, underneath */}
+        {/* Before — always fully visible underneath */}
         <img
           src={before}
           alt={`${label} — ${beforeLabel}`}
@@ -84,7 +78,7 @@ function ComparisonCard({ before, after, label, beforeLabel, afterLabel }) {
           draggable={false}
         />
 
-        {/* After — clipped overlay */}
+        {/* After — clipped to pos% from the left */}
         <div
           className="absolute inset-0 overflow-hidden"
           style={{ width: `${pos}%` }}
@@ -93,43 +87,46 @@ function ComparisonCard({ before, after, label, beforeLabel, afterLabel }) {
             src={after}
             alt={`${label} — ${afterLabel}`}
             className="absolute inset-0 h-full object-cover"
-            style={{ width: width || '100%' }}
+            style={{ width: imgWidth || '100%' }}
             draggable={false}
           />
         </div>
 
-        {/* Vertical divider line */}
+        {/* Vertical divider */}
         <div
-          className="absolute top-0 bottom-0 w-0.5 bg-white/90 shadow-[0_0_10px_rgba(0,0,0,0.35)]"
+          className="absolute top-0 bottom-0 w-0.5 bg-white/90 shadow-[0_0_12px_rgba(0,0,0,0.4)]"
           style={{ left: `${pos}%` }}
         >
           {/* Drag handle */}
-          <div className="absolute left-1/2 top-1/2 z-10 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-lg">
-            <ArrowLeftRight className="h-4 w-4 text-navy" aria-hidden="true" />
+          <div className="absolute left-1/2 top-1/2 z-10 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-lg ring-2 ring-white/50">
+            <ArrowLeftRight className="h-5 w-5 text-navy" aria-hidden="true" />
           </div>
         </div>
 
-        {/* Before label (left side) */}
-        <span className="absolute bottom-3 left-3 rounded-full bg-navy/70 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm">
+        {/* Labels */}
+        <span className="absolute bottom-4 left-4 rounded-full bg-navy/70 px-4 py-1.5 text-sm font-bold text-white backdrop-blur-sm">
           {beforeLabel}
         </span>
-
-        {/* After label (right side) */}
-        <span className="absolute bottom-3 right-3 rounded-full bg-primary/90 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm">
+        <span className="absolute bottom-4 right-4 rounded-full bg-primary/90 px-4 py-1.5 text-sm font-bold text-white backdrop-blur-sm">
           {afterLabel}
         </span>
       </div>
 
-      {/* Treatment name */}
-      <p className="mt-3 text-center text-sm font-bold text-navy">{label}</p>
-    </motion.article>
+      {/* Treatment label */}
+      <p className="mt-4 text-center text-base font-bold text-navy">{label}</p>
+    </div>
   )
 }
 
-/** Before/After horizontal scrollable comparison gallery. */
+/** Before/After gallery: one comparison at a time, full-width, with case navigation. */
 export default function BeforeAfter() {
   const { t } = useTranslation()
   const cases = t('results.cases', { returnObjects: true })
+  const [index, setIndex] = useState(0)
+
+  const go = (dir) => setIndex((i) => (i + dir + CASES.length) % CASES.length)
+
+  const current = CASES[index]
 
   return (
     <section id="results" className="overflow-hidden bg-mint/30 py-20 lg:py-28">
@@ -141,23 +138,62 @@ export default function BeforeAfter() {
         </Reveal>
 
         <Reveal className="mt-14">
-          <div
-            className="-mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-4 scroll-smooth sm:justify-center"
-            style={{ scrollbarWidth: 'thin', scrollbarColor: '#2A9D8F transparent' }}
-          >
-            {CASES.map((c, i) => (
-              <ComparisonCard
-                key={i}
-                before={c.before}
-                after={c.after}
-                label={cases[i]?.label}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ComparisonSlider
+                before={current.before}
+                after={current.after}
+                label={cases[index]?.label}
                 beforeLabel={t('results.before')}
                 afterLabel={t('results.after')}
               />
-            ))}
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Navigation: arrows + dots */}
+          <div className="mt-8 flex items-center justify-center gap-4">
+            <button
+              type="button"
+              onClick={() => go(-1)}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-navy/10 bg-white text-navy shadow-sm transition-colors hover:border-primary hover:text-primary"
+              aria-label={t('common.previous')}
+            >
+              <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+            </button>
+
+            <div className="flex gap-2" role="tablist" aria-label={t('results.title')}>
+              {CASES.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  role="tab"
+                  aria-selected={i === index}
+                  aria-label={cases[i]?.label}
+                  onClick={() => setIndex(i)}
+                  className={`h-2.5 rounded-full transition-all duration-300 ${
+                    i === index ? 'w-8 bg-primary' : 'w-2.5 bg-navy/20 hover:bg-navy/40'
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => go(1)}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-navy/10 bg-white text-navy shadow-sm transition-colors hover:border-primary hover:text-primary"
+              aria-label={t('common.next')}
+            >
+              <ChevronRight className="h-5 w-5" aria-hidden="true" />
+            </button>
           </div>
 
-          <p className="mt-6 flex items-center justify-center gap-2 text-center text-sm text-navy/50">
+          <p className="mt-5 flex items-center justify-center gap-2 text-center text-sm text-navy/50">
             <ArrowLeftRight className="h-4 w-4" aria-hidden="true" />
             {t('results.dragHint')}
           </p>
