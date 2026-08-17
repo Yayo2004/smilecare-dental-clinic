@@ -2,14 +2,14 @@ import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { ArrowRight, BadgeCheck, Sparkles, Stethoscope } from 'lucide-react'
 
-/** Animated tooth + medical cross illustration drawn with SVG. */
+/** Hero right-side image with floating stat cards. */
 function HeroIllustration() {
   return (
     <div className="relative mx-auto w-full max-w-md" aria-hidden="true">
-      {/* Soft gradient blob behind the illustration */}
+      {/* Soft gradient blob behind the image */}
       <div className="absolute inset-0 -z-10 scale-110 rounded-full bg-gradient-to-br from-accent-light via-mint to-primary/10 blur-2xl" />
 
-      {/* Floating decorative cards */}
+      {/* Floating satisfaction card */}
       <motion.div
         className="absolute -left-2 top-8 z-10 hidden rounded-2xl bg-white px-4 py-3 shadow-card sm:block"
         animate={{ y: [0, -10, 0] }}
@@ -26,6 +26,7 @@ function HeroIllustration() {
         </div>
       </motion.div>
 
+      {/* Floating smiles card */}
       <motion.div
         className="absolute -right-2 bottom-10 z-10 hidden rounded-2xl bg-white px-4 py-3 shadow-card sm:block"
         animate={{ y: [0, 10, 0] }}
@@ -42,46 +43,19 @@ function HeroIllustration() {
         </div>
       </motion.div>
 
-      {/* Main tooth illustration */}
-      <motion.svg
-        viewBox="0 0 400 400"
-        className="w-full animate-float"
-        initial={{ opacity: 0, scale: 0.9 }}
+      {/* Main hero image */}
+      <motion.div
+        className="overflow-hidden rounded-3xl shadow-card"
+        initial={{ opacity: 0, scale: 0.92 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
       >
-        <defs>
-          <linearGradient id="toothGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#FFFFFF" />
-            <stop offset="100%" stopColor="#DFF0EF" />
-          </linearGradient>
-          <linearGradient id="rootGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#2A9D8F" />
-            <stop offset="100%" stopColor="#21867A" />
-          </linearGradient>
-        </defs>
-
-        {/* Sparkles */}
-        <path d="M70 90 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4 z" fill="#2A9D8F" opacity="0.5" />
-        <path d="M330 120 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3 z" fill="#4FB3BF" opacity="0.6" />
-
-        {/* Dental roots */}
-        <path d="M180 220 q-6 55 -38 92 q8 -2 12 -10 q6 36 8 56 q1 10 8 10 q7 0 8 -10 q2 -28 2 -28 q0 0 2 28 q1 10 8 10 q7 0 8 -10 q2 -20 8 -56 q4 8 12 10 q-32 -37 -38 -92 z" fill="url(#rootGrad)" opacity="0.9" />
-        <path d="M180 220 q-6 55 -38 92 q8 -2 12 -10 q6 36 8 56 q1 10 8 10 q7 0 8 -10 q2 -28 2 -28 q0 0 2 28 q1 10 8 10 q7 0 8 -10 q2 -20 8 -56 q4 8 12 10 q-32 -37 -38 -92 z" fill="url(#rootGrad)" opacity="0.15" transform="translate(40 0) scale(0.8 0.9) translate(-60 0)" />
-
-        {/* Tooth crown */}
-        <path d="M200 78 q-70 -22 -112 14 q-38 33 -18 88 q12 34 42 46 q22 9 88 10 q66 -1 88 -10 q30 -12 42 -46 q20 -55 -18 -88 q-42 -36 -112 -14 z" fill="url(#toothGrad)" stroke="#2A9D8F" strokeWidth="3" />
-
-        {/* Tooth shine */}
-        <ellipse cx="160" cy="130" rx="34" ry="18" fill="#FFFFFF" opacity="0.7" transform="rotate(-18 160 130)" />
-        <circle cx="252" cy="108" r="5" fill="#FFFFFF" opacity="0.9" />
-
-        {/* Medical cross on the crown */}
-        <g>
-          <rect x="224" y="84" width="12" height="36" rx="3" fill="#2A9D8F" />
-          <rect x="212" y="96" width="36" height="12" rx="3" fill="#2A9D8F" />
-        </g>
-      </motion.svg>
+        <img
+          src="/images/dr-1.png"
+          alt="SmileCare dental team"
+          className="h-full w-full object-cover"
+        />
+      </motion.div>
     </div>
   )
 }
