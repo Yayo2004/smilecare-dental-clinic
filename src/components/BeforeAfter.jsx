@@ -69,7 +69,7 @@ function ComparisonSlider({ before, after, label, beforeLabel, afterLabel }) {
   }, [dragging, updatePos])
 
   return (
-    <div className="mx-auto max-w-3xl">
+    <div>
       {/* Treatment label */}
       <p className="mb-4 text-center text-base font-bold text-navy">{label}</p>
 
@@ -149,7 +149,7 @@ export default function BeforeAfter() {
           <p className="mt-4 text-lg text-navy/70">{t('results.subtitle')}</p>
         </Reveal>
 
-        <div className="mt-14 space-y-16">
+        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {CASES.map((c, i) => (
             <Reveal key={i} delay={i * 0.12}>
               <ComparisonSlider
