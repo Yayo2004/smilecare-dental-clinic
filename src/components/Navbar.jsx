@@ -13,7 +13,7 @@ const NAV_ITEMS = [
   { key: 'contact', href: '#contact' },
 ]
 
-/** Sticky navbar with logo, links, language switcher and animated mobile menu. */
+/** Sticky navbar with fade+slide-down entrance on page load. */
 export default function Navbar() {
   const { t } = useTranslation()
   const [scrolled, setScrolled] = useState(false)
@@ -26,16 +26,17 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Close the mobile menu when a link is clicked
   const handleLinkClick = () => setOpen(false)
 
   return (
-    <header
+    <motion.header
+      initial={{ opacity: 0, y: -30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled ? 'bg-white/90 shadow-soft backdrop-blur-md' : 'bg-transparent'
       }`}
     >
-      {/* Skip link for accessibility */}
       <a
         href="#home"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-white"
@@ -49,7 +50,6 @@ export default function Navbar() {
         }`}
         aria-label="Main navigation"
       >
-        {/* Logo */}
         <a href="#home" className="flex items-center gap-2.5" onClick={handleLinkClick}>
           <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-light text-white shadow-card">
             <svg viewBox="0 0 64 64" className="h-6 w-6" aria-hidden="true">
@@ -67,7 +67,6 @@ export default function Navbar() {
           </span>
         </a>
 
-        {/* Desktop links */}
         <ul className="hidden items-center gap-1 lg:flex">
           {NAV_ITEMS.map((item) => (
             <li key={item.key}>
@@ -81,17 +80,17 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Right side: language + CTA */}
         <div className="flex items-center gap-2.5">
           <LanguageSwitcher />
-          <a
+          <motion.a
             href="#reservation"
-            className="hidden items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-card transition-all duration-300 hover:scale-[1.03] hover:bg-primary-dark md:inline-flex"
+            className="hidden items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-card md:inline-flex"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
           >
             <CalendarCheck className="h-4 w-4" aria-hidden="true" />
             {t('nav.reservation')}
-          </a>
-          {/* Mobile hamburger */}
+          </motion.a>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -127,7 +126,6 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile dropdown menu */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -168,6 +166,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   )
 }

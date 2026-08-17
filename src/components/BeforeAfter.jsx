@@ -2,7 +2,11 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { ArrowLeftRight } from 'lucide-react'
-import Reveal from './Reveal'
+import {
+  fadeInLeft,
+  staggerContainer,
+  viewport,
+} from '../animations'
 
 const CASES = [
   { before: '/images/before-1.webp', after: '/images/after-1.webp' },
@@ -33,16 +37,14 @@ function ComparisonSlider({ before, after, label, beforeLabel, afterLabel }) {
     return () => ro.disconnect()
   }, [])
 
-  // Auto-sweep animation: the divider slides left ↔ right continuously
   useEffect(() => {
     let raf
     const start = performance.now()
     const animate = (now) => {
       if (!autoRef.current) return
       const elapsed = (now - start) / 1000
-      // Sine wave: sweeps between 8% and 92% over ~3 seconds
-      const cycle = Math.sin(elapsed * 1.2) * 0.5 + 0.5 // 0→1→0
-      setPos(8 + cycle * 84) // 8% → 92% → 8%
+      const cycle = Math.sin(elapsed * 1.2) * 0.5 + 0.5
+      setPos(8 + cycle * 84)
       raf = requestAnimationFrame(animate)
     }
     raf = requestAnimationFrame(animate)
@@ -59,7 +61,6 @@ function ComparisonSlider({ before, after, label, beforeLabel, afterLabel }) {
   const onPointerDown = useCallback(
     (e) => {
       e.preventDefault()
-      // Stop auto-animation on first interaction
       autoRef.current = false
       clearTimeout(resumeTimer.current)
       setDragging(true)
@@ -68,7 +69,6 @@ function ComparisonSlider({ before, after, label, beforeLabel, afterLabel }) {
     [updatePos],
   )
 
-  // After user stops dragging for 6s, restart the auto-sweep
   useEffect(() => {
     if (dragging) return
     resumeTimer.current = setTimeout(() => {
@@ -98,7 +98,6 @@ function ComparisonSlider({ before, after, label, beforeLabel, afterLabel }) {
 
   return (
     <div>
-      {/* Treatment label */}
       <p className="mb-4 text-center text-base font-bold text-navy">{label}</p>
 
       <div
@@ -107,7 +106,6 @@ function ComparisonSlider({ before, after, label, beforeLabel, afterLabel }) {
         onMouseDown={onPointerDown}
         onTouchStart={onPointerDown}
       >
-        {/* BEFORE — full width underneath */}
         <img
           src={before}
           alt={`${label} — ${beforeLabel}`}
@@ -115,7 +113,6 @@ function ComparisonSlider({ before, after, label, beforeLabel, afterLabel }) {
           draggable={false}
         />
 
-        {/* AFTER — same exact size, clipped to pos% from left */}
         <div
           className="absolute inset-0 overflow-hidden"
           style={{ width: `${pos}%` }}
@@ -129,7 +126,6 @@ function ComparisonSlider({ before, after, label, beforeLabel, afterLabel }) {
           />
         </div>
 
-        {/* Divider line */}
         <div
           className="absolute top-0 bottom-0 w-0.5 bg-white/90 shadow-[0_0_12px_rgba(0,0,0,0.4)]"
           style={{ left: `${pos}%` }}
@@ -139,12 +135,9 @@ function ComparisonSlider({ before, after, label, beforeLabel, afterLabel }) {
           </div>
         </div>
 
-        {/* Avant label — left side */}
         <span className="absolute bottom-4 left-4 rounded-full bg-navy/70 px-4 py-1.5 text-sm font-bold text-white backdrop-blur-sm">
           {beforeLabel}
         </span>
-
-        {/* Après label — right side */}
         <span className="absolute bottom-4 right-4 rounded-full bg-primary/90 px-4 py-1.5 text-sm font-bold text-white backdrop-blur-sm">
           {afterLabel}
         </span>
@@ -153,7 +146,7 @@ function ComparisonSlider({ before, after, label, beforeLabel, afterLabel }) {
   )
 }
 
-/** All cases stacked vertically — each one is a full-width comparison slider. */
+/** Before/After section — slides in FROM THE LEFT, cards stagger + shine overlay. */
 export default function BeforeAfter() {
   const { t } = useTranslation()
   const cases = t('results.cases', { returnObjects: true })
@@ -161,15 +154,40 @@ export default function BeforeAfter() {
   return (
     <section id="results" className="overflow-hidden bg-mint/30 py-20 lg:py-28">
       <div className="container-site">
-        <Reveal className="mx-auto max-w-2xl text-center">
+        {/* Header — left entrance */}
+        <motion.div
+          className="mx-auto max-w-2xl text-center"
+          variants={fadeInLeft}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
           <span className="eyebrow">{t('results.eyebrow')}</span>
           <h2 className="section-title mt-4">{t('results.title')}</h2>
           <p className="mt-4 text-lg text-navy/70">{t('results.subtitle')}</p>
-        </Reveal>
+        </motion.div>
 
-        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Cards — staggered left entrance with shine overlay */}
+        <motion.div
+          className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+          variants={staggerContainer(0.12)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
           {CASES.map((c, i) => (
-            <Reveal key={i} delay={i * 0.12}>
+            <motion.div
+              key={i}
+              variants={fadeInLeft}
+              className="relative overflow-hidden"
+            >
+              {/* Shine overlay on scroll reveal */}
+              <motion.div
+                className="pointer-events-none absolute inset-0 z-10 -translate-x-full rounded-2xl bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                whileInView={{ translateX: ['−100%', '100%'] }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: i * 0.12 + 0.4, ease: 'easeInOut' }}
+              />
               <ComparisonSlider
                 before={c.before}
                 after={c.after}
@@ -177,16 +195,20 @@ export default function BeforeAfter() {
                 beforeLabel={t('results.before')}
                 afterLabel={t('results.after')}
               />
-            </Reveal>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <Reveal className="mt-10">
-          <p className="flex items-center justify-center gap-2 text-center text-sm text-navy/50">
-            <ArrowLeftRight className="h-4 w-4" aria-hidden="true" />
-            {t('results.dragHint')}
-          </p>
-        </Reveal>
+        <motion.p
+          className="mt-10 flex items-center justify-center gap-2 text-center text-sm text-navy/50"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={viewport}
+          transition={{ delay: 0.5 }}
+        >
+          <ArrowLeftRight className="h-4 w-4" aria-hidden="true" />
+          {t('results.dragHint')}
+        </motion.p>
       </div>
     </section>
   )

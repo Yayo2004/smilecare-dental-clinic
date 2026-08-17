@@ -56,3 +56,23 @@
     @apply mb-1.5 block text-sm font-semibold text-navy;
   }
 }
+
+@layer utilities {
+  /* Typewriter cursor blink */
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  /* Glow ring on form focus */
+  @keyframes ring-pulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.25); }
+    50% { box-shadow: 0 0 0 6px rgba(42, 157, 143, 0.12); }
+  }
+  .focus-ring-glow:focus-within {
+    animation: ring-pulse 1.8s ease-in-out infinite;
+  }
+}

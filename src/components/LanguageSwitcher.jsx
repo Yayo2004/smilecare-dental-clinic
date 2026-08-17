@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { Globe } from 'lucide-react'
 
@@ -8,8 +8,7 @@ const LANGUAGES = [
 ]
 
 /**
- * Fixed FR / EN toggle used in the navbar. Updates i18n, the
- * <html lang> attribute and localStorage via src/i18n.js.
+ * FR / EN toggle with smooth flip animation on language change.
  */
 export default function LanguageSwitcher({ onSwitch }) {
   const { i18n } = useTranslation()
@@ -35,17 +34,31 @@ export default function LanguageSwitcher({ onSwitch }) {
             key={lang.code}
             type="button"
             onClick={() => switchLanguage(lang.code)}
+            whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.92 }}
-            className={`rounded-full px-3 py-1 text-xs font-bold tracking-wide transition-colors ${
+            className={`relative rounded-full px-3 py-1 text-xs font-bold tracking-wide transition-colors ${
               active
-                ? 'bg-primary text-white shadow-sm'
+                ? 'text-white'
                 : 'text-navy/60 hover:text-primary'
             }`}
             aria-pressed={active}
             aria-label={lang.name}
             title={lang.name}
           >
-            {lang.label}
+            {/* Animated active pill background */}
+            <AnimatePresence>
+              {active && (
+                <motion.span
+                  layoutId="lang-pill"
+                  className="absolute inset-0 rounded-full bg-primary shadow-sm"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                />
+              )}
+            </AnimatePresence>
+            <span className="relative z-10">{lang.label}</span>
           </motion.button>
         )
       })}

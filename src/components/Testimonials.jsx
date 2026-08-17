@@ -2,9 +2,11 @@ import { useCallback, useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { BadgeCheck, ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react'
-import Reveal from './Reveal'
+import {
+  fadeInRight,
+  viewport,
+} from '../animations'
 
-/** Star rating row. */
 function Stars({ count }) {
   return (
     <div className="flex gap-0.5" role="img" aria-label={`${count} / 5`}>
@@ -19,7 +21,7 @@ function Stars({ count }) {
   )
 }
 
-/** Testimonial carousel with auto-advance and manual navigation. */
+/** Testimonials carousel — slides in FROM THE RIGHT. */
 export default function Testimonials() {
   const { t } = useTranslation()
   const items = t('testimonials.items', { returnObjects: true })
@@ -28,10 +30,9 @@ export default function Testimonials() {
 
   const go = useCallback(
     (dir) => setIndex((i) => (i + dir + items.length) % items.length),
-    [items.length]
+    [items.length],
   )
 
-  // Auto-advance every 6 seconds unless paused
   useEffect(() => {
     if (paused) return undefined
     const id = window.setInterval(() => go(1), 6000)
@@ -43,15 +44,28 @@ export default function Testimonials() {
   return (
     <section id="testimonials" className="bg-mint/40 py-20 lg:py-28">
       <div className="container-site">
-        {/* Section header */}
-        <Reveal className="mx-auto max-w-2xl text-center">
+        {/* Header — right entrance */}
+        <motion.div
+          className="mx-auto max-w-2xl text-center"
+          variants={fadeInRight}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
           <span className="eyebrow">{t('testimonials.eyebrow')}</span>
           <h2 className="section-title mt-4">{t('testimonials.title')}</h2>
           <p className="mt-4 text-lg text-navy/70">{t('testimonials.subtitle')}</p>
-        </Reveal>
+        </motion.div>
 
-        {/* Carousel */}
-        <Reveal className="mx-auto mt-14 max-w-3xl">
+        {/* Carousel — right entrance */}
+        <motion.div
+          className="mx-auto mt-14 max-w-3xl"
+          variants={fadeInRight}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+          transition={{ delay: 0.15 }}
+        >
           <div
             className="relative rounded-2xl border border-navy/5 bg-white p-8 shadow-soft sm:p-12"
             onMouseEnter={() => setPaused(true)}
@@ -61,7 +75,6 @@ export default function Testimonials() {
               <Quote className="h-5 w-5" aria-hidden="true" />
             </span>
 
-            {/* Slide */}
             <div className="min-h-[220px]" aria-live="polite">
               <AnimatePresence mode="wait">
                 <motion.figure
@@ -73,7 +86,7 @@ export default function Testimonials() {
                 >
                   <Stars count={current.rating} />
                   <blockquote className="mt-4 text-lg leading-relaxed text-navy/80">
-                    “{current.text}”
+                    &ldquo;{current.text}&rdquo;
                   </blockquote>
                   <figcaption className="mt-6 flex items-center gap-3">
                     <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary-light font-bold text-white">
@@ -83,7 +96,7 @@ export default function Testimonials() {
                       <p className="font-bold text-navy">{current.name}</p>
                       <p className="flex items-center gap-1 text-sm text-navy/55">
                         {current.date}
-                        <span aria-hidden="true">·</span>
+                        <span aria-hidden="true">&middot;</span>
                         <span className="flex items-center gap-1 text-primary">
                           <BadgeCheck className="h-3.5 w-3.5" aria-hidden="true" />
                           {t('testimonials.verified')}
@@ -95,7 +108,6 @@ export default function Testimonials() {
               </AnimatePresence>
             </div>
 
-            {/* Navigation */}
             <div className="mt-8 flex items-center justify-between">
               <div className="flex gap-2" role="tablist" aria-label={t('testimonials.title')}>
                 {items.map((_, i) => (
@@ -113,26 +125,30 @@ export default function Testimonials() {
                 ))}
               </div>
               <div className="flex gap-2">
-                <button
+                <motion.button
                   type="button"
                   onClick={() => go(-1)}
                   className="flex h-10 w-10 items-center justify-center rounded-full border border-navy/10 bg-white text-navy transition-colors hover:border-primary hover:text-primary"
                   aria-label={t('common.previous')}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                 >
                   <ChevronLeft className="h-5 w-5" aria-hidden="true" />
-                </button>
-                <button
+                </motion.button>
+                <motion.button
                   type="button"
                   onClick={() => go(1)}
                   className="flex h-10 w-10 items-center justify-center rounded-full border border-navy/10 bg-white text-navy transition-colors hover:border-primary hover:text-primary"
                   aria-label={t('common.next')}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                 >
                   <ChevronRight className="h-5 w-5" aria-hidden="true" />
-                </button>
+                </motion.button>
               </div>
             </div>
           </div>
-        </Reveal>
+        </motion.div>
       </div>
     </section>
   )
