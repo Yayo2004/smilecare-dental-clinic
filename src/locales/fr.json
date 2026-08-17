@@ -76,14 +76,14 @@
         "bio": "Avec plus de 20 ans de pratique, le Dr Benali allie précision technique et approche douce et rassurante. Elle a fondé la clinique pour placer le confort du patient au premier plan."
       },
       {
-        "name": "Dr Mohamed Amine Tazi",
-        "role": "Orthodontiste",
-        "bio": "Le Dr Tazi est spécialiste des aligneurs invisibles et des solutions orthodontiques discrètes qui permettent aux adolescents comme aux adultes d'obtenir un alignement parfait."
-      },
-      {
         "name": "Dr Khadija Alaoui",
         "role": "Dentiste pédiatrique",
         "bio": "Le Dr Alaoui transforme la visite chez le dentiste en aventure pour les plus petits. Son approche calme et ludique donne envie aux enfants de revenir à chaque contrôle."
+      },
+      {
+        "name": "Dr Mohamed Amine Tazi",
+        "role": "Orthodontiste",
+        "bio": "Le Dr Tazi est spécialiste des aligneurs invisibles et des solutions orthodontiques discrètes qui permettent aux adolescents comme aux adultes d'obtenir un alignement parfait."
       }
     ],
     "cta": "Réserver une consultation"

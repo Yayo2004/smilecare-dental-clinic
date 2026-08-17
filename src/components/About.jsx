@@ -39,8 +39,8 @@ function Counter({ value, suffix }) {
 
 const DENTIST_PHOTOS = [
   { src: '/images/dr-1.png', alt: 'Dr Fatima Zahra Benali' },
-  { src: '/images/dr-2.png', alt: 'Dr Mohamed Amine Tazi' },
   { src: '/images/dr-3.png', alt: 'Dr Khadija Alaoui' },
+  { src: '/images/dr-2.png', alt: 'Dr Mohamed Amine Tazi' },
 ]
 
 /** About / Team section with animated stats and dentist bios. */

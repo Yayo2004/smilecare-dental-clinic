@@ -76,14 +76,14 @@
         "bio": "With over 20 years of practice, Dr Benali combines technical precision with a gentle, reassuring approach. She founded the clinic to put patient comfort first."
       },
       {
-        "name": "Dr Mohamed Amine Tazi",
-        "role": "Orthodontist",
-        "bio": "Dr Tazi specialises in clear aligners and discreet orthodontic solutions that help both teenagers and adults achieve perfectly aligned smiles."
-      },
-      {
         "name": "Dr Khadija Alaoui",
         "role": "Pediatric Dentist",
         "bio": "Dr Alaoui turns the dentist visit into an adventure for little ones. Her calm, playful approach makes children look forward to every check-up."
+      },
+      {
+        "name": "Dr Mohamed Amine Tazi",
+        "role": "Orthodontist",
+        "bio": "Dr Tazi specialises in clear aligners and discreet orthodontic solutions that help both teenagers and adults achieve perfectly aligned smiles."
       }
     ],
     "cta": "Reserve a Consultation"
