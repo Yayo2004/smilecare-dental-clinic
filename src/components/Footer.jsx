@@ -147,7 +147,7 @@ export default function Footer() {
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5 text-sm text-white/50">
               <Clock className="h-4 w-4 text-accent" aria-hidden="true" />
-              {t('footer.developed')} ❤
+              {t('footer.developed')}
             </span>
             <a
               href="#home"

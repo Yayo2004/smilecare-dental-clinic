@@ -30,11 +30,12 @@ const colors = [
 
 /** Services grid — slides in FROM THE LEFT, cards stagger one by one. */
 export default function Services() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
   const services = t('services.items', { returnObjects: true })
 
   return (
-    <section id="services" className="bg-white py-20 lg:py-28">
+    <section id="services" key={lang} className="bg-white py-20 lg:py-28">
       <div className="container-site">
         {/* Section header — left entrance */}
         <motion.div

@@ -5,13 +5,14 @@ import { CLINIC_INFO } from '../config'
 
 /** Contact section: clinic details + embedded Google Map. */
 export default function Contact() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
   const hours = t('contact.hours', { returnObjects: true })
   const phoneHref = `tel:${CLINIC_INFO.phone.replace(/\s/g, '')}`
-  const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(CLINIC_INFO.mapQuery)}&output=embed`
+  const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(CLINIC_INFO.mapQuery)}&t=&z=16&ie=UTF8&iwloc=&output=embed`
 
   return (
-    <section id="contact" className="bg-white py-20 lg:py-28">
+    <section id="contact" key={lang} className="bg-white py-20 lg:py-28">
       <div className="container-site">
         {/* Section header */}
         <Reveal className="mx-auto max-w-2xl text-center">

@@ -84,7 +84,8 @@ function AnimatedField({ children, error }) {
 
 /** Reservation form with animated inputs, loading spinner, and SVG checkmark success. */
 export default function ReservationForm() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
   const services = t('form.servicesOptions', { returnObjects: true })
   const timeSlots = t('form.timeOptions', { returnObjects: true })
 
@@ -174,7 +175,7 @@ export default function ReservationForm() {
     `w-full bg-transparent px-4 py-3 pl-11 text-sm text-navy outline-none placeholder:text-navy/40 ${errors[name] ? 'text-red-500' : ''}`
 
   return (
-    <section id="reservation" className="relative overflow-hidden bg-white py-20 lg:py-28">
+    <section id="reservation" key={lang} className="relative overflow-hidden bg-white py-20 lg:py-28">
       <div className="pointer-events-none absolute -right-40 top-10 -z-0 h-96 w-96 rounded-full bg-mint/70 blur-3xl" />
       <div className="pointer-events-none absolute -left-40 bottom-10 -z-0 h-96 w-96 rounded-full bg-accent-light/60 blur-3xl" />
 

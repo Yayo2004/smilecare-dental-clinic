@@ -45,12 +45,13 @@ const DENTIST_PHOTOS = [
 
 /** About section — slides in FROM THE RIGHT, stat counters + team cards stagger in. */
 export default function About() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
   const stats = t('about.stats', { returnObjects: true })
   const team = t('about.team', { returnObjects: true })
 
   return (
-    <section id="about" className="relative overflow-hidden bg-mint/50 py-20 lg:py-28">
+    <section id="about" key={lang} className="relative overflow-hidden bg-mint/50 py-20 lg:py-28">
       <div className="pointer-events-none absolute -left-32 top-24 h-72 w-72 rounded-full bg-white/60 blur-3xl" />
 
       <div className="container-site">

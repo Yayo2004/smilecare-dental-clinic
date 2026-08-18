@@ -23,7 +23,8 @@ function Stars({ count }) {
 
 /** Testimonials carousel — slides in FROM THE RIGHT. */
 export default function Testimonials() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
   const items = t('testimonials.items', { returnObjects: true })
   const [index, setIndex] = useState(0)
   const [paused, setPaused] = useState(false)
@@ -42,7 +43,7 @@ export default function Testimonials() {
   const current = items[index]
 
   return (
-    <section id="testimonials" className="bg-mint/40 py-20 lg:py-28">
+    <section id="testimonials" key={lang} className="bg-mint/40 py-20 lg:py-28">
       <div className="container-site">
         {/* Header — right entrance */}
         <motion.div

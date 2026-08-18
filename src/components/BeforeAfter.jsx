@@ -148,11 +148,12 @@ function ComparisonSlider({ before, after, label, beforeLabel, afterLabel }) {
 
 /** Before/After section — slides in FROM THE LEFT, cards stagger + shine overlay. */
 export default function BeforeAfter() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
   const cases = t('results.cases', { returnObjects: true })
 
   return (
-    <section id="results" className="overflow-hidden bg-mint/30 py-20 lg:py-28">
+    <section id="results" key={lang} className="overflow-hidden bg-mint/30 py-20 lg:py-28">
       <div className="container-site">
         {/* Header — left entrance */}
         <motion.div
