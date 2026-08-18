@@ -38,9 +38,9 @@ function Counter({ value, suffix }) {
 }
 
 const DENTIST_PHOTOS = [
-  { src: '/images/dr-1.png', alt: 'Dr Fatima Zahra Benali' },
-  { src: '/images/dr-3.png', alt: 'Dr Khadija Alaoui' },
-  { src: '/images/dr-2.png', alt: 'Dr Mohamed Amine Tazi' },
+  { src: '/images/dr-1.png', alt: 'Dr Youssef Amrani' },
+  { src: '/images/dr-2.png', alt: 'Dr Karim Idrissi' },
+  { src: '/images/dr-3.png', alt: 'Dr Nadia Chraibi' },
 ]
 
 /** About section — slides in FROM THE RIGHT, stat counters + team cards stagger in. */

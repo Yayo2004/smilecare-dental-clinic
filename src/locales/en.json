@@ -84,19 +84,19 @@
     "teamTitle": "Meet Our Dentists",
     "team": [
       {
-        "name": "Dr Fatima Zahra Benali",
+        "name": "Dr Youssef Amrani",
         "role": "Founder · General & Aesthetic Dentistry",
-        "bio": "With over 20 years of practice, Dr Benali combines technical precision with a gentle, reassuring approach. She founded the clinic to put patient comfort first."
+        "bio": "With over 20 years of practice, Dr Amrani combines technical precision with a gentle, reassuring approach. He founded the clinic to put patient comfort first."
       },
       {
-        "name": "Dr Khadija Alaoui",
+        "name": "Dr Karim Idrissi",
         "role": "Pediatric Dentist",
-        "bio": "Dr Alaoui turns the dentist visit into an adventure for little ones. Her calm, playful approach makes children look forward to every check-up."
+        "bio": "Dr Idrissi turns the dentist visit into an adventure for little ones. His calm, playful approach makes children look forward to every check-up."
       },
       {
-        "name": "Dr Mohamed Amine Tazi",
+        "name": "Dr Nadia Chraibi",
         "role": "Orthodontist",
-        "bio": "Dr Tazi specialises in clear aligners and discreet orthodontic solutions that help both teenagers and adults achieve perfectly aligned smiles."
+        "bio": "Dr Chraibi specialises in clear aligners and discreet orthodontic solutions that help both teenagers and adults achieve perfectly aligned smiles."
       }
     ],
     "cta": "Reserve a Consultation"
