@@ -5,7 +5,6 @@ import { fileURLToPath } from 'url'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const DB_PATH = path.join(__dirname, 'reservations.json')
 
-/** Read all reservations from the JSON file */
 export function readReservations() {
   try {
     if (!fs.existsSync(DB_PATH)) return []
@@ -16,12 +15,10 @@ export function readReservations() {
   }
 }
 
-/** Write the full reservations array to the JSON file */
 export function writeReservations(reservations) {
   fs.writeFileSync(DB_PATH, JSON.stringify(reservations, null, 2), 'utf-8')
 }
 
-/** Add a new reservation */
 export function addReservation(reservation) {
   const all = readReservations()
   const entry = {
@@ -33,4 +30,13 @@ export function addReservation(reservation) {
   all.push(entry)
   writeReservations(all)
   return entry
+}
+
+export function markReminded(id) {
+  const all = readReservations()
+  const found = all.find((r) => r.id === id)
+  if (found) {
+    found.reminded = true
+    writeReservations(all)
+  }
 }

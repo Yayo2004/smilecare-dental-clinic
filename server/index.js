@@ -1,12 +1,11 @@
 import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
-import { CronJob } from 'cron'
-import { addReservation, readReservations } from './db.js'
-import { sendReminders } from './reminder.js'
+import { addReservation, readReservations, markReminded } from './db.js'
 
 const app = express()
 const PORT = process.env.PORT || 3001
+const ADMIN_PASS = process.env.ADMIN_PASS || 'smilecare2024'
 
 app.use(cors())
 app.use(express.json())
@@ -17,11 +16,9 @@ app.use(express.json())
 app.post('/api/reservations', (req, res) => {
   try {
     const { name, phone, email, service, date, time, message } = req.body
-
     if (!name || !phone || !service || !date || !time) {
       return res.status(400).json({ error: 'Missing required fields' })
     }
-
     const entry = addReservation({ name, phone, email, service, date, time, message })
     console.log(`[api] New reservation: ${name} — ${date} ${time}`)
     res.status(201).json({ ok: true, id: entry.id })
@@ -31,9 +28,23 @@ app.post('/api/reservations', (req, res) => {
   }
 })
 
-/** List all reservations (for admin/debug) */
-app.get('/api/reservations', (_req, res) => {
+/** Admin: list all reservations (password protected) */
+app.get('/api/reservations', (req, res) => {
+  const pass = req.query.pass
+  if (pass !== ADMIN_PASS) {
+    return res.status(401).json({ error: 'Unauthorized' })
+  }
   res.json(readReservations())
+})
+
+/** Admin: mark a reservation as reminded */
+app.patch('/api/reservations/:id/remind', (req, res) => {
+  const pass = req.query.pass
+  if (pass !== ADMIN_PASS) {
+    return res.status(401).json({ error: 'Unauthorized' })
+  }
+  markReminded(req.params.id)
+  res.json({ ok: true })
 })
 
 /** Health check */
@@ -41,16 +52,7 @@ app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', time: new Date().toISOString() })
 })
 
-// ─── Daily Cron Job: runs every day at 09:00 ─────────────────────
-const cron = new CronJob('0 9 * * *', async () => {
-  console.log('[cron] Running daily reminder check...')
-  await sendReminders()
-}, null, false, 'Europe/Paris')
-
 // ─── Start ────────────────────────────────────────────────────────
 app.listen(PORT, () => {
   console.log(`[server] SmileCare server running on port ${PORT}`)
-  console.log(`[cron]   Daily reminders scheduled at 09:00 (Europe/Paris)`)
-  // Also run once on startup to catch any pending reminders
-  sendReminders()
 })

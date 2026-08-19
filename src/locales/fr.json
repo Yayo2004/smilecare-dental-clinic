@@ -242,5 +242,20 @@
     "multiple": "Vous avez {{count}} réservation(s) en attente de confirmation.",
     "confirm": "Confirmer sur WhatsApp",
     "later": "Plus tard"
+  },
+  "admin": {
+    "title": "Accès Admin",
+    "subtitle": "Entrez le mot de passe administrateur pour voir les réservations.",
+    "passwordPlaceholder": "Mot de passe",
+    "login": "Connexion",
+    "loading": "Chargement...",
+    "dashboard": "Réservations",
+    "total": "{{count}} réservation(s) au total",
+    "pending": "Rappels en attente",
+    "done": "Rappels envoyés",
+    "remindAll": "Tout rappeler ({{count}})",
+    "empty": "Aucune réservation pour le moment.",
+    "remind": "Rappeler",
+    "resend": "Renvoyer"
   }
 }

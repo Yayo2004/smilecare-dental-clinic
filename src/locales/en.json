@@ -242,5 +242,20 @@
     "multiple": "You have {{count}} reservation(s) waiting for confirmation.",
     "confirm": "Confirm on WhatsApp",
     "later": "Later"
+  },
+  "admin": {
+    "title": "Admin Access",
+    "subtitle": "Enter the admin password to view reservations.",
+    "passwordPlaceholder": "Password",
+    "login": "Log in",
+    "loading": "Loading...",
+    "dashboard": "Reservations",
+    "total": "{{count}} reservation(s) total",
+    "pending": "Pending Reminders",
+    "done": "Reminders Sent",
+    "remindAll": "Remind All ({{count}})",
+    "empty": "No reservations yet.",
+    "remind": "Remind",
+    "resend": "Resend"
   }
 }
