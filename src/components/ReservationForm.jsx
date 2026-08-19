@@ -82,6 +82,8 @@ function AnimatedField({ children, error }) {
   )
 }
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+
 /** Reservation form with animated inputs, loading spinner, and SVG checkmark success. */
 export default function ReservationForm() {
   const { t, i18n } = useTranslation()
@@ -143,7 +145,7 @@ export default function ReservationForm() {
     return lines.filter(Boolean).join('\n')
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const nextErrors = validate()
     if (Object.keys(nextErrors).length > 0) {
@@ -151,28 +153,31 @@ export default function ReservationForm() {
       return
     }
     setStatus('sending')
-    window.setTimeout(() => {
-      const message = buildMessage()
-      window.open(buildWhatsAppLink(CLINIC_INFO.whatsappNumber, message), '_blank', 'noopener,noreferrer')
 
-      // Save reservation to localStorage for the reminder system
-      try {
-        const existing = JSON.parse(localStorage.getItem('clinic_reservations') || '[]')
-        existing.push({
+    try {
+      // Save reservation to backend (for automatic WhatsApp reminders)
+      await fetch(`${API_URL}/api/reservations`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           name: form.name.trim(),
           phone: form.phone.trim(),
+          email: form.email.trim(),
           service: form.service,
           date: form.date,
           time: form.time,
-          reminded: false,
-          createdAt: new Date().toISOString(),
-        })
-        localStorage.setItem('clinic_reservations', JSON.stringify(existing))
-      } catch { /* silently ignore localStorage errors */ }
+          message: form.message.trim(),
+        }),
+      })
+    } catch {
+      // If backend is offline, still proceed — user can still use WhatsApp directly
+    }
 
-      setStatus('success')
-      setForm(EMPTY_FORM)
-    }, 900)
+    // Open WhatsApp for immediate confirmation
+    const message = buildMessage()
+    window.open(buildWhatsAppLink(CLINIC_INFO.whatsappNumber, message), '_blank', 'noopener,noreferrer')
+    setStatus('success')
+    setForm(EMPTY_FORM)
   }
 
   const resetForm = () => {

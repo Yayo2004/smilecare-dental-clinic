@@ -20,3 +20,8 @@ Thumbs.db
 # Environment
 .env
 .env.local
+
+# Server
+server/.env
+server/node_modules/
+server/reservations.json
