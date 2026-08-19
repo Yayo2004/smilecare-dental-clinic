@@ -154,6 +154,22 @@ export default function ReservationForm() {
     window.setTimeout(() => {
       const message = buildMessage()
       window.open(buildWhatsAppLink(CLINIC_INFO.whatsappNumber, message), '_blank', 'noopener,noreferrer')
+
+      // Save reservation to localStorage for the reminder system
+      try {
+        const existing = JSON.parse(localStorage.getItem('clinic_reservations') || '[]')
+        existing.push({
+          name: form.name.trim(),
+          phone: form.phone.trim(),
+          service: form.service,
+          date: form.date,
+          time: form.time,
+          reminded: false,
+          createdAt: new Date().toISOString(),
+        })
+        localStorage.setItem('clinic_reservations', JSON.stringify(existing))
+      } catch { /* silently ignore localStorage errors */ }
+
       setStatus('success')
       setForm(EMPTY_FORM)
     }, 900)

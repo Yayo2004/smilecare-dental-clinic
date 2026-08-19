@@ -11,6 +11,7 @@ import Testimonials from './components/Testimonials'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
+import ReminderBanner from './components/ReminderBanner'
 
 export default function App() {
   const { t } = useTranslation()
@@ -37,6 +38,7 @@ export default function App() {
         </main>
         <Footer />
         <WhatsAppButton />
+        <ReminderBanner />
       </div>
     </MotionConfig>
   )

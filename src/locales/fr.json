@@ -235,5 +235,12 @@
     "close": "Fermer",
     "next": "Suivant",
     "previous": "Précédent"
+  },
+  "reminder": {
+    "title": "Rappel de rendez-vous",
+    "single": "Votre réservation de {{name}} le {{date}} — souhaitez-vous la confirmer ?",
+    "multiple": "Vous avez {{count}} réservation(s) en attente de confirmation.",
+    "confirm": "Confirmer sur WhatsApp",
+    "later": "Plus tard"
   }
 }
