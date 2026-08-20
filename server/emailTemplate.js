@@ -89,7 +89,7 @@ export function buildDailyEmail(reservations, date, siteUrl = 'https://smilecare
       <tr>
         <td style="background:${WHITE}; padding:28px 32px; text-align:center;">
           <a href="${siteUrl}" style="display:inline-block; background:${PRIMARY}; color:${WHITE}; text-decoration:none; padding:14px 36px; border-radius:10px; font-size:15px; font-weight:700; letter-spacing:0.3px;">
-            Ouvrir le site web →
+            Contacter mes patients →
           </a>
         </td>
       </tr>
