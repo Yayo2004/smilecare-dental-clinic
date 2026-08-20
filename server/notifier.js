@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer'
 import { readReservations } from './db.js'
-import { buildDailyEmail } from './emailTemplate.js'
+import { buildDailyEmail, buildImmediateEmail } from './emailTemplate.js'
 
 /**
  * Send a daily reservation summary email to the clinic.
@@ -54,4 +54,49 @@ export async function sendDailyEmail() {
   })
 
   console.log(`[email] ✓ Sent to ${emailTo} for ${tomorrowStr}`)
+}
+
+/**
+ * Send an immediate notification when a new reservation is booked
+ * for today or tomorrow.
+ */
+export async function sendImmediateEmail(reservation) {
+  const emailUser = process.env.EMAIL_USER
+  const emailPass = process.env.EMAIL_PASS
+  const emailTo = process.env.EMAIL_TO || emailUser
+  const siteUrl = process.env.SITE_URL || 'http://localhost:5173'
+
+  if (!emailUser || !emailPass) {
+    console.log('[email] EMAIL_USER / EMAIL_PASS not configured — skipping')
+    return
+  }
+
+  const today = new Date().toISOString().slice(0, 10)
+  const tomorrow = new Date(Date.now() + 86400000).toISOString().slice(0, 10)
+
+  if (reservation.date !== today && reservation.date !== tomorrow) {
+    return // Only notify for today/tomorrow
+  }
+
+  const label = reservation.date === today ? "aujourd'hui" : 'demain'
+  console.log(`[email] Sending immediate notification for ${reservation.name} (${label})...`)
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: emailUser,
+      pass: emailPass,
+    },
+  })
+
+  const html = buildImmediateEmail(reservation, siteUrl)
+
+  await transporter.sendMail({
+    from: `"SmileCare Dental Clinic" <${emailUser}>`,
+    to: emailTo,
+    subject: `📅 SmileCare — Nouveau RDV ${label}: ${reservation.name} à ${reservation.time}`,
+    html,
+  })
+
+  console.log(`[email] ✓ Immediate notification sent for ${reservation.name}`)
 }

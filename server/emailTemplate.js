@@ -112,3 +112,129 @@ export function buildDailyEmail(reservations, date, siteUrl = 'https://smilecare
 </body>
 </html>`
 }
+
+/**
+ * Immediate notification email when a single new reservation is booked.
+ */
+export function buildImmediateEmail(r, siteUrl = 'http://localhost:5173') {
+  const adminUrl = `${siteUrl}/#/admin`
+  const today = new Date().toISOString().slice(0, 10)
+  const label = r.date === today ? "aujourd'hui" : 'demain'
+
+  return `<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
+<body style="margin:0; padding:0; background:#f4f6f9; font-family:'Segoe UI',system-ui,-apple-system,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f6f9; padding:32px 16px;">
+  <tr><td align="center">
+    <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px; width:100%;">
+
+      <!-- Logo Header -->
+      <tr>
+        <td style="background:${PRIMARY}; border-radius:16px 16px 0 0; padding:28px 32px; text-align:center;">
+          <div style="display:inline-block; background:rgba(255,255,255,0.15); border-radius:12px; padding:8px 10px; vertical-align:middle;">
+            ${toothSvg()}
+          </div>
+          <span style="font-size:22px; font-weight:700; color:${WHITE}; vertical-align:middle; margin-left:10px; letter-spacing:0.5px;">
+            SmileCare <span style="font-weight:400; font-size:13px; opacity:0.85; display:block; letter-spacing:1.5px; text-transform:uppercase;">Dental Clinic</span>
+          </span>
+        </td>
+      </tr>
+
+      <!-- Title -->
+      <tr>
+        <td style="background:${WHITE}; padding:32px 32px 16px;">
+          <h1 style="margin:0; font-size:22px; color:${NAVY}; font-weight:700;">
+            📅 Nouveau rendez-vous ${label}
+          </h1>
+          <p style="margin:8px 0 0; font-size:15px; color:#666;">
+            Un nouveau rendez-vous vient d'être réservé ${label}.
+          </p>
+        </td>
+      </tr>
+
+      <!-- Reservation Card -->
+      <tr>
+        <td style="background:${WHITE}; padding:0 32px;">
+          <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5e7eb; border-radius:12px; overflow:hidden;">
+            <tbody>
+              <tr>
+                <td style="padding:16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:${NAVY};">
+                  <strong style="color:${NAVY};">Patient</strong>
+                </td>
+                <td style="padding:16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:#666;">
+                  ${r.name}
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:${NAVY};">
+                  <strong style="color:${NAVY};">Date</strong>
+                </td>
+                <td style="padding:16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:#666;">
+                  ${r.date}
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:${NAVY};">
+                  <strong style="color:${NAVY};">Heure</strong>
+                </td>
+                <td style="padding:16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:#666;">
+                  ${r.time}
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:${NAVY};">
+                  <strong style="color:${NAVY};">Service</strong>
+                </td>
+                <td style="padding:16px; border-bottom:1px solid #e5e7eb; font-size:14px;">
+                  <span style="display:inline-block; background:${LIGHT_BG}; color:${PRIMARY}; padding:3px 10px; border-radius:20px; font-size:12px; font-weight:600;">${r.service}</span>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:16px; font-size:14px; color:${NAVY};">
+                  <strong style="color:${NAVY};">Téléphone</strong>
+                </td>
+                <td style="padding:16px; font-size:14px; color:#666;">
+                  📞 ${r.phone}
+                </td>
+              </tr>
+              ${r.message ? `<tr>
+                <td style="padding:16px; font-size:14px; color:${NAVY};">
+                  <strong style="color:${NAVY};">Message</strong>
+                </td>
+                <td style="padding:16px; font-size:14px; color:#666;">
+                  ${r.message}
+                </td>
+              </tr>` : ''}
+            </tbody>
+          </table>
+        </td>
+      </tr>
+
+      <!-- Website Button -->
+      <tr>
+        <td style="background:${WHITE}; padding:28px 32px; text-align:center;">
+          <a href="${adminUrl}" style="display:inline-block; background:${PRIMARY}; color:${WHITE}; text-decoration:none; padding:14px 36px; border-radius:10px; font-size:15px; font-weight:700; letter-spacing:0.3px;">
+            Contacter mes patients →
+          </a>
+        </td>
+      </tr>
+
+      <!-- Footer -->
+      <tr>
+        <td style="background:${LIGHT_BG}; border-radius:0 0 16px 16px; padding:24px 32px; text-align:center;">
+          <p style="margin:0; font-size:12px; color:#999;">
+            Cet email a été envoyé automatiquement par SmileCare Dental Clinic.
+          </p>
+          <p style="margin:6px 0 0; font-size:12px; color:#999;">
+            24 Rue de la Santé, 75013 Paris · +212 0644356664
+          </p>
+        </td>
+      </tr>
+
+    </table>
+  </td></tr>
+</table>
+</body>
+</html>`
+}

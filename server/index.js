@@ -3,7 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import { CronJob } from 'cron'
 import { addReservation, readReservations, markReminded, deleteReservation, deleteReminded } from './db.js'
-import { sendDailyEmail } from './notifier.js'
+import { sendDailyEmail, sendImmediateEmail } from './notifier.js'
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -24,6 +24,11 @@ app.post('/api/reservations', (req, res) => {
     const entry = addReservation({ name, phone, email, service, date, time, message })
     console.log(`[api] New reservation: ${name} — ${date} ${time}`)
     res.status(201).json({ ok: true, id: entry.id })
+
+    // Send immediate email if reservation is for today or tomorrow
+    sendImmediateEmail(entry).catch((err) =>
+      console.error('[api] Immediate email failed:', err.message)
+    )
   } catch (err) {
     console.error('[api] Error saving reservation:', err)
     res.status(500).json({ error: 'Server error' })
