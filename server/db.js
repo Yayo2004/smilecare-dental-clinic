@@ -40,3 +40,15 @@ export function markReminded(id) {
     writeReservations(all)
   }
 }
+
+export function deleteReservation(id) {
+  const all = readReservations()
+  const filtered = all.filter((r) => r.id !== id)
+  writeReservations(filtered)
+}
+
+export function deleteReminded() {
+  const all = readReservations()
+  const filtered = all.filter((r) => !r.reminded)
+  writeReservations(filtered)
+}

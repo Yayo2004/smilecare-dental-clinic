@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
-import { addReservation, readReservations, markReminded } from './db.js'
+import { addReservation, readReservations, markReminded, deleteReservation, deleteReminded } from './db.js'
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -44,6 +44,26 @@ app.patch('/api/reservations/:id/remind', (req, res) => {
     return res.status(401).json({ error: 'Unauthorized' })
   }
   markReminded(req.params.id)
+  res.json({ ok: true })
+})
+
+/** Admin: delete a single reservation */
+app.delete('/api/reservations/:id', (req, res) => {
+  const pass = req.query.pass
+  if (pass !== ADMIN_PASS) {
+    return res.status(401).json({ error: 'Unauthorized' })
+  }
+  deleteReservation(req.params.id)
+  res.json({ ok: true })
+})
+
+/** Admin: delete all reminded reservations */
+app.delete('/api/reservations/reminded', (req, res) => {
+  const pass = req.query.pass
+  if (pass !== ADMIN_PASS) {
+    return res.status(401).json({ error: 'Unauthorized' })
+  }
+  deleteReminded()
   res.json({ ok: true })
 })
 

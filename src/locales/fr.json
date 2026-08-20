@@ -254,6 +254,7 @@
     "pending": "Rappels en attente",
     "done": "Rappels envoyés",
     "remindAll": "Tout rappeler ({{count}})",
+    "deleteAllSent": "Supprimer les envoyées",
     "empty": "Aucune réservation pour le moment.",
     "remind": "Rappeler",
     "resend": "Renvoyer"

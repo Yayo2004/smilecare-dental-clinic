@@ -10,6 +10,7 @@ import {
   MessageCircle,
   Phone,
   RefreshCw,
+  Trash2,
   User,
 } from 'lucide-react'
 import { buildWhatsAppLink } from '../config'
@@ -60,8 +61,17 @@ export default function AdminPanel() {
       ? `Nous vous rappelons votre rendez-vous chez SmileCare:\n\nService: ${reservation.service}\nDate: ${reservation.date}\nHeure: ${reservation.time}\n\nMerci de confirmer votre présence.`
       : `This is a reminder about your appointment at SmileCare:\n\nService: ${reservation.service}\nDate: ${reservation.date}\nTime: ${reservation.time}\n\nPlease confirm your attendance.`
     const message = `${greeting}\n\n${body}`
-    const phone = reservation.phone.replace(/[^0-9]/g, '')
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank')
+
+    // Ensure international format: strip spaces/dashes, add 212 if starts with 0
+    let phone = reservation.phone.replace(/[^0-9]/g, '')
+    if (phone.startsWith('0')) {
+      phone = '212' + phone.slice(1)
+    }
+    if (!phone.startsWith('212')) {
+      phone = '212' + phone
+    }
+
+    window.open(`whatsapp://send?phone=${phone}&text=${encodeURIComponent(message)}`, '_blank')
 
     // Mark as reminded in backend
     try {
@@ -76,9 +86,23 @@ export default function AdminPanel() {
     const pending = reservations.filter((r) => !r.reminded)
     for (const r of pending) {
       await handleRemind(r)
-      // Small delay so WhatsApp doesn't block multiple tabs
       await new Promise((resolve) => setTimeout(resolve, 500))
     }
+  }
+
+  const handleDelete = async (id) => {
+    try {
+      await fetch(`${API_URL}/api/reservations/${id}?pass=${pass}`, { method: 'DELETE' })
+      setReservations((prev) => prev.filter((r) => r.id !== id))
+    } catch { /* ignore */ }
+  }
+
+  const handleDeleteAllReminded = async () => {
+    if (!confirm(lang === 'fr' ? 'Supprimer toutes les réservations envoyées ?' : 'Delete all sent reservations?')) return
+    try {
+      await fetch(`${API_URL}/api/reservations/reminded?pass=${pass}`, { method: 'DELETE' })
+      setReservations((prev) => prev.filter((r) => !r.reminded))
+    } catch { /* ignore */ }
   }
 
   // ── Login screen ────────────────────────────────────────────
@@ -163,6 +187,17 @@ export default function AdminPanel() {
                 {t('admin.remindAll', { count: pending.length })}
               </motion.button>
             )}
+            {reminded.length > 0 && (
+              <motion.button
+                onClick={handleDeleteAllReminded}
+                className="flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-2.5 text-sm font-semibold text-red-600 transition-colors hover:bg-red-100"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <Trash2 className="h-4 w-4" />
+                {t('admin.deleteAllSent')}
+              </motion.button>
+            )}
             <motion.button
               onClick={fetchReservations}
               className="flex items-center gap-2 rounded-xl border border-navy/10 bg-white px-4 py-2.5 text-sm font-semibold text-navy transition-colors hover:bg-navy/5"
@@ -188,6 +223,7 @@ export default function AdminPanel() {
                     key={r.id}
                     reservation={r}
                     onRemind={handleRemind}
+                    onDelete={handleDelete}
                     lang={lang}
                   />
                 ))}
@@ -209,6 +245,7 @@ export default function AdminPanel() {
                   key={r.id}
                   reservation={r}
                   onRemind={handleRemind}
+                  onDelete={handleDelete}
                   lang={lang}
                   reminded
                 />
@@ -228,7 +265,7 @@ export default function AdminPanel() {
 }
 
 /** Single reservation card with WhatsApp reminder button */
-function ReservationCard({ reservation: r, onRemind, lang, reminded }) {
+function ReservationCard({ reservation: r, onRemind, onDelete, lang, reminded }) {
   const isPast = new Date(r.date + 'T23:59:59') < new Date()
 
   return (
@@ -275,6 +312,16 @@ function ReservationCard({ reservation: r, onRemind, lang, reminded }) {
             </span>
           </div>
         </div>
+
+        <motion.button
+          onClick={() => onDelete(r.id)}
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-navy/10 text-navy/40 transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-500"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          title={lang === 'fr' ? 'Supprimer' : 'Delete'}
+        >
+          <Trash2 className="h-4 w-4" />
+        </motion.button>
 
         <motion.button
           onClick={() => onRemind(r)}

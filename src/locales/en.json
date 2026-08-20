@@ -254,6 +254,7 @@
     "pending": "Pending Reminders",
     "done": "Reminders Sent",
     "remindAll": "Remind All ({{count}})",
+    "deleteAllSent": "Delete All Sent",
     "empty": "No reservations yet.",
     "remind": "Remind",
     "resend": "Resend"
