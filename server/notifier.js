@@ -12,6 +12,7 @@ export async function sendDailyEmail() {
   const emailPass = process.env.EMAIL_PASS
   const emailTo = process.env.EMAIL_TO || emailUser
   const siteUrl = process.env.SITE_URL || 'http://localhost:5173'
+  const adminUrl = `${siteUrl}/#/admin`
 
   if (!emailUser || !emailPass) {
     console.log('[email] EMAIL_USER / EMAIL_PASS not configured — skipping')
@@ -43,7 +44,7 @@ export async function sendDailyEmail() {
     },
   })
 
-  const html = buildDailyEmail(reservations, tomorrowStr, siteUrl)
+  const html = buildDailyEmail(reservations, tomorrowStr, adminUrl)
 
   await transporter.sendMail({
     from: `"SmileCare Dental Clinic" <${emailUser}>`,
