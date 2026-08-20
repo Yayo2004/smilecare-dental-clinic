@@ -1,7 +1,9 @@
 import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
+import { CronJob } from 'cron'
 import { addReservation, readReservations, markReminded, deleteReservation, deleteReminded } from './db.js'
+import { sendDailyEmail } from './notifier.js'
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -47,16 +49,6 @@ app.patch('/api/reservations/:id/remind', (req, res) => {
   res.json({ ok: true })
 })
 
-/** Admin: delete a single reservation */
-app.delete('/api/reservations/:id', (req, res) => {
-  const pass = req.query.pass
-  if (pass !== ADMIN_PASS) {
-    return res.status(401).json({ error: 'Unauthorized' })
-  }
-  deleteReservation(req.params.id)
-  res.json({ ok: true })
-})
-
 /** Admin: delete all reminded reservations */
 app.delete('/api/reservations/reminded', (req, res) => {
   const pass = req.query.pass
@@ -67,12 +59,39 @@ app.delete('/api/reservations/reminded', (req, res) => {
   res.json({ ok: true })
 })
 
+/** Admin: delete a single reservation */
+app.delete('/api/reservations/:id', (req, res) => {
+  const pass = req.query.pass
+  if (pass !== ADMIN_PASS) {
+    return res.status(401).json({ error: 'Unauthorized' })
+  }
+  deleteReservation(req.params.id)
+  res.json({ ok: true })
+})
+
 /** Health check */
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', time: new Date().toISOString() })
 })
 
+// ─── Daily Email Cron: runs every day at 09:00 (Europe/Paris) ─────
+const emailCron = new CronJob('0 9 * * *', async () => {
+  console.log('[cron] Running daily email notification...')
+  try {
+    await sendDailyEmail()
+  } catch (err) {
+    console.error('[cron] Email notification failed:', err.message)
+  }
+}, null, false, 'Europe/Paris')
+
 // ─── Start ────────────────────────────────────────────────────────
 app.listen(PORT, () => {
   console.log(`[server] SmileCare server running on port ${PORT}`)
+  console.log(`[cron]   Daily email notifications scheduled at 09:00 (Europe/Paris)`)
+
+  // Start the cron job
+  emailCron.start()
+
+  // Also send once on startup (so you can test immediately)
+  sendDailyEmail().catch(() => {})
 })
