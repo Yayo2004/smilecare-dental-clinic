@@ -295,8 +295,43 @@ export default function AdminPanel() {
   )
 }
 
+/** Calculate days until/from a reservation date */
+function getDaysLabel(dateStr, lang) {
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  const resDate = new Date(dateStr + 'T00:00:00')
+  const diffMs = resDate - today
+  const diffDays = Math.round(diffMs / (1000 * 60 * 60 * 24))
+
+  if (diffDays === 0) {
+    return lang === 'fr' ? "Aujourd'hui" : 'Today'
+  } else if (diffDays === 1) {
+    return lang === 'fr' ? 'Demain' : 'Tomorrow'
+  } else if (diffDays === -1) {
+    return lang === 'fr' ? 'Hier' : 'Yesterday'
+  } else if (diffDays > 0) {
+    return lang === 'fr' ? `Dans ${diffDays} jours` : `In ${diffDays} days`
+  } else {
+    return lang === 'fr' ? `Il y a ${Math.abs(diffDays)} jours` : `${Math.abs(diffDays)} days ago`
+  }
+}
+
+/** Color class for the countdown badge */
+function getDaysColor(diffDays) {
+  if (diffDays === 0) return 'bg-blue-100 text-blue-700'
+  if (diffDays === 1) return 'bg-amber-100 text-amber-700'
+  if (diffDays > 1) return 'bg-primary/10 text-primary'
+  return 'bg-navy/10 text-navy/50'
+}
+
 /** Single reservation card */
 function ReservationCard({ reservation: r, onRemind, onDelete, lang, isPast: isPastDate, showDelete }) {
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  const resDate = new Date(r.date + 'T00:00:00')
+  const diffDays = Math.round((resDate - today) / (1000 * 60 * 60 * 24))
+  const daysLabel = getDaysLabel(r.date, lang)
+  const daysColor = getDaysColor(diffDays)
   return (
     <motion.div
       layout
@@ -335,6 +370,9 @@ function ReservationCard({ reservation: r, onRemind, onDelete, lang, isPast: isP
             <span className="flex items-center gap-1">
               <Clock className="h-3.5 w-3.5" />
               {r.time}
+            </span>
+            <span className={`rounded-full px-2.5 py-0.5 text-xs font-bold ${daysColor}`}>
+              {daysLabel}
             </span>
             <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary">
               {r.service}
