@@ -251,12 +251,20 @@
     "loading": "Loading...",
     "dashboard": "Reservations",
     "total": "{{count}} reservation(s) total",
+    "tab": {
+      "all": "All",
+      "sent": "Sent",
+      "pending": "Pending",
+      "overdue": "Overdue"
+    },
     "pending": "Pending Reminders",
     "done": "Reminders Sent",
     "remindAll": "Remind All ({{count}})",
     "deleteAllSent": "Delete All Sent",
-    "empty": "No reservations yet.",
-    "remind": "Remind",
-    "resend": "Resend"
+    "empty": "No reservations.",
+    "confirmDelete": "Delete this reservation?",
+    "confirmDeleteAll": "Delete all sent reservations?",
+    "cancel": "Cancel",
+    "delete": "Delete"
   }
 }

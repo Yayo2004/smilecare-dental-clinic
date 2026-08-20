@@ -251,12 +251,20 @@
     "loading": "Chargement...",
     "dashboard": "Réservations",
     "total": "{{count}} réservation(s) au total",
+    "tab": {
+      "all": "Toutes",
+      "sent": "Envoyées",
+      "pending": "En attente",
+      "overdue": "En retard"
+    },
     "pending": "Rappels en attente",
     "done": "Rappels envoyés",
     "remindAll": "Tout rappeler ({{count}})",
     "deleteAllSent": "Supprimer les envoyées",
-    "empty": "Aucune réservation pour le moment.",
-    "remind": "Rappeler",
-    "resend": "Renvoyer"
+    "empty": "Aucune réservation.",
+    "confirmDelete": "Supprimer cette réservation ?",
+    "confirmDeleteAll": "Supprimer toutes les réservations envoyées ?",
+    "cancel": "Annuler",
+    "delete": "Supprimer"
   }
 }
