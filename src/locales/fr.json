@@ -266,6 +266,10 @@
     "confirmDeleteAll": "Supprimer toutes les réservations envoyées ?",
     "cancel": "Annuler",
     "delete": "Supprimer",
-    "forgotPassword": "Contactez l'administrateur pour réinitialiser votre mot de passe."
+    "forgotPassword": "Contactez l'administrateur pour réinitialiser votre mot de passe.",
+    "changePassword": "Changer le mot de passe",
+    "newPassword": "Nouveau mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "save": "Enregistrer"
   }
 }

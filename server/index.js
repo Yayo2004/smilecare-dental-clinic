@@ -4,13 +4,18 @@ import cors from 'cors'
 import { CronJob } from 'cron'
 import { addReservation, readReservations, markReminded, deleteReservation, deleteReminded } from './db.js'
 import { sendDailyEmail, sendImmediateEmail } from './notifier.js'
+import { getAdminPass, setAdminPass } from './config.js'
 
 const app = express()
 const PORT = process.env.PORT || 3001
-const ADMIN_PASS = process.env.ADMIN_PASS || 'smilecare2024'
 
 app.use(cors())
 app.use(express.json())
+
+// Helper: get current password (reads from config.json, falls back to .env)
+function currentPass() {
+  return getAdminPass()
+}
 
 // ─── API Routes ───────────────────────────────────────────────────
 
@@ -38,7 +43,7 @@ app.post('/api/reservations', (req, res) => {
 /** Admin: list all reservations (password protected) */
 app.get('/api/reservations', (req, res) => {
   const pass = req.query.pass
-  if (pass !== ADMIN_PASS) {
+  if (pass !== currentPass()) {
     return res.status(401).json({ error: 'Unauthorized' })
   }
   res.json(readReservations())
@@ -47,7 +52,7 @@ app.get('/api/reservations', (req, res) => {
 /** Admin: mark a reservation as reminded */
 app.patch('/api/reservations/:id/remind', (req, res) => {
   const pass = req.query.pass
-  if (pass !== ADMIN_PASS) {
+  if (pass !== currentPass()) {
     return res.status(401).json({ error: 'Unauthorized' })
   }
   markReminded(req.params.id)
@@ -57,7 +62,7 @@ app.patch('/api/reservations/:id/remind', (req, res) => {
 /** Admin: delete all reminded reservations */
 app.delete('/api/reservations/reminded', (req, res) => {
   const pass = req.query.pass
-  if (pass !== ADMIN_PASS) {
+  if (pass !== currentPass()) {
     return res.status(401).json({ error: 'Unauthorized' })
   }
   deleteReminded()
@@ -67,7 +72,7 @@ app.delete('/api/reservations/reminded', (req, res) => {
 /** Admin: delete a single reservation */
 app.delete('/api/reservations/:id', (req, res) => {
   const pass = req.query.pass
-  if (pass !== ADMIN_PASS) {
+  if (pass !== currentPass()) {
     return res.status(401).json({ error: 'Unauthorized' })
   }
   deleteReservation(req.params.id)
@@ -77,6 +82,23 @@ app.delete('/api/reservations/:id', (req, res) => {
 /** Health check */
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', time: new Date().toISOString() })
+})
+
+/** Admin: change password */
+app.put('/api/admin/password', (req, res) => {
+  const { currentPassword, newPassword } = req.body
+  if (!currentPassword || !newPassword) {
+    return res.status(400).json({ error: 'Missing fields' })
+  }
+  if (currentPassword !== currentPass()) {
+    return res.status(401).json({ error: 'Wrong current password' })
+  }
+  if (newPassword.length < 4) {
+    return res.status(400).json({ error: 'Password too short' })
+  }
+  setAdminPass(newPassword)
+  console.log('[api] Admin password changed')
+  res.json({ ok: true })
 })
 
 // ─── Daily Email Cron: runs every day at 09:00 (Europe/Paris) ─────

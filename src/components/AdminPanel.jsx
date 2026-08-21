@@ -35,6 +35,11 @@ export default function AdminPanel() {
   const [error, setError] = useState('')
   const [activeTab, setActiveTab] = useState('all')
   const [confirmDelete, setConfirmDelete] = useState(null) // null | 'all-sent' | reservation id
+  const [showChangePass, setShowChangePass] = useState(false)
+  const [newPass, setNewPass] = useState('')
+  const [confirmNewPass, setConfirmNewPass] = useState('')
+  const [changePassError, setChangePassError] = useState('')
+  const [changePassSuccess, setChangePassSuccess] = useState(false)
 
   const fetchReservations = async () => {
     setLoading(true)
@@ -124,6 +129,42 @@ export default function AdminPanel() {
     setConfirmDelete(null)
   }
 
+  const handleChangePassword = async (e) => {
+    e.preventDefault()
+    setChangePassError('')
+    setChangePassSuccess(false)
+    if (newPass !== confirmNewPass) {
+      setChangePassError(lang === 'fr' ? 'Les mots de passe ne correspondent pas' : 'Passwords do not match')
+      return
+    }
+    if (newPass.length < 4) {
+      setChangePassError(lang === 'fr' ? 'Le mot de passe doit contenir au moins 4 caractères' : 'Password must be at least 4 characters')
+      return
+    }
+    try {
+      const res = await fetch(`${API_URL}/api/admin/password`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ currentPassword: pass, newPassword: newPass }),
+      })
+      if (res.status === 401) {
+        setChangePassError(lang === 'fr' ? 'Mot de passe actuel incorrect' : 'Wrong current password')
+        return
+      }
+      if (!res.ok) {
+        setChangePassError(lang === 'fr' ? 'Erreur' : 'Error')
+        return
+      }
+      setPass(newPass)
+      setNewPass('')
+      setConfirmNewPass('')
+      setChangePassSuccess(true)
+      setTimeout(() => { setShowChangePass(false); setChangePassSuccess(false) }, 2000)
+    } catch {
+      setChangePassError(lang === 'fr' ? 'Erreur de connexion' : 'Connection error')
+    }
+  }
+
   // ── Login screen ────────────────────────────────────────────
   if (!authed) {
     return (
@@ -188,6 +229,9 @@ export default function AdminPanel() {
                 {t('admin.remindAll', { count: countPending + countOverdue })}
               </motion.button>
             )}
+            <motion.button onClick={() => setShowChangePass(true)} className="flex items-center gap-2 rounded-xl border border-navy/10 bg-white px-4 py-2.5 text-sm font-semibold text-navy transition-colors hover:bg-navy/5" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+              <KeyRound className="h-4 w-4" />
+            </motion.button>
             <motion.button onClick={fetchReservations} className="flex items-center gap-2 rounded-xl border border-navy/10 bg-white px-4 py-2.5 text-sm font-semibold text-navy transition-colors hover:bg-navy/5" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
               <RefreshCw className="h-4 w-4" />
             </motion.button>
@@ -305,6 +349,90 @@ export default function AdminPanel() {
                   {t('admin.delete')}
                 </motion.button>
               </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Change password modal */}
+      <AnimatePresence>
+        {showChangePass && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 px-4 backdrop-blur-sm"
+            onClick={() => { setShowChangePass(false); setChangePassError(''); setChangePassSuccess(false); setNewPass(''); setConfirmNewPass('') }}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex justify-center">
+                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <KeyRound className="h-6 w-6" />
+                </span>
+              </div>
+              <h3 className="mt-4 text-center font-display text-lg font-bold text-navy">
+                {t('admin.changePassword')}
+              </h3>
+              {changePassSuccess ? (
+                <p className="mt-4 rounded-xl bg-green-50 p-3 text-center text-sm font-medium text-green-600">
+                  {lang === 'fr' ? 'Mot de passe modifié !' : 'Password changed!'}
+                </p>
+              ) : (
+                <form onSubmit={handleChangePassword} className="mt-6 space-y-3">
+                  <div className="relative">
+                    <input
+                      type={showPass ? 'text' : 'password'}
+                      value={newPass}
+                      onChange={(e) => { setNewPass(e.target.value); setChangePassError('') }}
+                      placeholder={t('admin.newPassword')}
+                      className="field w-full pr-11"
+                    />
+                    <button type="button" onClick={() => setShowPass(!showPass)} className="absolute right-3 top-1/2 -translate-y-1/2 text-navy/30 hover:text-navy/60">
+                      {showPass ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                    </button>
+                  </div>
+                  <div className="relative">
+                    <input
+                      type={showPass ? 'text' : 'password'}
+                      value={confirmNewPass}
+                      onChange={(e) => { setConfirmNewPass(e.target.value); setChangePassError('') }}
+                      placeholder={t('admin.confirmPassword')}
+                      className="field w-full pr-11"
+                    />
+                    <button type="button" onClick={() => setShowPass(!showPass)} className="absolute right-3 top-1/2 -translate-y-1/2 text-navy/30 hover:text-navy/60">
+                      {showPass ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                    </button>
+                  </div>
+                  {changePassError && (
+                    <p className="rounded-xl bg-red-50 p-2.5 text-center text-sm font-medium text-red-600">{changePassError}</p>
+                  )}
+                  <div className="flex gap-3 pt-2">
+                    <motion.button
+                      type="button"
+                      onClick={() => { setShowChangePass(false); setChangePassError(''); setNewPass(''); setConfirmNewPass('') }}
+                      className="flex-1 rounded-xl border border-navy/10 px-4 py-2.5 text-sm font-semibold text-navy/60 transition-colors hover:bg-navy/5"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                    >
+                      {t('admin.cancel')}
+                    </motion.button>
+                    <motion.button
+                      type="submit"
+                      className="flex-1 rounded-xl bg-primary px-4 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-primary/90"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                    >
+                      {t('admin.save')}
+                    </motion.button>
+                  </div>
+                </form>
+              )}
             </motion.div>
           </motion.div>
         )}

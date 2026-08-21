@@ -266,6 +266,10 @@
     "confirmDeleteAll": "Delete all sent reservations?",
     "cancel": "Cancel",
     "delete": "Delete",
-    "forgotPassword": "Contact the administrator to reset your password."
+    "forgotPassword": "Contact the administrator to reset your password.",
+    "changePassword": "Change Password",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm new password",
+    "save": "Save"
   }
 }
