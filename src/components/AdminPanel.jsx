@@ -7,7 +7,10 @@ import {
   CheckCircle2,
   Clock,
   AlertTriangle,
+  Eye,
+  EyeOff,
   Filter,
+  KeyRound,
   LogIn,
   MessageCircle,
   Phone,
@@ -25,6 +28,7 @@ export default function AdminPanel() {
   const { t, i18n } = useTranslation()
   const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
   const [pass, setPass] = useState('')
+  const [showPass, setShowPass] = useState(false)
   const [authed, setAuthed] = useState(false)
   const [reservations, setReservations] = useState([])
   const [loading, setLoading] = useState(false)
@@ -137,16 +141,30 @@ export default function AdminPanel() {
               <p className="mt-4 rounded-xl bg-red-50 p-3 text-center text-sm font-medium text-red-600">{error}</p>
             )}
             <form onSubmit={handleLogin} className="mt-6 space-y-4">
-              <input
-                type="password" value={pass}
-                onChange={(e) => { setPass(e.target.value); setError('') }}
-                placeholder={t('admin.passwordPlaceholder')}
-                className="field w-full" autoFocus
-              />
+              <div className="relative">
+                <input
+                  type={showPass ? 'text' : 'password'}
+                  value={pass}
+                  onChange={(e) => { setPass(e.target.value); setError('') }}
+                  placeholder={t('admin.passwordPlaceholder')}
+                  className="field w-full pr-11" autoFocus
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPass(!showPass)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-navy/30 transition-colors hover:text-navy/60"
+                >
+                  {showPass ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                </button>
+              </div>
               <motion.button type="submit" className="btn-primary w-full" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} disabled={loading}>
                 {loading ? t('admin.loading') : t('admin.login')}
               </motion.button>
             </form>
+            <p className="mt-4 text-center text-xs text-navy/40">
+              <KeyRound className="mr-1 inline h-3 w-3" />
+              {t('admin.forgotPassword')}
+            </p>
           </div>
         </motion.div>
       </section>

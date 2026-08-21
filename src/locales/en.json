@@ -265,6 +265,7 @@
     "confirmDelete": "Delete this reservation?",
     "confirmDeleteAll": "Delete all sent reservations?",
     "cancel": "Cancel",
-    "delete": "Delete"
+    "delete": "Delete",
+    "forgotPassword": "Contact the administrator to reset your password."
   }
 }
