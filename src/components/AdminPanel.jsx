@@ -202,10 +202,13 @@ export default function AdminPanel() {
                 {loading ? t('admin.loading') : t('admin.login')}
               </motion.button>
             </form>
-            <p className="mt-4 text-center text-xs text-navy/40">
-              <KeyRound className="mr-1 inline h-3 w-3" />
+            <button
+              type="button"
+              onClick={() => setShowChangePass(true)}
+              className="mt-4 block w-full text-center text-xs text-primary/70 transition-colors hover:text-primary hover:underline"
+            >
               {t('admin.forgotPassword')}
-            </p>
+            </button>
           </div>
         </motion.div>
       </section>
@@ -229,9 +232,6 @@ export default function AdminPanel() {
                 {t('admin.remindAll', { count: countPending + countOverdue })}
               </motion.button>
             )}
-            <motion.button onClick={() => setShowChangePass(true)} className="flex items-center gap-2 rounded-xl border border-navy/10 bg-white px-4 py-2.5 text-sm font-semibold text-navy transition-colors hover:bg-navy/5" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-              <KeyRound className="h-4 w-4" />
-            </motion.button>
             <motion.button onClick={fetchReservations} className="flex items-center gap-2 rounded-xl border border-navy/10 bg-white px-4 py-2.5 text-sm font-semibold text-navy transition-colors hover:bg-navy/5" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
               <RefreshCw className="h-4 w-4" />
             </motion.button>
