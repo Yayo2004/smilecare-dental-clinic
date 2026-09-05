@@ -113,26 +113,20 @@ app.put('/api/admin/password', (req, res) => {
   res.json({ ok: true })
 })
 
-/** Admin: request a password reset code (sent to doctor's email) */
-app.post('/api/admin/forgot-password', async (req, res) => {
-  const { email } = req.body || {}
-  if (!email) {
-    return res.status(400).json({ error: 'Email required' })
+/** Admin: request a password reset code (sent to doctor's email automatically) */
+app.post('/api/admin/forgot-password', async (_req, res) => {
+  const recipients = doctorEmails()
+  if (recipients.length === 0) {
+    return res.status(500).json({ error: 'No doctor email configured' })
   }
 
-  const normalized = email.trim().toLowerCase()
-  if (!doctorEmails().map((e) => e.toLowerCase()).includes(normalized)) {
-    // Do not reveal whether the address is registered — but for a single-doctor
-    // clinic, silently fail is fine.
-    return res.status(200).json({ ok: true })
-  }
-
+  const target = recipients[0]
   const code = generateCode()
-  resetCodes.set(normalized, { code, expiresAt: Date.now() + RESET_TTL_MIN * 60 * 1000 })
-  console.log(`[api] Reset code generated for ${normalized}`)
+  resetCodes.set(target, { code, expiresAt: Date.now() + RESET_TTL_MIN * 60 * 1000 })
+  console.log(`[api] Reset code generated for ${target}`)
 
   try {
-    await sendResetCode(normalized, code)
+    await sendResetCode(target, code)
     res.json({ ok: true })
   } catch (err) {
     console.error('[api] Failed to send reset code:', err.message)
@@ -142,19 +136,23 @@ app.post('/api/admin/forgot-password', async (req, res) => {
 
 /** Admin: verify reset code and set new password */
 app.post('/api/admin/reset-password', (req, res) => {
-  const { email, code, newPassword } = req.body || {}
-  if (!email || !code || !newPassword) {
+  const { code, newPassword } = req.body || {}
+  if (!code || !newPassword) {
     return res.status(400).json({ error: 'Missing fields' })
   }
 
-  const normalized = email.trim().toLowerCase()
-  const entry = resetCodes.get(normalized)
+  const recipients = doctorEmails()
+  if (recipients.length === 0) {
+    return res.status(500).json({ error: 'No doctor email configured' })
+  }
+  const target = recipients[0]
+  const entry = resetCodes.get(target)
 
   if (!entry || entry.code !== code.trim()) {
     return res.status(401).json({ error: 'Invalid or expired code' })
   }
   if (Date.now() > entry.expiresAt) {
-    resetCodes.delete(normalized)
+    resetCodes.delete(target)
     return res.status(401).json({ error: 'Invalid or expired code' })
   }
   if (newPassword.length < 4) {
@@ -162,7 +160,7 @@ app.post('/api/admin/reset-password', (req, res) => {
   }
 
   setAdminPass(newPassword)
-  resetCodes.delete(normalized)
+  resetCodes.delete(target)
   console.log('[api] Password reset via email code')
   res.json({ ok: true })
 })

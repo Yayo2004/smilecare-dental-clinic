@@ -1,57 +1,57 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Eye, EyeOff, KeyRound, Mail } from 'lucide-react'
+import { Eye, EyeOff, KeyRound, RefreshCw } from 'lucide-react'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
 
-/** Forgot-password modal — email → code → new password. */
+/** Forgot-password modal — code is auto-sent to the doctor's email. */
 export default function ForgotPasswordModal({ show, onClose, lang, t }) {
-  const [step, setStep] = useState(1)
-  const [email, setEmail] = useState('')
   const [code, setCode] = useState('')
   const [newPass, setNewPass] = useState('')
   const [confirmPass, setConfirmPass] = useState('')
   const [showPass, setShowPass] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [codeSent, setCodeSent] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const reset = () => {
-    setStep(1)
-    setEmail('')
-    setCode('')
-    setNewPass('')
-    setConfirmPass('')
-    setShowPass(false)
+  const requestCode = async () => {
     setError('')
-    setSuccess(false)
-  }
-
-  const handleClose = () => {
-    reset()
-    onClose()
-  }
-
-  const handleRequestCode = async (e) => {
-    e.preventDefault()
-    setError('')
-    setLoading(true)
+    setSending(true)
     try {
       const res = await fetch(`${API_URL}/api/admin/forgot-password`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({}),
       })
       if (!res.ok) {
         setError(lang === 'fr' ? "Erreur lors de l'envoi du code" : 'Error sending code')
         return
       }
-      setStep(2)
+      setCodeSent(true)
     } catch {
       setError(lang === 'fr' ? 'Erreur de connexion' : 'Connection error')
     } finally {
-      setLoading(false)
+      setSending(false)
     }
+  }
+
+  useEffect(() => {
+    if (show) requestCode()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [show])
+
+  const handleClose = () => {
+    setCode('')
+    setNewPass('')
+    setConfirmPass('')
+    setShowPass(false)
+    setSending(false)
+    setCodeSent(false)
+    setError('')
+    setSuccess(false)
+    onClose()
   }
 
   const handleSubmitReset = async (e) => {
@@ -70,7 +70,7 @@ export default function ForgotPasswordModal({ show, onClose, lang, t }) {
       const res = await fetch(`${API_URL}/api/admin/reset-password`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, code, newPassword: newPass }),
+        body: JSON.stringify({ code, newPassword: newPass }),
       })
       if (res.status === 401) {
         setError(lang === 'fr' ? 'Code invalide ou expiré' : 'Invalid or expired code')
@@ -108,7 +108,7 @@ export default function ForgotPasswordModal({ show, onClose, lang, t }) {
           >
             <div className="flex justify-center">
               <span className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                {step === 1 ? <Mail className="h-6 w-6" /> : <KeyRound className="h-6 w-6" />}
+                <KeyRound className="h-6 w-6" />
               </span>
             </div>
             <h3 className="mt-4 text-center font-display text-lg font-bold text-navy">
@@ -119,46 +119,18 @@ export default function ForgotPasswordModal({ show, onClose, lang, t }) {
               <p className="mt-4 rounded-xl bg-green-50 p-3 text-center text-sm font-medium text-green-600">
                 {t('admin.resetSuccess')}
               </p>
-            ) : step === 1 ? (
-              <>
-                <p className="mt-2 text-center text-sm text-navy/60">{t('admin.forgotHint')}</p>
-                <form onSubmit={handleRequestCode} className="mt-5 space-y-3">
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => { setEmail(e.target.value); setError('') }}
-                    placeholder={t('admin.forgotEmailPlaceholder')}
-                    className="field w-full"
-                  />
-                  {error && (
-                    <p className="rounded-xl bg-red-50 p-2.5 text-center text-sm font-medium text-red-600">{error}</p>
-                  )}
-                  <div className="flex gap-3 pt-2">
-                    <motion.button
-                      type="button"
-                      onClick={handleClose}
-                      className="flex-1 rounded-xl border border-navy/10 px-4 py-2.5 text-sm font-semibold text-navy/60 transition-colors hover:bg-navy/5"
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
-                    >
-                      {t('admin.cancel')}
-                    </motion.button>
-                    <motion.button
-                      type="submit"
-                      disabled={loading}
-                      className="flex-1 rounded-xl bg-primary px-4 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-primary/90"
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
-                    >
-                      {loading ? t('admin.loading') : t('admin.sendCode')}
-                    </motion.button>
-                  </div>
-                </form>
-              </>
+            ) : sending ? (
+              <p className="mt-4 rounded-xl bg-mint/50 p-3 text-center text-sm font-medium text-primary">
+                {lang === 'fr' ? 'Envoi du code par email...' : 'Sending code by email...'}
+              </p>
             ) : (
               <>
                 <p className="mt-2 text-center text-sm text-navy/60">{t('admin.forgotCodeHint')}</p>
+                {codeSent && (
+                  <p className="mt-3 text-center text-xs text-green-600">
+                    {lang === 'fr' ? '✓ Code envoyé par email' : '✓ Code sent by email'}
+                  </p>
+                )}
                 <form onSubmit={handleSubmitReset} className="mt-5 space-y-3">
                   <input
                     type="text"
@@ -200,12 +172,12 @@ export default function ForgotPasswordModal({ show, onClose, lang, t }) {
                   <div className="flex gap-3 pt-2">
                     <motion.button
                       type="button"
-                      onClick={() => setStep(1)}
+                      onClick={handleClose}
                       className="flex-1 rounded-xl border border-navy/10 px-4 py-2.5 text-sm font-semibold text-navy/60 transition-colors hover:bg-navy/5"
                       whileHover={{ scale: 1.03 }}
                       whileTap={{ scale: 0.97 }}
                     >
-                      {t('admin.back')}
+                      {t('admin.cancel')}
                     </motion.button>
                     <motion.button
                       type="submit"
@@ -218,6 +190,15 @@ export default function ForgotPasswordModal({ show, onClose, lang, t }) {
                     </motion.button>
                   </div>
                 </form>
+                <button
+                  type="button"
+                  onClick={requestCode}
+                  disabled={sending}
+                  className="mt-4 mx-auto flex items-center gap-1.5 text-xs text-primary/70 transition-colors hover:text-primary hover:underline"
+                >
+                  <RefreshCw className="h-3 w-3" />
+                  {lang === 'fr' ? 'Renvoyer le code' : 'Resend code'}
+                </button>
               </>
             )}
           </motion.div>
