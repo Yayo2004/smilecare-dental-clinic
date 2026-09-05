@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer'
 import { readReservations } from './db.js'
-import { buildDailyEmail, buildImmediateEmail } from './emailTemplate.js'
+import { buildDailyEmail, buildImmediateEmail, buildResetEmail } from './emailTemplate.js'
 
 /**
  * Send a daily reservation summary email to the clinic.
@@ -99,4 +99,35 @@ export async function sendImmediateEmail(reservation) {
   })
 
   console.log(`[email] ✓ Immediate notification sent for ${reservation.name}`)
+}
+
+/**
+ * Send a password reset code email to the doctor.
+ */
+export async function sendResetCode(email, code) {
+  const emailUser = process.env.EMAIL_USER
+  const emailPass = process.env.EMAIL_PASS
+
+  if (!emailUser || !emailPass) {
+    throw new Error('EMAIL_USER / EMAIL_PASS not configured')
+  }
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: emailUser,
+      pass: emailPass,
+    },
+  })
+
+  const html = buildResetEmail(code)
+
+  await transporter.sendMail({
+    from: `"SmileCare Dental Clinic" <${emailUser}>`,
+    to: email,
+    subject: '🔑 SmileCare — Code de réinitialisation',
+    html,
+  })
+
+  console.log(`[email] ✓ Reset code sent to ${email}`)
 }

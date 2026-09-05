@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
+import ForgotPasswordModal from './ForgotPasswordModal'
 import {
   Bell,
   CalendarDays,
@@ -40,6 +41,7 @@ export default function AdminPanel() {
   const [confirmNewPass, setConfirmNewPass] = useState('')
   const [changePassError, setChangePassError] = useState('')
   const [changePassSuccess, setChangePassSuccess] = useState(false)
+  const [showForgot, setShowForgot] = useState(false)
 
   const fetchReservations = async () => {
     setLoading(true)
@@ -165,6 +167,10 @@ export default function AdminPanel() {
     }
   }
 
+  const openForgot = () => {
+    setShowForgot(true)
+  }
+
   // ── Login screen ────────────────────────────────────────────
   if (!authed) {
     return (
@@ -204,13 +210,14 @@ export default function AdminPanel() {
             </form>
             <button
               type="button"
-              onClick={() => setShowChangePass(true)}
+              onClick={openForgot}
               className="mt-4 block w-full text-center text-xs text-primary/70 transition-colors hover:text-primary hover:underline"
             >
               {t('admin.forgotPassword')}
             </button>
           </div>
         </motion.div>
+        <ForgotPasswordModal show={showForgot} onClose={() => setShowForgot(false)} lang={lang} t={t} />
       </section>
     )
   }
@@ -437,6 +444,9 @@ export default function AdminPanel() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Forgot password modal */}
+      <ForgotPasswordModal show={showForgot} onClose={() => setShowForgot(false)} lang={lang} t={t} />
     </section>
   )
 }

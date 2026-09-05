@@ -3,7 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import { CronJob } from 'cron'
 import { addReservation, readReservations, markReminded, deleteReservation, deleteReminded } from './db.js'
-import { sendDailyEmail, sendImmediateEmail } from './notifier.js'
+import { sendDailyEmail, sendImmediateEmail, sendResetCode } from './notifier.js'
 import { getAdminPass, setAdminPass } from './config.js'
 
 const app = express()
@@ -15,6 +15,18 @@ app.use(express.json())
 // Helper: get current password (reads from config.json, falls back to .env)
 function currentPass() {
   return getAdminPass()
+}
+
+// In-memory reset codes: email -> { code, expiresAt }
+const resetCodes = new Map()
+const RESET_TTL_MIN = 15
+
+function generateCode() {
+  return String(Math.floor(100000 + Math.random() * 900000))
+}
+
+function doctorEmails() {
+  return [process.env.EMAIL_TO, process.env.EMAIL_USER].filter(Boolean)
 }
 
 // ─── API Routes ───────────────────────────────────────────────────
@@ -98,6 +110,60 @@ app.put('/api/admin/password', (req, res) => {
   }
   setAdminPass(newPassword)
   console.log('[api] Admin password changed')
+  res.json({ ok: true })
+})
+
+/** Admin: request a password reset code (sent to doctor's email) */
+app.post('/api/admin/forgot-password', async (req, res) => {
+  const { email } = req.body || {}
+  if (!email) {
+    return res.status(400).json({ error: 'Email required' })
+  }
+
+  const normalized = email.trim().toLowerCase()
+  if (!doctorEmails().map((e) => e.toLowerCase()).includes(normalized)) {
+    // Do not reveal whether the address is registered — but for a single-doctor
+    // clinic, silently fail is fine.
+    return res.status(200).json({ ok: true })
+  }
+
+  const code = generateCode()
+  resetCodes.set(normalized, { code, expiresAt: Date.now() + RESET_TTL_MIN * 60 * 1000 })
+  console.log(`[api] Reset code generated for ${normalized}`)
+
+  try {
+    await sendResetCode(normalized, code)
+    res.json({ ok: true })
+  } catch (err) {
+    console.error('[api] Failed to send reset code:', err.message)
+    res.status(500).json({ error: 'Email not sent' })
+  }
+})
+
+/** Admin: verify reset code and set new password */
+app.post('/api/admin/reset-password', (req, res) => {
+  const { email, code, newPassword } = req.body || {}
+  if (!email || !code || !newPassword) {
+    return res.status(400).json({ error: 'Missing fields' })
+  }
+
+  const normalized = email.trim().toLowerCase()
+  const entry = resetCodes.get(normalized)
+
+  if (!entry || entry.code !== code.trim()) {
+    return res.status(401).json({ error: 'Invalid or expired code' })
+  }
+  if (Date.now() > entry.expiresAt) {
+    resetCodes.delete(normalized)
+    return res.status(401).json({ error: 'Invalid or expired code' })
+  }
+  if (newPassword.length < 4) {
+    return res.status(400).json({ error: 'Password too short' })
+  }
+
+  setAdminPass(newPassword)
+  resetCodes.delete(normalized)
+  console.log('[api] Password reset via email code')
   res.json({ ok: true })
 })
 

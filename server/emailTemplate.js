@@ -238,3 +238,70 @@ export function buildImmediateEmail(r, siteUrl = 'http://localhost:5173') {
 </body>
 </html>`
 }
+
+/**
+ * Password reset email — sends a 6-digit verification code.
+ */
+export function buildResetEmail(code) {
+  return `<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
+<body style="margin:0; padding:0; background:#f4f6f9; font-family:'Segoe UI',system-ui,-apple-system,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f6f9; padding:32px 16px;">
+  <tr><td align="center">
+    <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px; width:100%;">
+
+      <!-- Logo Header -->
+      <tr>
+        <td style="background:${PRIMARY}; border-radius:16px 16px 0 0; padding:28px 32px; text-align:center;">
+          <div style="display:inline-block; background:rgba(255,255,255,0.15); border-radius:12px; padding:8px 10px; vertical-align:middle;">
+            ${toothSvg()}
+          </div>
+          <span style="font-size:22px; font-weight:700; color:${WHITE}; vertical-align:middle; margin-left:10px; letter-spacing:0.5px;">
+            SmileCare <span style="font-weight:400; font-size:13px; opacity:0.85; display:block; letter-spacing:1.5px; text-transform:uppercase;">Dental Clinic</span>
+          </span>
+        </td>
+      </tr>
+
+      <!-- Title -->
+      <tr>
+        <td style="background:${WHITE}; padding:32px 32px 16px; text-align:center;">
+          <h1 style="margin:0; font-size:22px; color:${NAVY}; font-weight:700;">
+            🔑 Réinitialisation du mot de passe
+          </h1>
+          <p style="margin:8px 0 0; font-size:15px; color:#666;">
+            Votre code de réinitialisation est :
+          </p>
+        </td>
+      </tr>
+
+      <!-- Code Box -->
+      <tr>
+        <td style="background:${WHITE}; padding:0 32px 32px;">
+          <div style="background:${LIGHT_BG}; border:2px dashed ${PRIMARY}; border-radius:14px; padding:20px; text-align:center;">
+            <span style="font-size:34px; font-weight:800; color:${PRIMARY}; letter-spacing:8px;">${code}</span>
+          </div>
+          <p style="margin:14px 0 0; font-size:13px; color:#999; text-align:center;">
+            Ce code expire dans 15 minutes.
+          </p>
+        </td>
+      </tr>
+
+      <!-- Footer -->
+      <tr>
+        <td style="background:${LIGHT_BG}; border-radius:0 0 16px 16px; padding:24px 32px; text-align:center;">
+          <p style="margin:0; font-size:12px; color:#999;">
+            Cet email a été envoyé automatiquement par SmileCare Dental Clinic.
+          </p>
+          <p style="margin:6px 0 0; font-size:12px; color:#999;">
+            24 Rue de la Santé, 75013 Paris · +212 0644356664
+          </p>
+        </td>
+      </tr>
+
+    </table>
+  </td></tr>
+</table>
+</body>
+</html>`
+}
