@@ -6,7 +6,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const CONFIG_PATH = path.join(__dirname, 'config.json')
 
 const DEFAULTS = {
-  adminPass: process.env.ADMIN_PASS || 'smilecare2024',
+  adminPass: process.env.ADMIN_PASS || 'change-me',
 }
 
 export function getConfig() {

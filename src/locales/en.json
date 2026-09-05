@@ -123,18 +123,6 @@
     ],
     "date": "Preferred Date",
     "datePlaceholder": "Choose a date",
-    "time": "Preferred Time",
-    "timePlaceholder": "Choose a time",
-    "timeOptions": [
-      "08:30",
-      "09:30",
-      "10:30",
-      "11:30",
-      "14:00",
-      "15:00",
-      "16:00",
-      "17:30"
-    ],
     "message": "Message / Notes",
     "messagePlaceholder": "Tell us about your needs, symptoms or questions (optional)",
     "privacy": "By submitting, you agree to be contacted by our clinic about your appointment request.",
@@ -147,8 +135,7 @@
       "phoneInvalid": "Please enter a valid phone number (digits and + - . / spaces).",
       "email": "Please enter a valid email address.",
       "service": "Please select a service.",
-      "date": "Please choose a preferred date.",
-      "time": "Please choose a preferred time."
+      "date": "Please choose a preferred date."
     },
     "successTitle": "Thank you!",
     "successMessage": "Your appointment request is ready on WhatsApp. We will confirm your booking very soon.",
@@ -160,7 +147,6 @@
       "email": "Email",
       "service": "Service",
       "date": "Preferred date",
-      "time": "Preferred time",
       "message": "Message",
       "request": "New appointment request",
       "greeting": "Hello, I would like to book an appointment at SmileCare Dental Clinic.",

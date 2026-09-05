@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 import {
   CalendarDays,
   CheckCircle2,
-  Clock,
   Loader2,
   Mail,
   MessageSquare,
@@ -30,7 +29,6 @@ const EMPTY_FORM = {
   email: '',
   service: '',
   date: '',
-  time: '',
   message: '',
 }
 
@@ -89,7 +87,6 @@ export default function ReservationForm() {
   const { t, i18n } = useTranslation()
   const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
   const services = t('form.servicesOptions', { returnObjects: true })
-  const timeSlots = t('form.timeOptions', { returnObjects: true })
 
   const [form, setForm] = useState(EMPTY_FORM)
   const [errors, setErrors] = useState({})
@@ -122,7 +119,6 @@ export default function ReservationForm() {
     }
     if (!form.service) nextErrors.service = t('form.validation.service')
     if (!form.date) nextErrors.date = t('form.validation.date')
-    if (!form.time) nextErrors.time = t('form.validation.time')
     return nextErrors
   }
 
@@ -137,7 +133,6 @@ export default function ReservationForm() {
       form.email.trim() ? `${n.email}: ${form.email.trim()}` : null,
       `${n.service}: ${form.service}`,
       `${n.date}: ${form.date}`,
-      `${n.time}: ${form.time}`,
       form.message.trim() ? `${n.message}: ${form.message.trim()}` : null,
       '',
       `— ${n.from}`,
@@ -165,7 +160,6 @@ export default function ReservationForm() {
           email: form.email.trim(),
           service: form.service,
           date: form.date,
-          time: form.time,
           message: form.message.trim(),
         }),
       })
@@ -401,50 +395,6 @@ export default function ReservationForm() {
                     />
                   </AnimatedField>
                   {fieldError('date')}
-                </motion.div>
-
-                {/* Time dropdown */}
-                <motion.div variants={fadeInUp}>
-                  <label htmlFor="time" className="label">
-                    {t('form.time')} <span className="text-red-500">*</span>
-                  </label>
-                  <AnimatedField error={errors.time}>
-                    <Clock
-                      className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-navy/35"
-                      aria-hidden="true"
-                    />
-                    <select
-                      id="time"
-                      name="time"
-                      value={form.time}
-                      onChange={handleChange}
-                      className={`w-full appearance-none bg-transparent px-4 py-3 pl-11 pr-10 text-sm text-navy outline-none ${errors.time ? 'text-red-500' : ''}`}
-                      aria-invalid={!!errors.time}
-                      aria-describedby={errors.time ? 'time-error' : undefined}
-                    >
-                      <option value="" disabled>
-                        {t('form.timePlaceholder')}
-                      </option>
-                      {timeSlots.map((slot) => (
-                        <option key={slot} value={slot}>
-                          {slot}
-                        </option>
-                      ))}
-                    </select>
-                    <svg
-                      className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-navy/40"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </AnimatedField>
-                  {fieldError('time')}
                 </motion.div>
 
                 {/* Message */}

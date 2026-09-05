@@ -123,18 +123,6 @@
     ],
     "date": "Date souhaitée",
     "datePlaceholder": "Choisissez une date",
-    "time": "Heure souhaitée",
-    "timePlaceholder": "Choisissez une heure",
-    "timeOptions": [
-      "08:30",
-      "09:30",
-      "10:30",
-      "11:30",
-      "14:00",
-      "15:00",
-      "16:00",
-      "17:30"
-    ],
     "message": "Message / Notes",
     "messagePlaceholder": "Décrivez vos besoins, symptômes ou questions (facultatif)",
     "privacy": "En soumettant ce formulaire, vous acceptez d'être contacté(e) par notre clinique au sujet de votre demande de rendez-vous.",
@@ -147,8 +135,7 @@
       "phoneInvalid": "Veuillez saisir un numéro de téléphone valide (chiffres et + - . / espaces).",
       "email": "Veuillez saisir une adresse e-mail valide.",
       "service": "Veuillez sélectionner un service.",
-      "date": "Veuillez choisir une date souhaitée.",
-      "time": "Veuillez choisir une heure souhaitée."
+      "date": "Veuillez choisir une date souhaitée."
     },
     "successTitle": "Merci !",
     "successMessage": "Votre demande de rendez-vous est prête sur WhatsApp. Nous confirmerons bientôt votre réservation.",
@@ -160,7 +147,6 @@
       "email": "E-mail",
       "service": "Service",
       "date": "Date souhaitée",
-      "time": "Heure souhaitée",
       "message": "Message",
       "request": "Nouvelle demande de rendez-vous",
       "greeting": "Bonjour, je souhaite prendre rendez-vous à la clinique SmileCare.",

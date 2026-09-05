@@ -35,11 +35,11 @@ function doctorEmails() {
 app.post('/api/reservations', (req, res) => {
   try {
     const { name, phone, email, service, date, time, message } = req.body
-    if (!name || !phone || !service || !date || !time) {
+    if (!name || !phone || !service || !date) {
       return res.status(400).json({ error: 'Missing required fields' })
     }
-    const entry = addReservation({ name, phone, email, service, date, time, message })
-    console.log(`[api] New reservation: ${name} — ${date} ${time}`)
+    const entry = addReservation({ name, phone, email, service, date, time: (time || '').trim() || '—', message })
+    console.log(`[api] New reservation: ${name} — ${date}${time ? ` ${time}` : ''}`)
     res.status(201).json({ ok: true, id: entry.id })
 
     // Send immediate email if reservation is for today or tomorrow
