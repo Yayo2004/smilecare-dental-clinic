@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { ArrowUp, Clock, Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from 'lucide-react'
+import Logo from './Logo'
 import { CLINIC_INFO } from '../config'
 
 const SOCIALS = [
@@ -37,12 +38,7 @@ export default function Footer() {
           <div>
             <a href="#home" className="flex items-center gap-2.5">
               <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-light text-white">
-                <svg viewBox="0 0 64 64" className="h-6 w-6" aria-hidden="true">
-                  <path
-                    fill="currentColor"
-                    d="M32 46c-1.2 0-2.2-.5-3.2-1.4-3.4-3-8.5-7.7-8.5-14.9 0-4.7 3.6-8.4 8.3-8.4 2.1 0 3.7 1.1 4.5 2.2.7-1.1 2.3-2.2 4.4-2.2 4.7 0 8.3 3.7 8.3 8.4 0 7.2-5.1 11.9-8.5 14.9-.9.9-2 1.4-3.3 1.4z"
-                  />
-                </svg>
+                <Logo className="h-6 w-6" />
               </span>
               <span className="font-display text-lg font-bold">
                 SmileCare
