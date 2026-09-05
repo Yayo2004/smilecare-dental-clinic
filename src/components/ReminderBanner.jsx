@@ -88,7 +88,6 @@ export default function ReminderBanner() {
       lines.push(`${lang === 'fr' ? 'Réservation' : 'Reservation'} ${i + 1}:`)
       lines.push(`  ${lang === 'fr' ? 'Patient' : 'Patient'}: ${r.name}`)
       lines.push(`  ${lang === 'fr' ? 'Date' : 'Date'}: ${r.date}`)
-      lines.push(`  ${lang === 'fr' ? 'Heure' : 'Time'}: ${r.time}`)
       lines.push(`  ${lang === 'fr' ? 'Service' : 'Service'}: ${r.service}`)
       lines.push('')
     })

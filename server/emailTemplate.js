@@ -19,9 +19,6 @@ function reservationRow(r, index) {
       <span style="display:inline-block; width:24px; height:24px; line-height:24px; text-align:center; border-radius:50%; background:${PRIMARY}; color:${WHITE}; font-size:12px; font-weight:700; margin-right:8px;">${index}</span>
       <strong>${r.name}</strong>
     </td>
-    <td style="padding:14px 16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:#666;">
-      ${r.time}
-    </td>
     <td style="padding:14px 16px; border-bottom:1px solid #e5e7eb; font-size:14px;">
       <span style="display:inline-block; background:${LIGHT_BG}; color:${PRIMARY}; padding:3px 10px; border-radius:20px; font-size:12px; font-weight:600;">${r.service}</span>
     </td>
@@ -73,7 +70,6 @@ export function buildDailyEmail(reservations, date, siteUrl = 'https://smilecare
             <thead>
               <tr style="background:${LIGHT_BG};">
                 <th style="padding:12px 16px; text-align:left; font-size:12px; font-weight:700; color:${NAVY}; text-transform:uppercase; letter-spacing:0.5px;">Patient</th>
-                <th style="padding:12px 16px; text-align:left; font-size:12px; font-weight:700; color:${NAVY}; text-transform:uppercase; letter-spacing:0.5px;">Heure</th>
                 <th style="padding:12px 16px; text-align:left; font-size:12px; font-weight:700; color:${NAVY}; text-transform:uppercase; letter-spacing:0.5px;">Service</th>
                 <th style="padding:12px 16px; text-align:left; font-size:12px; font-weight:700; color:${NAVY}; text-transform:uppercase; letter-spacing:0.5px;">Téléphone</th>
               </tr>
@@ -170,14 +166,6 @@ export function buildImmediateEmail(r, siteUrl = 'http://localhost:5173') {
                 </td>
                 <td style="padding:16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:#666;">
                   ${r.date}
-                </td>
-              </tr>
-              <tr>
-                <td style="padding:16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:${NAVY};">
-                  <strong style="color:${NAVY};">Heure</strong>
-                </td>
-                <td style="padding:16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:#666;">
-                  ${r.time}
                 </td>
               </tr>
               <tr>
