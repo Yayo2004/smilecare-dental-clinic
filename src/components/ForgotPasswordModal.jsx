@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Eye, EyeOff, KeyRound, RefreshCw } from 'lucide-react'
+import { Eye, EyeOff, KeyRound, Loader2, RefreshCw } from 'lucide-react'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
 
@@ -120,9 +120,10 @@ export default function ForgotPasswordModal({ show, onClose, lang, t }) {
                 {t('admin.resetSuccess')}
               </p>
             ) : sending ? (
-              <p className="mt-4 rounded-xl bg-mint/50 p-3 text-center text-sm font-medium text-primary">
+              <div className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-mint/50 p-3 text-sm font-medium text-primary">
+                <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
                 {lang === 'fr' ? 'Envoi du code par email...' : 'Sending code by email...'}
-              </p>
+              </div>
             ) : (
               <>
                 <p className="mt-2 text-center text-sm text-navy/60">{t('admin.forgotCodeHint')}</p>
