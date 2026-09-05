@@ -25,3 +25,4 @@ Thumbs.db
 server/.env
 server/node_modules/
 server/reservations.json
+server/config.json
