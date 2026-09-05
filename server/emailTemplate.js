@@ -170,20 +170,20 @@ export function buildImmediateEmail(r, siteUrl = 'http://localhost:5173') {
               </tr>
               <tr>
                 <td style="padding:16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:${NAVY};">
-                  <strong style="color:${NAVY};">Heure</strong>
-                </td>
-                <td style="padding:16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:#666;">
-                  ${r.time}
-                </td>
-              </tr>
-              <tr>
-                <td style="padding:16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:${NAVY};">
                   <strong style="color:${NAVY};">Service</strong>
                 </td>
                 <td style="padding:16px; border-bottom:1px solid #e5e7eb; font-size:14px;">
                   <span style="display:inline-block; background:${LIGHT_BG}; color:${PRIMARY}; padding:3px 10px; border-radius:20px; font-size:12px; font-weight:600;">${r.service}</span>
                 </td>
               </tr>
+              ${r.email ? `<tr>
+                <td style="padding:16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:${NAVY};">
+                  <strong style="color:${NAVY};">Email</strong>
+                </td>
+                <td style="padding:16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:#666;">
+                  ${r.email}
+                </td>
+              </tr>` : ''}
               <tr>
                 <td style="padding:16px; font-size:14px; color:${NAVY};">
                   <strong style="color:${NAVY};">Téléphone</strong>
