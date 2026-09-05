@@ -87,8 +87,8 @@ export default function AdminPanel() {
   const handleRemind = async (reservation) => {
     const greeting = lang === 'fr' ? `Bonjour ${reservation.name},` : `Hello ${reservation.name},`
     const body = lang === 'fr'
-      ? `Nous vous rappelons votre rendez-vous chez SmileCare:\n\nService: ${reservation.service}\nDate: ${reservation.date}\nHeure: ${reservation.time}\n\nMerci de confirmer votre présence.`
-      : `This is a reminder about your appointment at SmileCare:\n\nService: ${reservation.service}\nDate: ${reservation.date}\nTime: ${reservation.time}\n\nPlease confirm your attendance.`
+      ? `Nous vous rappelons votre rendez-vous chez SmileCare:\n\nService: ${reservation.service}\nDate: ${reservation.date}\n\nMerci de confirmer votre présence.`
+      : `This is a reminder about your appointment at SmileCare:\n\nService: ${reservation.service}\nDate: ${reservation.date}\n\nPlease confirm your attendance.`
     const message = `${greeting}\n\n${body}`
 
     let phone = reservation.phone.replace(/[^0-9]/g, '')
