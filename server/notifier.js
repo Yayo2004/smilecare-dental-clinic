@@ -71,15 +71,7 @@ export async function sendImmediateEmail(reservation) {
     return
   }
 
-  const today = new Date().toISOString().slice(0, 10)
-  const tomorrow = new Date(Date.now() + 86400000).toISOString().slice(0, 10)
-
-  if (reservation.date !== today && reservation.date !== tomorrow) {
-    return // Only notify for today/tomorrow
-  }
-
-  const label = reservation.date === today ? "aujourd'hui" : 'demain'
-  console.log(`[email] Sending immediate notification for ${reservation.name} (${label})...`)
+  console.log(`[email] Sending new reservation notification for ${reservation.name}...`)
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -94,11 +86,11 @@ export async function sendImmediateEmail(reservation) {
   await transporter.sendMail({
     from: `"SmileCare Dental Clinic" <${emailUser}>`,
     to: emailTo,
-    subject: `📅 SmileCare — Nouveau RDV ${label}: ${reservation.name} à ${reservation.time}`,
+    subject: `📅 SmileCare — Nouveau RDV: ${reservation.name} — ${reservation.date}`,
     html,
   })
 
-  console.log(`[email] ✓ Immediate notification sent for ${reservation.name}`)
+  console.log(`[email] ✓ Notification sent for ${reservation.name}`)
 }
 
 /**

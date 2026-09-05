@@ -118,8 +118,6 @@ export function buildDailyEmail(reservations, date, siteUrl = 'https://smilecare
  */
 export function buildImmediateEmail(r, siteUrl = 'http://localhost:5173') {
   const adminUrl = `${siteUrl}/#/admin`
-  const today = new Date().toISOString().slice(0, 10)
-  const label = r.date === today ? "aujourd'hui" : 'demain'
 
   return `<!DOCTYPE html>
 <html lang="fr">
@@ -145,10 +143,10 @@ export function buildImmediateEmail(r, siteUrl = 'http://localhost:5173') {
       <tr>
         <td style="background:${WHITE}; padding:32px 32px 16px;">
           <h1 style="margin:0; font-size:22px; color:${NAVY}; font-weight:700;">
-            📅 Nouveau rendez-vous ${label}
+            📅 Nouveau rendez-vous
           </h1>
           <p style="margin:8px 0 0; font-size:15px; color:#666;">
-            Un nouveau rendez-vous vient d'être réservé ${label}.
+            Un nouveau rendez-vous vient d'être réservé.
           </p>
         </td>
       </tr>
@@ -172,6 +170,14 @@ export function buildImmediateEmail(r, siteUrl = 'http://localhost:5173') {
                 </td>
                 <td style="padding:16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:#666;">
                   ${r.date}
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:${NAVY};">
+                  <strong style="color:${NAVY};">Heure</strong>
+                </td>
+                <td style="padding:16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:#666;">
+                  ${r.time}
                 </td>
               </tr>
               <tr>
