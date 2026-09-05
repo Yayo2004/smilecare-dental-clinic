@@ -12,6 +12,7 @@ export default function ForgotPasswordModal({ show, onClose, lang, t }) {
   const [showPass, setShowPass] = useState(false)
   const [sending, setSending] = useState(false)
   const [codeSent, setCodeSent] = useState(false)
+  const [sentTo, setSentTo] = useState('')
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -29,6 +30,8 @@ export default function ForgotPasswordModal({ show, onClose, lang, t }) {
         setError(lang === 'fr' ? "Erreur lors de l'envoi du code" : 'Error sending code')
         return
       }
+      const data = await res.json()
+      setSentTo(data.email || '')
       setCodeSent(true)
     } catch {
       setError(lang === 'fr' ? 'Erreur de connexion' : 'Connection error')
@@ -49,6 +52,7 @@ export default function ForgotPasswordModal({ show, onClose, lang, t }) {
     setShowPass(false)
     setSending(false)
     setCodeSent(false)
+    setSentTo('')
     setError('')
     setSuccess(false)
     onClose()
@@ -120,16 +124,23 @@ export default function ForgotPasswordModal({ show, onClose, lang, t }) {
                 {t('admin.resetSuccess')}
               </p>
             ) : sending ? (
-              <div className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-mint/50 p-3 text-sm font-medium text-primary">
-                <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-                {lang === 'fr' ? 'Envoi du code par email...' : 'Sending code by email...'}
-              </div>
+              <>
+                <div className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-mint/50 p-3 text-sm font-medium text-primary">
+                  <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                  {lang === 'fr' ? 'Envoi du code par email...' : 'Sending code by email...'}
+                </div>
+                <p className="mt-3 text-center text-xs text-navy/50">
+                  {lang === 'fr' ? 'Vérifiez votre email' : 'Check your email'}{' '}
+                  <strong className="text-navy/70">{sentTo || (lang === 'fr' ? 'votre boîte mail' : 'your inbox')}</strong>
+                </p>
+              </>
             ) : (
               <>
                 <p className="mt-2 text-center text-sm text-navy/60">{t('admin.forgotCodeHint')}</p>
                 {codeSent && (
                   <p className="mt-3 text-center text-xs text-green-600">
-                    {lang === 'fr' ? '✓ Code envoyé par email' : '✓ Code sent by email'}
+                    {lang === 'fr' ? `✓ Code envoyé par email` : '✓ Code sent by email'}{' '}
+                    {sentTo && <strong className="font-semibold">({sentTo})</strong>}
                   </p>
                 )}
                 <form onSubmit={handleSubmitReset} className="mt-5 space-y-3">

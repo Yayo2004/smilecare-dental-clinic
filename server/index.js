@@ -127,7 +127,7 @@ app.post('/api/admin/forgot-password', async (_req, res) => {
 
   try {
     await sendResetCode(target, code)
-    res.json({ ok: true })
+    res.json({ ok: true, email: target })
   } catch (err) {
     console.error('[api] Failed to send reset code:', err.message)
     res.status(500).json({ error: 'Email not sent' })
