@@ -48,7 +48,7 @@ export default function AdminPanel() {
     setError('')
     try {
       const res = await fetch(`${API_URL}/api/reservations?pass=${pass}`)
-      if (res.status === 401) {
+      if (!res.ok) {
         setError(lang === 'fr' ? 'Mot de passe incorrect' : 'Wrong password')
         setAuthed(false)
         return
@@ -58,8 +58,9 @@ export default function AdminPanel() {
       setAuthed(true)
     } catch {
       setError(lang === 'fr' ? 'Impossible de contacter le serveur' : 'Cannot reach server')
+    } finally {
+      setLoading(false)
     }
-    setLoading(false)
   }
 
   const handleLogin = (e) => {
