@@ -6,13 +6,13 @@ import {
   Bell,
   CalendarDays,
   CheckCircle2,
-  Clock,
   AlertTriangle,
   Eye,
   EyeOff,
   Filter,
   KeyRound,
   LogIn,
+  Mail,
   MessageCircle,
   Phone,
   RefreshCw,
@@ -519,14 +519,16 @@ function ReservationCard({ reservation: r, onRemind, onDelete, lang, isPast: isP
             <Phone className="h-3.5 w-3.5" />
             {r.phone}
           </div>
+          {r.email && (
+            <div className="flex items-center gap-2 text-sm text-navy/60">
+              <Mail className="h-3.5 w-3.5" />
+              {r.email}
+            </div>
+          )}
           <div className="flex flex-wrap items-center gap-3 text-sm text-navy/60">
             <span className="flex items-center gap-1">
               <CalendarDays className="h-3.5 w-3.5" />
               {r.date}
-            </span>
-            <span className="flex items-center gap-1">
-              <Clock className="h-3.5 w-3.5" />
-              {r.time}
             </span>
             <span className={`rounded-full px-2.5 py-0.5 text-xs font-bold ${daysColor}`}>
               {daysLabel}
