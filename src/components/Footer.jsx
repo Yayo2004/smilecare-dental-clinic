@@ -36,17 +36,11 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div>
-            <a href="#home" className="flex items-center gap-2.5">
+            <a href="#home" className="inline-flex items-center">
               <Logo
-                className="h-11 w-11 shrink-0 rounded-xl"
+                className="h-11 w-11 shrink-0"
                 imgClassName="h-full w-full object-contain"
               />
-              <span className="font-display text-lg font-bold">
-                SmileCare
-                <span className="block text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
-                  Dental Clinic
-                </span>
-              </span>
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
               {t('footer.tagline')}
