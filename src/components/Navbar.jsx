@@ -37,7 +37,7 @@ export default function Navbar() {
       if (el) {
         const top = isHome
           ? 0
-          : el.getBoundingClientRect().top + window.scrollY - 96
+          : el.getBoundingClientRect().top + window.scrollY - 80
         window.scrollTo({ top, behavior: 'smooth' })
       }
     }, 250)
@@ -61,12 +61,12 @@ export default function Navbar() {
 
       <nav
         className={`mx-auto flex w-full max-w-7xl items-center justify-between gap-2 px-4 transition-all duration-300 sm:px-8 lg:px-12 ${
-          scrolled ? 'py-3' : 'py-5'
+          scrolled ? 'py-2.5' : 'py-3'
         }`}
         aria-label="Main navigation"
       >
         <a href="#home" className="flex min-w-0 items-center gap-2" onClick={(e) => handleLinkClick(e, '#home')}>
-          <Logo className="h-10 w-10 shrink-0" imgClassName="h-full w-full object-contain" />
+          <Logo className="h-8 w-8 shrink-0" imgClassName="h-full w-full object-contain" />
         </a>
 
         <ul className="hidden items-center gap-1 lg:flex">
@@ -88,7 +88,7 @@ export default function Navbar() {
           <motion.a
             href="#reservation"
             onClick={(e) => handleLinkClick(e, '#reservation')}
-            className="hidden items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-card md:inline-flex"
+            className="hidden items-center gap-2 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white shadow-card md:inline-flex"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
           >
@@ -98,7 +98,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-navy/10 bg-white text-navy shadow-sm lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-navy/10 bg-white text-navy shadow-sm lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? t('nav.closeLabel') : t('nav.menuLabel')}
@@ -140,7 +140,7 @@ export default function Navbar() {
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="overflow-hidden bg-white/95 shadow-soft backdrop-blur-md lg:hidden"
           >
-            <ul className="container-site flex flex-col gap-1 pb-6 pt-2">
+            <ul className="container-site flex flex-col gap-1 pb-4 pt-1">
               {NAV_ITEMS.map((item, i) => (
                 <motion.li
                   key={item.key}
@@ -151,7 +151,7 @@ export default function Navbar() {
                   <a
                     href={item.href}
                     onClick={(e) => handleLinkClick(e, item.href)}
-                    className="block rounded-xl px-4 py-3 text-base font-semibold text-navy/80 transition-colors hover:bg-mint/60 hover:text-primary"
+                    className="block rounded-xl px-4 py-2.5 text-base font-semibold text-navy/80 transition-colors hover:bg-mint/60 hover:text-primary"
                   >
                     {t(`nav.${item.key}`)}
                   </a>
