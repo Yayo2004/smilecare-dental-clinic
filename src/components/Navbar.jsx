@@ -66,7 +66,7 @@ export default function Navbar() {
         aria-label="Main navigation"
       >
         <a href="#home" className="flex min-w-0 items-center gap-2" onClick={(e) => handleLinkClick(e, '#home')}>
-          <Logo className="h-5 w-auto shrink-0" imgClassName="h-full w-auto object-contain" />
+          <Logo className="h-4 w-auto shrink-0" imgClassName="h-full w-auto object-contain" />
         </a>
 
         <ul className="hidden items-center gap-1 lg:flex">
