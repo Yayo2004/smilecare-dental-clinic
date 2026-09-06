@@ -23,13 +23,44 @@ function reservationRow(r, index) {
       <span style="display:inline-block; background:${LIGHT_BG}; color:${PRIMARY}; padding:3px 10px; border-radius:20px; font-size:12px; font-weight:600;">${r.service}</span>
     </td>
     <td style="padding:14px 16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:#666;">
+      ${r.email || '—'}
+    </td>
+    <td style="padding:14px 16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:#666;">
       📞 ${r.phone}
     </td>
   </tr>`
 }
 
-export function buildDailyEmail(reservations, date, siteUrl = 'https://smilecare.example.com') {
+/**
+ * Build the reminder email. `variant` controls the title & message:
+ *  - 'tomorrow-morning': first reminder for tomorrow (09:00)
+ *  - 'tomorrow-evening': second reminder for tomorrow (19:00)
+ *  - 'today-overdue'   : escalation for today's unverified reservations (08:00)
+ */
+export function buildDailyEmail(reservations, date, siteUrl = 'https://smilecare.example.com', variant = 'tomorrow-morning') {
   const rows = reservations.map((r, i) => reservationRow(r, i + 1)).join('')
+
+  const copy = {
+    'tomorrow-morning': {
+      emoji: '🔔',
+      title: `Rendez-vous de demain (${date})`,
+      intro: `Vous avez <strong style="color:${PRIMARY};">${reservations.length} rendez-vous</strong> demain (${date}) à vérifier.`,
+    },
+    'tomorrow-evening': {
+      emoji: '🌙',
+      title: `Rappel du soir — demain (${date})`,
+      intro: `Vous avez encore <strong style="color:${PRIMARY};">${reservations.length} rendez-vous</strong> demain (${date}) qui ne sont pas encore vérifiés.`,
+    },
+    'today-overdue': {
+      emoji: '⚠️',
+      title: `Rendez-vous aujourd'hui (${date}) non vérifiés`,
+      intro: `Vous avez <strong style="color:${PRIMARY};">${reservations.length} rendez-vous</strong> aujourd'hui (${date}) que vous n'avez pas encore vérifiés.`,
+    },
+  }[variant] || {
+    emoji: '🔔',
+    title: `Rendez-vous du ${date}`,
+    intro: `Vous avez <strong style="color:${PRIMARY};">${reservations.length} rendez-vous</strong> le ${date}.`,
+  }
 
   return `<!DOCTYPE html>
 <html lang="fr">
@@ -55,10 +86,10 @@ export function buildDailyEmail(reservations, date, siteUrl = 'https://smilecare
       <tr>
         <td style="background:${WHITE}; padding:32px 32px 16px;">
           <h1 style="margin:0; font-size:22px; color:${NAVY}; font-weight:700;">
-            🔔 Rendez-vous du ${date}
+            ${copy.emoji} ${copy.title}
           </h1>
           <p style="margin:8px 0 0; font-size:15px; color:#666;">
-            Vous avez <strong style="color:${PRIMARY};">${reservations.length} rendez-vous</strong> prévus ${date === new Date().toISOString().slice(0, 10) ? "aujourd'hui" : 'demain'}.
+            ${copy.intro}
           </p>
         </td>
       </tr>
@@ -71,6 +102,7 @@ export function buildDailyEmail(reservations, date, siteUrl = 'https://smilecare
               <tr style="background:${LIGHT_BG};">
                 <th style="padding:12px 16px; text-align:left; font-size:12px; font-weight:700; color:${NAVY}; text-transform:uppercase; letter-spacing:0.5px;">Patient</th>
                 <th style="padding:12px 16px; text-align:left; font-size:12px; font-weight:700; color:${NAVY}; text-transform:uppercase; letter-spacing:0.5px;">Service</th>
+                <th style="padding:12px 16px; text-align:left; font-size:12px; font-weight:700; color:${NAVY}; text-transform:uppercase; letter-spacing:0.5px;">Email</th>
                 <th style="padding:12px 16px; text-align:left; font-size:12px; font-weight:700; color:${NAVY}; text-transform:uppercase; letter-spacing:0.5px;">Téléphone</th>
               </tr>
             </thead>

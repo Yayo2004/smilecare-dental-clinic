@@ -3,7 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import { CronJob } from 'cron'
 import { addReservation, readReservations, markReminded, deleteReservation, deleteReminded } from './db.js'
-import { sendDailyEmail, sendImmediateEmail, sendResetCode } from './notifier.js'
+import { sendReminderEmail, sendImmediateEmail, sendResetCode } from './notifier.js'
 import { getAdminPass, setAdminPass } from './config.js'
 
 const app = express()
@@ -165,24 +165,54 @@ app.post('/api/admin/reset-password', (req, res) => {
   res.json({ ok: true })
 })
 
-// ─── Daily Email Cron: runs every day at 09:00 (Europe/Paris) ─────
-const emailCron = new CronJob('0 9 * * *', async () => {
-  console.log('[cron] Running daily email notification...')
+// Helper: ISO date string (YYYY-MM-DD) for today / tomorrow / offset
+function isoDate(offsetDays = 0) {
+  const d = new Date()
+  d.setDate(d.getDate() + offsetDays)
+  return d.toISOString().slice(0, 10)
+}
+
+// ─── Reminder Cron Jobs (Europe/Paris) ──────────────────────────────
+// 08:00 → escalation: today's reservations still not verified
+const overdueCron = new CronJob('0 8 * * *', async () => {
+  console.log('[cron] Running 08:00 today-overdue reminder...')
   try {
-    await sendDailyEmail()
+    await sendReminderEmail(isoDate(0), 'today-overdue')
   } catch (err) {
-    console.error('[cron] Email notification failed:', err.message)
+    console.error('[cron] 08:00 reminder failed:', err.message)
+  }
+}, null, false, 'Europe/Paris')
+
+// 09:00 → first reminder about tomorrow's reservations
+const morningCron = new CronJob('0 9 * * *', async () => {
+  console.log('[cron] Running 09:00 tomorrow-morning reminder...')
+  try {
+    await sendReminderEmail(isoDate(1), 'tomorrow-morning')
+  } catch (err) {
+    console.error('[cron] 09:00 reminder failed:', err.message)
+  }
+}, null, false, 'Europe/Paris')
+
+// 19:00 → evening reminder about tomorrow's still-unverified reservations
+const eveningCron = new CronJob('0 19 * * *', async () => {
+  console.log('[cron] Running 19:00 tomorrow-evening reminder...')
+  try {
+    await sendReminderEmail(isoDate(1), 'tomorrow-evening')
+  } catch (err) {
+    console.error('[cron] 19:00 reminder failed:', err.message)
   }
 }, null, false, 'Europe/Paris')
 
 // ─── Start ────────────────────────────────────────────────────────
 app.listen(PORT, () => {
   console.log(`[server] SmileCare server running on port ${PORT}`)
-  console.log(`[cron]   Daily email notifications scheduled at 09:00 (Europe/Paris)`)
+  console.log(`[cron]   Reminder emails scheduled at 08:00, 09:00, 19:00 (Europe/Paris)`)
 
-  // Start the cron job
-  emailCron.start()
+  // Start the cron jobs
+  overdueCron.start()
+  morningCron.start()
+  eveningCron.start()
 
-  // Also send once on startup (so you can test immediately)
-  sendDailyEmail().catch(() => {})
+  // Also send the morning reminder once on startup (so you can test immediately)
+  sendReminderEmail(isoDate(1), 'tomorrow-morning').catch(() => {})
 })
