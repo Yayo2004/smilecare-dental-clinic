@@ -65,40 +65,21 @@ export default function Navbar() {
         }`}
         aria-label="Main navigation"
       >
-        <a href="#home" className="flex min-w-0 shrink-0 items-center" onClick={(e) => handleLinkClick(e, '#home')}>
-          <Logo className="h-[65px] shrink-0" />
-        </a>
-
-        <ul className="hidden items-center gap-1 lg:flex">
-          {NAV_ITEMS.map((item) => (
-            <li key={item.key}>
-              <a
-                href={item.href}
-                onClick={(e) => handleLinkClick(e, item.href)}
-                className="relative rounded-full px-4 py-2 text-sm font-semibold text-navy/75 transition-colors hover:text-primary"
-              >
-                {t(`nav.${item.key}`)}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        <div className="flex shrink-0 items-center gap-2">
-          <LanguageSwitcher />
-          <motion.a
-            href="#reservation"
-            onClick={(e) => handleLinkClick(e, '#reservation')}
-            className="hidden items-center gap-2 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white shadow-card md:inline-flex"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.97 }}
+        <div className="grid w-full grid-cols-3 items-center lg:hidden">
+          <div className="flex items-center justify-self-start">
+            <LanguageSwitcher />
+          </div>
+          <a
+            href="#home"
+            className="flex min-w-0 items-center justify-self-center px-1"
+            onClick={(e) => handleLinkClick(e, '#home')}
           >
-            <CalendarCheck className="h-4 w-4" aria-hidden="true" />
-            {t('nav.reservation')}
-          </motion.a>
+            <Logo className="h-[65px] shrink-0" />
+          </a>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-navy/10 bg-white text-navy shadow-sm lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center justify-self-end rounded-xl border border-navy/10 bg-white text-navy shadow-sm"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? t('nav.closeLabel') : t('nav.menuLabel')}
@@ -127,6 +108,40 @@ export default function Navbar() {
               )}
             </AnimatePresence>
           </button>
+        </div>
+
+        <div className="hidden w-full items-center justify-between gap-2 lg:flex">
+          <a href="#home" className="flex min-w-0 shrink-0 items-center" onClick={(e) => handleLinkClick(e, '#home')}>
+            <Logo className="h-[65px] shrink-0" />
+          </a>
+
+          <ul className="flex items-center gap-1">
+            {NAV_ITEMS.map((item) => (
+              <li key={item.key}>
+                <a
+                  href={item.href}
+                  onClick={(e) => handleLinkClick(e, item.href)}
+                  className="relative rounded-full px-4 py-2 text-sm font-semibold text-navy/75 transition-colors hover:text-primary"
+                >
+                  {t(`nav.${item.key}`)}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <div className="flex shrink-0 items-center gap-2">
+            <LanguageSwitcher />
+            <motion.a
+              href="#reservation"
+              onClick={(e) => handleLinkClick(e, '#reservation')}
+              className="hidden items-center gap-2 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white shadow-card md:inline-flex"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <CalendarCheck className="h-4 w-4" aria-hidden="true" />
+              {t('nav.reservation')}
+            </motion.a>
+          </div>
         </div>
       </nav>
 
