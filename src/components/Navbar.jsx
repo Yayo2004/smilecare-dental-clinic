@@ -74,7 +74,7 @@ export default function Navbar() {
             className="flex min-w-0 items-center justify-self-center px-1"
             onClick={(e) => handleLinkClick(e, '#home')}
           >
-            <Logo className="h-[65px] shrink-0" />
+            <Logo className="h-10 min-w-0 shrink-0 sm:h-[65px]" />
           </a>
           <button
             type="button"

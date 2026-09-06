@@ -55,7 +55,7 @@ export default function LanguageSwitcher({ onSwitch }) {
         <div
           role="menu"
           aria-orientation="vertical"
-          className="absolute right-0 top-full z-50 mt-2 w-44 origin-top-right overflow-hidden rounded-2xl border border-navy/10 bg-white p-1.5 shadow-soft-lg"
+          className="absolute left-0 top-full z-50 mt-2 w-44 origin-top-left overflow-hidden rounded-2xl border border-navy/10 bg-white p-1.5 shadow-soft-lg lg:left-auto lg:right-0 lg:origin-top-right"
         >
           {LANGUAGES.map((lang) => {
             const isActive = lang.code === current
