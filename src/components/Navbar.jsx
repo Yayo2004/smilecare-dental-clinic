@@ -27,7 +27,21 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const handleLinkClick = () => setOpen(false)
+  const handleLinkClick = (e, href) => {
+    e.preventDefault()
+    setOpen(false)
+    // Wait for the mobile menu to collapse so the target position is accurate
+    setTimeout(() => {
+      const isHome = href === '#home'
+      const el = isHome ? document.body : document.querySelector(href)
+      if (el) {
+        const top = isHome
+          ? 0
+          : el.getBoundingClientRect().top + window.scrollY - 96
+        window.scrollTo({ top, behavior: 'smooth' })
+      }
+    }, 250)
+  }
 
   return (
     <motion.header
@@ -51,7 +65,7 @@ export default function Navbar() {
         }`}
         aria-label="Main navigation"
       >
-        <a href="#home" className="flex min-w-0 items-center gap-2" onClick={handleLinkClick}>
+        <a href="#home" className="flex min-w-0 items-center gap-2" onClick={(e) => handleLinkClick(e, '#home')}>
           <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-light text-white shadow-card">
             <Logo className="h-6 w-6" />
           </span>
@@ -68,6 +82,7 @@ export default function Navbar() {
             <li key={item.key}>
               <a
                 href={item.href}
+                onClick={(e) => handleLinkClick(e, item.href)}
                 className="relative rounded-full px-4 py-2 text-sm font-semibold text-navy/75 transition-colors hover:text-primary"
               >
                 {t(`nav.${item.key}`)}
@@ -80,6 +95,7 @@ export default function Navbar() {
           <LanguageSwitcher />
           <motion.a
             href="#reservation"
+            onClick={(e) => handleLinkClick(e, '#reservation')}
             className="hidden items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-card md:inline-flex"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
@@ -142,7 +158,7 @@ export default function Navbar() {
                 >
                   <a
                     href={item.href}
-                    onClick={handleLinkClick}
+                    onClick={(e) => handleLinkClick(e, item.href)}
                     className="block rounded-xl px-4 py-3 text-base font-semibold text-navy/80 transition-colors hover:bg-mint/60 hover:text-primary"
                   >
                     {t(`nav.${item.key}`)}
