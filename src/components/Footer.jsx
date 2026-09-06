@@ -38,7 +38,7 @@ export default function Footer() {
           <div>
             <a href="#home" className="inline-flex items-center">
               <Logo
-                className="h-10 w-auto shrink-0"
+                className="h-7 w-auto shrink-0"
                 imgClassName="h-full w-auto object-contain"
               />
             </a>
