@@ -37,7 +37,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <a href="#home" className="inline-flex items-center">
-              <Logo className="h-7 shrink-0" />
+              <Logo className="h-[65px] shrink-0" />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
               {t('footer.tagline')}
