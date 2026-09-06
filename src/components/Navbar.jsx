@@ -66,9 +66,7 @@ export default function Navbar() {
         aria-label="Main navigation"
       >
         <a href="#home" className="flex min-w-0 items-center gap-2" onClick={(e) => handleLinkClick(e, '#home')}>
-          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-light text-white shadow-card">
-            <Logo className="h-6 w-6" />
-          </span>
+          <Logo className="h-11 w-11 shrink-0 rounded-xl shadow-card" imgClassName="h-full w-full object-contain" />
           <span className="whitespace-nowrap font-display text-base font-bold leading-tight text-navy sm:text-lg">
             SmileCare
             <span className="block text-[10px] font-semibold uppercase tracking-[0.2em] text-primary sm:text-[11px]">

@@ -37,9 +37,10 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <a href="#home" className="flex items-center gap-2.5">
-              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-light text-white">
-                <Logo className="h-6 w-6" />
-              </span>
+              <Logo
+                className="h-11 w-11 shrink-0 rounded-xl"
+                imgClassName="h-full w-full object-contain"
+              />
               <span className="font-display text-lg font-bold">
                 SmileCare
                 <span className="block text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
