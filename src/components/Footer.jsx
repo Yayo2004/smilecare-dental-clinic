@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { ArrowUp, Clock, Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from 'lucide-react'
 import Logo from './Logo'
+import Tooth from './Tooth'
 import { CLINIC_INFO } from '../config'
 
 const SOCIALS = [
@@ -31,6 +32,8 @@ export default function Footer() {
     <footer className="relative overflow-hidden bg-navy text-white">
       {/* Decorative gradient */}
       <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-primary/20 blur-3xl" />
+      <Tooth className="pointer-events-none absolute -bottom-16 -right-10 h-64 w-64 opacity-[0.06] object-contain" />
+      <Tooth className="pointer-events-none absolute -left-8 top-1/3 hidden h-32 w-32 opacity-[0.07] object-contain md:block" />
 
       <div className="container-site relative py-16">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">

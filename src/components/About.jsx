@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { CalendarCheck, Quote } from 'lucide-react'
+import Tooth from './Tooth'
 import {
   fadeInRight,
   fadeInUp,
@@ -53,6 +54,8 @@ export default function About() {
   return (
     <section id="about" key={lang} className="relative overflow-hidden bg-mint/50 py-20 lg:py-28">
       <div className="pointer-events-none absolute -left-32 top-24 h-72 w-72 rounded-full bg-white/60 blur-3xl" />
+      <Tooth className="pointer-events-none absolute -right-12 top-10 hidden h-48 w-48 opacity-10 object-contain md:block" />
+      <Tooth className="pointer-events-none absolute bottom-8 left-6 hidden h-24 w-24 opacity-10 object-contain sm:block" />
 
       <div className="container-site">
         {/* Section header — right entrance */}

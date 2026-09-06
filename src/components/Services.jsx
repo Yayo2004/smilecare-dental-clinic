@@ -16,6 +16,7 @@ import {
   staggerContainer,
   viewport,
 } from '../animations'
+import Tooth from './Tooth'
 
 const ICONS = [Stethoscope, Pill, Sparkles, ShieldCheck, Baby, Siren]
 
@@ -35,8 +36,12 @@ export default function Services() {
   const services = t('services.items', { returnObjects: true })
 
   return (
-    <section id="services" key={lang} className="bg-white py-20 lg:py-28">
-      <div className="container-site">
+    <section id="services" key={lang} className="relative overflow-hidden bg-white py-20 lg:py-28">
+      {/* Decorative teeth */}
+      <Tooth className="pointer-events-none absolute -right-10 top-16 hidden h-56 w-56 opacity-10 object-contain lg:block" />
+      <Tooth className="pointer-events-none absolute -left-8 bottom-10 hidden h-40 w-40 opacity-10 object-contain md:block" />
+
+      <div className="container-site relative">
         {/* Section header — left entrance */}
         <motion.div
           className="mx-auto max-w-2xl text-center"

@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Clock, Mail, MapPin, Phone, Siren } from 'lucide-react'
 import Reveal from './Reveal'
+import Tooth from './Tooth'
 import { CLINIC_INFO } from '../config'
 
 /** Contact section: clinic details + embedded Google Map. */
@@ -12,8 +13,10 @@ export default function Contact() {
   const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(CLINIC_INFO.mapQuery)}&t=&z=16&ie=UTF8&iwloc=&output=embed`
 
   return (
-    <section id="contact" key={lang} className="bg-white py-20 lg:py-28">
-      <div className="container-site">
+    <section id="contact" key={lang} className="relative overflow-hidden bg-white py-20 lg:py-28">
+      <Tooth className="pointer-events-none absolute -right-8 bottom-8 hidden h-48 w-48 opacity-10 object-contain md:block" />
+      <Tooth className="pointer-events-none absolute left-8 top-10 hidden h-16 w-16 opacity-10 object-contain sm:block" />
+      <div className="container-site relative">
         {/* Section header */}
         <Reveal className="mx-auto max-w-2xl text-center">
           <span className="eyebrow">{t('contact.eyebrow')}</span>

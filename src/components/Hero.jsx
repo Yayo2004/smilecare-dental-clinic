@@ -80,26 +80,30 @@ function ParallaxShapes() {
         style={{ y: y3 }}
       />
       {/* Subtle tooth outlines */}
-      <motion.svg
-        className="absolute right-12 top-20 h-16 w-16 text-primary/8"
+      <motion.img
+        src="/dent.png"
+        alt=""
+        aria-hidden="true"
+        draggable={false}
+        className="absolute right-12 top-16 h-20 w-20 opacity-25 object-contain"
         style={{ y: y2 }}
-        viewBox="0 0 64 64"
-      >
-        <path
-          fill="currentColor"
-          d="M32 4C22.6 4 14.9 11 14.9 20.4c0 6 3.2 9.8 5.4 14.6 2.3 5 3.1 9.4 3.9 15.4.6 4.5 2.4 6.8 5.4 6.8 2.4 0 2.8-2.8 2.4-7.3-.2-2.3-.7-4.2-.4-7.1.3-3.6 1.4-6.8 3.6-9.4 1.9-2.2 3.6-4.8 5.2-7.4 1.6 2.6 3.3 5.2 5.2 7.4 2.2 2.6 3.3 5.8 3.6 9.4.3 2.9-.2 4.8-.4 7.1-.4 4.5 0 7.3 2.4 7.3 3 0 4.8-2.3 5.4-6.8.8-6 1.6-10.4 3.9-15.4 2.2-4.8 5.4-8.6 5.4-14.6C49.1 11 41.4 4 32 4z"
-        />
-      </motion.svg>
-      <motion.svg
-        className="absolute bottom-24 left-8 h-10 w-10 text-primary/6"
+      />
+      <motion.img
+        src="/dent.png"
+        alt=""
+        aria-hidden="true"
+        draggable={false}
+        className="absolute bottom-24 left-8 h-12 w-12 opacity-20 object-contain"
         style={{ y: y1 }}
-        viewBox="0 0 64 64"
-      >
-        <path
-          fill="currentColor"
-          d="M32 4C22.6 4 14.9 11 14.9 20.4c0 6 3.2 9.8 5.4 14.6 2.3 5 3.1 9.4 3.9 15.4.6 4.5 2.4 6.8 5.4 6.8 2.4 0 2.8-2.8 2.4-7.3-.2-2.3-.7-4.2-.4-7.1.3-3.6 1.4-6.8 3.6-9.4 1.9-2.2 3.6-4.8 5.2-7.4 1.6 2.6 3.3 5.2 5.2 7.4 2.2 2.6 3.3 5.8 3.6 9.4.3 2.9-.2 4.8-.4 7.1-.4 4.5 0 7.3 2.4 7.3 3 0 4.8-2.3 5.4-6.8.8-6 1.6-10.4 3.9-15.4 2.2-4.8 5.4-8.6 5.4-14.6C49.1 11 41.4 4 32 4z"
-        />
-      </motion.svg>
+      />
+      <motion.img
+        src="/dent.png"
+        alt=""
+        aria-hidden="true"
+        draggable={false}
+        className="absolute left-1/4 top-8 hidden h-9 w-9 opacity-15 object-contain md:block"
+        style={{ y: y3 }}
+      />
     </div>
   )
 }

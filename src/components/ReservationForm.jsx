@@ -18,6 +18,7 @@ import {
   staggerContainer,
   viewport,
 } from '../animations'
+import Tooth from './Tooth'
 import { buildWhatsAppLink, CLINIC_INFO } from '../config'
 
 const PHONE_RE = /^[+0-9 ()/.-]{6,20}$/
@@ -193,6 +194,8 @@ export default function ReservationForm() {
     <section id="reservation" key={lang} className="relative overflow-hidden bg-white py-20 lg:py-28">
       <div className="pointer-events-none absolute -right-40 top-10 -z-0 h-96 w-96 rounded-full bg-mint/70 blur-3xl" />
       <div className="pointer-events-none absolute -left-40 bottom-10 -z-0 h-96 w-96 rounded-full bg-accent-light/60 blur-3xl" />
+      <Tooth className="pointer-events-none absolute -left-10 top-16 hidden h-52 w-52 opacity-10 object-contain md:block" />
+      <Tooth className="pointer-events-none absolute bottom-12 right-4 hidden h-24 w-24 opacity-10 object-contain sm:block" />
 
       <div className="container-site relative">
         <motion.div

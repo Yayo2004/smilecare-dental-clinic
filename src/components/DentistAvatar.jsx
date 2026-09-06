@@ -45,14 +45,22 @@ const VARIANTS = {
   },
 }
 
-/** Small white tooth emblem used on the coat badge. */
-function ToothEmblem({ accent }) {
+/** Small tooth image used on the coat badge. */
+function ToothEmblem({ accent, variant }) {
   return (
-    <g transform="translate(53 147)">
-      <rect width="14" height="18" rx="3.5" fill={accent} />
-      <path
-        d="M7 3.4 c-2.1 0-3.8 1.5-3.8 3.4 0 1 .4 1.9 1 2.7 .8 1.1 1.2 1.9 1.2 3 0 .8 .2 1.6 .4 2.1 .2 .5 .8 .8 1.2 .5 .2-.1 .3-.4 .4-.7 .1-.7 .2-1.4 .6-1.7 .2-.2 .4-.2 .6 0 .4.3 .5.9 .6 1.7 .1.3 .2.6 .4.7 .4.3 1 0 1.2-.5 .2-.5 .4-1.3 .4-2.1 0-1.1 .4-1.9 1.2-3 .6-.8 1-1.7 1-2.7 0-1.9-1.7-3.4-3.8-3.4 z"
-        fill="#ffffff"
+    <g transform="translate(50 143)">
+      <defs>
+        <clipPath id={`emblem-clip-${variant}`}>
+          <rect width="20" height="26" rx="6" />
+        </clipPath>
+      </defs>
+      <rect width="20" height="26" rx="6" fill={accent} />
+      <image
+        href="/dent.png"
+        width="20"
+        height="26"
+        preserveAspectRatio="xMidYMid slice"
+        clipPath={`url(#emblem-clip-${variant})`}
       />
     </g>
   )
@@ -112,7 +120,7 @@ export default function DentistAvatar({ variant = 'sophie', label }) {
       <path d="M100 146 L108 174 C106 184 103 192 100 200 L100 146 Z" fill={c.accent} opacity="0.18" />
       <path d="M88 142 Q100 154 112 142" fill="none" stroke={c.skinDark} strokeWidth="1.5" opacity="0.6" />
 
-      <ToothEmblem accent={c.accent} />
+      <ToothEmblem accent={c.accent} variant={variant} />
 
       {/* Neck */}
       <rect x="88" y="110" width="24" height="36" rx="9" fill={c.skin} />
