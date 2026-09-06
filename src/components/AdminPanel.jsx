@@ -103,16 +103,6 @@ export default function AdminPanel() {
     } catch { /* ignore */ }
   }
 
-  const handleRemindAll = async () => {
-    const pending = reservations.filter((r) => !r.reminded && !isPast(r.date))
-    const overdue = reservations.filter((r) => !r.reminded && isPast(r.date))
-    const all = [...pending, ...overdue]
-    for (const r of all) {
-      await handleRemind(r)
-      await new Promise((resolve) => setTimeout(resolve, 500))
-    }
-  }
-
   const handleDelete = async (id) => {
     setConfirmDelete(id)
   }
@@ -234,12 +224,6 @@ export default function AdminPanel() {
             <p className="mt-1 text-sm text-navy/60">{t('admin.total', { count: reservations.length })}</p>
           </div>
           <div className="flex gap-2">
-            {(countPending + countOverdue) > 0 && (
-              <motion.button onClick={handleRemindAll} className="flex items-center gap-2 rounded-xl bg-[#25D366] px-5 py-2.5 text-sm font-bold text-white shadow-sm" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                <Bell className="h-4 w-4" />
-                {t('admin.remindAll', { count: countPending + countOverdue })}
-              </motion.button>
-            )}
             <motion.button onClick={fetchReservations} className="flex items-center gap-2 rounded-xl border border-navy/10 bg-white px-4 py-2.5 text-sm font-semibold text-navy transition-colors hover:bg-navy/5" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
               <RefreshCw className="h-4 w-4" />
             </motion.button>

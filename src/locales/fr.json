@@ -245,7 +245,6 @@
     },
     "pending": "Rappels en attente",
     "done": "Rappels envoyés",
-    "remindAll": "Tout rappeler ({{count}})",
     "deleteAllSent": "Supprimer les envoyées",
     "empty": "Aucune réservation.",
     "confirmDelete": "Supprimer cette réservation ?",
