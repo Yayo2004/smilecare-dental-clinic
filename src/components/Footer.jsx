@@ -38,8 +38,8 @@ export default function Footer() {
           <div>
             <a href="#home" className="inline-flex items-center">
               <Logo
-                className="h-11 w-11 shrink-0"
-                imgClassName="h-full w-full object-contain"
+                className="h-10 w-auto shrink-0"
+                imgClassName="h-full w-auto object-contain"
               />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
