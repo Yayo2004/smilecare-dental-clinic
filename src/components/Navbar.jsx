@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+﻿import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { CalendarCheck, Menu, Phone, X } from 'lucide-react'
@@ -66,7 +66,7 @@ export default function Navbar() {
         aria-label="Main navigation"
       >
         <a href="#home" className="flex min-w-0 shrink-0 items-center" onClick={(e) => handleLinkClick(e, '#home')}>
-          <Logo className="h-4 shrink-0" />
+          <Logo className="h-5 shrink-0" />
         </a>
 
         <ul className="hidden items-center gap-1 lg:flex">
