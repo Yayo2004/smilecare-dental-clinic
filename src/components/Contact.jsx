@@ -29,9 +29,9 @@ export default function Contact() {
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                   <MapPin className="h-6 w-6" aria-hidden="true" />
                 </span>
-                <div>
+                <div className="min-w-0">
                   <h3 className="font-bold text-navy">{t('contact.addressLabel')}</h3>
-                  <p className="mt-1 text-navy/65">{CLINIC_INFO.address}</p>
+                  <p className="mt-1 break-words text-navy/65">{CLINIC_INFO.address}</p>
                 </div>
               </div>
             </Reveal>
@@ -41,19 +41,19 @@ export default function Contact() {
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                   <Phone className="h-6 w-6" aria-hidden="true" />
                 </span>
-                <div>
+                <div className="min-w-0">
                   <h3 className="font-bold text-navy">{t('contact.phoneLabel')}</h3>
                   <a
                     href={phoneHref}
-                    className="mt-1 block text-navy/65 transition-colors hover:text-primary"
+                    className="mt-1 block whitespace-nowrap text-navy/65 transition-colors hover:text-primary"
                   >
                     {CLINIC_INFO.phone}
                   </a>
                   <a
                     href={`mailto:${CLINIC_INFO.email}`}
-                    className="mt-1 flex items-center gap-1.5 text-navy/65 transition-colors hover:text-primary"
+                    className="mt-1 flex break-all items-center gap-1.5 leading-snug text-navy/65 transition-colors hover:text-primary"
                   >
-                    <Mail className="h-4 w-4" aria-hidden="true" />
+                    <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
                     {CLINIC_INFO.email}
                   </a>
                 </div>
@@ -65,7 +65,7 @@ export default function Contact() {
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                   <Clock className="h-6 w-6" aria-hidden="true" />
                 </span>
-                <div className="w-full">
+                <div className="w-full min-w-0">
                   <h3 className="font-bold text-navy">{t('contact.hoursLabel')}</h3>
                   <ul className="mt-2 space-y-1.5">
                     {hours.map((row) => (
@@ -85,12 +85,12 @@ export default function Contact() {
           </div>
 
           {/* Map */}
-          <Reveal delay={0.1} className="lg:col-span-3">
+          <Reveal delay={0.1} className="min-w-0 lg:col-span-3">
             <div className="h-full overflow-hidden rounded-2xl border border-navy/5 shadow-soft">
               <iframe
                 title={t('contact.mapTitle')}
                 src={mapSrc}
-                className="h-full min-h-[320px] w-full lg:min-h-full"
+                className="h-full min-h-[320px] w-full max-w-full lg:min-h-full"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"

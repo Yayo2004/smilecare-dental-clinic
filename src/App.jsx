@@ -44,7 +44,7 @@ export default function App() {
   // Main site
   return (
     <MotionConfig reducedMotion="user">
-      <div className="min-h-screen">
+      <div className="min-h-screen overflow-x-hidden">
         <Navbar />
         <main>
           <Hero />

@@ -46,18 +46,18 @@ export default function Navbar() {
       </a>
 
       <nav
-        className={`container-site flex items-center justify-between py-4 transition-all duration-300 ${
+        className={`mx-auto flex w-full max-w-7xl items-center justify-between gap-2 px-4 transition-all duration-300 sm:px-8 lg:px-12 ${
           scrolled ? 'py-3' : 'py-5'
         }`}
         aria-label="Main navigation"
       >
-        <a href="#home" className="flex items-center gap-2.5" onClick={handleLinkClick}>
-          <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-light text-white shadow-card">
+        <a href="#home" className="flex min-w-0 items-center gap-2" onClick={handleLinkClick}>
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-light text-white shadow-card">
             <Logo className="h-6 w-6" />
           </span>
-          <span className="font-display text-lg font-bold leading-tight text-navy">
+          <span className="whitespace-nowrap font-display text-base font-bold leading-tight text-navy sm:text-lg">
             SmileCare
-            <span className="block text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+            <span className="block text-[10px] font-semibold uppercase tracking-[0.2em] text-primary sm:text-[11px]">
               Dental Clinic
             </span>
           </span>
@@ -76,7 +76,7 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="flex items-center gap-2.5">
+        <div className="flex shrink-0 items-center gap-2">
           <LanguageSwitcher />
           <motion.a
             href="#reservation"
