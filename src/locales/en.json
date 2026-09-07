@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "SmileCare Dental Clinic — Modern Dentistry in Paris",
+    "title": "SmileCare Dental Clinic Modern Dentistry in Paris",
     "description": "Modern, gentle dentistry for the whole family. General dentistry, orthodontics, whitening, implants, pediatric dentistry and emergency care."
   },
   "nav": {
@@ -41,7 +41,7 @@
   "services": {
     "eyebrow": "Our Treatments",
     "title": "Complete Dental Care",
-    "subtitle": "From routine check-ups to full smile makeovers — every treatment is personalised and performed with the latest technology.",
+    "subtitle": "From routine check-ups to full smile makeovers every treatment is personalised and performed with the latest technology.",
     "items": [
       {
         "name": "General Dentistry",
@@ -65,7 +65,7 @@
       },
       {
         "name": "Emergency Care",
-        "description": "Same-day appointments for pain, broken teeth and dental accidents — whenever you need us."
+        "description": "Same-day appointments for pain, broken teeth and dental accidents whenever you need us."
       }
     ],
     "learnMore": "Learn more"
@@ -74,7 +74,7 @@
     "eyebrow": "About the Clinic",
     "title": "A Team Devoted to Your Smile",
     "paragraph1": "SmileCare Dental Clinic was founded with one mission: to make quality dentistry accessible, comfortable and worry-free. Our modern clinic combines medical excellence with a warm, welcoming atmosphere.",
-    "paragraph2": "Every treatment starts with a conversation. We listen, explain and involve you in every decision, so you always know exactly what to expect — no surprises, no hidden costs.",
+    "paragraph2": "Every treatment starts with a conversation. We listen, explain and involve you in every decision, so you always know exactly what to expect no surprises, no hidden costs.",
     "stats": [
       { "value": 20, "suffix": "+", "label": "Years of Experience" },
       { "value": 15000, "suffix": "+", "label": "Patients Treated" },
@@ -104,7 +104,7 @@
   "form": {
     "eyebrow": "Reservation",
     "title": "Book Your Appointment",
-    "subtitle": "Fill in the form and confirm directly on WhatsApp — we'll get back to you within one working day.",
+    "subtitle": "Fill in the form and confirm directly on WhatsApp we'll get back to you within one working day.",
     "name": "Full Name",
     "namePlaceholder": "e.g. Marie Dupont",
     "phone": "Phone",
@@ -188,7 +188,7 @@
   "contact": {
     "eyebrow": "Contact",
     "title": "Visit Our Clinic",
-    "subtitle": "We're easy to reach — by phone, email or directly at the practice.",
+    "subtitle": "We're easy to reach by phone, email or directly at the practice.",
     "addressLabel": "Address",
     "address": "24 Rue de la Santé, 75013 Paris, France",
     "phoneLabel": "Phone",
@@ -224,7 +224,7 @@
   },
   "reminder": {
     "title": "Appointment Reminder",
-    "single": "Your reservation for {{name}} on {{date}} — would you like us to confirm it?",
+    "single": "Your reservation for {{name}} on {{date}} would you like us to confirm it?",
     "multiple": "You have {{count}} reservation(s) waiting for confirmation.",
     "confirm": "Confirm on WhatsApp",
     "later": "Later"

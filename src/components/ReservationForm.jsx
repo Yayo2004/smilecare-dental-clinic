@@ -136,7 +136,7 @@ export default function ReservationForm() {
       `${n.date}: ${form.date}`,
       form.message.trim() ? `${n.message}: ${form.message.trim()}` : null,
       '',
-      `— ${n.from}`,
+      `${n.from}`,
     ]
     return lines.filter(Boolean).join('\n')
   }

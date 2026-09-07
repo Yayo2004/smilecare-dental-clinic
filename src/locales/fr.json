@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "SmileCare Dental Clinic — Dentisterie moderne à Paris",
+    "title": "SmileCare Dental Clinic Dentisterie moderne à Paris",
     "description": "Une dentisterie moderne et douce pour toute la famille. Dentisterie générale, orthodontie, blanchiment, implants, pédodontie et urgences."
   },
   "nav": {
@@ -41,7 +41,7 @@
   "services": {
     "eyebrow": "Nos traitements",
     "title": "Des soins dentaires complets",
-    "subtitle": "Du simple contrôle au sourire entièrement redessiné — chaque traitement est personnalisé et réalisé avec les technologies les plus récentes.",
+    "subtitle": "Du simple contrôle au sourire entièrement redessiné chaque traitement est personnalisé et réalisé avec les technologies les plus récentes.",
     "items": [
       {
         "name": "Dentisterie générale",
@@ -65,7 +65,7 @@
       },
       {
         "name": "Urgences dentaires",
-        "description": "Des rendez-vous le jour même pour les douleurs, dents cassées et accidents — chaque fois que vous en avez besoin."
+        "description": "Des rendez-vous le jour même pour les douleurs, dents cassées et accidents chaque fois que vous en avez besoin."
       }
     ],
     "learnMore": "En savoir plus"
@@ -74,7 +74,7 @@
     "eyebrow": "À propos",
     "title": "Une équipe dévouée à votre sourire",
     "paragraph1": "La clinique SmileCare a été fondée avec une mission : rendre la dentisterie de qualité accessible, confortable et sans stress. Notre cabinet moderne allie excellence médicale et atmosphère chaleureuse.",
-    "paragraph2": "Chaque traitement commence par une conversation. Nous écoutons, expliquons et vous impliquons dans chaque décision, pour que vous sachiez toujours exactement à quoi vous attendre — sans surprises, sans coûts cachés.",
+    "paragraph2": "Chaque traitement commence par une conversation. Nous écoutons, expliquons et vous impliquons dans chaque décision, pour que vous sachiez toujours exactement à quoi vous attendre sans surprises, sans coûts cachés.",
     "stats": [
       { "value": 20, "suffix": "+", "label": "Années d'expérience" },
       { "value": 15000, "suffix": "+", "label": "Patients soignés" },
@@ -104,7 +104,7 @@
   "form": {
     "eyebrow": "Réservation",
     "title": "Réservez votre rendez-vous",
-    "subtitle": "Remplissez le formulaire et confirmez directement sur WhatsApp — nous vous répondons sous un jour ouvré.",
+    "subtitle": "Remplissez le formulaire et confirmez directement sur WhatsApp nous vous répondons sous un jour ouvré.",
     "name": "Nom complet",
     "namePlaceholder": "ex. Marie Dupont",
     "phone": "Téléphone",
@@ -188,7 +188,7 @@
   "contact": {
     "eyebrow": "Contact",
     "title": "Visitez notre clinique",
-    "subtitle": "Nous sommes faciles à joindre — par téléphone, par e-mail ou directement au cabinet.",
+    "subtitle": "Nous sommes faciles à joindre par téléphone, par e-mail ou directement au cabinet.",
     "addressLabel": "Adresse",
     "address": "24 Rue de la Santé, 75013 Paris, France",
     "phoneLabel": "Téléphone",
@@ -224,7 +224,7 @@
   },
   "reminder": {
     "title": "Rappel de rendez-vous",
-    "single": "Votre réservation de {{name}} le {{date}} — souhaitez-vous la confirmer ?",
+    "single": "Votre réservation de {{name}} le {{date}} souhaitez-vous la confirmer ?",
     "multiple": "Vous avez {{count}} réservation(s) en attente de confirmation.",
     "confirm": "Confirmer sur WhatsApp",
     "later": "Plus tard"

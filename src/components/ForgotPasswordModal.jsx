@@ -151,7 +151,7 @@ export default function ForgotPasswordModal({ show, onClose, lang, t }) {
                     maxLength={6}
                     value={code}
                     onChange={(e) => { setCode(e.target.value.replace(/\D/g, '')); setError('') }}
-                    placeholder="— — — — — —"
+                    placeholder="• • • • • •"
                     className="field w-full text-center text-lg font-bold tracking-[0.5em]"
                   />
                   <div className="relative">

@@ -108,7 +108,7 @@ function ComparisonSlider({ before, after, label, beforeLabel, afterLabel }) {
       >
         <img
           src={before}
-          alt={`${label} — ${beforeLabel}`}
+          alt={`${label} ${beforeLabel}`}
           className="absolute inset-0 h-full w-full object-cover"
           draggable={false}
         />
@@ -119,7 +119,7 @@ function ComparisonSlider({ before, after, label, beforeLabel, afterLabel }) {
         >
           <img
             src={after}
-            alt={`${label} — ${afterLabel}`}
+            alt={`${label} ${afterLabel}`}
             className="absolute inset-0 h-full object-cover"
             style={{ width: imgWidth || '100%' }}
             draggable={false}
