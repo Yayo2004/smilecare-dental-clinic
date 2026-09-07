@@ -23,7 +23,7 @@ export async function sendReminderEmail(targetDate, variant = 'tomorrow-morning'
   const adminUrl = `${siteUrl}/#/admin`
 
   if (!emailUser || !emailPass) {
-    log('[email] EMAIL_USER / EMAIL_PASS not configured â€” skipping')
+    log('[email] EMAIL_USER / EMAIL_PASS not configured — skipping')
     return
   }
 
@@ -34,16 +34,16 @@ export async function sendReminderEmail(targetDate, variant = 'tomorrow-morning'
       : all.filter((r) => r.date === targetDate && !r.reminded)
 
   if (reservations.length === 0) {
-    log(`[email] No unverified reservations for ${targetDate} (variant ${variant}) â€” skipping`)
+    log(`[email] No unverified reservations for ${targetDate} (variant ${variant}) — skipping`)
     return
   }
 
   const subjects = {
-    'tomorrow-morning': `ðŸ”” SmileCare â€” ${reservations.length} RDV demain Ã  vÃ©rifier (${targetDate})`,
-    'tomorrow-evening': `ðŸŒ™ SmileCare â€” Rappel : ${reservations.length} RDV demain non vÃ©rifiÃ©s (${targetDate})`,
-    'today-overdue': `âš ï¸ SmileCare â€” ${reservations.length} RDV non vÃ©rifiÃ©s (${reservations.map((r) => r.date).filter((v, i, a) => a.indexOf(v) === i).join(', ')})`,
+    'tomorrow-morning': `🔔 SmileCare — ${reservations.length} RDV demain à vérifier (${targetDate})`,
+    'tomorrow-evening': `🌙 SmileCare — Rappel : ${reservations.length} RDV demain non vérifiés (${targetDate})`,
+    'today-overdue': `⚠️ SmileCare — ${reservations.length} RDV non vérifiés (${reservations.map((r) => r.date).filter((v, i, a) => a.indexOf(v) === i).join(', ')})`,
   }
-  const subject = subjects[variant] || `ðŸ”” SmileCare â€” ${reservations.length} rendez-vous ${targetDate}`
+  const subject = subjects[variant] || `🔔 SmileCare — ${reservations.length} rendez-vous ${targetDate}`
 
   log(`[email] Sending reminder (${variant}) for ${targetDate} (${reservations.length} reservations)...`)
 
@@ -62,10 +62,9 @@ export async function sendReminderEmail(targetDate, variant = 'tomorrow-morning'
     to: emailTo,
     subject,
     html,
-    
   })
 
-  log(`[email] âœ“ Reminder (${variant}) sent to ${emailTo} for ${targetDate}`)
+  log(`[email] ✓ Reminder (${variant}) sent to ${emailTo} for ${targetDate}`)
 }
 
 /**
@@ -79,7 +78,7 @@ export async function sendImmediateEmail(reservation) {
   const siteUrl = process.env.SITE_URL || 'http://localhost:5173'
 
   if (!emailUser || !emailPass) {
-    log('[email] EMAIL_USER / EMAIL_PASS not configured â€” skipping')
+    log('[email] EMAIL_USER / EMAIL_PASS not configured — skipping')
     return
   }
 
@@ -98,12 +97,11 @@ export async function sendImmediateEmail(reservation) {
   await transporter.sendMail({
     from: `"SmileCare Dental Clinic" <${emailUser}>`,
     to: emailTo,
-    subject: `ðŸ“… SmileCare â€” Nouveau RDV: ${reservation.name} â€” ${reservation.date}`,
+    subject: `📅 SmileCare — Nouveau RDV: ${reservation.name} — ${reservation.date}`,
     html,
-    
   })
 
-  log(`[email] âœ“ Notification sent for ${reservation.name}`)
+  log(`[email] ✓ Notification sent for ${reservation.name}`)
 }
 
 /**
@@ -130,10 +128,9 @@ export async function sendResetCode(email, code) {
   await transporter.sendMail({
     from: `"SmileCare Dental Clinic" <${emailUser}>`,
     to: email,
-    subject: 'ðŸ”‘ SmileCare â€” Code de rÃ©initialisation',
+    subject: '🔑 SmileCare — Code de réinitialisation',
     html,
-    
   })
 
-  log(`[email] âœ“ Reset code sent to ${email}`)
+  log(`[email] ✓ Reset code sent to ${email}`)
 }

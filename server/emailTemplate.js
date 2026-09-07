@@ -1,15 +1,34 @@
 ﻿/**
  * Professional HTML email template for SmileCare daily reservation summary.
- * Embedded logo via SVG (no external images needed).
+ * Logo embedded as a base64 data URI (no attachment, no external image).
  */
+
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const PRIMARY = '#2A9D8F'
 const NAVY = '#1A2E44'
 const LIGHT_BG = '#F0FAF8'
 const WHITE = '#ffffff'
 
-function toothSvg() {
-  return `<svg viewBox="0 0 64 64" width="28" height="28" fill="${WHITE}"><path d="M32 4C22.6 4 14.9 11 14.9 20.4c0 6 3.2 9.8 5.4 14.6 2.3 5 3.1 9.4 3.9 15.4.6 4.5 2.4 6.8 5.4 6.8 2.4 0 2.8-2.8 2.4-7.3-.2-2.3-.7-4.2-.4-7.1.3-3.6 1.4-6.8 3.6-9.4 1.9-2.2 3.6-4.8 5.2-7.4 1.6 2.6 3.3 5.2 5.2 7.4 2.2 2.6 3.3 5.8 3.6 9.4.3 2.9-.2 4.8-.4 7.1-.4 4.5 0 7.3 2.4 7.3 3 0 4.8-2.3 5.4-6.8.8-6 1.6-10.4 3.9-15.4 2.2-4.8 5.4-8.6 5.4-14.6C49.1 11 41.4 4 32 4z"/></svg>`
+let logoDataUri = null
+function getLogoDataUri() {
+  if (logoDataUri !== null) return logoDataUri
+  try {
+    const logoPath = path.resolve(__dirname, '../public/logo.png')
+    logoDataUri = `data:image/png;base64,${fs.readFileSync(logoPath).toString('base64')}`
+  } catch {
+    logoDataUri = ''
+  }
+  return logoDataUri
+}
+
+/** Inline SmileCare logo — base64 data URI, displayed but never an attachment. */
+function logoImg() {
+  return `<img src="${getLogoDataUri()}" alt="SmileCare Dental Clinic" width="180" style="display:inline-block; max-width:200px; width:100%; height:auto;" />`
 }
 
 function reservationRow(r, index, showDate = false) {
@@ -24,10 +43,10 @@ function reservationRow(r, index, showDate = false) {
       <span style="display:inline-block; background:${LIGHT_BG}; color:${PRIMARY}; padding:3px 10px; border-radius:20px; font-size:12px; font-weight:600;">${r.service}</span>
     </td>
     <td style="padding:14px 16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:#666;">
-      ${r.email || 'ÔÇö'}
+      ${r.email || '—'}
     </td>
     <td style="padding:14px 16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:#666;">
-      ­ƒô× ${r.phone}
+      📞 ${r.phone}
     </td>
   </tr>`
 }
@@ -36,7 +55,9 @@ function reservationRow(r, index, showDate = false) {
  * Build the reminder email. `variant` controls the title & message:
  *  - 'tomorrow-morning': first reminder for tomorrow (09:00)
  *  - 'tomorrow-evening': second reminder for tomorrow (19:00)
- *  - 'today-overdue'   : escalation for today's unverified reservations (08:00)
+ *  - 'today-overdue'   : escalation for all unverified reservations up to and
+ *                        including today (08:00). Past dates are included so a
+ *                        reservation is re-emailed every morning until checked.
  */
 export function buildDailyEmail(reservations, date, siteUrl = 'https://smilecare.example.com', variant = 'tomorrow-morning') {
   const showDate = variant === 'today-overdue'
@@ -44,22 +65,22 @@ export function buildDailyEmail(reservations, date, siteUrl = 'https://smilecare
 
   const copy = {
     'tomorrow-morning': {
-      emoji: '­ƒöö',
+      emoji: '🔔',
       title: `Rendez-vous de demain (${date})`,
-      intro: `Vous avez <strong style="color:${PRIMARY};">${reservations.length} rendez-vous</strong> demain (${date}) ├á v├®rifier.`,
+      intro: `Vous avez <strong style="color:${PRIMARY};">${reservations.length} rendez-vous</strong> demain (${date}) à vérifier.`,
     },
     'tomorrow-evening': {
-      emoji: '­ƒîÖ',
-      title: `Rappel du soir ÔÇö demain (${date})`,
-      intro: `Vous avez encore <strong style="color:${PRIMARY};">${reservations.length} rendez-vous</strong> demain (${date}) qui ne sont pas encore v├®rifi├®s.`,
+      emoji: '🌙',
+      title: `Rappel du soir — demain (${date})`,
+      intro: `Vous avez encore <strong style="color:${PRIMARY};">${reservations.length} rendez-vous</strong> demain (${date}) qui ne sont pas encore vérifiés.`,
     },
     'today-overdue': {
-      emoji: 'ÔÜá´©Å',
-      title: `Rendez-vous non v├®rifi├®s`,
-      intro: `Vous avez <strong style="color:${PRIMARY};">${reservations.length} rendez-vous non v├®rifi├®s</strong> (` + reservations.map((r) => r.date).filter((v, i, a) => a.indexOf(v) === i).join(', ') + `). Rappel envoy├® chaque matin jusqu'├á confirmation.`,
+      emoji: '⚠️',
+      title: `Rendez-vous non vérifiés`,
+      intro: `Vous avez <strong style="color:${PRIMARY};">${reservations.length} rendez-vous non vérifiés</strong> (` + reservations.map((r) => r.date).filter((v, i, a) => a.indexOf(v) === i).join(', ') + `). Rappel envoyé chaque matin jusqu'à confirmation.`,
     },
   }[variant] || {
-    emoji: '­ƒöö',
+    emoji: '🔔',
     title: `Rendez-vous du ${date}`,
     intro: `Vous avez <strong style="color:${PRIMARY};">${reservations.length} rendez-vous</strong> le ${date}.`,
   }
@@ -74,19 +95,14 @@ export function buildDailyEmail(reservations, date, siteUrl = 'https://smilecare
 
       <!-- Logo Header -->
       <tr>
-        <td style="background:${PRIMARY}; border-radius:16px 16px 0 0; padding:28px 32px; text-align:center;">
-          <div style="display:inline-block; background:rgba(255,255,255,0.15); border-radius:12px; padding:8px 10px; vertical-align:middle;">
-            ${toothSvg()}
-          </div>
-          <span style="font-size:22px; font-weight:700; color:${WHITE}; vertical-align:middle; margin-left:10px; letter-spacing:0.5px;">
-            SmileCare <span style="font-weight:400; font-size:13px; opacity:0.85; display:block; letter-spacing:1.5px; text-transform:uppercase;">Dental Clinic</span>
-          </span>
+        <td style="background:${WHITE}; border-top:4px solid ${PRIMARY}; border-radius:16px 16px 0 0; padding:22px 32px; text-align:center;">
+          ${logoImg()}
         </td>
       </tr>
 
       <!-- Title -->
       <tr>
-        <td style="background:${WHITE}; padding:32px 32px 16px;">
+        <td style="background:${WHITE}; padding:8px 32px 16px;">
           <h1 style="margin:0; font-size:22px; color:${NAVY}; font-weight:700;">
             ${copy.emoji} ${copy.title}
           </h1>
@@ -106,7 +122,7 @@ export function buildDailyEmail(reservations, date, siteUrl = 'https://smilecare
                 <th style="padding:12px 16px; text-align:left; font-size:12px; font-weight:700; color:${NAVY}; text-transform:uppercase; letter-spacing:0.5px;">Patient</th>
                 <th style="padding:12px 16px; text-align:left; font-size:12px; font-weight:700; color:${NAVY}; text-transform:uppercase; letter-spacing:0.5px;">Service</th>
                 <th style="padding:12px 16px; text-align:left; font-size:12px; font-weight:700; color:${NAVY}; text-transform:uppercase; letter-spacing:0.5px;">Email</th>
-                <th style="padding:12px 16px; text-align:left; font-size:12px; font-weight:700; color:${NAVY}; text-transform:uppercase; letter-spacing:0.5px;">T├®l├®phone</th>
+                <th style="padding:12px 16px; text-align:left; font-size:12px; font-weight:700; color:${NAVY}; text-transform:uppercase; letter-spacing:0.5px;">Téléphone</th>
               </tr>
             </thead>
             <tbody>
@@ -120,7 +136,7 @@ export function buildDailyEmail(reservations, date, siteUrl = 'https://smilecare
       <tr>
         <td style="background:${WHITE}; padding:28px 32px; text-align:center;">
           <a href="${siteUrl}" style="display:inline-block; background:${PRIMARY}; color:${WHITE}; text-decoration:none; padding:14px 36px; border-radius:10px; font-size:15px; font-weight:700; letter-spacing:0.3px;">
-            Contacter mes patients ÔåÆ
+            Contacter mes patients →
           </a>
         </td>
       </tr>
@@ -129,10 +145,10 @@ export function buildDailyEmail(reservations, date, siteUrl = 'https://smilecare
       <tr>
         <td style="background:${LIGHT_BG}; border-radius:0 0 16px 16px; padding:24px 32px; text-align:center;">
           <p style="margin:0; font-size:12px; color:#999;">
-            Cet email a ├®t├® envoy├® automatiquement par SmileCare Dental Clinic.
+            Cet email a été envoyé automatiquement par SmileCare Dental Clinic.
           </p>
           <p style="margin:6px 0 0; font-size:12px; color:#999;">
-            24 Rue de la Sant├®, 75013 Paris ┬À +212 0644356664
+            24 Rue de la Santé, 75013 Paris · +212 0644356664
           </p>
         </td>
       </tr>
@@ -160,24 +176,19 @@ export function buildImmediateEmail(r, siteUrl = 'http://localhost:5173') {
 
       <!-- Logo Header -->
       <tr>
-        <td style="background:${PRIMARY}; border-radius:16px 16px 0 0; padding:28px 32px; text-align:center;">
-          <div style="display:inline-block; background:rgba(255,255,255,0.15); border-radius:12px; padding:8px 10px; vertical-align:middle;">
-            ${toothSvg()}
-          </div>
-          <span style="font-size:22px; font-weight:700; color:${WHITE}; vertical-align:middle; margin-left:10px; letter-spacing:0.5px;">
-            SmileCare <span style="font-weight:400; font-size:13px; opacity:0.85; display:block; letter-spacing:1.5px; text-transform:uppercase;">Dental Clinic</span>
-          </span>
+        <td style="background:${WHITE}; border-top:4px solid ${PRIMARY}; border-radius:16px 16px 0 0; padding:22px 32px; text-align:center;">
+          ${logoImg()}
         </td>
       </tr>
 
       <!-- Title -->
       <tr>
-        <td style="background:${WHITE}; padding:32px 32px 16px;">
+        <td style="background:${WHITE}; padding:8px 32px 16px;">
           <h1 style="margin:0; font-size:22px; color:${NAVY}; font-weight:700;">
-            ­ƒôà Nouveau rendez-vous
+            📅 Nouveau rendez-vous
           </h1>
           <p style="margin:8px 0 0; font-size:15px; color:#666;">
-            Un nouveau rendez-vous vient d'├¬tre r├®serv├®.
+            Un nouveau rendez-vous vient d'être réservé.
           </p>
         </td>
       </tr>
@@ -221,10 +232,10 @@ export function buildImmediateEmail(r, siteUrl = 'http://localhost:5173') {
               </tr>` : ''}
               <tr>
                 <td style="padding:16px; font-size:14px; color:${NAVY};">
-                  <strong style="color:${NAVY};">T├®l├®phone</strong>
+                  <strong style="color:${NAVY};">Téléphone</strong>
                 </td>
                 <td style="padding:16px; font-size:14px; color:#666;">
-                  ­ƒô× ${r.phone}
+                  📞 ${r.phone}
                 </td>
               </tr>
               ${r.message ? `<tr>
@@ -244,7 +255,7 @@ export function buildImmediateEmail(r, siteUrl = 'http://localhost:5173') {
       <tr>
         <td style="background:${WHITE}; padding:28px 32px; text-align:center;">
           <a href="${adminUrl}" style="display:inline-block; background:${PRIMARY}; color:${WHITE}; text-decoration:none; padding:14px 36px; border-radius:10px; font-size:15px; font-weight:700; letter-spacing:0.3px;">
-            Contacter mes patients ÔåÆ
+            Contacter mes patients →
           </a>
         </td>
       </tr>
@@ -253,10 +264,10 @@ export function buildImmediateEmail(r, siteUrl = 'http://localhost:5173') {
       <tr>
         <td style="background:${LIGHT_BG}; border-radius:0 0 16px 16px; padding:24px 32px; text-align:center;">
           <p style="margin:0; font-size:12px; color:#999;">
-            Cet email a ├®t├® envoy├® automatiquement par SmileCare Dental Clinic.
+            Cet email a été envoyé automatiquement par SmileCare Dental Clinic.
           </p>
           <p style="margin:6px 0 0; font-size:12px; color:#999;">
-            24 Rue de la Sant├®, 75013 Paris ┬À +212 0644356664
+            24 Rue de la Santé, 75013 Paris · +212 0644356664
           </p>
         </td>
       </tr>
@@ -269,7 +280,7 @@ export function buildImmediateEmail(r, siteUrl = 'http://localhost:5173') {
 }
 
 /**
- * Password reset email ÔÇö sends a 6-digit verification code.
+ * Password reset email — sends a 6-digit verification code.
  */
 export function buildResetEmail(code) {
   return `<!DOCTYPE html>
@@ -282,24 +293,19 @@ export function buildResetEmail(code) {
 
       <!-- Logo Header -->
       <tr>
-        <td style="background:${PRIMARY}; border-radius:16px 16px 0 0; padding:28px 32px; text-align:center;">
-          <div style="display:inline-block; background:rgba(255,255,255,0.15); border-radius:12px; padding:8px 10px; vertical-align:middle;">
-            ${toothSvg()}
-          </div>
-          <span style="font-size:22px; font-weight:700; color:${WHITE}; vertical-align:middle; margin-left:10px; letter-spacing:0.5px;">
-            SmileCare <span style="font-weight:400; font-size:13px; opacity:0.85; display:block; letter-spacing:1.5px; text-transform:uppercase;">Dental Clinic</span>
-          </span>
+        <td style="background:${WHITE}; border-top:4px solid ${PRIMARY}; border-radius:16px 16px 0 0; padding:22px 32px; text-align:center;">
+          ${logoImg()}
         </td>
       </tr>
 
       <!-- Title -->
       <tr>
-        <td style="background:${WHITE}; padding:32px 32px 16px; text-align:center;">
+        <td style="background:${WHITE}; padding:8px 32px 16px; text-align:center;">
           <h1 style="margin:0; font-size:22px; color:${NAVY}; font-weight:700;">
-            ­ƒöæ R├®initialisation du mot de passe
+            🔑 Réinitialisation du mot de passe
           </h1>
           <p style="margin:8px 0 0; font-size:15px; color:#666;">
-            Votre code de r├®initialisation est :
+            Votre code de réinitialisation est :
           </p>
         </td>
       </tr>
@@ -320,10 +326,10 @@ export function buildResetEmail(code) {
       <tr>
         <td style="background:${LIGHT_BG}; border-radius:0 0 16px 16px; padding:24px 32px; text-align:center;">
           <p style="margin:0; font-size:12px; color:#999;">
-            Cet email a ├®t├® envoy├® automatiquement par SmileCare Dental Clinic.
+            Cet email a été envoyé automatiquement par SmileCare Dental Clinic.
           </p>
           <p style="margin:6px 0 0; font-size:12px; color:#999;">
-            24 Rue de la Sant├®, 75013 Paris ┬À +212 0644356664
+            24 Rue de la Santé, 75013 Paris · +212 0644356664
           </p>
         </td>
       </tr>
@@ -334,4 +340,3 @@ export function buildResetEmail(code) {
 </body>
 </html>`
 }
-
