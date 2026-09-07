@@ -1,16 +1,34 @@
 /**
  * Professional HTML email template for SmileCare daily reservation summary.
- * Embedded logo via SVG (no external images needed).
+ * Logo embedded as a base64 data URI (no attachment, no external image).
  */
+
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const PRIMARY = '#2A9D8F'
 const NAVY = '#1A2E44'
 const LIGHT_BG = '#F0FAF8'
 const WHITE = '#ffffff'
 
-/** Inline SmileCare logo — delivered as a CID attachment with every email. */
+let logoDataUri = null
+function getLogoDataUri() {
+  if (logoDataUri !== null) return logoDataUri
+  try {
+    const logoPath = path.resolve(__dirname, '../public/logo.png')
+    logoDataUri = `data:image/png;base64,${fs.readFileSync(logoPath).toString('base64')}`
+  } catch {
+    logoDataUri = ''
+  }
+  return logoDataUri
+}
+
+/** Inline SmileCare logo — base64 data URI, displayed but never an attachment. */
 function logoImg() {
-  return `<img src="cid:logo" alt="SmileCare Dental Clinic" width="180" style="display:inline-block; max-width:200px; width:100%; height:auto;" />`
+  return `<img src="${getLogoDataUri()}" alt="SmileCare Dental Clinic" width="180" style="display:inline-block; max-width:200px; width:100%; height:auto;" />`
 }
 
 function reservationRow(r, index, showDate = false) {

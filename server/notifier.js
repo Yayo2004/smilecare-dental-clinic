@@ -1,19 +1,7 @@
-import nodemailer from 'nodemailer'
-import fs from 'fs'
-import path from 'path'
-import { fileURLToPath } from 'url'
+﻿import nodemailer from 'nodemailer'
 import { readReservations } from './db.js'
 import { buildDailyEmail, buildImmediateEmail, buildResetEmail } from './emailTemplate.js'
 import { log } from './logger.js'
-
-const SERVER_DIR = path.dirname(fileURLToPath(import.meta.url))
-const LOGO_PATH = path.resolve(SERVER_DIR, '../public/logo.png')
-
-/** Inline logo attachment (cid:logo) used by all email templates. */
-function logoAttachment() {
-  if (!fs.existsSync(LOGO_PATH)) return undefined
-  return { filename: 'logo.png', path: LOGO_PATH, cid: 'logo' }
-}
 
 /**
  * Send a reminder email to the clinic.
@@ -35,7 +23,7 @@ export async function sendReminderEmail(targetDate, variant = 'tomorrow-morning'
   const adminUrl = `${siteUrl}/#/admin`
 
   if (!emailUser || !emailPass) {
-    log('[email] EMAIL_USER / EMAIL_PASS not configured — skipping')
+    log('[email] EMAIL_USER / EMAIL_PASS not configured â€” skipping')
     return
   }
 
@@ -46,16 +34,16 @@ export async function sendReminderEmail(targetDate, variant = 'tomorrow-morning'
       : all.filter((r) => r.date === targetDate && !r.reminded)
 
   if (reservations.length === 0) {
-    log(`[email] No unverified reservations for ${targetDate} (variant ${variant}) — skipping`)
+    log(`[email] No unverified reservations for ${targetDate} (variant ${variant}) â€” skipping`)
     return
   }
 
   const subjects = {
-    'tomorrow-morning': `🔔 SmileCare — ${reservations.length} RDV demain à vérifier (${targetDate})`,
-    'tomorrow-evening': `🌙 SmileCare — Rappel : ${reservations.length} RDV demain non vérifiés (${targetDate})`,
-    'today-overdue': `⚠️ SmileCare — ${reservations.length} RDV non vérifiés (${reservations.map((r) => r.date).filter((v, i, a) => a.indexOf(v) === i).join(', ')})`,
+    'tomorrow-morning': `ðŸ”” SmileCare â€” ${reservations.length} RDV demain Ã  vÃ©rifier (${targetDate})`,
+    'tomorrow-evening': `ðŸŒ™ SmileCare â€” Rappel : ${reservations.length} RDV demain non vÃ©rifiÃ©s (${targetDate})`,
+    'today-overdue': `âš ï¸ SmileCare â€” ${reservations.length} RDV non vÃ©rifiÃ©s (${reservations.map((r) => r.date).filter((v, i, a) => a.indexOf(v) === i).join(', ')})`,
   }
-  const subject = subjects[variant] || `🔔 SmileCare — ${reservations.length} rendez-vous ${targetDate}`
+  const subject = subjects[variant] || `ðŸ”” SmileCare â€” ${reservations.length} rendez-vous ${targetDate}`
 
   log(`[email] Sending reminder (${variant}) for ${targetDate} (${reservations.length} reservations)...`)
 
@@ -74,10 +62,10 @@ export async function sendReminderEmail(targetDate, variant = 'tomorrow-morning'
     to: emailTo,
     subject,
     html,
-    attachments: logoAttachment(),
+    
   })
 
-  log(`[email] ✓ Reminder (${variant}) sent to ${emailTo} for ${targetDate}`)
+  log(`[email] âœ“ Reminder (${variant}) sent to ${emailTo} for ${targetDate}`)
 }
 
 /**
@@ -91,7 +79,7 @@ export async function sendImmediateEmail(reservation) {
   const siteUrl = process.env.SITE_URL || 'http://localhost:5173'
 
   if (!emailUser || !emailPass) {
-    log('[email] EMAIL_USER / EMAIL_PASS not configured — skipping')
+    log('[email] EMAIL_USER / EMAIL_PASS not configured â€” skipping')
     return
   }
 
@@ -110,12 +98,12 @@ export async function sendImmediateEmail(reservation) {
   await transporter.sendMail({
     from: `"SmileCare Dental Clinic" <${emailUser}>`,
     to: emailTo,
-    subject: `📅 SmileCare — Nouveau RDV: ${reservation.name} — ${reservation.date}`,
+    subject: `ðŸ“… SmileCare â€” Nouveau RDV: ${reservation.name} â€” ${reservation.date}`,
     html,
-    attachments: logoAttachment(),
+    
   })
 
-  log(`[email] ✓ Notification sent for ${reservation.name}`)
+  log(`[email] âœ“ Notification sent for ${reservation.name}`)
 }
 
 /**
@@ -142,10 +130,10 @@ export async function sendResetCode(email, code) {
   await transporter.sendMail({
     from: `"SmileCare Dental Clinic" <${emailUser}>`,
     to: email,
-    subject: '🔑 SmileCare — Code de réinitialisation',
+    subject: 'ðŸ”‘ SmileCare â€” Code de rÃ©initialisation',
     html,
-    attachments: logoAttachment(),
+    
   })
 
-  log(`[email] ✓ Reset code sent to ${email}`)
+  log(`[email] âœ“ Reset code sent to ${email}`)
 }
