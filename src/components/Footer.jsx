@@ -31,17 +31,17 @@ export default function Footer() {
     <footer className="relative overflow-hidden bg-navy text-white">
       {/* Animated decorative orbs */}
       <motion.div
-        className="pointer-events-none absolute -right-32 -top-32 h-[30rem] w-[30rem] rounded-full bg-primary/25 blur-3xl"
+        className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-primary/25 blur-3xl"
         animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.65, 0.4] }}
         transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
-        className="pointer-events-none absolute -bottom-40 -left-32 h-[26rem] w-[26rem] rounded-full bg-primary/20 blur-3xl"
+        className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-primary/20 blur-3xl"
         animate={{ scale: [1.1, 1, 1.1], opacity: [0.35, 0.6, 0.35] }}
         transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
-        className="pointer-events-none absolute left-1/2 top-1/3 h-72 w-72 rounded-full bg-accent/15 blur-3xl"
+        className="pointer-events-none absolute left-1/3 top-1/3 h-52 w-52 rounded-full bg-accent/15 blur-3xl"
         animate={{ scale: [1, 1.25, 1], opacity: [0.25, 0.5, 0.25] }}
         transition={{ duration: 13, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
       />
