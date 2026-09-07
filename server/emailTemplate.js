@@ -12,9 +12,10 @@ function toothSvg() {
   return `<svg viewBox="0 0 64 64" width="28" height="28" fill="${WHITE}"><path d="M32 4C22.6 4 14.9 11 14.9 20.4c0 6 3.2 9.8 5.4 14.6 2.3 5 3.1 9.4 3.9 15.4.6 4.5 2.4 6.8 5.4 6.8 2.4 0 2.8-2.8 2.4-7.3-.2-2.3-.7-4.2-.4-7.1.3-3.6 1.4-6.8 3.6-9.4 1.9-2.2 3.6-4.8 5.2-7.4 1.6 2.6 3.3 5.2 5.2 7.4 2.2 2.6 3.3 5.8 3.6 9.4.3 2.9-.2 4.8-.4 7.1-.4 4.5 0 7.3 2.4 7.3 3 0 4.8-2.3 5.4-6.8.8-6 1.6-10.4 3.9-15.4 2.2-4.8 5.4-8.6 5.4-14.6C49.1 11 41.4 4 32 4z"/></svg>`
 }
 
-function reservationRow(r, index) {
+function reservationRow(r, index, showDate = false) {
   return `
   <tr>
+    ${showDate ? `<td style="padding:14px 16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:#666;">${r.date}</td>` : ''}
     <td style="padding:14px 16px; border-bottom:1px solid #e5e7eb; font-size:14px; color:${NAVY};">
       <span style="display:inline-block; width:24px; height:24px; line-height:24px; text-align:center; border-radius:50%; background:${PRIMARY}; color:${WHITE}; font-size:12px; font-weight:700; margin-right:8px;">${index}</span>
       <strong>${r.name}</strong>
@@ -38,7 +39,8 @@ function reservationRow(r, index) {
  *  - 'today-overdue'   : escalation for today's unverified reservations (08:00)
  */
 export function buildDailyEmail(reservations, date, siteUrl = 'https://smilecare.example.com', variant = 'tomorrow-morning') {
-  const rows = reservations.map((r, i) => reservationRow(r, i + 1)).join('')
+  const showDate = variant === 'today-overdue'
+  const rows = reservations.map((r, i) => reservationRow(r, i + 1, showDate)).join('')
 
   const copy = {
     'tomorrow-morning': {
@@ -53,8 +55,8 @@ export function buildDailyEmail(reservations, date, siteUrl = 'https://smilecare
     },
     'today-overdue': {
       emoji: '⚠️',
-      title: `Rendez-vous aujourd'hui (${date}) non vérifiés`,
-      intro: `Vous avez <strong style="color:${PRIMARY};">${reservations.length} rendez-vous</strong> aujourd'hui (${date}) que vous n'avez pas encore vérifiés.`,
+      title: `Rendez-vous non vérifiés`,
+      intro: `Vous avez <strong style="color:${PRIMARY};">${reservations.length} rendez-vous non vérifiés</strong> (` + reservations.map((r) => r.date).filter((v, i, a) => a.indexOf(v) === i).join(', ') + `). Rappel envoyé chaque matin jusqu'à confirmation.`,
     },
   }[variant] || {
     emoji: '🔔',
@@ -100,6 +102,7 @@ export function buildDailyEmail(reservations, date, siteUrl = 'https://smilecare
           <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5e7eb; border-radius:12px; overflow:hidden;">
             <thead>
               <tr style="background:${LIGHT_BG};">
+                ${showDate ? '<th style="padding:12px 16px; text-align:left; font-size:12px; font-weight:700; color:' + NAVY + '; text-transform:uppercase; letter-spacing:0.5px;">Date</th>' : ''}
                 <th style="padding:12px 16px; text-align:left; font-size:12px; font-weight:700; color:${NAVY}; text-transform:uppercase; letter-spacing:0.5px;">Patient</th>
                 <th style="padding:12px 16px; text-align:left; font-size:12px; font-weight:700; color:${NAVY}; text-transform:uppercase; letter-spacing:0.5px;">Service</th>
                 <th style="padding:12px 16px; text-align:left; font-size:12px; font-weight:700; color:${NAVY}; text-transform:uppercase; letter-spacing:0.5px;">Email</th>

@@ -5,6 +5,7 @@ import { CronJob } from 'cron'
 import { addReservation, readReservations, markReminded, deleteReservation, deleteReminded } from './db.js'
 import { sendReminderEmail, sendImmediateEmail, sendResetCode } from './notifier.js'
 import { getAdminPass, setAdminPass } from './config.js'
+import { log } from './logger.js'
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -39,7 +40,7 @@ app.post('/api/reservations', (req, res) => {
       return res.status(400).json({ error: 'Missing required fields' })
     }
     const entry = addReservation({ name, phone, email, service, date, time: (time || '').trim() || '—', message })
-    console.log(`[api] New reservation: ${name} — ${date}${time ? ` ${time}` : ''}`)
+    log(`[api] New reservation: ${name} — ${date}${time ? ` ${time}` : ''}`)
     res.status(201).json({ ok: true, id: entry.id })
 
     // Send immediate email if reservation is for today or tomorrow
@@ -175,38 +176,38 @@ function isoDate(offsetDays = 0) {
 // ─── Reminder Cron Jobs (Europe/Paris) ──────────────────────────────
 // 08:00 → escalation: today's reservations still not verified
 const overdueCron = new CronJob('0 8 * * *', async () => {
-  console.log('[cron] Running 08:00 today-overdue reminder...')
+  log('[cron] Running 08:00 today-overdue reminder...')
   try {
     await sendReminderEmail(isoDate(0), 'today-overdue')
   } catch (err) {
-    console.error('[cron] 08:00 reminder failed:', err.message)
+    log('[cron] 08:00 reminder failed:', err.message)
   }
 }, null, false, 'Europe/Paris')
 
 // 09:00 → first reminder about tomorrow's reservations
 const morningCron = new CronJob('0 9 * * *', async () => {
-  console.log('[cron] Running 09:00 tomorrow-morning reminder...')
+  log('[cron] Running 09:00 tomorrow-morning reminder...')
   try {
     await sendReminderEmail(isoDate(1), 'tomorrow-morning')
   } catch (err) {
-    console.error('[cron] 09:00 reminder failed:', err.message)
+    log('[cron] 09:00 reminder failed:', err.message)
   }
 }, null, false, 'Europe/Paris')
 
 // 19:00 → evening reminder about tomorrow's still-unverified reservations
 const eveningCron = new CronJob('0 19 * * *', async () => {
-  console.log('[cron] Running 19:00 tomorrow-evening reminder...')
+  log('[cron] Running 19:00 tomorrow-evening reminder...')
   try {
     await sendReminderEmail(isoDate(1), 'tomorrow-evening')
   } catch (err) {
-    console.error('[cron] 19:00 reminder failed:', err.message)
+    log('[cron] 19:00 reminder failed:', err.message)
   }
 }, null, false, 'Europe/Paris')
 
 // ─── Start ────────────────────────────────────────────────────────
 app.listen(PORT, () => {
-  console.log(`[server] SmileCare server running on port ${PORT}`)
-  console.log(`[cron]   Reminder emails scheduled at 08:00, 09:00, 19:00 (Europe/Paris)`)
+  log(`[server] SmileCare server running on port ${PORT}`)
+  log(`[cron]   Reminder emails scheduled at 08:00, 09:00, 19:00 (Europe/Paris)`)
 
   // Start the cron jobs
   overdueCron.start()

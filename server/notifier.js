@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer'
 import { readReservations } from './db.js'
 import { buildDailyEmail, buildImmediateEmail, buildResetEmail } from './emailTemplate.js'
+import { log } from './logger.js'
 
 /**
  * Send a reminder email to the clinic.
@@ -8,7 +9,9 @@ import { buildDailyEmail, buildImmediateEmail, buildResetEmail } from './emailTe
  * variant:
  *  - 'tomorrow-morning': first reminder for tomorrow (09:00)
  *  - 'tomorrow-evening': second reminder for tomorrow (19:00)
- *  - 'today-overdue'   : escalation for today's unverified reservations (08:00)
+ *  - 'today-overdue'   : escalation for all unverified reservations up to and
+ *                        including today (08:00). Past dates are included so a
+ *                        reservation is re-emailed every morning until checked.
  *
  * Only free (not yet reminded) reservations are included.
  */
@@ -20,25 +23,29 @@ export async function sendReminderEmail(targetDate, variant = 'tomorrow-morning'
   const adminUrl = `${siteUrl}/#/admin`
 
   if (!emailUser || !emailPass) {
-    console.log('[email] EMAIL_USER / EMAIL_PASS not configured — skipping')
+    log('[email] EMAIL_USER / EMAIL_PASS not configured — skipping')
     return
   }
 
-  const reservations = readReservations().filter((r) => r.date === targetDate && !r.reminded)
+  const all = readReservations()
+  const reservations =
+    variant === 'today-overdue'
+      ? all.filter((r) => !r.reminded && r.date <= targetDate)
+      : all.filter((r) => r.date === targetDate && !r.reminded)
 
   if (reservations.length === 0) {
-    console.log(`[email] No unverified reservations for ${targetDate} — skipping ${variant}`)
+    log(`[email] No unverified reservations for ${targetDate} (variant ${variant}) — skipping`)
     return
   }
 
   const subjects = {
     'tomorrow-morning': `🔔 SmileCare — ${reservations.length} RDV demain à vérifier (${targetDate})`,
     'tomorrow-evening': `🌙 SmileCare — Rappel : ${reservations.length} RDV demain non vérifiés (${targetDate})`,
-    'today-overdue': `⚠️ SmileCare — ${reservations.length} RDV aujourd'hui non vérifiés (${targetDate})`,
+    'today-overdue': `⚠️ SmileCare — ${reservations.length} RDV non vérifiés (${reservations.map((r) => r.date).filter((v, i, a) => a.indexOf(v) === i).join(', ')})`,
   }
   const subject = subjects[variant] || `🔔 SmileCare — ${reservations.length} rendez-vous ${targetDate}`
 
-  console.log(`[email] Sending reminder (${variant}) for ${targetDate} (${reservations.length} reservations)...`)
+  log(`[email] Sending reminder (${variant}) for ${targetDate} (${reservations.length} reservations)...`)
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -57,7 +64,7 @@ export async function sendReminderEmail(targetDate, variant = 'tomorrow-morning'
     html,
   })
 
-  console.log(`[email] ✓ Reminder (${variant}) sent to ${emailTo} for ${targetDate}`)
+  log(`[email] ✓ Reminder (${variant}) sent to ${emailTo} for ${targetDate}`)
 }
 
 /**
@@ -71,11 +78,11 @@ export async function sendImmediateEmail(reservation) {
   const siteUrl = process.env.SITE_URL || 'http://localhost:5173'
 
   if (!emailUser || !emailPass) {
-    console.log('[email] EMAIL_USER / EMAIL_PASS not configured — skipping')
+    log('[email] EMAIL_USER / EMAIL_PASS not configured — skipping')
     return
   }
 
-  console.log(`[email] Sending new reservation notification for ${reservation.name}...`)
+  log(`[email] Sending new reservation notification for ${reservation.name}...`)
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -94,7 +101,7 @@ export async function sendImmediateEmail(reservation) {
     html,
   })
 
-  console.log(`[email] ✓ Notification sent for ${reservation.name}`)
+  log(`[email] ✓ Notification sent for ${reservation.name}`)
 }
 
 /**
@@ -125,5 +132,5 @@ export async function sendResetCode(email, code) {
     html,
   })
 
-  console.log(`[email] ✓ Reset code sent to ${email}`)
+  log(`[email] ✓ Reset code sent to ${email}`)
 }
