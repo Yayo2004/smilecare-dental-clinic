@@ -85,7 +85,7 @@ function ParallaxShapes() {
         alt=""
         aria-hidden="true"
         draggable={false}
-        className="absolute right-12 top-16 h-14 w-14 opacity-25 object-contain"
+        className="absolute right-12 top-16 h-24 w-24 opacity-25 object-contain"
         style={{ y: y2 }}
       />
       <motion.img
@@ -93,7 +93,7 @@ function ParallaxShapes() {
         alt=""
         aria-hidden="true"
         draggable={false}
-        className="absolute bottom-24 left-8 h-9 w-9 opacity-20 object-contain"
+        className="absolute bottom-24 left-8 h-14 w-14 opacity-20 object-contain"
         style={{ y: y1 }}
       />
       <motion.img
@@ -101,7 +101,7 @@ function ParallaxShapes() {
         alt=""
         aria-hidden="true"
         draggable={false}
-        className="absolute left-1/4 top-8 hidden h-7 w-7 opacity-15 object-contain md:block"
+        className="absolute left-1/4 top-8 hidden h-10 w-10 opacity-15 object-contain md:block"
         style={{ y: y3 }}
       />
     </div>
