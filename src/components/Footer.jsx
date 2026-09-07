@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { ArrowUp, Clock, Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from 'lucide-react'
 import Logo from './Logo'
-import Tooth from './Tooth'
 import { CLINIC_INFO } from '../config'
 
 const SOCIALS = [
@@ -30,10 +29,22 @@ export default function Footer() {
 
   return (
     <footer className="relative overflow-hidden bg-navy text-white">
-      {/* Decorative gradient */}
-      <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-primary/20 blur-3xl" />
-      <Tooth className="pointer-events-none absolute -bottom-16 -right-10 h-64 w-64 opacity-[0.06] object-contain" />
-      <Tooth className="pointer-events-none absolute -left-8 top-1/3 hidden h-32 w-32 opacity-[0.07] object-contain md:block" />
+      {/* Animated decorative orbs */}
+      <motion.div
+        className="pointer-events-none absolute -right-32 -top-32 h-[30rem] w-[30rem] rounded-full bg-primary/25 blur-3xl"
+        animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.65, 0.4] }}
+        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="pointer-events-none absolute -bottom-40 -left-32 h-[26rem] w-[26rem] rounded-full bg-primary/20 blur-3xl"
+        animate={{ scale: [1.1, 1, 1.1], opacity: [0.35, 0.6, 0.35] }}
+        transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="pointer-events-none absolute left-1/2 top-1/3 h-72 w-72 rounded-full bg-accent/15 blur-3xl"
+        animate={{ scale: [1, 1.25, 1], opacity: [0.25, 0.5, 0.25] }}
+        transition={{ duration: 13, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+      />
 
       <div className="container-site relative py-16">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
