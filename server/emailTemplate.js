@@ -18,7 +18,7 @@ let logoDataUri = null
 function getLogoDataUri() {
   if (logoDataUri !== null) return logoDataUri
   try {
-    const logoPath = path.resolve(__dirname, '../public/logo.png')
+    const logoPath = path.resolve(__dirname, '../public/logo-email.png')
     logoDataUri = `data:image/png;base64,${fs.readFileSync(logoPath).toString('base64')}`
   } catch {
     logoDataUri = ''
