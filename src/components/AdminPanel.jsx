@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import ForgotPasswordModal from './ForgotPasswordModal'
+import Logo from './Logo'
 import {
   Bell,
   CalendarDays,
@@ -166,7 +167,9 @@ export default function AdminPanel() {
   if (!authed) {
     return (
       <section className="min-h-screen bg-mint/30 px-4 py-20">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mx-auto max-w-sm">
+        <div className="mx-auto flex max-w-sm flex-col items-center">
+          <Logo className="h-14 shrink-0" />
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mt-6 w-full">
           <div className="rounded-2xl border border-navy/5 bg-white p-8 shadow-soft">
             <div className="flex justify-center">
               <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
@@ -208,6 +211,7 @@ export default function AdminPanel() {
             </button>
           </div>
         </motion.div>
+        </div>
         <ForgotPasswordModal show={showForgot} onClose={() => setShowForgot(false)} lang={lang} t={t} />
       </section>
     )
@@ -217,6 +221,11 @@ export default function AdminPanel() {
   return (
     <section className="min-h-screen bg-mint/30 px-4 py-20">
       <div className="mx-auto max-w-4xl">
+        {/* Logo */}
+        <div className="mb-8 flex justify-center">
+          <Logo className="h-14 shrink-0" />
+        </div>
+
         {/* Header */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>

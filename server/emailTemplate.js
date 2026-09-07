@@ -8,8 +8,9 @@ const NAVY = '#1A2E44'
 const LIGHT_BG = '#F0FAF8'
 const WHITE = '#ffffff'
 
-function toothSvg() {
-  return `<svg viewBox="0 0 64 64" width="28" height="28" fill="${WHITE}"><path d="M32 4C22.6 4 14.9 11 14.9 20.4c0 6 3.2 9.8 5.4 14.6 2.3 5 3.1 9.4 3.9 15.4.6 4.5 2.4 6.8 5.4 6.8 2.4 0 2.8-2.8 2.4-7.3-.2-2.3-.7-4.2-.4-7.1.3-3.6 1.4-6.8 3.6-9.4 1.9-2.2 3.6-4.8 5.2-7.4 1.6 2.6 3.3 5.2 5.2 7.4 2.2 2.6 3.3 5.8 3.6 9.4.3 2.9-.2 4.8-.4 7.1-.4 4.5 0 7.3 2.4 7.3 3 0 4.8-2.3 5.4-6.8.8-6 1.6-10.4 3.9-15.4 2.2-4.8 5.4-8.6 5.4-14.6C49.1 11 41.4 4 32 4z"/></svg>`
+/** Inline SmileCare logo — delivered as a CID attachment with every email. */
+function logoImg() {
+  return `<img src="cid:logo" alt="SmileCare Dental Clinic" width="180" style="display:inline-block; max-width:200px; width:100%; height:auto;" />`
 }
 
 function reservationRow(r, index, showDate = false) {
@@ -74,19 +75,14 @@ export function buildDailyEmail(reservations, date, siteUrl = 'https://smilecare
 
       <!-- Logo Header -->
       <tr>
-        <td style="background:${PRIMARY}; border-radius:16px 16px 0 0; padding:28px 32px; text-align:center;">
-          <div style="display:inline-block; background:rgba(255,255,255,0.15); border-radius:12px; padding:8px 10px; vertical-align:middle;">
-            ${toothSvg()}
-          </div>
-          <span style="font-size:22px; font-weight:700; color:${WHITE}; vertical-align:middle; margin-left:10px; letter-spacing:0.5px;">
-            SmileCare <span style="font-weight:400; font-size:13px; opacity:0.85; display:block; letter-spacing:1.5px; text-transform:uppercase;">Dental Clinic</span>
-          </span>
+        <td style="background:${WHITE}; border-top:4px solid ${PRIMARY}; border-radius:16px 16px 0 0; padding:22px 32px; text-align:center;">
+          ${logoImg()}
         </td>
       </tr>
 
       <!-- Title -->
       <tr>
-        <td style="background:${WHITE}; padding:32px 32px 16px;">
+        <td style="background:${WHITE}; padding:8px 32px 16px;">
           <h1 style="margin:0; font-size:22px; color:${NAVY}; font-weight:700;">
             ${copy.emoji} ${copy.title}
           </h1>
@@ -160,19 +156,14 @@ export function buildImmediateEmail(r, siteUrl = 'http://localhost:5173') {
 
       <!-- Logo Header -->
       <tr>
-        <td style="background:${PRIMARY}; border-radius:16px 16px 0 0; padding:28px 32px; text-align:center;">
-          <div style="display:inline-block; background:rgba(255,255,255,0.15); border-radius:12px; padding:8px 10px; vertical-align:middle;">
-            ${toothSvg()}
-          </div>
-          <span style="font-size:22px; font-weight:700; color:${WHITE}; vertical-align:middle; margin-left:10px; letter-spacing:0.5px;">
-            SmileCare <span style="font-weight:400; font-size:13px; opacity:0.85; display:block; letter-spacing:1.5px; text-transform:uppercase;">Dental Clinic</span>
-          </span>
+        <td style="background:${WHITE}; border-top:4px solid ${PRIMARY}; border-radius:16px 16px 0 0; padding:22px 32px; text-align:center;">
+          ${logoImg()}
         </td>
       </tr>
 
       <!-- Title -->
       <tr>
-        <td style="background:${WHITE}; padding:32px 32px 16px;">
+        <td style="background:${WHITE}; padding:8px 32px 16px;">
           <h1 style="margin:0; font-size:22px; color:${NAVY}; font-weight:700;">
             📅 Nouveau rendez-vous
           </h1>
@@ -282,19 +273,14 @@ export function buildResetEmail(code) {
 
       <!-- Logo Header -->
       <tr>
-        <td style="background:${PRIMARY}; border-radius:16px 16px 0 0; padding:28px 32px; text-align:center;">
-          <div style="display:inline-block; background:rgba(255,255,255,0.15); border-radius:12px; padding:8px 10px; vertical-align:middle;">
-            ${toothSvg()}
-          </div>
-          <span style="font-size:22px; font-weight:700; color:${WHITE}; vertical-align:middle; margin-left:10px; letter-spacing:0.5px;">
-            SmileCare <span style="font-weight:400; font-size:13px; opacity:0.85; display:block; letter-spacing:1.5px; text-transform:uppercase;">Dental Clinic</span>
-          </span>
+        <td style="background:${WHITE}; border-top:4px solid ${PRIMARY}; border-radius:16px 16px 0 0; padding:22px 32px; text-align:center;">
+          ${logoImg()}
         </td>
       </tr>
 
       <!-- Title -->
       <tr>
-        <td style="background:${WHITE}; padding:32px 32px 16px; text-align:center;">
+        <td style="background:${WHITE}; padding:8px 32px 16px; text-align:center;">
           <h1 style="margin:0; font-size:22px; color:${NAVY}; font-weight:700;">
             🔑 Réinitialisation du mot de passe
           </h1>

@@ -1,7 +1,19 @@
 import nodemailer from 'nodemailer'
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url'
 import { readReservations } from './db.js'
 import { buildDailyEmail, buildImmediateEmail, buildResetEmail } from './emailTemplate.js'
 import { log } from './logger.js'
+
+const SERVER_DIR = path.dirname(fileURLToPath(import.meta.url))
+const LOGO_PATH = path.resolve(SERVER_DIR, '../public/logo.png')
+
+/** Inline logo attachment (cid:logo) used by all email templates. */
+function logoAttachment() {
+  if (!fs.existsSync(LOGO_PATH)) return undefined
+  return { filename: 'logo.png', path: LOGO_PATH, cid: 'logo' }
+}
 
 /**
  * Send a reminder email to the clinic.
@@ -62,6 +74,7 @@ export async function sendReminderEmail(targetDate, variant = 'tomorrow-morning'
     to: emailTo,
     subject,
     html,
+    attachments: logoAttachment(),
   })
 
   log(`[email] ✓ Reminder (${variant}) sent to ${emailTo} for ${targetDate}`)
@@ -99,6 +112,7 @@ export async function sendImmediateEmail(reservation) {
     to: emailTo,
     subject: `📅 SmileCare — Nouveau RDV: ${reservation.name} — ${reservation.date}`,
     html,
+    attachments: logoAttachment(),
   })
 
   log(`[email] ✓ Notification sent for ${reservation.name}`)
@@ -130,6 +144,7 @@ export async function sendResetCode(email, code) {
     to: email,
     subject: '🔑 SmileCare — Code de réinitialisation',
     html,
+    attachments: logoAttachment(),
   })
 
   log(`[email] ✓ Reset code sent to ${email}`)
