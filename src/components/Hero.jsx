@@ -161,7 +161,7 @@ export default function Hero() {
                       fill="none"
                       aria-hidden="true"
                     >
-                      <path d="M2 9C60 3 160 2 298 7" stroke="#BDE0DF" strokeWidth="5" strokeLinecap="round" />
+                      <path d="M2 9C60 3 160 2 298 7" stroke="#B8860B" strokeWidth="5" strokeLinecap="round" />
                     </svg>
                   </span>
                 )}
