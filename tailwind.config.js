@@ -4,34 +4,34 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Brand palette: soft teal / blue primary, mint accents, dark navy text
+        // Myriam Lahlou palette: warm gold / amber primary, soft cream accents, deep brown-navy text
         primary: {
-          DEFAULT: '#2A9D8F',
-          light: '#4FB3BF',
-          dark: '#21867A',
+          DEFAULT: '#B8860B',
+          light: '#D4A017',
+          dark: '#8A6508',
         },
         accent: {
-          DEFAULT: '#BDE0DF',
-          light: '#D7ECEB',
+          DEFAULT: '#F2D27F',
+          light: '#FAEBC4',
         },
         mint: {
-          DEFAULT: '#E8F5F4',
-          light: '#F4FBFB',
+          DEFAULT: '#FDF6E3',
+          light: '#FEFBF0',
         },
         navy: {
-          DEFAULT: '#1B2A4A',
-          light: '#2C3E63',
+          DEFAULT: '#3B2A20',
+          light: '#5A4636',
         },
-        cream: '#FAFCFB',
+        cream: '#FDF9EE',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'Segoe UI', 'sans-serif'],
         display: ['Poppins', 'Inter', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        soft: '0 8px 30px rgba(27, 42, 74, 0.08)',
-        card: '0 4px 24px rgba(42, 157, 143, 0.12)',
-        glow: '0 0 0 6px rgba(42, 157, 143, 0.15)',
+        soft: '0 8px 30px rgba(59, 42, 32, 0.08)',
+        card: '0 4px 24px rgba(184, 134, 11, 0.15)',
+        glow: '0 0 0 6px rgba(184, 134, 11, 0.18)',
       },
       keyframes: {
         float: {

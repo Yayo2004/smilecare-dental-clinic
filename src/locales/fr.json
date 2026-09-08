@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "SmileCare Dental Clinic Dentisterie moderne à Casablanca",
-    "description": "Une dentisterie moderne et douce pour toute la famille. Dentisterie générale, orthodontie, blanchiment, implants, pédodontie et urgences."
+    "title": "Dr Myriam Lahlou — Dentiste à Casablanca",
+    "description": "Dentiste généraliste et spécialiste en facettes, implants et esthétique dentaire à Casablanca. Prise de rendez-vous simple sur WhatsApp."
   },
   "nav": {
     "home": "Accueil",
@@ -14,14 +14,14 @@
     "skipToContent": "Aller au contenu"
   },
   "hero": {
-    "badge": "Bienvenue à la clinique SmileCare",
-    "title1": "Un sourire éclatant",
-    "titleHighlight": "pour toute la famille",
-    "subtitle": "Une dentisterie moderne, douce et centrée sur le patient, au cœur de Casablanca. Technologies de pointe, tarifs transparents et une équipe qui prend vraiment soin de votre confort.",
+    "badge": "Dentiste généraliste · Facettes, implants & esthétique",
+    "title1": "Un sourire",
+    "titleHighlight": "à votre image",
+    "subtitle": "Dentiste généraliste et spécialiste en facettes, implants et esthétique dentaire à Casablanca. Soins doux, résultats naturels et un accompagnement sincère tout au long de vos traitements.",
     "ctaPrimary": "Prendre rendez-vous",
     "ctaSecondary": "Découvrir nos services",
-    "feature1": "Plus de 20 ans d'expérience",
-    "feature2": "Dentistes certifiés et doux",
+    "feature1": "Spécialiste en facettes & implants",
+    "feature2": "Esthétique dentaire sur-mesure",
     "feature3": "Équipements de dernière génération",
     "scrollHint": "Défiler"
   },
@@ -40,28 +40,28 @@
   },
   "services": {
     "eyebrow": "Nos traitements",
-    "title": "Des soins dentaires complets",
-    "subtitle": "Du simple contrôle au sourire entièrement redessiné chaque traitement est personnalisé et réalisé avec les technologies les plus récentes.",
+    "title": "Des soins dentaires sur-mesure",
+    "subtitle": "De la dentisterie générale aux transformations esthétiques complètes, chaque traitement est personnalisé et réalisé avec les technologies les plus récentes.",
     "items": [
       {
-        "name": "Dentisterie générale",
-        "description": "Contrôles, détartrages, soins et prévention pour garder un sourire en bonne santé toute l'année."
-      },
-      {
-        "name": "Orthodontie",
-        "description": "Bagues traditionnelles et aligneurs invisibles pour un alignement parfait, chez l'adulte comme chez l'adolescent."
-      },
-      {
-        "name": "Blanchiment dentaire",
-        "description": "Un éclaircissement professionnel et sans risque qui illumine votre sourire de plusieurs teintes en une seule séance."
+        "name": "Facettes dentaires",
+        "description": "Des facettes ultra-fines pour corriger la forme et la teinte des dents et redessiner un sourire harmonieux et naturel."
       },
       {
         "name": "Implants dentaires",
         "description": "Des solutions permanentes et naturelles pour remplacer les dents manquantes, posées sur des implants en titane."
       },
       {
-        "name": "Dentisterie pédiatrique",
-        "description": "Des soins doux et ludiques qui mettent les enfants en confiance et installent de bonnes habitudes très tôt."
+        "name": "Esthétique dentaire",
+        "description": "Redessin du sourire, harmonisation de la forme et de la teinte des dents pour un résultat éclatant et durable."
+      },
+      {
+        "name": "Dentisterie générale",
+        "description": "Contrôles, détartrages, soins et prévention pour garder un sourire en bonne santé toute l'année."
+      },
+      {
+        "name": "Blanchiment dentaire",
+        "description": "Un éclaircissement professionnel et sans risque qui illumine votre sourire de plusieurs teintes en une seule séance."
       },
       {
         "name": "Urgences dentaires",
@@ -72,31 +72,21 @@
   },
   "about": {
     "eyebrow": "À propos",
-    "title": "Une équipe dévouée à votre sourire",
-    "paragraph1": "La clinique SmileCare a été fondée avec une mission : rendre la dentisterie de qualité accessible, confortable et sans stress. Notre cabinet moderne allie excellence médicale et atmosphère chaleureuse.",
-    "paragraph2": "Chaque traitement commence par une conversation. Nous écoutons, expliquons et vous impliquons dans chaque décision, pour que vous sachiez toujours exactement à quoi vous attendre sans surprises, sans coûts cachés.",
+    "title": "Dévouée à votre sourire",
+    "paragraph1": "Le Dr Myriam Lahlou, dentiste généraliste, met son expertise en facettes, implants et esthétique dentaire au service d'une dentisterie de qualité, confortable et sans stress.",
+    "paragraph2": "Chaque traitement commence par une conversation. J'écoute, j'explique et je vous implique dans chaque décision, pour que vous sachiez toujours exactement à quoi vous attendre sans surprises, sans coûts cachés.",
     "stats": [
-      { "value": 20, "suffix": "+", "label": "Années d'expérience" },
-      { "value": 15000, "suffix": "+", "label": "Patients soignés" },
-      { "value": 6, "suffix": "", "label": "Spécialistes dentaires" },
+      { "value": 12, "suffix": "+", "label": "Années d'expérience" },
+      { "value": 8000, "suffix": "+", "label": "Patients soignés" },
+      { "value": 500, "suffix": "+", "label": "Facettes & implants posés" },
       { "value": 98, "suffix": "%", "label": "Patients satisfaits" }
     ],
-    "teamTitle": "Rencontrez nos dentistes",
+    "teamTitle": "Votre dentiste",
     "team": [
       {
-        "name": "Dr Youssef Amrani",
-        "role": "Fondateur · Dentisterie générale et esthétique",
-        "bio": "Avec plus de 20 ans de pratique, le Dr Amrani allie précision technique et approche douce et rassurante. Il a fondé la clinique pour placer le confort du patient au premier plan."
-      },
-      {
-        "name": "Dr Karima Idrissi",
-        "role": "Dentiste pédiatrique",
-        "bio": "Le Dr Karima Idrissi transforme la visite chez le dentiste en aventure pour les plus petits. Son approche calme et ludique donne envie aux enfants de revenir à chaque contrôle."
-      },
-      {
-        "name": "Dr Amine Chraibi",
-        "role": "Orthodontiste",
-        "bio": "Le Dr Amine Chraibi est spécialiste des aligneurs invisibles et des solutions orthodontiques discrètes qui permettent aux adolescents comme aux adultes d'obtenir un alignement parfait."
+        "name": "Dr Myriam Lahlou",
+        "role": "Dentiste généraliste · Spécialiste en facettes, implants & esthétique dentaire",
+        "bio": "Dentiste généraliste et spécialiste en facettes, implants et esthétique dentaire. Une approche douce, précise et centrée sur un résultat naturel et durable."
       }
     ],
     "cta": "Réserver une consultation"
@@ -114,11 +104,11 @@
     "service": "Service souhaité",
     "servicePlaceholder": "Choisissez un service",
     "servicesOptions": [
-      "Dentisterie générale",
-      "Orthodontie",
-      "Blanchiment dentaire",
+      "Facettes dentaires",
       "Implants dentaires",
-      "Dentisterie pédiatrique",
+      "Esthétique dentaire",
+      "Dentisterie générale",
+      "Blanchiment dentaire",
       "Urgences dentaires"
     ],
     "date": "Date souhaitée",
@@ -149,7 +139,7 @@
       "date": "Date souhaitée",
       "message": "Message",
       "request": "Nouvelle demande de rendez-vous",
-      "greeting": "Bonjour, je souhaite prendre rendez-vous à la clinique SmileCare.",
+      "greeting": "Bonjour Dr Lahlou, je souhaite prendre rendez-vous.",
       "from": "Envoyé depuis le site internet"
     }
   },
@@ -163,34 +153,34 @@
         "name": "Salma A.",
         "rating": 5,
         "date": "Juin 2026",
-        "text": "J'avais très peur du dentiste, mais toute l'équipe a été incroyablement patiente et douce. Mon blanchiment a été rapide et sans douleur. J'adore enfin mon sourire !"
+        "text": "J'avais très peur du dentiste, mais Dr Lahlou a été incroyablement patiente et douce. Mon blanchiment a été rapide et sans douleur. J'adore enfin mon sourire !"
       },
       {
         "name": "Youssef B.",
         "rating": 5,
         "date": "Mai 2026",
-        "text": "La pose d'implant faisait un peu peur, mais le Dr Tazi a tout expliqué étape par étape et je n'ai ressenti aucune douleur. Le résultat est parfaitement naturel. Je recommande vivement."
+        "text": "La pose d'implant faisait un peu peur, mais Dr Lahlou a tout expliqué étape par étape et je n'ai ressenti aucune douleur. Le résultat est parfaitement naturel. Je recommande vivement."
       },
       {
         "name": "Aïcha M.",
         "rating": 5,
         "date": "Mai 2026",
-        "text": "Ma fille demande elle-même quand on retourne chez le dentiste ! L'équipe pédiatrique est formidable avec les enfants. Et la réservation sur WhatsApp est très simple."
+        "text": "Des facettes d'une finesse incroyable au rendu très naturel. Et la réservation sur WhatsApp est très simple. Un grand merci !"
       },
       {
         "name": "Khalid D.",
         "rating": 4,
         "date": "Avril 2026",
-        "text": "Rendez-vous d'urgence très rapide pour une dent cassée, suivi très professionnel et tarifs honnêtes. Le matériel moderne change vraiment tout."
+        "text": "Un coup de cœur pour ma couronne esthétique : suivi très professionnel et tarifs honnêtes. Le matériel moderne change vraiment tout."
       }
     ]
   },
   "contact": {
     "eyebrow": "Contact",
-    "title": "Visitez notre clinique",
-    "subtitle": "Nous sommes faciles à joindre par téléphone, par e-mail ou directement au cabinet.",
+    "title": "Contactez le cabinet",
+    "subtitle": "Facile à joindre par téléphone, WhatsApp ou directement au cabinet.",
     "addressLabel": "Adresse",
-    "address": "12 Boulevard Mohammed V, Casablanca, Maroc",
+    "address": "47 Boulevard Hassan II, Rdc, Casablanca, Maroc",
     "phoneLabel": "Téléphone",
     "emailLabel": "E-mail",
     "hoursLabel": "Horaires d'ouverture",
@@ -200,10 +190,10 @@
       { "days": "Dimanche", "time": "Fermé" }
     ],
     "emergency": "Urgence dentaire ? Appelez-nous au numéro ci-dessus.",
-    "mapTitle": "Localisation de la clinique sur Google Maps"
+    "mapTitle": "Localisation du cabinet sur Google Maps"
   },
   "footer": {
-    "tagline": "Une dentisterie douce et moderne pour toute la famille. Votre sourire est notre priorité.",
+    "tagline": "Dentiste généraliste, spécialiste en facettes, implants et esthétique dentaire à Casablanca.",
     "quickLinks": "Liens rapides",
     "contactTitle": "Contact",
     "hoursTitle": "Horaires",
@@ -214,7 +204,7 @@
   },
   "whatsapp": {
     "label": "Discuter avec nous sur WhatsApp",
-    "message": "Bonjour SmileCare ! J'aimerais en savoir plus sur vos soins dentaires."
+    "message": "Bonjour Dr Lahlou ! J'aimerais en savoir plus sur vos soins dentaires."
   },
   "common": {
     "readMore": "En savoir plus",

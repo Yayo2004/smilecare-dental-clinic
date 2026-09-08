@@ -1,16 +1,16 @@
 ﻿/**
- * Professional HTML email template for SmileCare daily reservation summary.
+ * Professional HTML email template for Myriam Lahlou daily reservation summary.
  * Logo delivered as an inline CID attachment so Gmail reliably displays it.
  */
 
-const PRIMARY = '#2A9D8F'
-const NAVY = '#1A2E44'
-const LIGHT_BG = '#F0FAF8'
+const PRIMARY = '#B8860B'
+const NAVY = '#3B2A20'
+const LIGHT_BG = '#FDF6E3'
 const WHITE = '#ffffff'
 
-/** Inline SmileCare logo — referenced by content-id 'logo' (attached in notifier.js). */
+/** Inline logo — referenced by content-id 'logo' (attached in notifier.js). */
 function logoImg() {
-  return `<img src="cid:logo" alt="SmileCare Dental Clinic" width="180" style="display:inline-block; max-width:200px; width:100%; height:auto;" />`
+  return `<img src="cid:logo" alt="Myriam Lahlou — Cabinet Dentaire" width="180" style="display:inline-block; max-width:200px; width:100%; height:auto;" />`
 }
 
 function reservationRow(r, index, showDate = false) {
@@ -127,10 +127,10 @@ export function buildDailyEmail(reservations, date, siteUrl = 'https://smilecare
       <tr>
         <td style="background:${LIGHT_BG}; border-radius:0 0 16px 16px; padding:24px 32px; text-align:center;">
           <p style="margin:0; font-size:12px; color:#999;">
-            Cet email a été envoyé automatiquement par SmileCare Dental Clinic.
+            Cabinet dentaire Dr Myriam Lahlou — email envoyé automatiquement.
           </p>
           <p style="margin:6px 0 0; font-size:12px; color:#999;">
-            12 Boulevard Mohammed V, Casablanca, Maroc · +212 0778207697
+            47 Boulevard Hassan II, Rdc, Casablanca, Maroc · 0522 49 24 40
           </p>
         </td>
       </tr>
@@ -246,10 +246,10 @@ export function buildImmediateEmail(r, siteUrl = 'http://localhost:5173') {
       <tr>
         <td style="background:${LIGHT_BG}; border-radius:0 0 16px 16px; padding:24px 32px; text-align:center;">
           <p style="margin:0; font-size:12px; color:#999;">
-            Cet email a été envoyé automatiquement par SmileCare Dental Clinic.
+            Cabinet dentaire Dr Myriam Lahlou — email envoyé automatiquement.
           </p>
           <p style="margin:6px 0 0; font-size:12px; color:#999;">
-            12 Boulevard Mohammed V, Casablanca, Maroc · +212 0778207697
+            47 Boulevard Hassan II, Rdc, Casablanca, Maroc · 0522 49 24 40
           </p>
         </td>
       </tr>
@@ -308,10 +308,10 @@ export function buildResetEmail(code) {
       <tr>
         <td style="background:${LIGHT_BG}; border-radius:0 0 16px 16px; padding:24px 32px; text-align:center;">
           <p style="margin:0; font-size:12px; color:#999;">
-            Cet email a été envoyé automatiquement par SmileCare Dental Clinic.
+            Cabinet dentaire Dr Myriam Lahlou — email envoyé automatiquement.
           </p>
           <p style="margin:6px 0 0; font-size:12px; color:#999;">
-            12 Boulevard Mohammed V, Casablanca, Maroc · +212 0778207697
+            47 Boulevard Hassan II, Rdc, Casablanca, Maroc · 0522 49 24 40
           </p>
         </td>
       </tr>

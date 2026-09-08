@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "SmileCare Dental Clinic Modern Dentistry in Casablanca",
-    "description": "Modern, gentle dentistry for the whole family. General dentistry, orthodontics, whitening, implants, pediatric dentistry and emergency care."
+    "title": "Dr Myriam Lahlou — Dentist in Casablanca",
+    "description": "General dentist specialising in veneers, implants and aesthetic dentistry in Casablanca. Simple appointment booking via WhatsApp."
   },
   "nav": {
     "home": "Home",
@@ -14,14 +14,14 @@
     "skipToContent": "Skip to content"
   },
   "hero": {
-    "badge": "Welcome to SmileCare Clinic",
-    "title1": "A Bright, Healthy Smile",
-    "titleHighlight": "for the Whole Family",
-    "subtitle": "Modern, gentle and patient-centred dentistry in the heart of Casablanca. Advanced technology, transparent pricing and a team that truly cares about your comfort.",
+    "badge": "General Dentist · Veneers, Implants & Aesthetics",
+    "title1": "A Smile",
+    "titleHighlight": "Made for You",
+    "subtitle": "General dentist specialising in veneers, implants and aesthetic dentistry in Casablanca. Gentle care, natural results and honest guidance throughout your treatments.",
     "ctaPrimary": "Book an Appointment",
     "ctaSecondary": "Explore Our Services",
-    "feature1": "Over 20 years of experience",
-    "feature2": "Certified, gentle dentists",
+    "feature1": "Veneers & implant specialist",
+    "feature2": "Custom aesthetic dentistry",
     "feature3": "State-of-the-art equipment",
     "scrollHint": "Scroll down"
   },
@@ -40,28 +40,28 @@
   },
   "services": {
     "eyebrow": "Our Treatments",
-    "title": "Complete Dental Care",
-    "subtitle": "From routine check-ups to full smile makeovers every treatment is personalised and performed with the latest technology.",
+    "title": "Personalised Dental Care",
+    "subtitle": "From general dentistry to complete smile makeovers, every treatment is personalised and performed with the latest technology.",
     "items": [
       {
-        "name": "General Dentistry",
-        "description": "Check-ups, cleanings, fillings and preventive care to keep your smile healthy all year round."
-      },
-      {
-        "name": "Orthodontics",
-        "description": "Traditional braces and clear aligners to straighten teeth for both adults and teenagers."
-      },
-      {
-        "name": "Teeth Whitening",
-        "description": "Safe, professional whitening that brightens your smile by several shades in a single visit."
+        "name": "Dental Veneers",
+        "description": "Ultra-thin veneers correct the shape and shade of your teeth and redesign a harmonious, natural-looking smile."
       },
       {
         "name": "Dental Implants",
         "description": "Permanent, natural-looking replacements for missing teeth, restored with titanium implants."
       },
       {
-        "name": "Pediatric Dentistry",
-        "description": "Gentle, fun dental care designed to make children feel safe and build healthy habits early."
+        "name": "Aesthetic Dentistry",
+        "description": "Smile design and harmonisation of tooth shape and shade for a brilliant, long-lasting result."
+      },
+      {
+        "name": "General Dentistry",
+        "description": "Check-ups, cleanings, fillings and preventive care to keep your smile healthy all year round."
+      },
+      {
+        "name": "Teeth Whitening",
+        "description": "Safe, professional whitening that brightens your smile by several shades in a single visit."
       },
       {
         "name": "Emergency Care",
@@ -71,32 +71,22 @@
     "learnMore": "Learn more"
   },
   "about": {
-    "eyebrow": "About the Clinic",
-    "title": "A Team Devoted to Your Smile",
-    "paragraph1": "SmileCare Dental Clinic was founded with one mission: to make quality dentistry accessible, comfortable and worry-free. Our modern clinic combines medical excellence with a warm, welcoming atmosphere.",
-    "paragraph2": "Every treatment starts with a conversation. We listen, explain and involve you in every decision, so you always know exactly what to expect no surprises, no hidden costs.",
+    "eyebrow": "About",
+    "title": "Devoted to Your Smile",
+    "paragraph1": "Dr Myriam Lahlou, general dentist, puts her expertise in veneers, implants and aesthetic dentistry at the service of quality, comfortable and stress-free dentistry.",
+    "paragraph2": "Every treatment starts with a conversation. I listen, explain and involve you in every decision, so you always know exactly what to expect no surprises, no hidden costs.",
     "stats": [
-      { "value": 20, "suffix": "+", "label": "Years of Experience" },
-      { "value": 15000, "suffix": "+", "label": "Patients Treated" },
-      { "value": 6, "suffix": "", "label": "Dental Specialists" },
+      { "value": 12, "suffix": "+", "label": "Years of Experience" },
+      { "value": 8000, "suffix": "+", "label": "Patients Treated" },
+      { "value": 500, "suffix": "+", "label": "Veneers & Implants Placed" },
       { "value": 98, "suffix": "%", "label": "Patient Satisfaction" }
     ],
-    "teamTitle": "Meet Our Dentists",
+    "teamTitle": "Your Dentist",
     "team": [
       {
-        "name": "Dr Youssef Amrani",
-        "role": "Founder · General & Aesthetic Dentistry",
-        "bio": "With over 20 years of practice, Dr Amrani combines technical precision with a gentle, reassuring approach. He founded the clinic to put patient comfort first."
-      },
-      {
-        "name": "Dr Karima Idrissi",
-        "role": "Pediatric Dentist",
-        "bio": "Dr Karima Idrissi turns the dentist visit into an adventure for little ones. Her calm, playful approach makes children look forward to every check-up."
-      },
-      {
-        "name": "Dr Amine Chraibi",
-        "role": "Orthodontist",
-        "bio": "Dr Amine Chraibi specialises in clear aligners and discreet orthodontic solutions that help both teenagers and adults achieve perfectly aligned smiles."
+        "name": "Dr Myriam Lahlou",
+        "role": "General Dentist · Veneers, Implants & Aesthetic Dentistry",
+        "bio": "General dentist specialising in veneers, implants and aesthetic dentistry. A gentle, precise approach focused on natural, long-lasting results."
       }
     ],
     "cta": "Reserve a Consultation"
@@ -114,11 +104,11 @@
     "service": "Preferred Service",
     "servicePlaceholder": "Select a service",
     "servicesOptions": [
-      "General Dentistry",
-      "Orthodontics",
-      "Teeth Whitening",
+      "Dental Veneers",
       "Dental Implants",
-      "Pediatric Dentistry",
+      "Aesthetic Dentistry",
+      "General Dentistry",
+      "Teeth Whitening",
       "Emergency Care"
     ],
     "date": "Preferred Date",
@@ -149,7 +139,7 @@
       "date": "Preferred date",
       "message": "Message",
       "request": "New appointment request",
-      "greeting": "Hello, I would like to book an appointment at SmileCare Dental Clinic.",
+      "greeting": "Hello Dr Lahlou, I would like to book an appointment.",
       "from": "Sent from the website"
     }
   },
@@ -163,34 +153,34 @@
         "name": "Salma A.",
         "rating": 5,
         "date": "June 2026",
-        "text": "I was terrified of dentists, but the whole team was incredibly patient and gentle. My whitening session was quick and painless. I finally love my smile!"
+        "text": "I was terrified of dentists, but Dr Lahlou was incredibly patient and gentle. My whitening session was quick and painless. I finally love my smile!"
       },
       {
         "name": "Youssef B.",
         "rating": 5,
         "date": "May 2026",
-        "text": "Implant surgery sounded scary, but Dr Tazi explained every step and I felt zero pain. The result looks completely natural. Highly recommended."
+        "text": "Implant surgery sounded scary, but Dr Lahlou explained every step and I felt zero pain. The result looks completely natural. Highly recommended."
       },
       {
         "name": "Aïcha M.",
         "rating": 5,
         "date": "May 2026",
-        "text": "My daughter actually asks when we're going back to the dentist! The pediatric team is wonderful with children. Booking on WhatsApp was super easy too."
+        "text": "Incredibly thin veneers with a very natural finish. Booking via WhatsApp was super easy too. Many thanks!"
       },
       {
         "name": "Khalid D.",
         "rating": 4,
         "date": "April 2026",
-        "text": "Fast emergency appointment for a broken tooth, very professional follow-up and fair pricing. The modern equipment makes all the difference."
+        "text": "Loved my aesthetic crown: very professional follow-up and fair pricing. The modern equipment makes all the difference."
       }
     ]
   },
   "contact": {
     "eyebrow": "Contact",
-    "title": "Visit Our Clinic",
-    "subtitle": "We're easy to reach by phone, email or directly at the practice.",
+    "title": "Contact the Practice",
+    "subtitle": "Easy to reach by phone, WhatsApp or directly at the practice.",
     "addressLabel": "Address",
-    "address": "12 Boulevard Mohammed V, Casablanca, Morocco",
+    "address": "47 Boulevard Hassan II, Ground Floor, Casablanca, Morocco",
     "phoneLabel": "Phone",
     "emailLabel": "Email",
     "hoursLabel": "Opening Hours",
@@ -200,10 +190,10 @@
       { "days": "Sunday", "time": "Closed" }
     ],
     "emergency": "Dental emergency? Call us on the phone number above.",
-    "mapTitle": "Clinic location on Google Maps"
+    "mapTitle": "Practice location on Google Maps"
   },
   "footer": {
-    "tagline": "Gentle, modern dentistry for the whole family. Your smile is our priority.",
+    "tagline": "General dentist specialising in veneers, implants and aesthetic dentistry in Casablanca.",
     "quickLinks": "Quick Links",
     "contactTitle": "Contact",
     "hoursTitle": "Opening Hours",
@@ -214,7 +204,7 @@
   },
   "whatsapp": {
     "label": "Chat with us on WhatsApp",
-    "message": "Hello SmileCare! I would like to know more about your dental services."
+    "message": "Hello Dr Lahlou! I would like to know more about your dental services."
   },
   "common": {
     "readMore": "Read more",

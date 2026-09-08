@@ -4,16 +4,16 @@
  */
 
 export const CLINIC_INFO = {
-  name: 'SmileCare Dental Clinic',
-  shortName: 'SmileCare',
-  phone: '+212 0778207697',
+  name: 'Myriam Lahlou — Cabinet Dentaire',
+  shortName: 'Myriam Lahlou',
+  phone: '0522 49 24 40',
   // International number WITHOUT the leading "+", used for wa.me links
-  // 212 0778207697 (Morocco) -> 2120778207697
+  // 0778207697 (Morocco) -> 2120778207697
   whatsappNumber: '2120778207697',
-  email: 'contact@smilecare.example.com',
-  address: '12 Boulevard Mohammed V, Casablanca, Maroc',
+  email: 'contact@myriamlahlou.example.com',
+  address: '47 Boulevard Hassan II, Rdc, Casablanca, Maroc',
   // Query used for the embedded Google Map (no API key required)
-  mapQuery: '12 Boulevard Mohammed V, Casablanca, Maroc',
+  mapQuery: '47 Boulevard Hassan II, Casablanca, Maroc',
   socials: {
     facebook: 'https://facebook.com/',
     instagram: 'https://instagram.com/',

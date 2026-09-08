@@ -23,10 +23,10 @@ const ICONS = [Stethoscope, Pill, Sparkles, ShieldCheck, Baby, Siren]
 const colors = [
   'bg-primary/10 text-primary',
   'bg-accent/40 text-primary-dark',
-  'bg-[#FFF4E0] text-[#E08A00]',
-  'bg-[#E8F0FF] text-[#3B82F6]',
-  'bg-[#FFEAF0] text-[#EC4899]',
-  'bg-[#FDE8E8] text-[#EF4444]',
+  'bg-[#FAEBC4] text-[#B8860B]',
+  'bg-primary/10 text-primary-dark',
+  'bg-[#FFF4E0] text-[#D4A017]',
+  'bg-[#FDF6E3] text-[#8A6508]',
 ]
 
 /** Services grid — slides in FROM THE LEFT, cards stagger one by one. */

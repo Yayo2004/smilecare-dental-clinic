@@ -13,7 +13,7 @@ function logoAttachment() {
   const logoPath = path.resolve(SERVER_DIR, '../public/logo-email.png')
   if (!fs.existsSync(logoPath)) return undefined
   return {
-    filename: 'smilecare-logo.png',
+    filename: 'myriam-lahlou-logo.png',
     path: logoPath,
     cid: 'logo',
     encoding: 'base64',
@@ -56,11 +56,11 @@ export async function sendReminderEmail(targetDate, variant = 'tomorrow-morning'
   }
 
   const subjects = {
-    'tomorrow-morning': `🔔 SmileCare — ${reservations.length} RDV demain à vérifier (${targetDate})`,
-    'tomorrow-evening': `🌙 SmileCare — Rappel : ${reservations.length} RDV demain non vérifiés (${targetDate})`,
-    'today-overdue': `⚠️ SmileCare — ${reservations.length} RDV non vérifiés (${reservations.map((r) => r.date).filter((v, i, a) => a.indexOf(v) === i).join(', ')})`,
+    'tomorrow-morning': `🔔 Dr Lahlou — ${reservations.length} RDV demain à vérifier (${targetDate})`,
+    'tomorrow-evening': `🌙 Dr Lahlou — Rappel : ${reservations.length} RDV demain non vérifiés (${targetDate})`,
+    'today-overdue': `⚠️ Dr Lahlou — ${reservations.length} RDV non vérifiés (${reservations.map((r) => r.date).filter((v, i, a) => a.indexOf(v) === i).join(', ')})`,
   }
-  const subject = subjects[variant] || `🔔 SmileCare — ${reservations.length} rendez-vous ${targetDate}`
+  const subject = subjects[variant] || `🔔 Dr Lahlou — ${reservations.length} rendez-vous ${targetDate}`
 
   log(`[email] Sending reminder (${variant}) for ${targetDate} (${reservations.length} reservations)...`)
 
@@ -75,7 +75,7 @@ export async function sendReminderEmail(targetDate, variant = 'tomorrow-morning'
   const html = buildDailyEmail(reservations, targetDate, adminUrl, variant)
 
   await transporter.sendMail({
-    from: `"SmileCare Dental Clinic" <${emailUser}>`,
+    from: `"Dr Myriam Lahlou" <${emailUser}>`,
     to: emailTo,
     subject,
     html,
@@ -113,9 +113,9 @@ export async function sendImmediateEmail(reservation) {
   const html = buildImmediateEmail(reservation, siteUrl)
 
   await transporter.sendMail({
-    from: `"SmileCare Dental Clinic" <${emailUser}>`,
+    from: `"Dr Myriam Lahlou" <${emailUser}>`,
     to: emailTo,
-    subject: `📅 SmileCare — Nouveau RDV: ${reservation.name} — ${reservation.date}`,
+    subject: `📅 Dr Lahlou — Nouveau RDV: ${reservation.name} — ${reservation.date}`,
     html,
     attachments: logoAttachment(),
   })
@@ -145,9 +145,9 @@ export async function sendResetCode(email, code) {
   const html = buildResetEmail(code)
 
   await transporter.sendMail({
-    from: `"SmileCare Dental Clinic" <${emailUser}>`,
+    from: `"Dr Myriam Lahlou" <${emailUser}>`,
     to: email,
-    subject: '🔑 SmileCare — Code de réinitialisation',
+    subject: '🔑 Dr Lahlou — Code de réinitialisation',
     html,
     attachments: logoAttachment(),
   })

@@ -51,7 +51,7 @@ function HeroIllustration() {
       >
         <img
           src="/images/dr-1.png"
-          alt="SmileCare dental team"
+          alt="Cabinet dentaire Dr Lahlou"
           className="h-full w-full object-cover"
         />
       </motion.div>

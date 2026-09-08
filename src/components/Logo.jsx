@@ -14,7 +14,7 @@ export default function Logo({ className = 'h-6', imgClassName = '', sound = tru
   return (
     <img
       src="/logo.png"
-      alt="SmileCare Dental Clinic"
+      alt="Myriam Lahlou — Cabinet Dentaire"
       className={`${className} ${imgClassName}`}
       draggable={false}
       onClick={sound ? playLogoSfx : undefined}
