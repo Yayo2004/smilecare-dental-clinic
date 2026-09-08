@@ -84,7 +84,7 @@ export const CLINIC_INFO = {
 }
 ```
 
-> ⚠️ **Important:** the WhatsApp number must be in **international format without the leading `+`** (e.g. Morocco `212 07 78 20 76 97` → `2120778207697`).
+> ⚠️ **Important:** the WhatsApp number must be in **international format without the leading `+`** (e.g. Morocco `06 60 18 63 73` → `212660186373`).
 
 ### Translations
 

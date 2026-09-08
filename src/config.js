@@ -8,8 +8,8 @@ export const CLINIC_INFO = {
   shortName: 'Myriam Lahlou',
   phone: '0522 49 24 40',
   // International number WITHOUT the leading "+", used for wa.me links
-  // 0778207697 (Morocco) -> 2120778207697
-  whatsappNumber: '2120778207697',
+  // 0660186373 (Morocco) -> 212660186373
+  whatsappNumber: '212660186373',
   email: 'contact@myriamlahlou.example.com',
   address: '47 Boulevard Hassan II, Rdc, Casablanca, Maroc',
   // Query used for the embedded Google Map (no API key required)
