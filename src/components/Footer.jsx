@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
-import { ArrowUp, Clock, Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from 'lucide-react'
+import { ArrowUp, Clock, Facebook, Instagram, Linkedin, MapPin, Phone } from 'lucide-react'
 import Logo from './Logo'
 import { CLINIC_INFO } from '../config'
 
@@ -91,15 +91,6 @@ export default function Footer() {
                 <a href={phoneHref} className="flex items-center gap-2.5 transition-colors hover:text-accent">
                   <Phone className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
                   {CLINIC_INFO.phone}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${CLINIC_INFO.email}`}
-                  className="flex items-center gap-2.5 transition-colors hover:text-accent"
-                >
-                  <Mail className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
-                  {CLINIC_INFO.email}
                 </a>
               </li>
             </ul>

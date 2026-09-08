@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { Clock, Mail, MapPin, Phone, Siren } from 'lucide-react'
+import { Clock, MapPin, Phone, Siren } from 'lucide-react'
 import Reveal from './Reveal'
 import Tooth from './Tooth'
 import { CLINIC_INFO } from '../config'
@@ -51,13 +51,6 @@ export default function Contact() {
                     className="mt-1 block whitespace-nowrap text-navy/65 transition-colors hover:text-primary"
                   >
                     {CLINIC_INFO.phone}
-                  </a>
-                  <a
-                    href={`mailto:${CLINIC_INFO.email}`}
-                    className="mt-1 flex break-all items-center gap-1.5 leading-snug text-navy/65 transition-colors hover:text-primary"
-                  >
-                    <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
-                    {CLINIC_INFO.email}
                   </a>
                 </div>
               </div>

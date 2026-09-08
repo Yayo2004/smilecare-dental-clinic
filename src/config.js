@@ -10,13 +10,12 @@ export const CLINIC_INFO = {
   // International number WITHOUT the leading "+", used for wa.me links
   // 0660186373 (Morocco) -> 212660186373
   whatsappNumber: '212660186373',
-  email: 'contact@myriamlahlou.example.com',
   address: '47 Boulevard Hassan II, Rdc, Casablanca, Maroc',
   // Query used for the embedded Google Map (no API key required)
   mapQuery: '47 Boulevard Hassan II, Casablanca, Maroc',
   socials: {
     facebook: 'https://facebook.com/',
-    instagram: 'https://instagram.com/',
+    instagram: 'https://www.instagram.com/dr.myriam_lahlou/',
     linkedin: 'https://linkedin.com/',
     tiktok: 'https://tiktok.com/',
   },

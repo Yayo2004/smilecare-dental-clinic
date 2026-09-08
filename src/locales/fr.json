@@ -189,7 +189,7 @@
       { "days": "Samedi", "time": "09:00 – 13:00" },
       { "days": "Dimanche", "time": "Fermé" }
     ],
-    "emergency": "Urgence dentaire ? Appelez-nous au numéro ci-dessus.",
+    "emergency": "Urgence dentaire ? Appelez-nous au 0522 49 24 40.",
     "mapTitle": "Localisation du cabinet sur Google Maps"
   },
   "footer": {
