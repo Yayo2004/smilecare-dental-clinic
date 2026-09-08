@@ -130,7 +130,7 @@ export function buildDailyEmail(reservations, date, siteUrl = 'https://smilecare
             Cet email a été envoyé automatiquement par SmileCare Dental Clinic.
           </p>
           <p style="margin:6px 0 0; font-size:12px; color:#999;">
-            24 Rue de la Santé, 75013 Paris · +212 0644356664
+            12 Boulevard Mohammed V, Casablanca, Maroc · +212 0778207697
           </p>
         </td>
       </tr>
@@ -249,7 +249,7 @@ export function buildImmediateEmail(r, siteUrl = 'http://localhost:5173') {
             Cet email a été envoyé automatiquement par SmileCare Dental Clinic.
           </p>
           <p style="margin:6px 0 0; font-size:12px; color:#999;">
-            24 Rue de la Santé, 75013 Paris · +212 0644356664
+            12 Boulevard Mohammed V, Casablanca, Maroc · +212 0778207697
           </p>
         </td>
       </tr>
@@ -311,7 +311,7 @@ export function buildResetEmail(code) {
             Cet email a été envoyé automatiquement par SmileCare Dental Clinic.
           </p>
           <p style="margin:6px 0 0; font-size:12px; color:#999;">
-            24 Rue de la Santé, 75013 Paris · +212 0644356664
+            12 Boulevard Mohammed V, Casablanca, Maroc · +212 0778207697
           </p>
         </td>
       </tr>

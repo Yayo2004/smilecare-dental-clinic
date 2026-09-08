@@ -1,4 +1,4 @@
-import 'dotenv/config'
+﻿import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import { CronJob } from 'cron'
@@ -22,6 +22,17 @@ function currentPass() {
 const resetCodes = new Map()
 const RESET_TTL_MIN = 15
 
+// SSE clients (admin panel real-time refresh)
+const sseClients = new Set()
+
+function broadcastReservationsChanged() {
+  for (const client of sseClients) {
+    try {
+      client.write('data: updated\n\n')
+    } catch { /* ignore */ }
+  }
+}
+
 function generateCode() {
   return String(Math.floor(100000 + Math.random() * 900000))
 }
@@ -41,6 +52,7 @@ app.post('/api/reservations', (req, res) => {
     }
     const entry = addReservation({ name, phone, email, service, date, time: (time || '').trim() || '—', message })
     log(`[api] New reservation: ${name} — ${date}${time ? ` ${time}` : ''}`)
+    broadcastReservationsChanged()
     res.status(201).json({ ok: true, id: entry.id })
 
     // Send immediate email if reservation is for today or tomorrow
@@ -62,6 +74,28 @@ app.get('/api/reservations', (req, res) => {
   res.json(readReservations())
 })
 
+/** SSE stream: notifies the admin panel when reservations change (real-time) */
+app.get('/api/events', (req, res) => {
+  const pass = req.query.pass
+  if (pass !== currentPass()) {
+    return res.status(401).json({ error: 'Unauthorized' })
+  }
+  res.set({
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-cache',
+    Connection: 'keep-alive',
+    'Access-Control-Allow-Origin': '*',
+  })
+  res.flushHeaders()
+  res.write(': connected\n\n')
+  sseClients.add(res)
+  const heartbeat = setInterval(() => res.write(': ping\n\n'), 25000)
+  req.on('close', () => {
+    clearInterval(heartbeat)
+    sseClients.delete(res)
+  })
+})
+
 /** Admin: mark a reservation as reminded */
 app.patch('/api/reservations/:id/remind', (req, res) => {
   const pass = req.query.pass
@@ -69,6 +103,7 @@ app.patch('/api/reservations/:id/remind', (req, res) => {
     return res.status(401).json({ error: 'Unauthorized' })
   }
   markReminded(req.params.id)
+  broadcastReservationsChanged()
   res.json({ ok: true })
 })
 
@@ -79,6 +114,7 @@ app.delete('/api/reservations/reminded', (req, res) => {
     return res.status(401).json({ error: 'Unauthorized' })
   }
   deleteReminded()
+  broadcastReservationsChanged()
   res.json({ ok: true })
 })
 
@@ -89,6 +125,7 @@ app.delete('/api/reservations/:id', (req, res) => {
     return res.status(401).json({ error: 'Unauthorized' })
   }
   deleteReservation(req.params.id)
+  broadcastReservationsChanged()
   res.json({ ok: true })
 })
 
@@ -173,7 +210,7 @@ function isoDate(offsetDays = 0) {
   return d.toISOString().slice(0, 10)
 }
 
-// ─── Reminder Cron Jobs (Europe/Paris) ──────────────────────────────
+// ─── Reminder Cron Jobs (Africa/Casablanca) ─────────────────────────────
 // 08:00 → escalation: today's reservations still not verified
 const overdueCron = new CronJob('0 8 * * *', async () => {
   log('[cron] Running 08:00 today-overdue reminder...')
@@ -182,7 +219,7 @@ const overdueCron = new CronJob('0 8 * * *', async () => {
   } catch (err) {
     log('[cron] 08:00 reminder failed:', err.message)
   }
-}, null, false, 'Europe/Paris')
+}, null, false, 'Africa/Casablanca')
 
 // 09:00 → first reminder about tomorrow's reservations
 const morningCron = new CronJob('0 9 * * *', async () => {
@@ -192,7 +229,7 @@ const morningCron = new CronJob('0 9 * * *', async () => {
   } catch (err) {
     log('[cron] 09:00 reminder failed:', err.message)
   }
-}, null, false, 'Europe/Paris')
+}, null, false, 'Africa/Casablanca')
 
 // 19:00 → evening reminder about tomorrow's still-unverified reservations
 const eveningCron = new CronJob('0 19 * * *', async () => {
@@ -202,12 +239,12 @@ const eveningCron = new CronJob('0 19 * * *', async () => {
   } catch (err) {
     log('[cron] 19:00 reminder failed:', err.message)
   }
-}, null, false, 'Europe/Paris')
+}, null, false, 'Africa/Casablanca')
 
 // ─── Start ────────────────────────────────────────────────────────
 app.listen(PORT, () => {
   log(`[server] SmileCare server running on port ${PORT}`)
-  log(`[cron]   Reminder emails scheduled at 08:00, 09:00, 19:00 (Europe/Paris)`)
+  log(`[cron]   Reminder emails scheduled at 08:00, 09:00, 19:00 (Africa/Casablanca)`)
 
   // Start the cron jobs
   overdueCron.start()

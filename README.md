@@ -1,4 +1,4 @@
-# 🦷 SmileCare Dental Clinic
+﻿# 🦷 SmileCare Dental Clinic
 
 A modern, professional, fully client-side dental clinic website built with **React + Vite**, **Tailwind CSS**, and **Framer Motion**. Bilingual **French (default) / English**, with a live reservation flow that redirects to WhatsApp with a pre-filled message — **no backend required**.
 
@@ -70,11 +70,11 @@ All clinic-specific details live in a single file: **`src/config.js`**
 export const CLINIC_INFO = {
   name: 'SmileCare Dental Clinic',
   shortName: 'SmileCare',
-  phone: '+212 0644356664',                    // Displayed phone
-  whatsappNumber: '2120644356664',             // International, NO "+" — used for wa.me links
+  phone: '+212 0778207697',                    // Displayed phone
+  whatsappNumber: '2120778207697',             // International, NO "+" — used for wa.me links
   email: 'contact@smilecare.example.com',
-  address: '24 Rue de la Santé, 75013 Paris, France',
-  mapQuery: '24 Rue de la Santé, 75013 Paris, France',
+  address: '12 Boulevard Mohammed V, Casablanca, Maroc',
+  mapQuery: '12 Boulevard Mohammed V, Casablanca, Maroc',
   socials: {
     facebook: 'https://facebook.com/',
     instagram: 'https://instagram.com/',
@@ -84,7 +84,7 @@ export const CLINIC_INFO = {
 }
 ```
 
-> ⚠️ **Important:** the WhatsApp number must be in **international format without the leading `+`** (e.g. Morocco `212 06 44 35 66 64` → `2120644356664`).
+> ⚠️ **Important:** the WhatsApp number must be in **international format without the leading `+`** (e.g. Morocco `212 07 78 20 76 97` → `2120778207697`).
 
 ### Translations
 

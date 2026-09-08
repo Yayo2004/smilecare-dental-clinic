@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "SmileCare Dental Clinic Dentisterie moderne à Paris",
+    "title": "SmileCare Dental Clinic Dentisterie moderne à Casablanca",
     "description": "Une dentisterie moderne et douce pour toute la famille. Dentisterie générale, orthodontie, blanchiment, implants, pédodontie et urgences."
   },
   "nav": {
@@ -17,7 +17,7 @@
     "badge": "Bienvenue à la clinique SmileCare",
     "title1": "Un sourire éclatant",
     "titleHighlight": "pour toute la famille",
-    "subtitle": "Une dentisterie moderne, douce et centrée sur le patient, au cœur de Paris. Technologies de pointe, tarifs transparents et une équipe qui prend vraiment soin de votre confort.",
+    "subtitle": "Une dentisterie moderne, douce et centrée sur le patient, au cœur de Casablanca. Technologies de pointe, tarifs transparents et une équipe qui prend vraiment soin de votre confort.",
     "ctaPrimary": "Prendre rendez-vous",
     "ctaSecondary": "Découvrir nos services",
     "feature1": "Plus de 20 ans d'expérience",
@@ -190,7 +190,7 @@
     "title": "Visitez notre clinique",
     "subtitle": "Nous sommes faciles à joindre par téléphone, par e-mail ou directement au cabinet.",
     "addressLabel": "Adresse",
-    "address": "24 Rue de la Santé, 75013 Paris, France",
+    "address": "12 Boulevard Mohammed V, Casablanca, Maroc",
     "phoneLabel": "Téléphone",
     "emailLabel": "E-mail",
     "hoursLabel": "Horaires d'ouverture",
@@ -247,7 +247,7 @@
     "done": "Rappels envoyés",
     "deleteAllSent": "Supprimer les envoyées",
     "empty": "Aucune réservation.",
-    "confirmDelete": "Supprimer cette réservation ?",
+    "confirmDelete": "Supprimer cette réservation de {{name}} ?",
     "confirmDeleteAll": "Supprimer toutes les réservations envoyées ?",
     "cancel": "Annuler",
     "delete": "Supprimer",
@@ -260,6 +260,8 @@
     "changePassword": "Changer le mot de passe",
     "newPassword": "Nouveau mot de passe",
     "confirmPassword": "Confirmer le mot de passe",
-    "save": "Enregistrer"
+    "save": "Enregistrer",
+    "logout": "Se déconnecter",
+    "confirmLogout": "Voulez-vous vraiment vous déconnecter ?"
   }
 }

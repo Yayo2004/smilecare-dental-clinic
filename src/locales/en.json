@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "SmileCare Dental Clinic Modern Dentistry in Paris",
+    "title": "SmileCare Dental Clinic Modern Dentistry in Casablanca",
     "description": "Modern, gentle dentistry for the whole family. General dentistry, orthodontics, whitening, implants, pediatric dentistry and emergency care."
   },
   "nav": {
@@ -17,7 +17,7 @@
     "badge": "Welcome to SmileCare Clinic",
     "title1": "A Bright, Healthy Smile",
     "titleHighlight": "for the Whole Family",
-    "subtitle": "Modern, gentle and patient-centred dentistry in the heart of Paris. Advanced technology, transparent pricing and a team that truly cares about your comfort.",
+    "subtitle": "Modern, gentle and patient-centred dentistry in the heart of Casablanca. Advanced technology, transparent pricing and a team that truly cares about your comfort.",
     "ctaPrimary": "Book an Appointment",
     "ctaSecondary": "Explore Our Services",
     "feature1": "Over 20 years of experience",
@@ -190,7 +190,7 @@
     "title": "Visit Our Clinic",
     "subtitle": "We're easy to reach by phone, email or directly at the practice.",
     "addressLabel": "Address",
-    "address": "24 Rue de la Santé, 75013 Paris, France",
+    "address": "12 Boulevard Mohammed V, Casablanca, Morocco",
     "phoneLabel": "Phone",
     "emailLabel": "Email",
     "hoursLabel": "Opening Hours",
@@ -247,7 +247,7 @@
     "done": "Reminders Sent",
     "deleteAllSent": "Delete All Sent",
     "empty": "No reservations.",
-    "confirmDelete": "Delete this reservation?",
+    "confirmDelete": "Delete {{name}}'s reservation?",
     "confirmDeleteAll": "Delete all sent reservations?",
     "cancel": "Cancel",
     "delete": "Delete",
@@ -260,6 +260,8 @@
     "changePassword": "Change Password",
     "newPassword": "New password",
     "confirmPassword": "Confirm new password",
-    "save": "Save"
+    "save": "Save",
+    "logout": "Log out",
+    "confirmLogout": "Are you sure you want to log out?"
   }
 }

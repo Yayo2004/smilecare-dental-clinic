@@ -5,6 +5,7 @@ import { useTypewriter } from '../hooks/useTypewriter'
 import { fadeInUp, staggerContainer, viewport } from '../animations'
 
 /** Hero right-side image with floating stat cards. */
+/** Hero right-side image with floating stat cards. */
 function HeroIllustration() {
   return (
     <div className="relative mx-auto w-full max-w-md" aria-hidden="true">
@@ -79,30 +80,33 @@ function ParallaxShapes() {
         className="absolute bottom-0 left-1/3 h-64 w-64 rounded-full bg-mint/60 blur-3xl"
         style={{ y: y3 }}
       />
-      {/* Subtle tooth outlines */}
+      {/* Subtle tooth outlines — endless float animation */}
       <motion.img
         src="/dent.png"
         alt=""
         aria-hidden="true"
         draggable={false}
-        className="absolute right-12 top-16 h-24 w-24 opacity-25 object-contain"
-        style={{ y: y2 }}
+        className="absolute right-0 top-0 h-72 w-72 opacity-25 object-contain"
+        animate={{ y: [0, -26, 0], rotate: [0, 6, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.img
         src="/dent.png"
         alt=""
         aria-hidden="true"
         draggable={false}
-        className="absolute bottom-24 left-8 h-14 w-14 opacity-20 object-contain"
-        style={{ y: y1 }}
+        className="absolute bottom-16 left-0 h-48 w-48 opacity-20 object-contain"
+        animate={{ y: [0, 22, 0], rotate: [0, -5, 0] }}
+        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
       />
       <motion.img
         src="/dent.png"
         alt=""
         aria-hidden="true"
         draggable={false}
-        className="absolute left-1/4 top-8 hidden h-10 w-10 opacity-15 object-contain md:block"
-        style={{ y: y3 }}
+        className="absolute left-1/4 top-4 hidden h-36 w-36 opacity-15 object-contain md:block"
+        animate={{ y: [0, 18, 0], rotate: [0, 8, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
       />
     </div>
   )

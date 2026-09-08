@@ -13,10 +13,10 @@ import {
   Filter,
   KeyRound,
   LogIn,
+  LogOut,
   Mail,
   MessageCircle,
   Phone,
-  RefreshCw,
   Trash2,
   User,
   X,
@@ -43,30 +43,56 @@ export default function AdminPanel() {
   const [changePassError, setChangePassError] = useState('')
   const [changePassSuccess, setChangePassSuccess] = useState(false)
   const [showForgot, setShowForgot] = useState(false)
+  const [confirmLogout, setConfirmLogout] = useState(false)
 
-  const fetchReservations = async () => {
-    setLoading(true)
-    setError('')
+  const fetchReservations = async (silent = false) => {
+    if (!silent) setLoading(true)
+    if (!silent) setError('')
     try {
       const res = await fetch(`${API_URL}/api/reservations?pass=${pass}`)
       if (!res.ok) {
-        setError(lang === 'fr' ? 'Mot de passe incorrect' : 'Wrong password')
-        setAuthed(false)
+        if (!silent) {
+          setError(lang === 'fr' ? 'Mot de passe incorrect' : 'Wrong password')
+          setAuthed(false)
+        }
         return
       }
       const data = await res.json()
       setReservations(data.sort((a, b) => new Date(b.date) - new Date(a.date)))
       setAuthed(true)
     } catch {
-      setError(lang === 'fr' ? 'Impossible de contacter le serveur' : 'Cannot reach server')
+      if (!silent) setError(lang === 'fr' ? 'Impossible de contacter le serveur' : 'Cannot reach server')
     } finally {
-      setLoading(false)
+      if (!silent) setLoading(false)
     }
   }
+
+  // Real-time refresh via SSE: fetch immediately when reservations change
+  useEffect(() => {
+    if (!authed) return
+    const events = new EventSource(`${API_URL}/api/events?pass=${pass}`)
+    events.onmessage = () => fetchReservations(true)
+    events.onerror = () => events.close()
+    return () => events.close()
+  }, [authed, pass])
+
+  // Auto-refresh every 60s so the list stays up to date without manual refresh
+  useEffect(() => {
+    if (!authed) return
+    const interval = setInterval(() => fetchReservations(true), 60000)
+    return () => clearInterval(interval)
+  }, [authed, pass])
 
   const handleLogin = (e) => {
     e.preventDefault()
     fetchReservations()
+  }
+
+  const handleLogout = () => {
+    setConfirmLogout(false)
+    setPass('')
+    setAuthed(false)
+    setReservations([])
   }
 
   const isPast = (date) => new Date(date + 'T23:59:59') < new Date()
@@ -233,8 +259,9 @@ export default function AdminPanel() {
             <p className="mt-1 text-sm text-navy/60">{t('admin.total', { count: reservations.length })}</p>
           </div>
           <div className="flex gap-2">
-            <motion.button onClick={fetchReservations} className="flex items-center gap-2 rounded-xl border border-navy/10 bg-white px-4 py-2.5 text-sm font-semibold text-navy transition-colors hover:bg-navy/5" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-              <RefreshCw className="h-4 w-4" />
+            <motion.button onClick={() => setConfirmLogout(true)} className="flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-2.5 text-sm font-semibold text-red-600 transition-colors hover:bg-red-100" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+              <LogOut className="h-4 w-4" />
+              {t('admin.logout')}
             </motion.button>
           </div>
         </div>
@@ -330,7 +357,9 @@ export default function AdminPanel() {
                 </span>
               </div>
               <h3 className="mt-4 text-center font-display text-lg font-bold text-navy">
-                {confirmDelete === 'all-sent' ? t('admin.confirmDeleteAll') : t('admin.confirmDelete')}
+                {confirmDelete === 'all-sent'
+                  ? t('admin.confirmDeleteAll')
+                  : t('admin.confirmDelete', { name: reservations.find((r) => r.id === confirmDelete)?.name || '' })}
               </h3>
               <div className="mt-6 flex gap-3">
                 <motion.button
@@ -434,6 +463,54 @@ export default function AdminPanel() {
                   </div>
                 </form>
               )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Logout confirmation modal */}
+      <AnimatePresence>
+        {confirmLogout && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 px-4 backdrop-blur-sm"
+            onClick={() => setConfirmLogout(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex justify-center">
+                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-red-100 text-red-500">
+                  <LogOut className="h-6 w-6" />
+                </span>
+              </div>
+              <h3 className="mt-4 text-center font-display text-lg font-bold text-navy">
+                {t('admin.confirmLogout')}
+              </h3>
+              <div className="mt-6 flex gap-3">
+                <motion.button
+                  onClick={() => setConfirmLogout(false)}
+                  className="flex-1 rounded-xl border border-navy/10 px-4 py-2.5 text-sm font-semibold text-navy/60 transition-colors hover:bg-navy/5"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  {t('admin.cancel')}
+                </motion.button>
+                <motion.button
+                  onClick={handleLogout}
+                  className="flex-1 rounded-xl bg-red-500 px-4 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-red-600"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  {t('admin.logout')}
+                </motion.button>
+              </div>
             </motion.div>
           </motion.div>
         )}

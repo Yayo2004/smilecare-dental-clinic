@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { MotionConfig } from 'framer-motion'
+import { AnimatePresence, MotionConfig } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -13,10 +13,12 @@ import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
 import ReminderBanner from './components/ReminderBanner'
 import AdminPanel from './components/AdminPanel'
+import SplashScreen from './components/SplashScreen'
 
 export default function App() {
   const { t } = useTranslation()
   const [isAdmin, setIsAdmin] = useState(window.location.hash === '#/admin')
+  const [splashDone, setSplashDone] = useState(false)
 
   useEffect(() => {
     document.title = t('meta.title')
@@ -32,7 +34,7 @@ export default function App() {
     return () => window.removeEventListener('hashchange', onHashChange)
   }, [])
 
-  // Admin panel
+  // Admin panel — no splash
   if (isAdmin) {
     return (
       <MotionConfig reducedMotion="user">
@@ -45,6 +47,9 @@ export default function App() {
   return (
     <MotionConfig reducedMotion="user">
       <div className="min-h-screen overflow-x-hidden">
+        <AnimatePresence>
+          {!splashDone && <SplashScreen key="splash" onDone={() => setSplashDone(true)} />}
+        </AnimatePresence>
         <Navbar />
         <main>
           <Hero />
