@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { ArrowLeftRight } from 'lucide-react'
 import {
   fadeInLeft,
-  staggerContainer,
+  fadeInRight,
   viewport,
 } from '../animations'
 
@@ -168,18 +168,15 @@ export default function BeforeAfter() {
           <p className="mt-4 text-lg text-navy/70">{t('results.subtitle')}</p>
         </motion.div>
 
-        {/* Cards — staggered left entrance with shine overlay */}
-        <motion.div
-          className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
-          variants={staggerContainer(0.12)}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewport}
-        >
+        {/* Cards — each one slides in from left/right when it scrolls into view */}
+        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {CASES.map((c, i) => (
             <motion.div
               key={i}
-              variants={fadeInLeft}
+              variants={i % 2 === 0 ? fadeInLeft : fadeInRight}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
               className="relative overflow-hidden"
             >
               {/* Shine overlay on scroll reveal */}
@@ -198,7 +195,7 @@ export default function BeforeAfter() {
               />
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
         <motion.p
           className="mt-10 flex items-center justify-center gap-2 text-center text-sm text-navy/50"

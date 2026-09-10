@@ -2,22 +2,101 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/icon-myriam.png" />
+    <link rel="icon" type="image/png" href="/icon-myriam.png" sizes="755x755" />
+    <link rel="apple-touch-icon" href="/icon-myriam.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="SmileCare Dental Clinic — modern, gentle dentistry for the whole family. Clinique dentaire moderne et familiale."
+      content="Dr Myriam Lahlou, chirurgien-dentiste à Casablanca. Facettes, implants et esthétique dentaire sur 47 Bd Hassan II. Prenez rendez-vous en ligne."
     />
-    <title>SmileCare Dental Clinic</title>
+    <title>Dr Myriam Lahlou — Chirurgien-Dentiste à Casablanca | Facettes, Implants, Esthétique</title>
+
+    <!-- Google Search Console — à remplacer une fois la propriété créée -->
+    <!-- <meta name="google-site-verification" content="VOTRE_CODE_VERIFICATION" /> -->
+
+    <!-- Open Graph — preview when shared on WhatsApp / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_MA" />
+    <meta property="og:site_name" content="Dr Myriam Lahlou — Chirurgien-Dentiste à Casablanca" />
+    <meta property="og:title" content="Dr Myriam Lahlou — Chirurgien-Dentiste à Casablanca | Facettes, Implants, Esthétique" />
+    <meta
+      property="og:description"
+      content="Dr Myriam Lahlou, chirurgien-dentiste à Casablanca. Facettes, implants et esthétique dentaire. Prenez rendez-vous en ligne."
+    />
+    <meta property="og:url" content="https://dentistemyriamlahlou.vercel.app/" />
+    <meta property="og:image" content="https://dentistemyriamlahlou.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Cabinet dentaire Dr Myriam Lahlou — Chirurgien-Dentiste à Casablanca" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Dr Myriam Lahlou — Chirurgien-Dentiste à Casablanca | Facettes, Implants, Esthétique" />
+    <meta
+      name="twitter:description"
+      content="Dr Myriam Lahlou, chirurgien-dentiste à Casablanca. Facettes, implants et esthétique dentaire. Prenez rendez-vous en ligne."
+    />
+    <meta name="twitter:image" content="https://dentistemyriamlahlou.vercel.app/og-image.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Schema.org — Dentist / MedicalBusiness -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Dentist",
+        "name": "Cabinet Dentaire Dr Myriam Lahlou",
+        "description": "Chirurgien-dentiste à Casablanca spécialisé en facettes dentaires, implants et esthétique dentaire.",
+        "url": "https://dentistemyriamlahlou.vercel.app/",
+        "logo": "https://dentistemyriamlahlou.vercel.app/icon-myriam.png",
+        "image": "https://dentistemyriamlahlou.vercel.app/og-image.png",
+        "telephone": "+212522492440",
+        "priceRange": "$$",
+        "email": "",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "47 Boulevard Hassan II, Rdc",
+          "addressLocality": "Casablanca",
+          "addressRegion": "Grand Casablanca",
+          "postalCode": "20000",
+          "addressCountry": "MA"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "08:30",
+            "closes": "19:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Saturday",
+            "opens": "09:00",
+            "closes": "13:00"
+          }
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "reviewCount": "28"
+        },
+        "sameAs": [
+          "https://www.instagram.com/dr.myriam_lahlou/"
+        ],
+        "areaServed": {
+          "@type": "City",
+          "name": "Casablanca"
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <script type="module" src="/src/main.jsx" defer></script>
   </body>
 </html>

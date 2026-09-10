@@ -194,7 +194,7 @@ export default function AdminPanel() {
     return (
       <section className="min-h-screen bg-mint/30 px-4 py-20">
         <div className="mx-auto flex max-w-sm flex-col items-center">
-          <Logo className="h-16 shrink-0" />
+          <Logo className="h-11 shrink-0" />
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mt-6 w-full">
           <div className="rounded-2xl border border-navy/5 bg-white p-8 shadow-soft">
             <div className="flex justify-center">
@@ -249,7 +249,7 @@ export default function AdminPanel() {
       <div className="mx-auto max-w-4xl">
         {/* Logo */}
         <div className="mb-8 flex justify-center">
-          <Logo className="h-16 shrink-0" />
+          <Logo className="h-11 shrink-0" />
         </div>
 
         {/* Header */}

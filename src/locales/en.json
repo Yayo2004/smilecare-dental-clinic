@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Dr Myriam Lahlou — Dentist in Casablanca",
-    "description": "General dentist specialising in veneers, implants and aesthetic dentistry in Casablanca. Simple appointment booking via WhatsApp."
+    "title": "Dr Myriam Lahlou — Dental Surgeon in Casablanca | Veneers, Implants, Aesthetics",
+    "description": "Dr Myriam Lahlou, dental surgeon in Casablanca. Veneers, implants and aesthetic dentistry. Book your appointment online."
   },
   "nav": {
     "home": "Home",
@@ -23,6 +23,8 @@
     "feature1": "Veneers & implant specialist",
     "feature2": "Custom aesthetic dentistry",
     "feature3": "State-of-the-art equipment",
+    "googleReviews": "28 Google reviews",
+    "profileAlt": "Dr Myriam Lahlou",
     "scrollHint": "Scroll down"
   },
   "results": {
@@ -41,7 +43,7 @@
   "services": {
     "eyebrow": "Our Treatments",
     "title": "Personalised Dental Care",
-    "subtitle": "From general dentistry to complete smile makeovers, every treatment is personalised and performed with the latest technology.",
+    "subtitle": "From general dentistry to complete smile makeovers in Casablanca, every treatment is personalised and performed with the latest technology.",
     "items": [
       {
         "name": "Dental Veneers",
@@ -54,41 +56,27 @@
       {
         "name": "Aesthetic Dentistry",
         "description": "Smile design and harmonisation of tooth shape and shade for a brilliant, long-lasting result."
-      },
-      {
-        "name": "General Dentistry",
-        "description": "Check-ups, cleanings, fillings and preventive care to keep your smile healthy all year round."
-      },
-      {
-        "name": "Teeth Whitening",
-        "description": "Safe, professional whitening that brightens your smile by several shades in a single visit."
-      },
-      {
-        "name": "Emergency Care",
-        "description": "Same-day appointments for pain, broken teeth and dental accidents whenever you need us."
       }
     ],
-    "learnMore": "Learn more"
+    "learnMore": "Learn more",
+    "modalClose": "Close",
+    "ctaPrimary": "Book an Appointment"
   },
   "about": {
     "eyebrow": "About",
-    "title": "Devoted to Your Smile",
-    "paragraph1": "Dr Myriam Lahlou, general dentist, puts her expertise in veneers, implants and aesthetic dentistry at the service of quality, comfortable and stress-free dentistry.",
-    "paragraph2": "Every treatment starts with a conversation. I listen, explain and involve you in every decision, so you always know exactly what to expect no surprises, no hidden costs.",
+    "title": "Dr Lahlou Dental Clinic",
+    "subtitle": "Aesthetics in the service of well-being",
+    "paragraph1": "At the Dr Lahlou Clinic in Casablanca, the goal is clear: to enhance the smile to transform everyday life. Specialised in aesthetic dentistry and especially veneers, the clinic offers quality care that combines precision, natural results and durability.",
+    "paragraph2": "Every patient is welcomed with warmth in a cosy, calming space designed to put them at ease from the very first moments. Dr Lahlou takes the time to listen, understand expectations, and offer tailor-made solutions to reveal the beauty of every smile.",
     "stats": [
-      { "value": 12, "suffix": "+", "label": "Years of Experience" },
       { "value": 8000, "suffix": "+", "label": "Patients Treated" },
-      { "value": 500, "suffix": "+", "label": "Veneers & Implants Placed" },
-      { "value": 98, "suffix": "%", "label": "Patient Satisfaction" }
+      { "value": 12, "suffix": "+", "label": "Years of Experience" },
+      { "value": 100, "suffix": "%", "label": "Satisfied Patients" }
     ],
-    "teamTitle": "Your Dentist",
-    "team": [
-      {
-        "name": "Dr Myriam Lahlou",
-        "role": "General Dentist · Veneers, Implants & Aesthetic Dentistry",
-        "bio": "General dentist specialising in veneers, implants and aesthetic dentistry. A gentle, precise approach focused on natural, long-lasting results."
-      }
-    ],
+    "photosTitle": "The clinic in pictures",
+    "reelButton": "Discover Our Clinic",
+    "reelModalTitle": "Clinic tour",
+    "reelClose": "Close",
     "cta": "Reserve a Consultation"
   },
   "form": {
@@ -148,6 +136,10 @@
     "title": "What Our Patients Say",
     "subtitle": "Real experiences from patients who trusted us with their smile.",
     "verified": "Verified patient",
+    "googleReviews": "28 Google reviews",
+    "readMore": "Read more",
+    "showLess": "Show less",
+    "seeAll": "See all reviews on Google",
     "items": [
       {
         "name": "Salma A.",

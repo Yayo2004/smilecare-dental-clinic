@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Dr Myriam Lahlou — Dentiste à Casablanca",
-    "description": "Dentiste généraliste et spécialiste en facettes, implants et esthétique dentaire à Casablanca. Prise de rendez-vous simple sur WhatsApp."
+    "title": "Dr Myriam Lahlou — Chirurgien-Dentiste à Casablanca | Facettes, Implants, Esthétique",
+    "description": "Dr Myriam Lahlou, chirurgien-dentiste à Casablanca. Facettes, implants et esthétique dentaire. Prenez rendez-vous en ligne."
   },
   "nav": {
     "home": "Accueil",
@@ -23,6 +23,8 @@
     "feature1": "Spécialiste en facettes & implants",
     "feature2": "Esthétique dentaire sur-mesure",
     "feature3": "Équipements de dernière génération",
+    "googleReviews": "28 avis Google",
+    "profileAlt": "Dr Myriam Lahlou",
     "scrollHint": "Défiler"
   },
   "results": {
@@ -41,7 +43,7 @@
   "services": {
     "eyebrow": "Nos traitements",
     "title": "Des soins dentaires sur-mesure",
-    "subtitle": "De la dentisterie générale aux transformations esthétiques complètes, chaque traitement est personnalisé et réalisé avec les technologies les plus récentes.",
+    "subtitle": "De la dentisterie générale aux transformations esthétiques complètes à Casablanca, chaque traitement est personnalisé et réalisé avec les technologies les plus récentes.",
     "items": [
       {
         "name": "Facettes dentaires",
@@ -54,41 +56,27 @@
       {
         "name": "Esthétique dentaire",
         "description": "Redessin du sourire, harmonisation de la forme et de la teinte des dents pour un résultat éclatant et durable."
-      },
-      {
-        "name": "Dentisterie générale",
-        "description": "Contrôles, détartrages, soins et prévention pour garder un sourire en bonne santé toute l'année."
-      },
-      {
-        "name": "Blanchiment dentaire",
-        "description": "Un éclaircissement professionnel et sans risque qui illumine votre sourire de plusieurs teintes en une seule séance."
-      },
-      {
-        "name": "Urgences dentaires",
-        "description": "Des rendez-vous le jour même pour les douleurs, dents cassées et accidents chaque fois que vous en avez besoin."
       }
     ],
-    "learnMore": "En savoir plus"
+    "learnMore": "En savoir plus",
+    "modalClose": "Fermer",
+    "ctaPrimary": "Prendre rendez-vous"
   },
   "about": {
     "eyebrow": "À propos",
-    "title": "Dévouée à votre sourire",
-    "paragraph1": "Le Dr Myriam Lahlou, dentiste généraliste, met son expertise en facettes, implants et esthétique dentaire au service d'une dentisterie de qualité, confortable et sans stress.",
-    "paragraph2": "Chaque traitement commence par une conversation. J'écoute, j'explique et je vous implique dans chaque décision, pour que vous sachiez toujours exactement à quoi vous attendre sans surprises, sans coûts cachés.",
+    "title": "Cabinet Dentaire Dr Lahlou",
+    "subtitle": "L'esthétique au service du bien-être",
+    "paragraph1": "Au Cabinet du Dr Lahlou à Casablanca, l'objectif est clair : sublimer le sourire pour transformer le quotidien. Spécialisé en esthétique dentaire et notamment en pose de facettes, le cabinet propose des soins de qualité qui allient précision, naturel et durabilité.",
+    "paragraph2": "Chaque patient est accueilli avec bienveillance dans un espace chaleureux et apaisant, conçu pour qu'il se sente à l'aise dès les premiers instants. Le Dr Lahlou prend le temps d'écouter, de comprendre les attentes, et de proposer des solutions sur-mesure pour révéler la beauté de chaque sourire.",
     "stats": [
-      { "value": 12, "suffix": "+", "label": "Années d'expérience" },
       { "value": 8000, "suffix": "+", "label": "Patients soignés" },
-      { "value": 500, "suffix": "+", "label": "Facettes & implants posés" },
-      { "value": 98, "suffix": "%", "label": "Patients satisfaits" }
+      { "value": 12, "suffix": "+", "label": "Années d'expérience" },
+      { "value": 100, "suffix": "%", "label": "Patients satisfaits" }
     ],
-    "teamTitle": "Votre dentiste",
-    "team": [
-      {
-        "name": "Dr Myriam Lahlou",
-        "role": "Dentiste généraliste · Spécialiste en facettes, implants & esthétique dentaire",
-        "bio": "Dentiste généraliste et spécialiste en facettes, implants et esthétique dentaire. Une approche douce, précise et centrée sur un résultat naturel et durable."
-      }
-    ],
+    "photosTitle": "Le cabinet en images",
+    "reelButton": "Découvrez notre cabinet",
+    "reelModalTitle": "Visite du cabinet",
+    "reelClose": "Fermer",
     "cta": "Réserver une consultation"
   },
   "form": {
@@ -148,6 +136,10 @@
     "title": "Ce que disent nos patients",
     "subtitle": "Les expériences réelles de patients qui nous ont confié leur sourire.",
     "verified": "Patient vérifié",
+    "googleReviews": "28 avis Google",
+    "readMore": "Lire la suite",
+    "showLess": "Réduire",
+    "seeAll": "Voir tous les avis sur Google",
     "items": [
       {
         "name": "Salma A.",

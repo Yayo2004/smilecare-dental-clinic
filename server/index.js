@@ -243,7 +243,7 @@ const eveningCron = new CronJob('0 19 * * *', async () => {
 
 // ─── Start ────────────────────────────────────────────────────────
 app.listen(PORT, () => {
-  log(`[server] SmileCare server running on port ${PORT}`)
+  log(`[server] Dr Myriam Lahlou server running on port ${PORT}`)
   log(`[cron]   Reminder emails scheduled at 08:00, 09:00, 19:00 (Africa/Casablanca)`)
 
   // Start the cron jobs

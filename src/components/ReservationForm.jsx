@@ -71,7 +71,7 @@ function AnimatedCheckmark() {
 function AnimatedField({ children, error }) {
   return (
     <motion.div
-      className={`relative rounded-xl border-2 transition-colors duration-200 focus-within:border-primary focus-within:shadow-[0_0_0_3px_rgba(42,157,143,0.15)] ${
+      className={`relative rounded-xl border-2 transition-colors duration-200 focus-within:border-primary ${
         error ? 'border-red-400' : 'border-navy/10'
       }`}
       whileFocus={{ scale: 1.01 }}

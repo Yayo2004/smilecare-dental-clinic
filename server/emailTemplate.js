@@ -41,7 +41,7 @@ function reservationRow(r, index, showDate = false) {
  *                        including today (08:00). Past dates are included so a
  *                        reservation is re-emailed every morning until checked.
  */
-export function buildDailyEmail(reservations, date, siteUrl = 'https://smilecare.example.com', variant = 'tomorrow-morning') {
+export function buildDailyEmail(reservations, date, siteUrl = 'https://dentistemyriamlahlou.vercel.app', variant = 'tomorrow-morning') {
   const showDate = variant === 'today-overdue'
   const rows = reservations.map((r, i) => reservationRow(r, i + 1, showDate)).join('')
 

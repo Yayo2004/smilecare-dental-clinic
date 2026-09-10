@@ -1,4 +1,4 @@
-﻿# 🦷 SmileCare Dental Clinic
+﻿# 🦷 Dr Myriam Lahlou — Cabinet Dentaire
 
 A modern, professional, fully client-side dental clinic website built with **React + Vite**, **Tailwind CSS**, and **Framer Motion**. Bilingual **French (default) / English**, with a live reservation flow that redirects to WhatsApp with a pre-filled message — **no backend required**.
 
@@ -68,16 +68,15 @@ All clinic-specific details live in a single file: **`src/config.js`**
 
 ```js
 export const CLINIC_INFO = {
-  name: 'SmileCare Dental Clinic',
-  shortName: 'SmileCare',
-  phone: '+212 0778207697',                    // Displayed phone
-  whatsappNumber: '2120778207697',             // International, NO "+" — used for wa.me links
-  email: 'contact@smilecare.example.com',
-  address: '12 Boulevard Mohammed V, Casablanca, Maroc',
-  mapQuery: '12 Boulevard Mohammed V, Casablanca, Maroc',
+  name: 'Myriam Lahlou — Cabinet Dentaire',
+  shortName: 'Myriam Lahlou',
+  phone: '0522 49 24 40',                     // Displayed phone
+  whatsappNumber: '212660186373',             // International, NO "+" — used for wa.me links
+  address: '47 Boulevard Hassan II, Rdc, Casablanca, Maroc',
+  mapQuery: '47 Boulevard Hassan II, Casablanca, Maroc',
   socials: {
     facebook: 'https://facebook.com/',
-    instagram: 'https://instagram.com/',
+    instagram: 'https://www.instagram.com/dr.myriam_lahlou/',
     linkedin: 'https://linkedin.com/',
     tiktok: 'https://tiktok.com/',
   },
