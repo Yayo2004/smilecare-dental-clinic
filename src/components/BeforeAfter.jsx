@@ -12,6 +12,7 @@ const CASES = [
   { before: '/images/facettes-avant.webp', after: '/images/facettes-apres.webp' },
   { before: '/images/rehab-avant.webp', after: '/images/rehab-apres.webp' },
   { before: '/images/gingival-avant.webp', after: '/images/gingival-apres.webp' },
+  { before: '/images/fca-avant.webp', after: '/images/fca-apres.webp' },
 ]
 
 /**
