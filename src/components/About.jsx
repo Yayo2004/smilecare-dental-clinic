@@ -110,6 +110,88 @@ export default function About() {
       <div className="pointer-events-none absolute -left-32 top-24 h-72 w-72 rounded-full bg-white/60 blur-3xl" />
 
       <div className="container-site">
+        {/* Practitioner block — photo left, text right */}
+        <div className="grid items-center gap-12 pb-16 lg:grid-cols-2 lg:gap-16 lg:pb-24">
+          {/* Photo — slides in from the left */}
+          <motion.div
+            className="relative mx-auto w-full max-w-sm lg:max-w-none"
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={viewport}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+          >
+            {/* Decorative blurred shapes behind the photo */}
+            <div className="pointer-events-none absolute -left-8 -top-8 h-44 w-44 rounded-full bg-primary/15 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-10 -right-8 h-56 w-56 rounded-full bg-accent/30 blur-3xl" />
+            <div className="group relative overflow-hidden rounded-2xl border border-navy/5 shadow-soft transition-shadow duration-300 hover:shadow-card">
+              <motion.img
+                src="/images/profile-hero.webp"
+                alt={t('about.practitioner.name')}
+                loading="lazy"
+                className="aspect-[4/5] w-full object-cover"
+                whileHover={{ scale: 1.045 }}
+                transition={{ duration: 0.35, ease: 'easeOut' }}
+              />
+              <span className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-primary/25" />
+            </div>
+          </motion.div>
+
+          {/* Text — slides in from the right, slightly delayed */}
+          <motion.div
+            className="text-center lg:text-left"
+            initial={{ opacity: 0, x: 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={viewport}
+            transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
+          >
+            <motion.span
+              className="eyebrow"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewport}
+              transition={{ duration: 0.5, ease: 'easeOut', delay: 0.2 }}
+            >
+              {t('about.practitioner.eyebrow')}
+            </motion.span>
+            <motion.h3
+              className="mt-3 font-display text-4xl font-bold text-navy sm:text-5xl"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewport}
+              transition={{ duration: 0.5, ease: 'easeOut', delay: 0.25 }}
+            >
+              {t('about.practitioner.name')}
+            </motion.h3>
+            <motion.p
+              className="mt-3 inline-block text-sm font-semibold uppercase tracking-[0.18em] text-primary"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={viewport}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}
+            >
+              {t('about.practitioner.specialties')}
+            </motion.p>
+            <motion.p
+              className="mt-6 text-lg leading-relaxed text-navy/75 text-justify"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewport}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.15 }}
+            >
+              {t('about.practitioner.paragraph1')}
+            </motion.p>
+            <motion.p
+              className="mt-4 text-lg leading-relaxed text-navy/75 text-justify"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewport}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.28 }}
+            >
+              {t('about.practitioner.paragraph2')}
+            </motion.p>
+          </motion.div>
+        </div>
+
         {/* Section header — fade in up */}
         <motion.div
           className="mx-auto max-w-2xl text-center"

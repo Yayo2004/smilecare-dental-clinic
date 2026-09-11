@@ -66,6 +66,13 @@
     "eyebrow": "About",
     "title": "Dr Myriam Lahlou Dental Clinic",
     "subtitle": "Aesthetics in the service of well-being",
+    "practitioner": {
+      "eyebrow": "The Practitioner",
+      "name": "Dr Myriam Lahlou",
+      "specialties": "Veneers . Implants . Dental Aesthetics",
+      "paragraph1": "At the Dr Lahlou Clinic in Casablanca, the goal is clear: to enhance the smile to transform everyday life. Specialised in aesthetic dentistry and especially veneers, the clinic offers quality care that combines precision, natural results and durability.",
+      "paragraph2": "Every patient is welcomed with warmth in a cosy, calming space designed to put them at ease from the very first moments. Dr Lahlou takes the time to listen, understand expectations, and offer tailor-made solutions to reveal the beauty of every smile."
+    },
     "paragraph1": "Every treatment is carried out with patience and meticulous care. All the time needed is devoted to every detail to achieve restorations that are aesthetic, functional and comfortable alike.",
     "paragraph2": "Because a beautiful smile does not always require complex treatments, simple gestures, when carried out with precision and attention to detail, can sometimes naturally enhance a smile.",
     "paragraph3": "Listening and communication play an essential role in patient care: taking the time to understand each patient's expectations helps build a treatment that truly matches them.",
