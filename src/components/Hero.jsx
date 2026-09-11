@@ -1,8 +1,45 @@
-import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { ArrowRight, BadgeCheck, Stethoscope } from 'lucide-react'
 import { useTypewriter } from '../hooks/useTypewriter'
 import { fadeInUp, staggerContainer, viewport } from '../animations'
+
+const HERO_BACKGROUNDS = [
+  '/images/back1.webp',
+  '/images/back2.webp',
+  '/images/back3.webp',
+]
+
+/** Crossfading background — loops endlessly via a timed index. */
+function HeroBackground() {
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % HERO_BACKGROUNDS.length)
+    }, 6000)
+    return () => clearInterval(id)
+  }, [])
+
+  return (
+    <div className="absolute inset-0">
+      <AnimatePresence initial={false}>
+        <motion.img
+          key={index}
+          src={HERO_BACKGROUNDS[index]}
+          alt=""
+          aria-hidden="true"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.2, ease: 'easeInOut' }}
+          className="h-full w-full object-cover"
+        />
+      </AnimatePresence>
+    </div>
+  )
+}
 
 /** Hero section with typewriter headline, staggered subtitle & CTAs, parallax bg. */
 export default function Hero({ splashDone = false }) {
@@ -23,25 +60,15 @@ export default function Hero({ splashDone = false }) {
 
   return (
     <section id="home" className="relative overflow-hidden pb-20 pt-32 sm:pt-40 lg:pb-28">
-      {/* Background image — desktop */}
+      {/* Rotating background images — desktop */}
       <div className="absolute inset-0 -z-10 hidden sm:block">
-        <img
-          src="/images/banner-hero.webp"
-          alt=""
-          aria-hidden="true"
-          className="h-full w-full object-cover"
-        />
+        <HeroBackground />
         <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-white/30 to-transparent" />
       </div>
 
-      {/* Background image — phone only */}
+      {/* Background images — phone only */}
       <div className="absolute inset-0 -z-10 sm:hidden">
-        <img
-          src="/images/banner-phone.webp"
-          alt=""
-          aria-hidden="true"
-          className="h-full w-full object-cover"
-        />
+        <HeroBackground />
         <div className="absolute inset-0 bg-white/40" />
       </div>
 
