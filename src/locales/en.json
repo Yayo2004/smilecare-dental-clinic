@@ -35,7 +35,8 @@
       { "label": "Dental Veneers" },
       { "label": "Full Rehabilitation" },
       { "label": "Gummy Smile Correction" },
-      { "label": "Anterior Ceramic Veneers" }
+      { "label": "Anterior Ceramic Veneers" },
+      { "label": "Dental Veneers" }
     ],
     "before": "Before",
     "after": "After",
