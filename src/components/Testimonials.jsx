@@ -33,6 +33,7 @@ function GoogleIcon({ className }) {
 
 const MAX_TEXT_LENGTH = 150
 const BASE_SPEED = 45 // px/s auto-scroll
+const RAMP_ACCEL = 110 // px/s² — smooth build-up to base speed on resume
 const PAUSE_MS = 2800 // idle pause before auto-scroll resumes after release
 const MOMENTUM_DECAY = 0.003 // per ms
 
@@ -98,6 +99,7 @@ export default function Testimonials() {
   const trackRef = useRef(null)
   const halfRef = useRef(0)
   const modeRef = useRef('auto') // 'auto' | 'drag' | 'momentum' | 'pause' | 'idle'
+  const speedRef = useRef(BASE_SPEED)
   const velRef = useRef(0)
   const pauseUntilRef = useRef(0)
   const dragRef = useRef(null)
@@ -120,7 +122,10 @@ export default function Testimonials() {
     switch (modeRef.current) {
       case 'auto': {
         if (reduced || hoverRef.current) break
-        let nx = x.get() - (BASE_SPEED * delta) / 1000
+        // Smoothly ramp back up to base speed (no abrupt jump on resume)
+        const dtS = delta / 1000
+        speedRef.current = Math.min(BASE_SPEED, speedRef.current + RAMP_ACCEL * dtS)
+        let nx = x.get() - (speedRef.current * delta) / 1000
         if (nx < -halfRef.current) nx += halfRef.current
         x.set(nx)
         break
@@ -132,6 +137,7 @@ export default function Testimonials() {
         if (nx < -halfRef.current) nx += halfRef.current
         x.set(nx)
         if (Math.abs(velRef.current) < 12) {
+          speedRef.current = 0
           modeRef.current = reduced ? 'idle' : 'pause'
           pauseUntilRef.current = now + PAUSE_MS
         }
@@ -175,6 +181,7 @@ export default function Testimonials() {
     const wasTap = Math.abs(deltaX) < 6
     dragRef.current = null
     if (wasTap) {
+      speedRef.current = 0
       modeRef.current = reduced ? 'idle' : 'auto'
     } else {
       modeRef.current = 'momentum'
@@ -187,6 +194,7 @@ export default function Testimonials() {
   }
   const onPointerCancel = (e) => {
     dragRef.current = null
+    speedRef.current = 0
     modeRef.current = reduced ? 'idle' : 'auto'
   }
 
