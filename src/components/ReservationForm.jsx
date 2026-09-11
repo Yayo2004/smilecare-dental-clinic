@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import {
   CalendarDays,
-  CheckCircle2,
   Loader2,
   Mail,
   MessageSquare,
@@ -422,11 +421,6 @@ export default function ReservationForm() {
                   </AnimatedField>
                 </motion.div>
               </motion.div>
-
-              <p className="mt-5 flex items-start gap-2 text-sm text-navy/50">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-                {t('form.privacy')}
-              </p>
 
               <motion.button
                 type="submit"
