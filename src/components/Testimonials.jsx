@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { motion, useAnimationFrame, useMotionValue } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { ChevronDown, Star } from 'lucide-react'
 import { fadeInRight, viewport } from '../animations'
@@ -32,6 +32,21 @@ function GoogleIcon({ className }) {
 }
 
 const MAX_TEXT_LENGTH = 150
+const BASE_SPEED = 45 // px/s auto-scroll
+const PAUSE_MS = 2800 // idle pause before auto-scroll resumes after release
+const MOMENTUM_DECAY = 0.003 // per ms
+
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReduced(mq.matches)
+    const onChange = (e) => setReduced(e.matches)
+    mq.addEventListener?.('change', onChange)
+    return () => mq.removeEventListener?.('change', onChange)
+  }, [])
+  return reduced
+}
 
 function ReviewCard({ review, expanded, onToggle }) {
   const { t, i18n } = useTranslation()
@@ -72,11 +87,108 @@ function ReviewCard({ review, expanded, onToggle }) {
   )
 }
 
-/** Real Google reviews — professional continuous marquee, right-to-left. */
+/** Real Google reviews — manual swipe/drag carousel with inertia + resume auto-scroll. */
 export default function Testimonials() {
   const { t } = useTranslation()
   const [expanded, setExpanded] = useState(null)
-  const [paused, setPaused] = useState(false)
+  const reduced = usePrefersReducedMotion()
+
+  const x = useMotionValue(0)
+  const containerRef = useRef(null)
+  const trackRef = useRef(null)
+  const halfRef = useRef(0)
+  const modeRef = useRef('auto') // 'auto' | 'drag' | 'momentum' | 'pause' | 'idle'
+  const velRef = useRef(0)
+  const pauseUntilRef = useRef(0)
+  const dragRef = useRef(null)
+  const hoverRef = useRef(false)
+
+  // Measure one pass width (track = reviews duplicated once)
+  useEffect(() => {
+    const measure = () => {
+      const el = trackRef.current
+      if (el) halfRef.current = el.scrollWidth / 2
+    }
+    measure()
+    window.addEventListener('resize', measure)
+    return () => window.removeEventListener('resize', measure)
+  }, [])
+
+  // Main animation loop
+  useAnimationFrame((time, delta) => {
+    const now = performance.now()
+    switch (modeRef.current) {
+      case 'auto': {
+        if (reduced || hoverRef.current) break
+        let nx = x.get() - (BASE_SPEED * delta) / 1000
+        if (nx < -halfRef.current) nx += halfRef.current
+        x.set(nx)
+        break
+      }
+      case 'momentum': {
+        let nx = x.get() + (velRef.current * delta) / 1000
+        velRef.current *= Math.exp(-MOMENTUM_DECAY * delta)
+        if (nx > 0) nx = 0
+        if (nx < -halfRef.current) nx += halfRef.current
+        x.set(nx)
+        if (Math.abs(velRef.current) < 12) {
+          modeRef.current = reduced ? 'idle' : 'pause'
+          pauseUntilRef.current = now + PAUSE_MS
+        }
+        break
+      }
+      case 'pause': {
+        if (now >= pauseUntilRef.current) modeRef.current = reduced ? 'idle' : 'auto'
+        break
+      }
+      default:
+        break
+    }
+  })
+
+  const clamp = (v, min, max) => Math.min(Math.max(v, min), max)
+
+  const onPointerDown = (e) => {
+    if (e.pointerType === 'mouse' && e.button !== 0) return
+    const container = containerRef.current
+    container.setPointerCapture?.(e.pointerId)
+    dragRef.current = { pointerId: e.pointerId, startX: x.get(), startPageX: e.clientX, lastPageX: e.clientX, lastTime: performance.now() }
+    modeRef.current = 'drag'
+  }
+
+  const onPointerMove = (e) => {
+    const drag = dragRef.current
+    if (!drag || drag.pointerId !== e.pointerId) return
+    const now = performance.now()
+    const dt = Math.max(now - drag.lastTime, 1)
+    const dx = e.clientX - drag.lastPageX
+    drag.lastPageX = e.clientX
+    drag.lastTime = now
+    velRef.current = (dx / dt) * 1000 // px/s
+    const nx = clamp(drag.startX + (e.clientX - drag.startPageX), -halfRef.current, 0)
+    x.set(nx)
+  }
+
+  const endDrag = (e) => {
+    if (!dragRef.current) return
+    const deltaX = e.clientX - dragRef.current.startPageX
+    const wasTap = Math.abs(deltaX) < 6
+    dragRef.current = null
+    if (wasTap) {
+      modeRef.current = reduced ? 'idle' : 'auto'
+    } else {
+      modeRef.current = 'momentum'
+      pauseUntilRef.current = performance.now() + PAUSE_MS
+    }
+  }
+
+  const onPointerUp = (e) => {
+    endDrag(e)
+  }
+  const onPointerCancel = (e) => {
+    dragRef.current = null
+    modeRef.current = reduced ? 'idle' : 'auto'
+  }
 
   return (
     <section id="testimonials" className="overflow-hidden bg-mint/40 py-20 lg:py-28">
@@ -102,7 +214,7 @@ export default function Testimonials() {
           </div>
         </motion.div>
 
-        {/* Marquee — right to left, pauses on hover */}
+        {/* Draggable carousel */}
         <motion.div
           className="mt-14"
           variants={fadeInRight}
@@ -112,13 +224,19 @@ export default function Testimonials() {
           transition={{ delay: 0.15 }}
         >
           <div
-            className="marquee-mask"
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
+            ref={containerRef}
+            className="marquee-mask cursor-grab select-none touch-pan-y active:cursor-grabbing"
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={onPointerUp}
+            onPointerCancel={onPointerCancel}
+            onMouseEnter={() => { hoverRef.current = true }}
+            onMouseLeave={() => { hoverRef.current = false }}
           >
-            <div
-              className="flex w-max gap-5 animate-marquee"
-              style={{ animationPlayState: paused ? 'paused' : 'running' }}
+            <motion.div
+              ref={trackRef}
+              style={{ x }}
+              className="flex w-max gap-5"
             >
               {[...GOOGLE_REVIEWS, ...GOOGLE_REVIEWS.map((r, i) => ({ ...r, uid: i }))].map((review, i) => (
                 <ReviewCard
@@ -128,7 +246,7 @@ export default function Testimonials() {
                   onToggle={() => setExpanded(expanded === i ? null : i)}
                 />
               ))}
-            </div>
+            </motion.div>
           </div>
 
           {/* See-all button */}
