@@ -118,8 +118,7 @@ export default function About() {
           whileInView="visible"
           viewport={viewport}
         >
-          <span className="eyebrow">{t('about.eyebrow')}</span>
-          <h2 className="section-title mt-4">{t('about.sectionTitle')}</h2>
+          <h2 className="section-title">{t('about.sectionTitle')}</h2>
         </motion.div>
 
         {/* Practitioner block — photo left, text right */}
