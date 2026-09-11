@@ -132,7 +132,7 @@ export default function About() {
             viewport={viewport}
           >
             <motion.p
-              className="text-lg leading-relaxed text-navy/75 text-center lg:text-left"
+              className="text-lg leading-relaxed text-navy/75 text-justify"
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
@@ -141,7 +141,7 @@ export default function About() {
               {t('about.paragraph1')}
             </motion.p>
             <motion.p
-              className="mt-5 text-lg leading-relaxed text-navy/75 text-center lg:text-left"
+              className="mt-5 text-lg leading-relaxed text-navy/75 text-justify"
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
@@ -149,6 +149,16 @@ export default function About() {
               transition={{ delay: 0.15 }}
             >
               {t('about.paragraph2')}
+            </motion.p>
+            <motion.p
+              className="mt-5 text-lg leading-relaxed text-navy/75 text-justify"
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewport}
+              transition={{ delay: 0.3 }}
+            >
+              {t('about.paragraph3')}
             </motion.p>
 
             {/* Stats under the text */}
