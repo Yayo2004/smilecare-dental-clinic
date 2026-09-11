@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { ArrowRight, BadgeCheck, Stethoscope } from 'lucide-react'
 import { useTypewriter } from '../hooks/useTypewriter'
@@ -13,7 +13,9 @@ const HERO_BACKGROUNDS = [
 
 const SLIDE_DURATION = 5500 // ms per image (crossfade overlap covered inside the fade)
 
-/** Crossfading background — loops endlessly via a timed index. */
+/** Crossfading background — loops endlessly via a timed index.
+ *  All images stay mounted as stacked layers: the next one fades UP over
+ *  the current one which fades DOWN (fully overlapped, no blank frame). */
 function HeroBackground() {
   const [index, setIndex] = useState(0)
   const [reducedMotion, setReducedMotion] = useState(false)
@@ -36,22 +38,27 @@ function HeroBackground() {
 
   return (
     <div className="absolute inset-0">
-      <AnimatePresence initial={false}>
-        <motion.img
-          key={index}
-          src={HERO_BACKGROUNDS[index]}
-          alt=""
-          aria-hidden="true"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, scale: reducedMotion ? 1 : 1.08 }}
-          exit={{ opacity: 0 }}
-          transition={{
-            opacity: { duration: 1.2, ease: 'easeInOut' },
-            scale: { duration: SLIDE_DURATION / 1000, ease: 'linear' },
-          }}
-          className="h-full w-full object-cover"
-        />
-      </AnimatePresence>
+      {HERO_BACKGROUNDS.map((src, i) => {
+        const isActive = i === index
+        return (
+          <motion.img
+            key={src}
+            src={src}
+            alt=""
+            aria-hidden="true"
+            initial={false}
+            animate={{
+              opacity: isActive ? 1 : 0,
+              scale: reducedMotion ? 1 : isActive ? 1.08 : 1,
+            }}
+            transition={{
+              opacity: { duration: 1.2, ease: 'easeInOut' },
+              scale: { duration: isActive ? SLIDE_DURATION / 1000 : 1.2, ease: isActive ? 'linear' : 'easeInOut' },
+            }}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        )
+      })}
     </div>
   )
 }
