@@ -11,12 +11,18 @@ const HERO_BACKGROUNDS = [
   '/images/back3.webp',
 ]
 
+const HERO_PHONE_BACKGROUNDS = [
+  '/images/backphone1.webp',
+  '/images/backphone2.webp',
+  '/images/backphone3.webp',
+]
+
 const SLIDE_DURATION = 5500 // ms per image (crossfade overlap covered inside the fade)
 
 /** Crossfading background — loops endlessly via a timed index.
  *  All images stay mounted as stacked layers: the next one fades UP over
  *  the current one which fades DOWN (fully overlapped, no blank frame). */
-function HeroBackground() {
+function HeroBackground({ images }) {
   const [index, setIndex] = useState(0)
   const [reducedMotion, setReducedMotion] = useState(false)
 
@@ -31,14 +37,14 @@ function HeroBackground() {
   useEffect(() => {
     if (reducedMotion) return
     const id = setInterval(() => {
-      setIndex((i) => (i + 1) % HERO_BACKGROUNDS.length)
+      setIndex((i) => (i + 1) % images.length)
     }, SLIDE_DURATION)
     return () => clearInterval(id)
-  }, [reducedMotion])
+  }, [reducedMotion, images.length])
 
   return (
     <div className="absolute inset-0">
-      {HERO_BACKGROUNDS.map((src, i) => {
+      {images.map((src, i) => {
         const isActive = i === index
         return (
           <motion.img
@@ -84,13 +90,13 @@ export default function Hero({ splashDone = false }) {
     <section id="home" className="relative overflow-hidden pb-20 pt-32 sm:pt-40 lg:pb-28">
       {/* Rotating background images — desktop */}
       <div className="absolute inset-0 -z-10 hidden sm:block">
-        <HeroBackground />
+        <HeroBackground images={HERO_BACKGROUNDS} />
         <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-white/30 to-transparent" />
       </div>
 
       {/* Background images — phone only */}
       <div className="absolute inset-0 -z-10 sm:hidden">
-        <HeroBackground />
+        <HeroBackground images={HERO_PHONE_BACKGROUNDS} />
         <div className="absolute inset-0 bg-white/40" />
       </div>
 
