@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { ArrowRight, BadgeCheck, Stethoscope } from 'lucide-react'
+import { useRotatingTypewriter } from '../hooks/useRotatingTypewriter'
 import { fadeInUp, staggerContainer, viewport } from '../animations'
 
 const HERO_BACKGROUNDS = [
@@ -68,13 +69,20 @@ function HeroBackground({ images }) {
   )
 }
 
-/** Hero section with static headline, staggered subtitle & CTAs. */
+/** Hero section with rotating typewriter headline, staggered subtitle & CTAs. */
 export default function Hero({ splashDone = false }) {
   const { t, i18n } = useTranslation()
   const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
 
-  // Subtitle/CTAs wait for the splash before appearing
-  const ready = splashDone
+  const titles = t('hero.rotatingTitles', { returnObjects: true })
+  const highlights = t('hero.rotatingHighlights', { returnObjects: true })
+  const { displayed, index, ready } = useRotatingTypewriter(titles, { speed: 45, deleteSpeed: 28, holdMs: 2000, enable: splashDone })
+
+  // Characters belonging to the accent phrase get the primary color
+  const full = titles[index] || ''
+  const hl = highlights[index] || ''
+  const hlStart = hl ? full.indexOf(hl) : -1
+  const hlEnd = hlStart >= 0 ? hlStart + hl.length : -1
 
   return (
     <section id="home" className="relative overflow-hidden pb-20 pt-32 sm:pt-40 lg:pb-28">
@@ -140,7 +148,7 @@ export default function Hero({ splashDone = false }) {
             </motion.span>
           </motion.div>
 
-          {/* Static headline — stable height, one-time fade+rise on mount */}
+          {/* Rotating typewriter headline — stable height, one-time fade+rise on mount */}
           <motion.h1
             key={lang}
             initial={{ opacity: 0, y: 20 }}
@@ -148,8 +156,12 @@ export default function Hero({ splashDone = false }) {
             transition={{ duration: 0.7, ease: 'easeOut', delay: 0.5 }}
             className="mt-6 min-h-[5.5rem] font-display text-4xl font-bold leading-tight text-navy sm:min-h-[6.5rem] lg:min-h-[7rem] sm:text-5xl lg:text-[3.4rem]"
           >
-            {t('hero.title1')}{' '}
-            <span className="text-primary">{t('hero.titleHighlight')}</span>
+            {displayed.split('').map((ch, i) => (
+              <span key={i} className={i >= hlStart && i < hlEnd ? 'text-primary' : undefined}>
+                {ch}
+              </span>
+            ))}
+            <span className="animate-blink ml-0.5 inline-block w-[0.05em] text-primary" aria-hidden="true">|</span>
           </motion.h1>
 
           {/* Subtitle — fades in after splash */}
