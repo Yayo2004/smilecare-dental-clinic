@@ -59,6 +59,18 @@
       {
         "name": "Aesthetic Dentistry",
         "description": "Smile design and harmonisation of tooth shape and shade for a brilliant, long-lasting result."
+      },
+      {
+        "name": "Orthodontics",
+        "description": "Tooth alignment and correction for a harmonious smile, with discreet and effective solutions."
+      },
+      {
+        "name": "Root Canal Treatment",
+        "description": "Precise, painless endodontic care to save an infected tooth and provide long-lasting relief."
+      },
+      {
+        "name": "Composite Restoration",
+        "description": "Aesthetic composite resin restorations to repair and rebuild teeth with a natural-looking finish."
       }
     ],
     "learnMore": "Learn more",

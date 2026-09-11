@@ -59,6 +59,18 @@
       {
         "name": "Esthétique dentaire",
         "description": "Redessin du sourire, harmonisation de la forme et de la teinte des dents pour un résultat éclatant et durable."
+      },
+      {
+        "name": "Orthodontie",
+        "description": "Alignement et correction des dents pour un sourire harmonieux, grâce à des solutions discrètes et efficaces."
+      },
+      {
+        "name": "Traitement canalaire",
+        "description": "Soins endodontiques précis et indolores pour sauver une dent infectée et soulager durablement la douleur."
+      },
+      {
+        "name": "Composite",
+        "description": "Restaurations esthétiques en résine composite pour réparer et reconstruire les dents avec un rendu naturel."
       }
     ],
     "learnMore": "En savoir plus",

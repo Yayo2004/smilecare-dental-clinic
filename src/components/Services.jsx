@@ -13,9 +13,12 @@ import Tooth from './Tooth'
 const ICONS = [Stethoscope, Pill, Sparkles, ShieldCheck, Baby, Siren]
 
 const IMAGES = [
-'/images/treat-facettes.webp',
+  '/images/treat-facettes.webp',
   '/images/treat-implants.webp',
   '/images/treat-esthetique.webp',
+  '/images/treat-ortho.webp',
+  '/images/treat-canal.webp',
+  '/images/treat-composite.webp',
 ]
 
 /** Services grid — photo cards, click opens an animated detail modal. */
