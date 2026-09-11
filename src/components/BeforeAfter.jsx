@@ -9,7 +9,7 @@ import {
 } from '../animations'
 
 const CASES = [
-  { before: '/images/before-1.webp', after: '/images/after-1.webp' },
+  { before: '/images/facettes-avant.webp', after: '/images/facettes-apres.webp' },
   { before: '/images/before-2.webp', after: '/images/after-2.webp' },
   { before: '/images/before-3.webp', after: '/images/after-3.webp' },
 ]
