@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { ArrowRight, BadgeCheck, Stethoscope } from 'lucide-react'
-import { useTypewriter } from '../hooks/useTypewriter'
+import { useRotatingTypewriter } from '../hooks/useRotatingTypewriter'
 import { fadeInUp, staggerContainer, viewport } from '../animations'
 
 const HERO_BACKGROUNDS = [
@@ -69,22 +69,14 @@ function HeroBackground({ images }) {
   )
 }
 
-/** Hero section with typewriter headline, staggered subtitle & CTAs, parallax bg. */
+/** Hero section with rotating typewriter headline, staggered subtitle & CTAs. */
 export default function Hero({ splashDone = false }) {
   const { t, i18n } = useTranslation()
   const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
 
-  // Full headline text (used for typewriter)
-  const fullHeadline = `${t('hero.title1')} ${t('hero.titleHighlight')}`
-  const title1 = t('hero.title1')
-
-  // Typewriter: waits for the splash screen, re-triggers on language change
-  const { displayed, isComplete } = useTypewriter(fullHeadline, 32, splashDone)
-
-  // Determine how many chars of the displayed text belong to title1 vs highlight
-  const title1Len = title1.length + 1 // +1 for the space separator
-  const title1Part = displayed.slice(0, title1Len)
-  const highlightPart = displayed.slice(title1Len)
+  // Rotating taglines — re-triggers correctly on language change (keyed by lang)
+  const titles = t('hero.rotatingTitles', { returnObjects: true })
+  const { displayed, ready } = useRotatingTypewriter(titles, { speed: 45, deleteSpeed: 28, holdMs: 2000, enable: splashDone })
 
   return (
     <section id="home" className="relative overflow-hidden pb-20 pt-32 sm:pt-40 lg:pb-28">
@@ -150,36 +142,23 @@ export default function Hero({ splashDone = false }) {
             </motion.span>
           </motion.div>
 
-          {/* Typewriter headline */}
-          <h1 className="mt-6 font-display text-4xl font-bold leading-tight text-navy sm:text-5xl lg:text-[3.4rem]">
+          {/* Rotating typewriter headline */}
+          <h1
+            key={lang}
+            className="mt-6 flex min-h-[2.8rem] flex-wrap items-start justify-center font-display text-4xl font-bold leading-tight text-navy sm:text-5xl lg:text-[3.4rem] sm:min-h-[3.6rem] lg:min-h-[4.4rem]"
+          >
             {displayed && (
-              <>
-                <span>{title1Part}</span>
-                {highlightPart && (
-                  <span className="relative inline-block text-primary">
-                    {highlightPart}
-                    <svg
-                      className="absolute -bottom-2 left-0 w-full"
-                      viewBox="0 0 300 12"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path d="M2 9C60 3 160 2 298 7" stroke="#B8860B" strokeWidth="5" strokeLinecap="round" />
-                    </svg>
-                  </span>
-                )}
-                {/* Blinking cursor */}
-                {!isComplete && (
-                  <span className="animate-blink ml-0.5 text-primary">|</span>
-                )}
-              </>
+              <span>
+                {displayed}
+                <span className="animate-blink ml-0.5 inline-block w-[0.05em] text-primary">|</span>
+              </span>
             )}
           </h1>
 
           {/* Subtitle — fades in AFTER typewriter completes */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
-            animate={isComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-navy/70"
           >
@@ -190,7 +169,7 @@ export default function Hero({ splashDone = false }) {
           <motion.div
             variants={staggerContainer(0.15)}
             initial="hidden"
-            animate={isComplete ? 'visible' : 'hidden'}
+            animate={ready ? 'visible' : 'hidden'}
             className="mt-9 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
           >
             <motion.a href="#reservation" className="btn-primary w-full sm:w-auto" variants={fadeInUp}>
@@ -206,7 +185,7 @@ export default function Hero({ splashDone = false }) {
           <motion.ul
             variants={staggerContainer(0.12)}
             initial="hidden"
-            animate={isComplete ? 'visible' : 'hidden'}
+            animate={ready ? 'visible' : 'hidden'}
             className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-3"
           >
             {['feature1', 'feature2', 'feature3'].map((key) => (
@@ -225,7 +204,7 @@ export default function Hero({ splashDone = false }) {
           <motion.div
             variants={fadeInUp}
             initial="hidden"
-            animate={isComplete ? 'visible' : 'hidden'}
+            animate={ready ? 'visible' : 'hidden'}
             className="mt-6 inline-flex items-center gap-2 rounded-full border border-navy/5 bg-white px-4 py-2 shadow-soft"
           >
             <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
