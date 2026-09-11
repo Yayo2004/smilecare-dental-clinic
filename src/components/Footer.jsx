@@ -1,14 +1,11 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
-import { ArrowUp, Clock, Instagram, Mail, MapPin, Phone, MessageCircle } from 'lucide-react'
+import { ArrowUp, Clock, Instagram, Mail, MapPin, Phone } from 'lucide-react'
 import Logo from './Logo'
-import { CLINIC_INFO, buildWhatsAppLink } from '../config'
-
-const WHATSAPP_FOOTER_MSG = 'Bonjour, je vous contacte depuis le site internet.'
+import { CLINIC_INFO } from '../config'
 
 const SOCIALS = [
   { name: 'Instagram', href: CLINIC_INFO.socials.instagram, Icon: Instagram },
-  { name: 'WhatsApp', href: buildWhatsAppLink(CLINIC_INFO.whatsappNumber, WHATSAPP_FOOTER_MSG), Icon: MessageCircle },
 ]
 
 /** Footer with clinic info, quick links, socials and back-to-top. */
@@ -16,7 +13,7 @@ export default function Footer() {
   const { t } = useTranslation()
   const year = new Date().getFullYear()
   const phoneHref = `tel:${CLINIC_INFO.phone.replace(/\s/g, '')}`
-  const mobileHref = `tel:${CLINIC_INFO.phoneMobile}`
+  const mobileHref = `tel:${CLINIC_INFO.phoneMobile.replace(/\s/g, '')}`
   const emailHref = `mailto:${CLINIC_INFO.email}`
 
   const navLinks = ['home', 'services', 'about', 'reservation', 'contact']

@@ -10,7 +10,7 @@ export default function Contact() {
   const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
   const hours = t('contact.hours', { returnObjects: true })
   const phoneHref = `tel:${CLINIC_INFO.phone.replace(/\s/g, '')}`
-  const mobileHref = `tel:${CLINIC_INFO.phoneMobile}`
+  const mobileHref = `tel:${CLINIC_INFO.phoneMobile.replace(/\s/g, '')}`
   const emailHref = `mailto:${CLINIC_INFO.email}`
   const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(CLINIC_INFO.mapQuery)}&t=&z=16&ie=UTF8&iwloc=&output=embed`
 
