@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { ArrowRight, BadgeCheck, Stethoscope } from 'lucide-react'
-import { useRotatingTypewriter } from '../hooks/useRotatingTypewriter'
 import { fadeInUp, staggerContainer, viewport } from '../animations'
 
 const HERO_BACKGROUNDS = [
@@ -69,14 +68,13 @@ function HeroBackground({ images }) {
   )
 }
 
-/** Hero section with rotating typewriter headline, staggered subtitle & CTAs. */
+/** Hero section with static headline, staggered subtitle & CTAs. */
 export default function Hero({ splashDone = false }) {
   const { t, i18n } = useTranslation()
   const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
 
-  // Rotating taglines — re-triggers correctly on language change (keyed by lang)
-  const titles = t('hero.rotatingTitles', { returnObjects: true })
-  const { displayed, ready } = useRotatingTypewriter(titles, { speed: 45, deleteSpeed: 28, holdMs: 2000, enable: splashDone })
+  // Subtitle/CTAs wait for the splash before appearing
+  const ready = splashDone
 
   return (
     <section id="home" className="relative overflow-hidden pb-20 pt-32 sm:pt-40 lg:pb-28">
@@ -142,20 +140,19 @@ export default function Hero({ splashDone = false }) {
             </motion.span>
           </motion.div>
 
-          {/* Rotating typewriter headline */}
-          <h1
+          {/* Static headline — stable height, one-time fade+rise on mount */}
+          <motion.h1
             key={lang}
-            className="mt-6 flex min-h-[2.8rem] flex-wrap items-start justify-center font-display text-4xl font-bold leading-tight text-navy sm:text-5xl lg:text-[3.4rem] sm:min-h-[3.6rem] lg:min-h-[4.4rem]"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: 'easeOut', delay: 0.5 }}
+            className="mt-6 min-h-[5.5rem] font-display text-4xl font-bold leading-tight text-navy sm:min-h-[6.5rem] lg:min-h-[7rem] sm:text-5xl lg:text-[3.4rem]"
           >
-            {displayed && (
-              <span>
-                {displayed}
-                <span className="animate-blink ml-0.5 inline-block w-[0.05em] text-primary">|</span>
-              </span>
-            )}
-          </h1>
+            {t('hero.title1')}{' '}
+            <span className="text-primary">{t('hero.titleHighlight')}</span>
+          </motion.h1>
 
-          {/* Subtitle — fades in AFTER typewriter completes */}
+          {/* Subtitle — fades in after splash */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
