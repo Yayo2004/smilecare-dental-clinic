@@ -11,16 +11,28 @@ const HERO_BACKGROUNDS = [
   '/images/back3.webp',
 ]
 
+const SLIDE_DURATION = 5500 // ms per image (crossfade overlap covered inside the fade)
+
 /** Crossfading background — loops endlessly via a timed index. */
 function HeroBackground() {
   const [index, setIndex] = useState(0)
+  const [reducedMotion, setReducedMotion] = useState(false)
 
   useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReducedMotion(mq.matches)
+    const onChange = (e) => setReducedMotion(e.matches)
+    mq.addEventListener?.('change', onChange)
+    return () => mq.removeEventListener?.('change', onChange)
+  }, [])
+
+  useEffect(() => {
+    if (reducedMotion) return
     const id = setInterval(() => {
       setIndex((i) => (i + 1) % HERO_BACKGROUNDS.length)
-    }, 6000)
+    }, SLIDE_DURATION)
     return () => clearInterval(id)
-  }, [])
+  }, [reducedMotion])
 
   return (
     <div className="absolute inset-0">
@@ -31,9 +43,12 @@ function HeroBackground() {
           alt=""
           aria-hidden="true"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          animate={{ opacity: 1, scale: reducedMotion ? 1 : 1.08 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.2, ease: 'easeInOut' }}
+          transition={{
+            opacity: { duration: 1.2, ease: 'easeInOut' },
+            scale: { duration: SLIDE_DURATION / 1000, ease: 'linear' },
+          }}
           className="h-full w-full object-cover"
         />
       </AnimatePresence>
