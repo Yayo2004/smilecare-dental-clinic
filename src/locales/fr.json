@@ -189,7 +189,7 @@
     "emailLabel": "E-mail",
     "hoursLabel": "Horaires d'ouverture",
     "hours": [
-      { "days": "Lundi – Vendredi", "time": "9h00 – 20h00" },
+      { "days": "Lundi – Vendredi", "time": "9h00 – 19h00" },
       { "days": "Samedi", "time": "9h00 – 14h00" },
       { "days": "Dimanche", "time": "Fermé" }
     ],

@@ -189,7 +189,7 @@
     "emailLabel": "Email",
     "hoursLabel": "Opening Hours",
     "hours": [
-      { "days": "Monday – Friday", "time": "9:00 AM – 8:00 PM" },
+      { "days": "Monday – Friday", "time": "9:00 AM – 7:00 PM" },
       { "days": "Saturday", "time": "9:00 AM – 2:00 PM" },
       { "days": "Sunday", "time": "Closed" }
     ],
