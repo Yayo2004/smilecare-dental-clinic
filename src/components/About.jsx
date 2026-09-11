@@ -110,8 +110,20 @@ export default function About() {
       <div className="pointer-events-none absolute -left-32 top-24 h-72 w-72 rounded-full bg-white/60 blur-3xl" />
 
       <div className="container-site">
+        {/* Section header — À propos — fade in up */}
+        <motion.div
+          className="mx-auto max-w-2xl text-center"
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
+          <span className="eyebrow">{t('about.eyebrow')}</span>
+          <h2 className="section-title mt-4">{t('about.sectionTitle')}</h2>
+        </motion.div>
+
         {/* Practitioner block — photo left, text right */}
-        <div className="grid items-center gap-12 pb-16 lg:grid-cols-2 lg:gap-16 lg:pb-24">
+        <div className="mt-16 grid items-center gap-12 pb-16 lg:grid-cols-2 lg:gap-16 lg:pb-24">
           {/* Photo — slides in from the left */}
           <motion.div
             className="relative mx-auto w-full max-w-sm lg:max-w-none"
@@ -125,7 +137,7 @@ export default function About() {
             <div className="pointer-events-none absolute -bottom-10 -right-8 h-56 w-56 rounded-full bg-accent/30 blur-3xl" />
             <div className="group relative overflow-hidden rounded-2xl border border-navy/5 shadow-soft transition-shadow duration-300 hover:shadow-card">
               <motion.img
-                src="/images/profile-hero.webp"
+                src="/images/practitioner.webp"
                 alt={t('about.practitioner.name')}
                 loading="lazy"
                 className="aspect-[4/5] w-full object-cover"
@@ -192,7 +204,7 @@ export default function About() {
           </motion.div>
         </div>
 
-        {/* Section header — fade in up */}
+        {/* Cabinet header — Cabinet Dentaire Dr Myriam Lahlou */}
         <motion.div
           className="mx-auto max-w-2xl text-center"
           variants={fadeInUp}
@@ -200,8 +212,7 @@ export default function About() {
           whileInView="visible"
           viewport={viewport}
         >
-          <span className="eyebrow">{t('about.eyebrow')}</span>
-          <h2 className="section-title mt-4">{t('about.title')}</h2>
+          <h2 className="section-title">{t('about.title')}</h2>
           <p className="mt-3 text-lg font-medium text-primary">{t('about.subtitle')}</p>
         </motion.div>
 
