@@ -36,7 +36,8 @@
       { "label": "Réhabilitation complète" },
       { "label": "Correction du sourire gingival" },
       { "label": "Facettes céramiques antérieures" },
-      { "label": "Facettes dentaires" }
+      { "label": "Facettes dentaires" },
+      { "label": "Éclaircissement dentaire en une séance" }
     ],
     "before": "Avant",
     "after": "Après",

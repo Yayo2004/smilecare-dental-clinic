@@ -14,6 +14,7 @@ const CASES = [
   { before: '/images/gingival-avant.webp', after: '/images/gingival-apres.webp' },
   { before: '/images/fca-avant.webp', after: '/images/fca-apres.webp' },
   { before: '/images/fd-avant.webp', after: '/images/fd-apres.webp' },
+  { before: '/images/ed-avant.webp', after: '/images/ed-apres.webp' },
 ]
 
 /**
