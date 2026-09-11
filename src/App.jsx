@@ -63,8 +63,8 @@ export default function App() {
           <BeforeAfter />
           <Services />
           <About />
-          <ReservationForm />
           <Testimonials />
+          <ReservationForm />
           <Contact />
         </main>
         <Footer />
