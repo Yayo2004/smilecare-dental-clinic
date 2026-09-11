@@ -10,7 +10,7 @@ import {
 
 const CASES = [
   { before: '/images/facettes-avant.webp', after: '/images/facettes-apres.webp' },
-  { before: '/images/before-2.webp', after: '/images/after-2.webp' },
+  { before: '/images/rehab-avant.webp', after: '/images/rehab-apres.webp' },
   { before: '/images/before-3.webp', after: '/images/after-3.webp' },
 ]
 
