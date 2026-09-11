@@ -177,11 +177,11 @@
     "emailLabel": "Email",
     "hoursLabel": "Opening Hours",
     "hours": [
-      { "days": "Monday – Friday", "time": "08:30 – 19:00" },
-      { "days": "Saturday", "time": "09:00 – 13:00" },
+      { "days": "Monday – Friday", "time": "9:00 AM – 8:00 PM" },
+      { "days": "Saturday", "time": "9:00 AM – 2:00 PM" },
       { "days": "Sunday", "time": "Closed" }
     ],
-    "emergency": "Dental emergency? Call us on 0522 49 24 40.",
+    "emergency": "Dental emergency? Call us on",
     "mapTitle": "Practice location on Google Maps"
   },
   "footer": {

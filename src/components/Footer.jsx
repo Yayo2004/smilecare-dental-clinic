@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
-import { ArrowUp, Clock, Instagram, MapPin, Phone, MessageCircle } from 'lucide-react'
+import { ArrowUp, Clock, Instagram, Mail, MapPin, Phone, MessageCircle } from 'lucide-react'
 import Logo from './Logo'
 import { CLINIC_INFO, buildWhatsAppLink } from '../config'
 
@@ -16,6 +16,8 @@ export default function Footer() {
   const { t } = useTranslation()
   const year = new Date().getFullYear()
   const phoneHref = `tel:${CLINIC_INFO.phone.replace(/\s/g, '')}`
+  const mobileHref = `tel:${CLINIC_INFO.phoneMobile}`
+  const emailHref = `mailto:${CLINIC_INFO.email}`
 
   const navLinks = ['home', 'services', 'about', 'reservation', 'contact']
 
@@ -83,6 +85,18 @@ export default function Footer() {
                 <a href={phoneHref} className="flex items-center gap-2.5 transition-colors hover:text-accent">
                   <Phone className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
                   {CLINIC_INFO.phone}
+                </a>
+              </li>
+              <li>
+                <a href={mobileHref} className="flex items-center gap-2.5 transition-colors hover:text-accent">
+                  <Phone className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+                  {CLINIC_INFO.phoneMobile}
+                </a>
+              </li>
+              <li>
+                <a href={emailHref} className="flex items-center gap-2.5 transition-colors hover:text-accent">
+                  <Mail className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+                  {CLINIC_INFO.email}
                 </a>
               </li>
             </ul>

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { Clock, MapPin, Phone, Siren } from 'lucide-react'
+import { Clock, MapPin, Mail, Phone, Siren } from 'lucide-react'
 import Reveal from './Reveal'
 import Tooth from './Tooth'
 import { CLINIC_INFO } from '../config'
@@ -10,6 +10,8 @@ export default function Contact() {
   const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
   const hours = t('contact.hours', { returnObjects: true })
   const phoneHref = `tel:${CLINIC_INFO.phone.replace(/\s/g, '')}`
+  const mobileHref = `tel:${CLINIC_INFO.phoneMobile}`
+  const emailHref = `mailto:${CLINIC_INFO.email}`
   const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(CLINIC_INFO.mapQuery)}&t=&z=16&ie=UTF8&iwloc=&output=embed`
 
   return (
@@ -52,6 +54,29 @@ export default function Contact() {
                   >
                     {CLINIC_INFO.phone}
                   </a>
+                  <a
+                    href={mobileHref}
+                    className="mt-1 block whitespace-nowrap text-navy/65 transition-colors hover:text-primary"
+                  >
+                    {CLINIC_INFO.phoneMobile}
+                  </a>
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.16}>
+              <div className="flex items-start gap-4 rounded-2xl border border-navy/5 bg-white p-5 shadow-soft">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <Mail className="h-6 w-6" aria-hidden="true" />
+                </span>
+                <div className="min-w-0">
+                  <h3 className="font-bold text-navy">{t('contact.emailLabel')}</h3>
+                  <a
+                    href={emailHref}
+                    className="mt-1 block break-all text-navy/65 transition-colors hover:text-primary"
+                  >
+                    {CLINIC_INFO.email}
+                  </a>
                 </div>
               </div>
             </Reveal>
@@ -71,10 +96,18 @@ export default function Contact() {
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-3 flex items-start gap-1.5 rounded-xl bg-red-50 p-3 text-sm font-medium text-red-600">
-                    <Siren className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
-                    {t('contact.emergency')}
-                  </p>
+                  <div className="mt-3 rounded-xl bg-red-50 p-3">
+                    <p className="flex items-start gap-1.5 text-sm font-medium text-red-600">
+                      <Siren className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+                      <span>{t('contact.emergency')}</span>
+                    </p>
+                    <a
+                      href={phoneHref}
+                      className="mt-1 block pl-6 text-sm font-bold text-red-600 underline underline-offset-2 transition-colors hover:text-red-800"
+                    >
+                      {CLINIC_INFO.phone}
+                    </a>
+                  </div>
                 </div>
               </div>
             </Reveal>

@@ -7,6 +7,9 @@ export const CLINIC_INFO = {
   name: 'Myriam Lahlou — Cabinet Dentaire',
   shortName: 'Myriam Lahlou',
   phone: '0522 49 24 40',
+  phoneMobile: '0660186373',
+  phoneMobileIntl: '+212660186373',
+  email: 'Myriam.lahlou13@gmail.com',
   // International number WITHOUT the leading "+", used for wa.me links
   // 0660186373 (Morocco) -> 212660186373
   whatsappNumber: '212660186373',
