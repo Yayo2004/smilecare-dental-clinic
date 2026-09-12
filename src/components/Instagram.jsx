@@ -31,16 +31,18 @@ function usePrefersReducedMotion() {
 /** Renders a single Instagram reel via the official embed script. */
 function ReelEmbed({ url, caption }) {
   return (
-    <div className="overflow-hidden rounded-2xl bg-white shadow-soft transition-shadow duration-300 hover:shadow-card">
-      <div className="p-3">
-        <blockquote
-          className="instagram-media"
-          data-instgrm-permalink={url}
-          data-instgrm-version="14"
-          style={{ margin: '0' }}
-        />
+    <div className="mx-auto w-full max-w-[380px]">
+      <div className="overflow-hidden rounded-2xl bg-white shadow-soft transition-shadow duration-300 hover:shadow-card">
+        <div className="p-1.5">
+          <blockquote
+            className="instagram-media"
+            data-instgrm-permalink={url}
+            data-instgrm-version="14"
+            style={{ margin: '0', minWidth: '0', width: '100%' }}
+          />
+        </div>
+        <p className="sr-only">{caption}</p>
       </div>
-      <p className="sr-only">{caption}</p>
     </div>
   )
 }
@@ -89,7 +91,7 @@ export default function InstagramSection() {
         </motion.div>
 
         {/* Reels — 2 columns desktop, stacked mobile, staggered entrance */}
-        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:gap-10">
+        <div className="mt-14 grid justify-items-center gap-8 sm:grid-cols-2 lg:gap-10">
           {REELS.map((reel, i) => (
             <motion.div
               key={reel.url}
@@ -101,7 +103,6 @@ export default function InstagramSection() {
                 ease: [0.22, 1, 0.36, 1],
                 delay: 0.15 * i,
               }}
-              className="h-full"
             >
               <ReelEmbed url={reel.url} caption={`${t('instagram.reelLabel')} ${i + 1}`} />
             </motion.div>
