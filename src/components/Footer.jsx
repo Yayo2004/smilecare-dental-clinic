@@ -50,7 +50,7 @@ export default function Footer() {
           {/* Brand */}
           <motion.div variants={fadeInUp}>
             <a href="#home" className="inline-flex items-center">
-              <Logo className="h-7 shrink-0 sm:h-10" />
+              <Logo className="h-11 shrink-0 sm:h-10" />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
               {t('footer.tagline')}
