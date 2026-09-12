@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { ArrowUp, Clock, Instagram, Mail, MapPin, Phone } from 'lucide-react'
 import Logo from './Logo'
 import { CLINIC_INFO } from '../config'
+import { fadeInUp, staggerContainer, viewport } from '../animations'
 
 const SOCIALS = [
   { name: 'Instagram', href: CLINIC_INFO.socials.instagram, Icon: Instagram },
@@ -38,19 +39,26 @@ export default function Footer() {
       />
 
       <div className="container-site relative py-16">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+        {/* Columns — fade in staggered on scroll */}
+        <motion.div
+          className="grid gap-10 md:grid-cols-2 lg:grid-cols-4"
+          variants={staggerContainer(0.1)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
           {/* Brand */}
-          <div>
+          <motion.div variants={fadeInUp}>
             <a href="#home" className="inline-flex items-center">
               <Logo className="h-7 shrink-0 sm:h-10" />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
               {t('footer.tagline')}
             </p>
-          </div>
+          </motion.div>
 
           {/* Quick links */}
-          <nav aria-label="Footer navigation">
+          <motion.nav variants={fadeInUp} aria-label="Footer navigation">
             <h3 className="font-display text-sm font-bold uppercase tracking-wider text-white/80">
               {t('footer.quickLinks')}
             </h3>
@@ -66,10 +74,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </nav>
+          </motion.nav>
 
           {/* Contact */}
-          <div>
+          <motion.div variants={fadeInUp}>
             <h3 className="font-display text-sm font-bold uppercase tracking-wider text-white/80">
               {t('footer.contactTitle')}
             </h3>
@@ -97,10 +105,10 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
-          </div>
+          </motion.div>
 
           {/* Hours + socials */}
-          <div>
+          <motion.div variants={fadeInUp}>
             <h3 className="font-display text-sm font-bold uppercase tracking-wider text-white/80">
               {t('footer.hoursTitle')}
             </h3>
@@ -132,11 +140,17 @@ export default function Footer() {
                 </motion.a>
               ))}
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Bottom bar */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-7 sm:flex-row">
+        <motion.div
+          className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-7 sm:flex-row"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewport}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+        >
           <p className="text-sm text-white/50">
             © {year} {CLINIC_INFO.name}. {t('footer.rights')}
           </p>
@@ -153,7 +167,7 @@ export default function Footer() {
               <ArrowUp className="h-5 w-5" aria-hidden="true" />
             </a>
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   )
