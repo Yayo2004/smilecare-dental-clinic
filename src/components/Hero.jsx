@@ -153,7 +153,7 @@ export default function Hero({ splashDone = false }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: 'easeOut', delay: 0.5 }}
-            className="mt-6 min-h-[5.5rem] font-display text-4xl font-bold leading-tight text-navy sm:min-h-[6.5rem] lg:min-h-[7rem] sm:text-5xl lg:text-[3.4rem]"
+            className="mt-6 min-h-[5.75rem] font-display text-4xl font-bold leading-tight text-navy sm:min-h-[6.5rem] lg:min-h-[7rem] sm:text-5xl lg:text-[3.4rem]"
           >
             {displayed.split('').map((ch, i) => (
               <span key={i} className={i >= hlStart && i < hlEnd ? 'text-primary' : undefined}>
