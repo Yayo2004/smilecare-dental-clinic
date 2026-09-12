@@ -87,14 +87,16 @@ export default function About() {
   const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
   const stats = t('about.stats', { returnObjects: true })
   const [reelOpen, setReelOpen] = useState(false)
+  const [videoOpen, setVideoOpen] = useState(false)
   const [zoomPhoto, setZoomPhoto] = useState(null)
 
   useEffect(() => {
-    if (!reelOpen && !zoomPhoto) return undefined
+    if (!reelOpen && !zoomPhoto && !videoOpen) return undefined
     const onKey = (e) => {
       if (e.key === 'Escape') {
         setReelOpen(false)
         setZoomPhoto(null)
+        setVideoOpen(false)
       }
     }
     window.addEventListener('keydown', onKey)
@@ -103,7 +105,7 @@ export default function About() {
       window.removeEventListener('keydown', onKey)
       document.body.style.overflow = ''
     }
-  }, [reelOpen, zoomPhoto])
+  }, [reelOpen, zoomPhoto, videoOpen])
 
   return (
     <section id="about" key={lang} className="relative overflow-hidden bg-mint/50 py-20 lg:py-28">
@@ -200,6 +202,29 @@ export default function About() {
             >
               {t('about.practitioner.paragraph2')}
             </motion.p>
+
+            {/* Video button — under the text */}
+            <motion.div
+              className="mt-8 flex justify-center lg:justify-start"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewport}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.35 }}
+            >
+              <motion.button
+                type="button"
+                onClick={() => setVideoOpen(true)}
+                className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-primary px-7 py-3.5 font-semibold text-white shadow-soft transition-all duration-300 hover:bg-primary-dark hover:shadow-card focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 active:scale-95"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+              >
+                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/25">
+                  <Play className="h-4 w-4 fill-white" aria-hidden="true" />
+                </span>
+                {t('about.videoButton')}
+              </motion.button>
+            </motion.div>
           </motion.div>
         </div>
 
@@ -358,6 +383,49 @@ export default function About() {
                 exit={{ scale: 0.9, opacity: 0 }}
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Clinic video modal — local mp4 */}
+      <AnimatePresence>
+        {videoOpen && (
+          <motion.div
+            className="fixed inset-0 z-[90] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm sm:p-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setVideoOpen(false)}
+            role="dialog"
+            aria-modal="true"
+            aria-label={t('about.videoButton')}
+          >
+            <motion.div
+              className="relative w-full max-w-3xl"
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={() => setVideoOpen(false)}
+                className="absolute -top-4 -right-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white text-navy shadow-lg transition-all duration-200 hover:rotate-90 hover:scale-110"
+                aria-label={t('about.reelClose')}
+              >
+                <X className="h-5 w-5" aria-hidden="true" />
+              </button>
+              <div className="overflow-hidden rounded-2xl bg-black shadow-2xl">
+                <video
+                  src="/videos/vid1.mp4"
+                  controls
+                  autoPlay
+                  playsInline
+                  className="max-h-[80vh] w-full"
+                />
+              </div>
             </motion.div>
           </motion.div>
         )}
