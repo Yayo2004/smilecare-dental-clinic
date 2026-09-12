@@ -353,7 +353,7 @@ export default function About() {
           <motion.button
             type="button"
             onClick={() => setReelOpen(true)}
-            className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-gradient-to-tr from-[#F58529] via-[#DD2A7B] to-[#8134AF] px-8 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-[1.04] hover:shadow-[0_12px_40px_rgba(221,42,123,0.45)] focus:outline-none focus:ring-2 focus:ring-[#DD2A7B] focus:ring-offset-2 active:scale-95"
+            className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-gradient-to-tr from-primary via-accent to-primary-dark px-8 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-[1.04] hover:shadow-[0_12px_40px_rgba(184,134,11,0.45)] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 active:scale-95"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.96 }}
           >

@@ -81,11 +81,17 @@ export default function InstagramSection() {
           whileInView="visible"
           viewport={viewport}
         >
-          <Instagram
-            className="mx-auto h-10 w-10 text-primary"
-            strokeWidth={1.5}
-            aria-hidden="true"
-          />
+          <motion.div
+            className="inline-flex"
+            animate={{ scale: [1, 1.12, 1], rotate: [0, 6, -6, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            <Instagram
+              className="h-10 w-10 text-primary"
+              strokeWidth={1.5}
+              aria-hidden="true"
+            />
+          </motion.div>
           <h2 className="section-title mt-4">{t('instagram.title')}</h2>
           <p className="mt-4 text-lg text-navy/70">{t('instagram.subtitle')}</p>
         </motion.div>
