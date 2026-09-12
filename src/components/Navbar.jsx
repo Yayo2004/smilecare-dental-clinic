@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { key: 'home', href: '#home' },
   { key: 'services', href: '#services' },
   { key: 'about', href: '#about' },
+  { key: 'instagram', href: '#instagram' },
   { key: 'reservation', href: '#reservation' },
   { key: 'contact', href: '#contact' },
 ]

@@ -8,6 +8,7 @@ import Services from './components/Services'
 import About from './components/About'
 import ReservationForm from './components/ReservationForm'
 import Testimonials from './components/Testimonials'
+import InstagramSection from './components/Instagram'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
@@ -64,6 +65,7 @@ export default function App() {
           <Services />
           <About />
           <Testimonials />
+          <InstagramSection />
           <ReservationForm />
           <Contact />
         </main>

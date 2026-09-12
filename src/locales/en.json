@@ -7,6 +7,7 @@
     "home": "Home",
     "services": "Services",
     "about": "About",
+    "instagram": "Instagram",
     "reservation": "Book Appointment",
     "contact": "Contact",
     "menuLabel": "Open menu",
@@ -114,6 +115,8 @@
     "reelModalTitle": "Clinic tour",
     "reelClose": "Close",
     "videoButton": "Watch the Video",
+    "reviewsBadge": "Google Reviews",
+    "reviewsCount": "28+ Google Reviews",
     "cta": "Reserve a Consultation"
   },
   "form": {
@@ -203,6 +206,12 @@
         "text": "Loved my aesthetic crown: very professional follow-up and fair pricing. The modern equipment makes all the difference."
       }
     ]
+  },
+  "instagram": {
+    "title": "Follow us on Instagram",
+    "subtitle": "Discover our latest work and follow the news of Cabinet Dentaire Dr Myriam Lahlou.",
+    "cta": "See more on Instagram",
+    "reelLabel": "Reel"
   },
   "contact": {
     "eyebrow": "Contact",

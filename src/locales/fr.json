@@ -7,6 +7,7 @@
     "home": "Accueil",
     "services": "Services",
     "about": "À propos",
+    "instagram": "Instagram",
     "reservation": "Réservation",
     "contact": "Contact",
     "menuLabel": "Ouvrir le menu",
@@ -114,6 +115,8 @@
     "reelModalTitle": "Visite du cabinet",
     "reelClose": "Fermer",
     "videoButton": "Regarder la vidéo",
+    "reviewsBadge": "Avis Google",
+    "reviewsCount": "28+ Avis Google",
     "cta": "Réserver une consultation"
   },
   "form": {
@@ -203,6 +206,12 @@
         "text": "Un coup de cœur pour ma couronne esthétique : suivi très professionnel et tarifs honnêtes. Le matériel moderne change vraiment tout."
       }
     ]
+  },
+  "instagram": {
+    "title": "Suivez-nous sur Instagram",
+    "subtitle": "Découvrez nos dernières réalisations et suivez l'actualité du Cabinet Dentaire Dr Myriam Lahlou.",
+    "cta": "Voir plus sur Instagram",
+    "reelLabel": "Reel"
   },
   "contact": {
     "eyebrow": "Contact",
