@@ -9,12 +9,12 @@ import {
 } from '../animations'
 
 const CASES = [
-  { before: '/images/facettes-avant.webp', after: '/images/facettes-apres.webp' },
-  { before: '/images/rehab-avant.webp', after: '/images/rehab-apres.webp' },
-  { before: '/images/gingival-avant.webp', after: '/images/gingival-apres.webp' },
-  { before: '/images/fca-avant.webp', after: '/images/fca-apres.webp' },
-  { before: '/images/fd-avant.webp', after: '/images/fd-apres.webp' },
-  { before: '/images/ed-avant.webp', after: '/images/ed-apres.webp' },
+  { before: '/images/blanchiment-avant.webp', after: '/images/blanchiment-apres.webp' },
+  { before: '/images/rehab-apres.webp', after: '/images/rehab-avant.webp' },
+  { before: '/images/gingival-apres.webp', after: '/images/gingival-avant.webp' },
+  { before: '/images/fca-apres.webp', after: '/images/fca-avant.webp' },
+  { before: '/images/fd-apres.webp', after: '/images/fd-avant.webp' },
+  { before: '/images/ed-apres.webp', after: '/images/ed-avant.webp' },
 ]
 
 /**
