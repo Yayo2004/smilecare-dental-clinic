@@ -78,8 +78,7 @@ function RotatingGallery({ onPhotoClick }) {
   )
 }
 
-// Embed of the real Instagram Reel of the clinic interior.
-const INSTAGRAM_REEL_EMBED_URL = 'https://www.instagram.com/reel/C-VbJ0XqaOG/embed'
+const CABINET_VIDEO_SRC = '/videos/vidCabinet.mp4'
 
 /** About — brand story, cabinet photos, animated stats + Instagram Reel modal. */
 export default function About() {
@@ -457,7 +456,7 @@ export default function About() {
         )}
       </AnimatePresence>
 
-      {/* Instagram Reel modal — 9:16 vertical video */}
+      {/* Clinic cabinet video modal — local mp4 */}
       <AnimatePresence>
         {reelOpen && (
           <motion.div
@@ -471,34 +470,29 @@ export default function About() {
             aria-label={t('about.reelModalTitle')}
           >
             <motion.div
-              className="relative w-full max-w-[420px]"
+              className="relative w-full max-w-3xl"
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e) => e.stopPropagation()}
             >
+              <button
+                type="button"
+                onClick={() => setReelOpen(false)}
+                className="absolute -top-4 -right-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white text-navy shadow-lg transition-all duration-200 hover:rotate-90 hover:scale-110"
+                aria-label={t('about.reelClose')}
+              >
+                <X className="h-5 w-5" aria-hidden="true" />
+              </button>
               <div className="overflow-hidden rounded-2xl bg-black shadow-2xl">
-                <div className="flex items-center justify-between bg-white/10 px-4 py-3">
-                  <p className="text-sm font-semibold text-white">{t('about.reelModalTitle')}</p>
-                  <button
-                    type="button"
-                    onClick={() => setReelOpen(false)}
-                    className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/80 transition-all duration-200 hover:rotate-90 hover:bg-white/25 hover:text-white"
-                    aria-label={t('about.reelClose')}
-                  >
-                    <X className="h-5 w-5" aria-hidden="true" />
-                  </button>
-                </div>
-                <div className="aspect-[9/16] w-full">
-                  <iframe
-                    src={INSTAGRAM_REEL_EMBED_URL}
-                    title={t('about.reelModalTitle')}
-                    className="h-full w-full"
-                    allow="autoplay; encrypted-media; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
+                <video
+                  src={CABINET_VIDEO_SRC}
+                  controls
+                  autoPlay
+                  playsInline
+                  className="max-h-[80vh] w-full"
+                />
               </div>
             </motion.div>
           </motion.div>
