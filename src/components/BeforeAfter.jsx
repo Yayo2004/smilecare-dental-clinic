@@ -9,7 +9,7 @@ import {
 } from '../animations'
 
 const CASES = [
-  { before: '/images/blanchiment-avant.webp', after: '/images/blanchiment-apres.webp' },
+  { before: '/images/blanchiment-apres.webp', after: '/images/blanchiment-avant.webp' },
   { before: '/images/rehab-apres.webp', after: '/images/rehab-avant.webp' },
   { before: '/images/gingival-apres.webp', after: '/images/gingival-avant.webp' },
   { before: '/images/fca-apres.webp', after: '/images/fca-avant.webp' },
