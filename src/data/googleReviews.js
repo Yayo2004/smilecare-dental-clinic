@@ -5,6 +5,18 @@
 
 export const GOOGLE_REVIEWS = [
   {
+    name: 'Atelier de la Voix (Christie Caro)',
+    date: { fr: 'il y a un jour', en: '1 day ago' },
+    rating: 5,
+    text: 'Je recommande Myriam une dentiste de la nouvelle génération qui s est occupé de moi avec une grande attention !',
+  },
+  {
+    name: 'Mihmd Mohd',
+    date: { fr: 'il y a une semaine', en: '1 week ago' },
+    rating: 5,
+    text: '👍👍👍 شكرا جزيلا …',
+  },
+  {
     name: 'Samira Azzaf',
     date: { fr: 'il y a 7 mois', en: '7 months ago' },
     rating: 5,
