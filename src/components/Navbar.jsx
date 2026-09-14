@@ -74,7 +74,10 @@ export default function Navbar() {
             className="flex min-w-0 items-center justify-self-center px-1"
             onClick={(e) => handleLinkClick(e, '#home')}
           >
-            <Logo className="h-7 min-w-0 shrink-0 sm:h-10" />
+            <Logo
+              src={scrolled ? '/logo.png' : '/logo-white.png'}
+              className="h-7 min-w-0 shrink-0 sm:h-10"
+            />
           </a>
           <button
             type="button"
@@ -112,7 +115,10 @@ export default function Navbar() {
 
         <div className="hidden w-full items-center justify-between gap-2 lg:flex">
           <a href="#home" className="flex min-w-0 shrink-0 items-center" onClick={(e) => handleLinkClick(e, '#home')}>
-            <Logo className={`h-7 shrink-0 transition-all duration-300 sm:h-10 ${scrolled ? '' : 'brightness-0 invert'}`} />
+            <Logo
+              src={scrolled ? '/logo.png' : '/logo-white.png'}
+              className="h-7 shrink-0 transition-all duration-300 sm:h-10"
+            />
           </a>
 
           <ul className="flex items-center gap-1">
