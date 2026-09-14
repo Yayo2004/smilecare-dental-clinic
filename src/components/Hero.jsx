@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { ArrowRight, BadgeCheck } from 'lucide-react'
-import { useRotatingTypewriter } from '../hooks/useRotatingTypewriter'
 import { fadeInUp, staggerContainer, viewport } from '../animations'
 
 const HERO_BACKGROUNDS = [
@@ -69,33 +67,24 @@ function HeroBackground({ images }) {
   )
 }
 
-/** Hero section with rotating typewriter headline, staggered subtitle & CTAs. */
+/** Hero section with static headline, staggered subtitle & CTAs. */
 export default function Hero({ splashDone = false }) {
   const { t, i18n } = useTranslation()
   const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
-
-  const titles = t('hero.rotatingTitles', { returnObjects: true })
-  const highlights = t('hero.rotatingHighlights', { returnObjects: true })
-  const { displayed, index, ready } = useRotatingTypewriter(titles, { speed: 45, deleteSpeed: 28, holdMs: 2000, enable: splashDone })
-
-  // Characters belonging to the accent phrase get the primary color
-  const full = titles[index] || ''
-  const hl = highlights[index] || ''
-  const hlStart = hl ? full.indexOf(hl) : -1
-  const hlEnd = hlStart >= 0 ? hlStart + hl.length : -1
+  const subtitle = t('hero.subtitle', { returnObjects: true })
 
   return (
     <section id="home" className="relative overflow-hidden pb-20 pt-32 sm:pt-40 lg:pb-28">
       {/* Rotating background images — desktop */}
       <div className="absolute inset-0 -z-10 hidden sm:block">
         <HeroBackground images={HERO_BACKGROUNDS} />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-white/30 to-transparent" />
+        <div className="absolute inset-0 bg-black/45" />
       </div>
 
       {/* Background images — phone only */}
       <div className="absolute inset-0 -z-10 sm:hidden">
         <HeroBackground images={HERO_PHONE_BACKGROUNDS} />
-        <div className="absolute inset-0 bg-white/40" />
+        <div className="absolute inset-0 bg-black/50" />
       </div>
 
       <div className="container-site">
@@ -147,37 +136,36 @@ export default function Hero({ splashDone = false }) {
             </motion.span>
           </motion.div>
 
-          {/* Rotating typewriter headline — stable height, one-time fade+rise on mount */}
+          {/* Headline — static, white, slightly larger */}
           <motion.h1
             key={lang}
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={splashDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.7, ease: 'easeOut', delay: 0.5 }}
-            className="mt-6 min-h-[5.75rem] font-display text-4xl font-bold leading-tight text-navy sm:min-h-[6.5rem] lg:min-h-[7rem] sm:text-5xl lg:text-[3.4rem]"
+            className="mt-6 font-display text-[2.5rem] font-bold leading-tight text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.4)] sm:text-6xl lg:text-[3.9rem]"
           >
-            {displayed.split('').map((ch, i) => (
-              <span key={i} className={i >= hlStart && i < hlEnd ? 'text-primary' : undefined}>
-                {ch}
-              </span>
-            ))}
-            <span className="animate-blink ml-0.5 inline-block w-[0.05em] text-primary" aria-hidden="true">|</span>
+            {t('hero.title')}
           </motion.h1>
 
-          {/* Subtitle — fades in after splash */}
-          <motion.p
+          {/* Subtitle — three paragraphs, fades in after splash */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-navy/70"
+            animate={splashDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
+            className="mx-auto mt-7 max-w-2xl space-y-4 text-left sm:text-center"
           >
-            {t('hero.subtitle')}
-          </motion.p>
+            {subtitle.map((paragraph, i) => (
+              <p key={i} className="text-lg leading-relaxed text-white/85 [text-shadow:0_1px_8px_rgba(0,0,0,0.35)] sm:text-xl">
+                {paragraph}
+              </p>
+            ))}
+          </motion.div>
 
           {/* CTAs — stagger in after subtitle */}
           <motion.div
             variants={staggerContainer(0.15)}
             initial="hidden"
-            animate={ready ? 'visible' : 'hidden'}
+            animate={splashDone ? 'visible' : 'hidden'}
             className="mt-9 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
           >
             <motion.a href="#reservation" className="btn-primary w-full sm:w-auto" variants={fadeInUp}>
@@ -189,20 +177,20 @@ export default function Hero({ splashDone = false }) {
             </motion.a>
           </motion.div>
 
-          {/* Trust features — stagger in last */}
+          {/* Trust features — stagger in last, light text on dark bg */}
           <motion.ul
             variants={staggerContainer(0.12)}
             initial="hidden"
-            animate={ready ? 'visible' : 'hidden'}
+            animate={splashDone ? 'visible' : 'hidden'}
             className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-3"
           >
             {['feature1', 'feature2', 'feature3'].map((key) => (
               <motion.li
                 key={key}
                 variants={fadeInUp}
-                className="flex items-center gap-2 text-sm font-medium text-navy/70"
+                className="flex items-center gap-2 text-sm font-medium text-white/85"
               >
-                <BadgeCheck className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                <BadgeCheck className="h-5 w-5 shrink-0 text-primary-light" aria-hidden="true" />
                 {t(`hero.${key}`)}
               </motion.li>
             ))}
@@ -212,7 +200,7 @@ export default function Hero({ splashDone = false }) {
           <motion.div
             variants={fadeInUp}
             initial="hidden"
-            animate={ready ? 'visible' : 'hidden'}
+            animate={splashDone ? 'visible' : 'hidden'}
             className="mt-6 inline-flex items-center gap-2 rounded-full border border-navy/5 bg-white px-4 py-2 shadow-soft"
           >
             <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
