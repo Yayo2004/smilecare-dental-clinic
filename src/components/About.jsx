@@ -240,14 +240,19 @@ export default function About() {
                 <GraduationCap className="h-5 w-5" aria-hidden="true" />
                 {t('about.practitioner.formationsTitle')}
               </h4>
-              <ul className="mt-3 space-y-2">
+              <ul className="mt-4 space-y-2.5 text-left">
                 {t('about.practitioner.formations', { returnObjects: true }).map((formation, i) => (
                   <li
                     key={i}
-                    className="flex items-start gap-2 rounded-lg bg-mint/60 px-3 py-2 text-sm leading-snug text-navy/80"
+                    className="flex items-center gap-3 rounded-xl border border-navy/5 bg-white px-4 py-3 shadow-soft transition-shadow hover:shadow-card"
                   >
-                    <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" aria-hidden="true" />
-                    {formation}
+                    <span
+                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-tr from-primary to-primary-light font-display text-sm font-bold text-white shadow-sm"
+                      aria-hidden="true"
+                    >
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span className="text-sm font-medium leading-snug text-navy/85">{formation}</span>
                   </li>
                 ))}
               </ul>

@@ -171,7 +171,7 @@ export default function Hero({ splashDone = false }) {
             className="mx-auto mt-7 max-w-2xl space-y-4 text-left sm:text-center"
           >
             {subtitle.map((paragraph, i) => (
-              <p key={i} className="text-lg leading-relaxed text-white/85 [text-shadow:0_1px_8px_rgba(0,0,0,0.35)] sm:text-xl">
+              <p key={i} className="text-[1.2rem] leading-relaxed text-white/85 [text-shadow:0_1px_8px_rgba(0,0,0,0.35)]">
                 {paragraph}
               </p>
             ))}
