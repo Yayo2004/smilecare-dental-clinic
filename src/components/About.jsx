@@ -255,6 +255,7 @@ export default function About() {
                 ))}
               </ul>
             </motion.div>
+          </motion.div>
         </div>
 
         {/* Cabinet header — Cabinet Dentaire Dr Myriam Lahlou */}
