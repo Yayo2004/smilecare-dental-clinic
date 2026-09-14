@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useInView } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
-import { Play, Star, X, ZoomIn } from 'lucide-react'
+import { GraduationCap, Play, Star, X, ZoomIn } from 'lucide-react'
 import { fadeInLeft, fadeInRight, fadeInUp, staggerContainer, viewport } from '../animations'
 import { CLINIC_INFO } from '../config'
 
@@ -227,6 +227,31 @@ export default function About() {
             >
               {t('about.practitioner.paragraph2')}
             </motion.p>
+
+            {/* Formations — under the practitioner text */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewport}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
+              className="mt-6"
+            >
+              <h4 className="flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-primary">
+                <GraduationCap className="h-5 w-5" aria-hidden="true" />
+                {t('about.practitioner.formationsTitle')}
+              </h4>
+              <ul className="mt-3 space-y-2">
+                {t('about.practitioner.formations', { returnObjects: true }).map((formation, i) => (
+                  <li
+                    key={i}
+                    className="flex items-start gap-2 rounded-lg bg-mint/60 px-3 py-2 text-sm leading-snug text-navy/80"
+                  >
+                    <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" aria-hidden="true" />
+                    {formation}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
 
             {/* Video button — under the text */}
             <motion.div

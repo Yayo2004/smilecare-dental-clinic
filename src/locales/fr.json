@@ -19,13 +19,13 @@
     "titleHighlight": "à votre image",
     "rotatingTitles": [
       "Un sourire à votre image",
-      "Révélez la beauté de votre sourire ✨",
+      "Révélez la beauté de votre sourire",
       "Votre sourire, notre passion"
     ],
     "rotatingHighlights": [
-      "à votre image",
-      "de votre sourire",
-      "notre passion"
+      "",
+      "",
+      ""
     ],
     "subtitle": [
       "Une attention particulière portée à l'esthétique du sourire, avec des soins personnalisés pour révéler un résultat naturel, harmonieux et lumineux.",
@@ -101,7 +101,14 @@
       "name": "Dr Myriam Lahlou",
       "specialties": "Facettes . Implants . Esthétique Dentaire",
       "paragraph1": "Au Cabinet du Dr Lahlou à Casablanca, l'objectif est clair : sublimer le sourire pour transformer le quotidien. Spécialisé en esthétique dentaire et notamment en pose de facettes, le cabinet propose des soins de qualité qui allient précision, naturel et durabilité.",
-      "paragraph2": "Chaque patient est accueilli avec bienveillance dans un espace chaleureux et apaisant, conçu pour qu'il se sente à l'aise dès les premiers instants. Le Dr Lahlou prend le temps d'écouter, de comprendre les attentes, et de proposer des solutions sur-mesure pour révéler la beauté de chaque sourire."
+      "paragraph2": "Chaque patient est accueilli avec bienveillance dans un espace chaleureux et apaisant, conçu pour qu'il se sente à l'aise dès les premiers instants. Le Dr Lahlou prend le temps d'écouter, de comprendre les attentes, et de proposer des solutions sur-mesure pour révéler la beauté de chaque sourire.",
+      "formationsTitle": "Formations",
+      "formations": [
+        "Diplômée de l'université internationale de Catalogne",
+        "Formation en composite esthétique",
+        "Formation continue en traitement canalaire à Future University of Cairo Microscopic Center",
+        "Formation en implantologie orale"
+      ]
     },
     "paragraph1": "Chaque soin est réalisé avec patience et minutie. Le temps nécessaire est consacré à chaque détail afin d'obtenir des restaurations à la fois esthétiques, fonctionnelles et confortables.",
     "paragraph2": "Parce qu'un beau sourire ne nécessite pas toujours des traitements complexes, des gestes simples, lorsqu'ils sont réalisés avec précision et sens du détail, peuvent parfois sublimer naturellement un sourire.",
