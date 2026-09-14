@@ -168,7 +168,7 @@ export default function Hero({ splashDone = false }) {
             initial={{ opacity: 0, y: 20 }}
             animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto mt-7 max-w-2xl space-y-4 text-left sm:text-center"
+            className="mx-auto mt-7 max-w-2xl space-y-4 text-center"
           >
             {subtitle.map((paragraph, i) => (
               <p key={i} className="text-[1.2rem] leading-relaxed text-white/85 [text-shadow:0_1px_8px_rgba(0,0,0,0.35)]">
