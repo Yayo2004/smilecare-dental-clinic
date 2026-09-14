@@ -112,7 +112,7 @@ export default function Navbar() {
 
         <div className="hidden w-full items-center justify-between gap-2 lg:flex">
           <a href="#home" className="flex min-w-0 shrink-0 items-center" onClick={(e) => handleLinkClick(e, '#home')}>
-            <Logo className="h-7 shrink-0 sm:h-10" />
+            <Logo className={`h-7 shrink-0 transition-all duration-300 sm:h-10 ${scrolled ? '' : 'brightness-0 invert'}`} />
           </a>
 
           <ul className="flex items-center gap-1">
@@ -121,7 +121,9 @@ export default function Navbar() {
                 <a
                   href={item.href}
                   onClick={(e) => handleLinkClick(e, item.href)}
-                  className="relative rounded-full px-4 py-2 text-sm font-semibold text-navy/75 transition-colors hover:text-primary"
+                  className={`relative rounded-full px-4 py-2 text-sm font-semibold transition-colors hover:text-primary-light ${
+                    scrolled ? 'text-navy/75' : 'text-white'
+                  }`}
                 >
                   {t(`nav.${item.key}`)}
                 </a>
