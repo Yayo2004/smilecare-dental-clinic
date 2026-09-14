@@ -17,7 +17,16 @@
     "badge": "Dentiste généraliste · Facettes, implants & esthétique",
     "title1": "Un sourire",
     "titleHighlight": "à votre image",
-    "title": "Révélez la beauté de votre sourire ✨",
+    "rotatingTitles": [
+      "Un sourire à votre image",
+      "Révélez la beauté de votre sourire ✨",
+      "Votre sourire, notre passion"
+    ],
+    "rotatingHighlights": [
+      "à votre image",
+      "de votre sourire",
+      "notre passion"
+    ],
     "subtitle": [
       "Une attention particulière portée à l'esthétique du sourire, avec des soins personnalisés pour révéler un résultat naturel, harmonieux et lumineux.",
       "La formation continue permet d'enrichir constamment les techniques et les connaissances afin de proposer des soins modernes, précis et adaptés à chaque patient.",

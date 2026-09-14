@@ -17,7 +17,16 @@
     "badge": "General Dentist · Veneers, Implants & Aesthetics",
     "title1": "A smile",
     "titleHighlight": "that reflects you",
-    "title": "Reveal the beauty of your smile ✨",
+    "rotatingTitles": [
+      "A smile made for you",
+      "Reveal the beauty of your smile ✨",
+      "Your smile, our passion"
+    ],
+    "rotatingHighlights": [
+      "made for you",
+      "your smile",
+      "our passion"
+    ],
     "subtitle": [
       "Particular attention is devoted to the aesthetics of the smile, with personalised treatments to reveal a natural, harmonious and radiant result.",
       "Continuing education constantly enriches techniques and knowledge to offer modern, precise care tailored to each patient.",
