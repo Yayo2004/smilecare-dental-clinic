@@ -76,7 +76,7 @@ export default function Navbar() {
           >
             <Logo
               src={scrolled ? '/logo.png' : '/logo-white.png'}
-              className="h-9 min-w-0 shrink-0 sm:h-12"
+              className="h-7 min-w-0 shrink-0 sm:h-10"
             />
           </a>
           <button
@@ -117,7 +117,7 @@ export default function Navbar() {
           <a href="#home" className="flex min-w-0 shrink-0 items-center" onClick={(e) => handleLinkClick(e, '#home')}>
             <Logo
               src={scrolled ? '/logo.png' : '/logo-white.png'}
-              className="h-9 shrink-0 transition-all duration-300 sm:h-12"
+              className="h-7 shrink-0 transition-all duration-300 sm:h-10"
             />
           </a>
 
