@@ -64,27 +64,33 @@
     "items": [
       {
         "name": "Facettes dentaires",
-        "description": "Des facettes ultra-fines pour corriger la forme et la teinte des dents et redessiner un sourire harmonieux et naturel."
+        "description": "Des facettes ultra-fines pour corriger la forme et la teinte des dents et redessiner un sourire harmonieux et naturel.",
+        "detail": "De fines lamelles en céramique ou en composite sont posées sur la face visible des dents pour corriger leur forme, leur teinte et leur alignement. Chaque facette est conçue sur-mesure pour un rendu naturel, lumineux et durable. Le sourire est redessiné en parfaite harmonie avec le visage, dans le respect du capital dentaire, avec une prise en charge douce et sans douleur."
       },
       {
         "name": "Implants dentaires",
-        "description": "Des solutions permanentes et naturelles pour remplacer les dents manquantes, posées sur des implants en titane."
+        "description": "Des solutions permanentes et naturelles pour remplacer les dents manquantes, posées sur des implants en titane.",
+        "detail": "L'implantologie remplace une ou plusieurs dents manquantes par des racines artificielles en titane, sur lesquelles sont fixées des couronnes esthétiques. Le résultat restitue une fonction masticatoire complète et un sourire tout à fait naturel. La pose est réalisée dans des conditions de précision, d'hygiène et de confort optimales, avec un suivi attentif à chaque étape."
       },
       {
         "name": "Esthétique dentaire",
-        "description": "Redessin du sourire, harmonisation de la forme et de la teinte des dents pour un résultat éclatant et durable."
+        "description": "Redessin du sourire, harmonisation de la forme et de la teinte des dents pour un résultat éclatant et durable.",
+        "detail": "Le sourire est la signature du visage. Grâce à une analyse complète de la forme, de la teinte et de la position des dents, des solutions esthétiques sur-mesure sont proposées : blanchiment, comblement, harmonisation du sourire. Chaque plan de traitement est personnalisé pour révéler un résultat éclatant, naturel et durable, en améliorant l'esthétique comme le bien-être."
       },
       {
         "name": "Orthodontie",
-        "description": "Alignement et correction des dents pour un sourire harmonieux, grâce à des solutions discrètes et efficaces."
+        "description": "Alignement et correction des dents pour un sourire harmonieux, grâce à des solutions discrètes et efficaces.",
+        "detail": "L'orthodontie corrige l'alignement des dents et les problèmes d'occlusion, pour un sourire harmonieux et fonctionnel. Des solutions discrètes et efficaces sont proposées, y compris pour les adultes qui souhaitent éviter les appareils visibles. Au terme du traitement, les dents retrouvent une position stable et un équilibre idéal."
       },
       {
         "name": "Traitement canalaire",
-        "description": "Soins endodontiques précis et indolores pour sauver une dent infectée et soulager durablement la douleur."
+        "description": "Soins endodontiques précis et indolores pour sauver une dent infectée et soulager durablement la douleur.",
+        "detail": "Le traitement canalaire (endodontie) consiste à retirer le nerf infecté, puis à nettoyer, désinfecter et obturer les canaux avec une précision maximale, notamment grâce au microscope. Cette approche permet de sauver une dent qui serait autrement perdue, tout en soulageant durablement la douleur et en évitant l'extraction."
       },
       {
         "name": "Composite",
-        "description": "Restaurations esthétiques en résine composite pour réparer et reconstruire les dents avec un rendu naturel."
+        "description": "Restaurations esthétiques en résine composite pour réparer et reconstruire les dents avec un rendu naturel.",
+        "detail": "Les restaurations en résine composite reconstituent la dent de manière esthétique, rapide et résistante. La teinte est assortie avec précision à la dent naturelle pour un résultat totalement invisible. Idéal pour réparer les caries, les fractures, les usures ou les espaces entre les dents, avec un rendu harmonieux et durable."
       }
     ],
     "learnMore": "En savoir plus",

@@ -64,27 +64,33 @@
     "items": [
       {
         "name": "Dental Veneers",
-        "description": "Ultra-thin veneers correct the shape and shade of your teeth and redesign a harmonious, natural-looking smile."
+        "description": "Ultra-thin veneers correct the shape and shade of your teeth and redesign a harmonious, natural-looking smile.",
+        "detail": "Ultra-thin ceramic or composite shells are bonded to the front of your teeth to correct their shape, shade and alignment. Each veneer is custom-designed for a natural, bright and long-lasting result. Your smile is redesigned in perfect harmony with your face, while preserving your natural tooth structure, in a gentle and pain-free way."
       },
       {
         "name": "Dental Implants",
-        "description": "Permanent, natural-looking replacements for missing teeth, restored with titanium implants."
+        "description": "Permanent, natural-looking replacements for missing teeth, restored with titanium implants.",
+        "detail": "Implantology replaces one or more missing teeth with artificial titanium roots, onto which aesthetic crowns are fixed. The result restores full chewing function and a completely natural smile. Placement is performed under optimal conditions of precision, hygiene and comfort, with attentive follow-up at every step."
       },
       {
         "name": "Aesthetic Dentistry",
-        "description": "Smile design and harmonisation of tooth shape and shade for a brilliant, long-lasting result."
+        "description": "Smile design and harmonisation of tooth shape and shade for a brilliant, long-lasting result.",
+        "detail": "Your smile is the signature of your face. Through a complete analysis of the shape, shade and position of your teeth, custom aesthetic solutions are offered: whitening, bonding and smile harmonisation. Every treatment plan is personalised to reveal a brilliant, natural and durable result, improving both aesthetics and well-being."
       },
       {
         "name": "Orthodontics",
-        "description": "Tooth alignment and correction for a harmonious smile, with discreet and effective solutions."
+        "description": "Tooth alignment and correction for a harmonious smile, with discreet and effective solutions.",
+        "detail": "Orthodontics corrects tooth alignment and bite problems for a harmonious, functional smile. Discreet and effective solutions are available, including for adults who prefer to avoid visible appliances. By the end of the treatment, your teeth regain a stable position and ideal balance."
       },
       {
         "name": "Root Canal Treatment",
-        "description": "Precise, painless endodontic care to save an infected tooth and provide long-lasting relief."
+        "description": "Precise, painless endodontic care to save an infected tooth and provide long-lasting relief.",
+        "detail": "Root canal treatment (endodontics) removes the infected nerve, then cleans, disinfects and seals the canals with maximum precision, using a microscope where needed. This approach saves a tooth that would otherwise be lost, while providing lasting pain relief and avoiding extraction."
       },
       {
         "name": "Composite Restoration",
-        "description": "Aesthetic composite resin restorations to repair and rebuild teeth with a natural-looking finish."
+        "description": "Aesthetic composite resin restorations to repair and rebuild teeth with a natural-looking finish.",
+        "detail": "Composite resin restorations rebuild the tooth in an aesthetic, fast and durable way. The shade is precisely matched to your natural tooth for a completely invisible result. Ideal for repairing cavities, fractures, wear or gaps between teeth, with a harmonious and long-lasting finish."
       }
     ],
     "learnMore": "Learn more",
