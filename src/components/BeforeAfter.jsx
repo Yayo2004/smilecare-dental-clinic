@@ -100,7 +100,9 @@ export function ComparisonSlider({ before, after, label, beforeLabel, afterLabel
 
   return (
     <div>
-      <p className="mb-4 text-center text-base font-bold text-navy">{label}</p>
+      {label ? (
+        <p className="mb-4 text-center text-base font-bold text-navy">{label}</p>
+      ) : null}
 
       <div
         ref={containerRef}
@@ -110,7 +112,7 @@ export function ComparisonSlider({ before, after, label, beforeLabel, afterLabel
       >
         <img
           src={before}
-          alt={`${label} ${beforeLabel}`}
+          alt={label ? `${label} ${beforeLabel}` : beforeLabel}
           className="absolute inset-0 h-full w-full object-cover"
           draggable={false}
         />
@@ -121,7 +123,7 @@ export function ComparisonSlider({ before, after, label, beforeLabel, afterLabel
         >
           <img
             src={after}
-            alt={`${label} ${afterLabel}`}
+            alt={label ? `${label} ${afterLabel}` : afterLabel}
             className="absolute inset-0 h-full object-cover"
             style={{ width: imgWidth || '100%' }}
             draggable={false}

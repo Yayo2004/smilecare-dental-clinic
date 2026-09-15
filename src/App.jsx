@@ -22,10 +22,28 @@ import ServicePage from './components/ServicePage'
 const ADMIN_ENABLED = import.meta.env.VITE_ENABLE_ADMIN === 'true'
 const AdminPanel = ADMIN_ENABLED ? lazy(() => import('./components/AdminPanel')) : null
 
+const SPLASH_KEY = 'clinic_splash_seen'
+
 /** Home page — full landing with all sections. */
 function HomePage() {
   const { t } = useTranslation()
-  const [splashDone, setSplashDone] = useState(false)
+  // Welcome animation shows once per browsing session (sessionStorage, not localStorage)
+  const [splashDone, setSplashDone] = useState(() => {
+    try {
+      return window.sessionStorage.getItem(SPLASH_KEY) === '1'
+    } catch {
+      return false
+    }
+  })
+
+  const handleSplashDone = () => {
+    try {
+      window.sessionStorage.setItem(SPLASH_KEY, '1')
+    } catch {
+      /* sessionStorage unavailable — ignore */
+    }
+    setSplashDone(true)
+  }
 
   useEffect(() => {
     document.title = t('meta.title')
@@ -37,7 +55,7 @@ function HomePage() {
   return (
     <div className="min-h-screen overflow-x-hidden">
       <AnimatePresence>
-        {!splashDone && <SplashScreen key="splash" onDone={() => setSplashDone(true)} />}
+        {!splashDone && <SplashScreen key="splash" onDone={handleSplashDone} />}
       </AnimatePresence>
       <Navbar />
       <main>

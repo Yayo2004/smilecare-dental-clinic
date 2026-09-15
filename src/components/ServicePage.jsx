@@ -128,7 +128,7 @@ export default function ServicePage() {
 
       <Navbar />
 
-      <main key={lang}>
+      <main key={`${lang}-${slug}`}>
         {/* ===== HERO ===== */}
         <section className="relative flex min-h-[72vh] items-end overflow-hidden bg-navy">
           <motion.img
@@ -223,7 +223,7 @@ export default function ServicePage() {
                 whileInView="visible"
                 viewport={{ ...viewport, amount: 0.2 }}
               >
-                {content.introParagraphs.map((paragraph) => (
+                {content.introParagraphs?.map((paragraph) => (
                   <motion.p
                     key={paragraph}
                     variants={fadeInUp}
@@ -275,7 +275,7 @@ export default function ServicePage() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.15 }}
             >
-              {content.steps.map((step, i) => {
+              {content.steps?.map((step, i) => {
                 const Icon = STEP_ICONS[i % STEP_ICONS.length]
                 return (
                   <motion.li
@@ -321,7 +321,7 @@ export default function ServicePage() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.15 }}
             >
-              {content.benefits.map((benefit, i) => {
+              {content.benefits?.map((benefit, i) => {
                 const Icon = BENEFIT_ICONS[i % BENEFIT_ICONS.length]
                 return (
                   <motion.li
@@ -352,7 +352,7 @@ export default function ServicePage() {
                 viewport={viewport}
               >
                 <span className="eyebrow">{t('results.eyebrow')}</span>
-                <h2 className="section-title mt-4">{content.galleryTitle}</h2>
+                <h2 className="section-title mt-4">{t('results.title')}</h2>
               </motion.div>
 
               <motion.div
@@ -362,12 +362,11 @@ export default function ServicePage() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                {page.gallery.map((pair, i) => (
+                {page.gallery.map((pair) => (
                   <motion.div key={pair.before} variants={fadeInLeft} className="overflow-hidden rounded-2xl">
                     <ComparisonSlider
                       before={pair.before}
                       after={pair.after}
-                      label={i === 0 ? serviceName : `${serviceName} — ${t('results.eyebrow')}`}
                       beforeLabel={t('results.before')}
                       afterLabel={t('results.after')}
                     />
@@ -393,7 +392,7 @@ export default function ServicePage() {
             </motion.div>
 
             <div className="mt-12 space-y-4">
-              {content.faq.map((item, i) => {
+              {content.faq?.map((item, i) => {
                 const open = openFaq === i
                 return (
                   <motion.div
