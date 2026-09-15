@@ -96,6 +96,233 @@
     "modalClose": "Close",
     "ctaPrimary": "Book an Appointment"
   },
+  "servicePages": {
+    "facettes-dentaires-casablanca": {
+      "metaTitle": "Dental Veneers in Casablanca | Dr Myriam Lahlou",
+      "metaDescription": "Dental veneers in Casablanca by Dr Myriam Lahlou. Natural, long-lasting veneers for a radiant smile. Book your appointment.",
+      "heroBadge": "Dental Veneers in Casablanca",
+      "heroSubtitle": "Redesign your smile with custom-made veneers — natural and long-lasting.",
+      "introParagraphs": [
+        "Dental veneers are ultra-thin shells of ceramic or composite bonded to the front of the teeth to modify their shape, shade or alignment. They permanently correct smile imperfections — stained, chipped, slightly misaligned or small teeth — without heavy treatment.",
+        "Dr Myriam Lahlou designs each veneer fully customised, taking into account the facial features, the shade of natural teeth and the patient's aesthetic goals. The aim: a harmonious, brilliant and completely natural smile.",
+        "The treatment is completed in 2 to 3 appointments: a preparatory and impression visit, then the definitive bonding of the veneers with careful control of the bite and symmetry."
+      ],
+      "whoFor": "This treatment is ideal for people who want to improve the aesthetics of their smile without heavy preparation. It suits healthy teeth, free of cavities and gum disease.",
+      "stepsTitle": "Treatment Process",
+      "steps": [
+        { "title": "Initial consultation", "text": "Dr Lahlou analyses your smile, takes photos and digital impressions to design the ideal veneers." },
+        { "title": "Impression & simulation", "text": "A digital mock-up shows you the final result before bonding, to validate the shape and shade you want." },
+        { "title": "Tooth preparation", "text": "A micro-layer (about 0.5 mm) is removed from the tooth surface to seat the veneers without excess bulk." },
+        { "title": "Definitive bonding", "text": "The veneers are bonded with high-adhesion composite. Dr Lahlou fine-tunes the bite and symmetry for a perfect result." },
+        { "title": "Check-up & follow-up", "text": "A review appointment is scheduled a few days after bonding to verify comfort and smile harmony." }
+      ],
+      "benefitsTitle": "Benefits of Dental Veneers",
+      "benefits": [
+        "Natural smile: veneers perfectly mimic natural enamel",
+        "Shade correction: eliminates stains and yellow discolouration",
+        "Long-lasting: 10 to 15 years with good oral hygiene",
+        "Gentle preparation: minimal enamel removal",
+        "Immediate result: the smile changes from the day of bonding"
+      ],
+      "faqTitle": "Frequently Asked Questions",
+      "faq": [
+        { "q": "Do veneers damage natural teeth?", "a": "No, preparation only removes a very thin layer of enamel (0.3 to 0.5 mm). Teeth remain healthy and well protected." },
+        { "q": "What is the cost of dental veneers in Casablanca?", "a": "The cost depends on the number of veneers and the material chosen (ceramic or composite). A quote is provided at the first visit." },
+        { "q": "How long do veneers last?", "a": "Ceramic veneers last on average 10 to 15 years. Composite veneers last 5 to 8 years." },
+        { "q": "Can I eat normally with veneers?", "a": "Yes, veneers withstand normal biting forces. However, biting hard objects (nuts, ice) directly with veneered teeth is not recommended." }
+      ],
+      "galleryTitle": "Before / After — Dental Veneers",
+      "otherTitle": "Other Treatments",
+      "otherSubtitle": "Discover our other dental treatments in Casablanca."
+    },
+    "implants-dentaires-casablanca": {
+      "metaTitle": "Dental Implants in Casablanca | Dr Myriam Lahlou",
+      "metaDescription": "Dental implants in Casablanca by Dr Myriam Lahlou. Permanent, natural replacement of missing teeth. Book your appointment.",
+      "heroBadge": "Dental Implants in Casablanca",
+      "heroSubtitle": "Replace missing teeth with titanium implants for a complete, natural smile.",
+      "introParagraphs": [
+        "A dental implant is an artificial titanium root, surgically placed in the jawbone, onto which a definitive crown or bridge is fixed. It is the most reliable and durable solution for replacing one or more missing teeth.",
+        "Dr Myriam Lahlou masters modern implantology techniques: immediate-load placement, bone grafting when needed, and personalised post-operative follow-up. Every implant is planned in 3D for maximum precision.",
+        "With implants, you regain full chewing function without altering neighbouring teeth, and oral comfort comparable to natural teeth."
+      ],
+      "whoFor": "Implants suit adults in good oral health with sufficient jawbone. Bone grafting may be offered if the bone is insufficient.",
+      "stepsTitle": "Treatment Process",
+      "steps": [
+        { "title": "Assessment & imaging", "text": "A complete work-up including a 3D scan (CBCT) evaluates bone density and plans the implant placement." },
+        { "title": "Implant placement", "text": "The titanium implant is inserted into the bone under local anaesthesia. The procedure lasts 30 to 60 minutes." },
+        { "title": "Osseointegration", "text": "Over 3 to 6 months, the bone naturally fuses around the implant. A provisional crown can be worn during this period." },
+        { "title": "Definitive crown", "text": "An impression is taken, then the definitive ceramic crown is fixed onto the implant." },
+        { "title": "Long-term follow-up", "text": "Regular check-ups monitor the condition of the implant and gums." }
+      ],
+      "benefitsTitle": "Benefits of Dental Implants",
+      "benefits": [
+        "Permanent solution: implants can last a lifetime with proper care",
+        "Natural appearance: custom crowns indistinguishable from natural teeth",
+        "Bone preservation: stimulates the jawbone",
+        "Neighbouring teeth untouched: healthy teeth are not altered",
+        "Comfort like natural teeth: normal chewing and speech"
+      ],
+      "faqTitle": "Frequently Asked Questions",
+      "faq": [
+        { "q": "Is dental implant placement painful?", "a": "Placement is done under local anaesthesia. Most patients describe minimal discomfort, similar to tooth extraction." },
+        { "q": "How long does the full treatment take?", "a": "The complete treatment lasts 4 to 8 months, including the osseointegration period (3 to 6 months)." },
+        { "q": "Are implants suitable for smokers?", "a": "Smokers have a slightly higher risk of implant failure. Reducing tobacco before and after surgery is recommended." },
+        { "q": "Can several implants be placed in one session?", "a": "Yes, multiple placements are possible in a single session. A personalised treatment plan is established at the first visit." }
+      ],
+      "galleryTitle": "Before / After — Dental Implants",
+      "otherTitle": "Other Treatments",
+      "otherSubtitle": "Discover our other dental treatments in Casablanca."
+    },
+    "esthetique-dentaire-casablanca": {
+      "metaTitle": "Aesthetic Dentistry in Casablanca | Dr Myriam Lahlou",
+      "metaDescription": "Aesthetic dentistry in Casablanca by Dr Myriam Lahlou. Harmonious smile, brilliant shade, durable results. Book your appointment.",
+      "heroBadge": "Aesthetic Dentistry in Casablanca",
+      "heroSubtitle": "Enhance your smile with personalised, high-performance aesthetic treatments.",
+      "introParagraphs": [
+        "Aesthetic dentistry covers all treatments that improve the appearance of the smile: whitening, harmonisation, bonding, adjustments of tooth shape and shade. The goal is a natural, brilliant result in perfect keeping with the facial features.",
+        "Dr Myriam Lahlou combines clinical expertise and artistic sensitivity to offer tailor-made aesthetic solutions for each patient. Results are visible from the very first sessions.",
+        "Whether you want to whiten your teeth, correct a slight asymmetry or harmonise your whole smile, a personalised treatment plan is proposed."
+      ],
+      "whoFor": "Anyone in good oral health wishing to improve their smile — dull, stained, slightly asymmetrical or gapped teeth.",
+      "stepsTitle": "Treatment Process",
+      "steps": [
+        { "title": "Smile analysis", "text": "Photographs, impressions and examination of the gums and teeth define the aesthetic goals." },
+        { "title": "Treatment plan", "text": "Dr Lahlou presents the suitable options: whitening, composite, veneers, or a combination of techniques." },
+        { "title": "Whitening session", "text": "For dull shades, chairside whitening is completed in about 1 to 2 hours with full gum protection." },
+        { "title": "Bonding & adjustments", "text": "Minor defects (thickness, shape, spacing) are corrected with composite for a natural look." },
+        { "title": "Final photo & follow-up", "text": "Comparison photos confirm the result. A maintenance product is provided to keep the shine." }
+      ],
+      "benefitsTitle": "Benefits of Aesthetic Dentistry",
+      "benefits": [
+        "Brilliant smile: white, natural and harmonious shade",
+        "Quick results: visible changes from the first session",
+        "Non-invasive treatment: maximum preservation of natural teeth",
+        "Combinable solutions: whitening + composite + veneers to fit your needs",
+        "Positive psychological effect: reinforced self-confidence"
+      ],
+      "faqTitle": "Frequently Asked Questions",
+      "faq": [
+        { "q": "Is teeth whitening harmful?", "a": "No, when performed under medical supervision whitening is safe and does not damage enamel. Dr Lahlou uses professional-grade products." },
+        { "q": "How long does whitening last?", "a": "Results last 1 to 2 years on average, depending on your habits (tobacco, coffee, tea). Periodical top-ups maintain the shine." },
+        { "q": "Can whitening and veneers be combined?", "a": "Yes, in some cases whitening is done before veneers to define the ideal shade." },
+        { "q": "Is composite strong enough?", "a": "Yes, modern composites offer excellent resistance to staining and wear, with great aesthetic results." }
+      ],
+      "galleryTitle": "Before / After — Aesthetic Dentistry",
+      "otherTitle": "Other Treatments",
+      "otherSubtitle": "Discover our other dental treatments in Casablanca."
+    },
+    "orthodontie-casablanca": {
+      "metaTitle": "Orthodontics in Casablanca | Dr Myriam Lahlou",
+      "metaDescription": "Orthodontics in Casablanca by Dr Myriam Lahlou. Discreet, effective alignment for a harmonious smile. Book your appointment.",
+      "heroBadge": "Orthodontics in Casablanca",
+      "heroSubtitle": "Correct tooth alignment with discreet, tailor-made solutions.",
+      "introParagraphs": [
+        "Orthodontics corrects tooth misalignment, bite problems and unwanted gaps, for a harmonious and functional smile. It concerns both children and adults.",
+        "Dr Myriam Lahlou offers modern, discreet solutions: clear aligners (Invisalign-type), ceramic braces and techniques adapted to each case, with regular follow-up.",
+        "Beyond aesthetics, orthodontics improves oral health by making brushing easier, reducing cavity risk and relieving jaw joint tension."
+      ],
+      "whoFor": "Anyone with tooth misalignment, malocclusion or gaps between teeth, regardless of age. Adults now represent a large share of orthodontic patients.",
+      "stepsTitle": "Treatment Process",
+      "steps": [
+        { "title": "Orthodontic assessment", "text": "Imaging and 3D modelling analyse the position of the teeth and the dental arch." },
+        { "title": "Choosing the appliance", "text": "Clear aligners, ceramic braces or a combination, depending on the case and the patient's preferences." },
+        { "title": "Setup", "text": "Aligners are made to measure and worn 20 to 22 hours a day. Changed every two weeks." },
+        { "title": "Regular follow-up", "text": "Review appointments every 6 to 8 weeks fine-tune the treatment." },
+        { "title": "Retention", "text": "After treatment, a retainer (bonded wire or tray) permanently maintains the results." }
+      ],
+      "benefitsTitle": "Why Choose This Treatment",
+      "benefits": [
+        "Precise alignment: clear aligners correct misalignments with accuracy",
+        "Discreetness: ceramic braces and aligners are virtually invisible",
+        "Comfort: no visible wires, simple and fast adjustments",
+        "Oral health: easier brushing after treatment",
+        "Stable results: permanent retention after treatment"
+      ],
+      "faqTitle": "Frequently Asked Questions",
+      "faq": [
+        { "q": "Is orthodontics possible at any age?", "a": "Yes, orthodontics suits both adults and children. Adult bone moves more slowly but results are just as satisfactory." },
+        { "q": "How long does orthodontic treatment take?", "a": "Duration varies from 6 to 24 months depending on case complexity. Dr Lahlou establishes a precise timeline at the initial assessment." },
+        { "q": "Are clear aligners really invisible?", "a": "Almost invisible, yes. In normal conversation they go unnoticed — the ideal solution for adults seeking maximum discreetness." },
+        { "q": "Do I need a retainer after treatment?", "a": "Yes, to stabilise long-term results. A bonded wire behind the teeth or a night tray is usually recommended." }
+      ],
+      "otherTitle": "Other Treatments",
+      "otherSubtitle": "Discover our other dental treatments in Casablanca."
+    },
+    "traitement-canalaire-casablanca": {
+      "metaTitle": "Root Canal Treatment in Casablanca | Dr Myriam Lahlou",
+      "metaDescription": "Painless root canal treatment in Casablanca by Dr Myriam Lahlou. Save your infected tooth with precision care. Book your appointment.",
+      "heroBadge": "Root Canal Treatment in Casablanca",
+      "heroSubtitle": "Save your infected tooth with precise, painless root canal care.",
+      "introParagraphs": [
+        "Root canal treatment (endodontics) removes the infected dental pulp (the nerve), then cleans, disinfects and seals the root canals. It saves a tooth that would otherwise be lost.",
+        "Dr Myriam Lahlou performs root canal treatments under a microscope, with modern techniques ensuring great precision. The procedure is done under local anaesthesia, in optimal comfort.",
+        "After treatment, the tooth is covered with a crown to restore its strength. The result is durable and the pain generally disappears within the first 24 hours."
+      ],
+      "whoFor": "Root canal treatment is needed for deep cavities, dental fractures or trauma that have infected the pulp. It is indicated when the tooth is still recoverable.",
+      "stepsTitle": "Treatment Process",
+      "steps": [
+        { "title": "Diagnosis & imaging", "text": "An X-ray or scan evaluates the extent of infection and the shape of the canals." },
+        { "title": "Anaesthesia & access", "text": "Under local anaesthesia, a small opening is made in the tooth to reach the pulp." },
+        { "title": "Canal cleaning", "text": "The canals are enlarged, cleaned and disinfected with precision instruments under a microscope." },
+        { "title": "Sealing", "text": "The canals are sealed with a biocompatible material to prevent re-infection." },
+        { "title": "Final restoration", "text": "The tooth is covered with a crown to restore strength and aesthetics." }
+      ],
+      "benefitsTitle": "Why Choose This Treatment",
+      "benefits": [
+        "Painless: the procedure is done under local anaesthesia, without pain",
+        "Precision: operating microscope for optimal cleaning",
+        "Tooth saving: avoids extraction and implant replacement",
+        "Quick relief: pain disappears within 24 to 48 hours",
+        "Durability: the crown protects the restored tooth for years"
+      ],
+      "faqTitle": "Frequently Asked Questions",
+      "faq": [
+        { "q": "Is root canal treatment painful?", "a": "No, it is performed under local anaesthesia and is completely painless. Most patients feel no pain during the procedure." },
+        { "q": "How many visits are needed?", "a": "Most root canals are completed in a single session of about 45 to 60 minutes." },
+        { "q": "Does the tooth remain alive after treatment?", "a": "No, the pulp is removed. However, the tooth remains functional and anchored in the bone, protected by a crown." },
+        { "q": "What if pain persists after treatment?", "a": "Minor discomfort is normal for 2 to 3 days. If pain continues beyond that, a prompt check-up is needed." }
+      ],
+      "otherTitle": "Other Treatments",
+      "otherSubtitle": "Discover our other dental treatments in Casablanca."
+    },
+    "composite-casablanca": {
+      "metaTitle": "Composite Restoration in Casablanca | Dr Myriam Lahlou",
+      "metaDescription": "Aesthetic composite restoration in Casablanca by Dr Myriam Lahlou. Invisible, natural repair of damaged teeth. Book your appointment.",
+      "heroBadge": "Composite Restoration in Casablanca",
+      "heroSubtitle": "Repair damaged teeth with invisible, aesthetic composite restorations.",
+      "introParagraphs": [
+        "Dental composite is an aesthetic restorative material, shaded to match the natural tooth. It repairs cavities, fractures, chips and gaps with a completely invisible result.",
+        "Dr Myriam Lahlou masters layered stratification, an advanced protocol that applies the composite in successive layers to faithfully reproduce the nuances and translucency of natural enamel.",
+        "Composite is applied in a single session, with no impression or laboratory work. It is a fast, cost-effective and aesthetically strong solution for front and back teeth."
+      ],
+      "whoFor": "Composite suits cavities, fractures, chips, diastemas (gaps) and minor aesthetic changes. It is an alternative to veneers for simple corrections.",
+      "stepsTitle": "Treatment Process",
+      "steps": [
+        { "title": "Preparation", "text": "The damaged area is cleaned and prepared. If a cavity is present, it is removed under local anaesthesia." },
+        { "title": "Shade selection", "text": "Dr Lahlou precisely selects the composite shade to match the natural tooth." },
+        { "title": "Layered stratification", "text": "The composite is applied layer by layer, each cured with light for strength and aesthetics." },
+        { "title": "Final polishing", "text": "The restoration is polished to a natural shine and smooth feel, indistinguishable from the tooth." },
+        { "title": "Bite check", "text": "Dr Lahlou verifies that chewing works correctly without overloading the restoration." }
+      ],
+      "benefitsTitle": "Why Choose This Treatment",
+      "benefits": [
+        "Invisible result: shade perfectly matched to the natural tooth",
+        "Speed: treatment completed in a single session",
+        "Tooth preservation: minimal preparation",
+        "Immediate aesthetic result: the tooth regains its natural shape",
+        "Affordable: economical alternative to veneers"
+      ],
+      "faqTitle": "Frequently Asked Questions",
+      "faq": [
+        { "q": "Does composite stain over time?", "a": "Modern composite resists staining well. With good hygiene, it keeps its shine for 5 to 8 years." },
+        { "q": "How long does a composite restoration last?", "a": "On average 5 to 8 years, depending on location, chewing load and patient habits." },
+        { "q": "Is composite as strong as a crown?", "a": "For small and medium restorations, yes. For heavily damaged teeth, a crown may be preferable." },
+        { "q": "Can composite be placed on an already restored tooth?", "a": "Yes, an old composite can be replaced or repaired. Dr Lahlou assesses the best option at the visit." }
+      ],
+      "otherTitle": "Other Treatments",
+      "otherSubtitle": "Discover our other dental treatments in Casablanca."
+    }
+  },
   "about": {
     "eyebrow": "About",
     "title": "Dr Myriam Lahlou Dental Clinic",

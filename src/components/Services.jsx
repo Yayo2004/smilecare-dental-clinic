@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Anchor, Braces, CalendarCheck, ShieldCheck, Sparkles, X, Syringe } from 'lucide-react'
+import { Anchor, Braces, ShieldCheck, Sparkles, Syringe } from 'lucide-react'
 import { fadeInUp, staggerContainer, viewport } from '../animations'
+import SERVICE_PAGES from '../data/servicePages'
 
 /** Simple line icon for the tooth service (no lucide Tooth icon) — matches lucide stroke style. */
 function ToothIcon({ className }) {
@@ -35,35 +36,11 @@ const cardUp = {
   },
 }
 
-/** Services grid — clean minimal numbered cells, thin hairline separators. */
+/** Services grid — clean minimal numbered cells linking to dedicated service pages. */
 export default function Services() {
   const { t, i18n } = useTranslation()
   const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
   const services = t('services.items', { returnObjects: true })
-  const [active, setActive] = useState(null)
-
-  useEffect(() => {
-    if (active === null) return undefined
-    const onKey = (e) => {
-      if (e.key === 'Escape') setActive(null)
-    }
-    window.addEventListener('keydown', onKey)
-    document.body.style.overflow = 'hidden'
-    return () => {
-      window.removeEventListener('keydown', onKey)
-      document.body.style.overflow = ''
-    }
-  }, [active])
-
-  const handleReserve = () => {
-    setActive(null)
-    setTimeout(() => {
-      const el = document.getElementById('reservation')
-      if (el) el.scrollIntoView({ behavior: 'smooth' })
-    }, 350)
-  }
-
-  const activeService = active !== null ? services[active] : null
 
   return (
     <section id="services" key={lang} className="bg-white py-20 lg:py-28">
@@ -92,16 +69,19 @@ export default function Services() {
           {services.map((service, i) => {
             const Icon = ICONS[i % ICONS.length]
             const number = String(i + 1).padStart(2, '0')
+            const page = SERVICE_PAGES[i]
             return (
-              <motion.button
+              <motion.div
                 key={service.name}
-                type="button"
                 variants={cardUp}
-                onClick={() => setActive(i)}
-                className="group relative bg-white p-8 text-left transition-colors duration-300 hover:bg-mint/60 sm:p-10"
-                aria-haspopup="dialog"
-                aria-expanded={active === i}
+                className="group relative bg-white p-8 transition-colors duration-300 hover:bg-mint/60 sm:p-10"
               >
+                <Link
+                  to={`/services/${page.slug}`}
+                  className="absolute inset-0 z-10 rounded-3xl"
+                  aria-label={service.name}
+                />
+
                 {/* Subtle number, top-right */}
                 <span className="absolute right-8 top-8 text-sm font-semibold tracking-widest text-navy/30 transition-colors duration-300 group-hover:text-primary/60">
                   {number}
@@ -135,85 +115,11 @@ export default function Services() {
                     <path d="m12 5 7 7-7 7" />
                   </svg>
                 </span>
-              </motion.button>
+              </motion.div>
             )
           })}
         </motion.div>
       </div>
-
-      {/* Service popup — smooth, attractive */}
-      <AnimatePresence>
-        {active !== null && activeService && (
-          <motion.div
-            key="service-modal"
-            className="fixed inset-0 z-[90] flex items-end justify-center bg-navy/60 p-0 backdrop-blur-sm sm:items-center sm:p-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            onClick={() => setActive(null)}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="service-modal-title"
-          >
-            <motion.div
-              className="relative w-full max-w-lg overflow-hidden rounded-t-3xl bg-white shadow-2xl sm:rounded-3xl"
-              initial={{ opacity: 0, y: 80, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 60, scale: 0.96 }}
-              transition={{ type: 'spring', damping: 26, stiffness: 300 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Decorative top band */}
-              <div className="relative bg-gradient-to-tr from-primary to-primary-light px-7 pb-8 pt-7 sm:px-9">
-                <div className="pointer-events-none absolute -right-10 -top-12 h-40 w-40 rounded-full bg-white/15" />
-                <div className="pointer-events-none absolute -bottom-14 -left-8 h-32 w-32 rounded-full bg-white/10" />
-
-                <button
-                  type="button"
-                  onClick={() => setActive(null)}
-                  className="absolute right-5 top-5 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-all duration-200 hover:rotate-90 hover:bg-white/30"
-                  aria-label={t('services.modalClose')}
-                >
-                  <X className="h-5 w-5" aria-hidden="true" />
-                </button>
-
-                <div className="relative">
-                  <span className="text-sm font-semibold tracking-widest text-white/70">
-                    {String(active + 1).padStart(2, '0')} — {t('services.eyebrow')}
-                  </span>
-                  <div className="mt-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 text-white backdrop-blur-sm">
-                    {(() => {
-                      const Icon = ICONS[active % ICONS.length]
-                      return <Icon className="h-7 w-7" />
-                    })()}
-                  </div>
-                  <h3 id="service-modal-title" className="mt-5 font-display text-3xl font-bold text-white">
-                    {activeService.name}
-                  </h3>
-                </div>
-              </div>
-
-              {/* Body */}
-              <div className="px-7 py-7 sm:px-9">
-                <p className="max-h-56 overflow-y-auto text-[1.05rem] leading-relaxed text-navy/80">
-                  {activeService.detail}
-                </p>
-
-                <button
-                  type="button"
-                  onClick={handleReserve}
-                  className="group relative mt-8 inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-primary px-8 py-4 font-semibold text-white shadow-soft transition-all duration-300 hover:bg-primary-dark hover:shadow-card active:scale-95"
-                >
-                  <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-                  <CalendarCheck className="h-5 w-5" aria-hidden="true" />
-                  {t('services.ctaPrimary')}
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   )
 }

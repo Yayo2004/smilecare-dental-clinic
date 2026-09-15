@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ArrowUp, Clock, Instagram, Mail, MapPin, Phone } from 'lucide-react'
 import Logo from './Logo'
@@ -49,9 +50,9 @@ export default function Footer() {
         >
           {/* Brand */}
           <motion.div variants={fadeInUp}>
-            <a href="#home" className="inline-flex items-center">
+            <Link to="/" className="inline-flex items-center">
               <Logo src="/logo-white.png" className="h-11 shrink-0 sm:h-10 lg:h-[3.75rem]" />
-            </a>
+            </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
               {t('footer.tagline')}
             </p>
@@ -65,12 +66,12 @@ export default function Footer() {
             <ul className="mt-4 space-y-2.5">
               {navLinks.map((link) => (
                 <li key={link}>
-                  <a
-                    href={`#${link}`}
+                  <Link
+                    to={link === 'home' ? '/' : `/#${link}`}
                     className="text-sm text-white/60 transition-colors hover:text-accent"
                   >
                     {t(`nav.${link}`)}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -159,13 +160,14 @@ export default function Footer() {
               <Clock className="h-4 w-4 text-accent" aria-hidden="true" />
               {t('footer.developed')}
             </span>
-            <a
-              href="#home"
+            <button
+              type="button"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/80 transition-all hover:-translate-y-1 hover:bg-primary hover:text-white"
               aria-label={t('footer.backToTop')}
             >
               <ArrowUp className="h-5 w-5" aria-hidden="true" />
-            </a>
+            </button>
           </div>
         </motion.div>
       </div>

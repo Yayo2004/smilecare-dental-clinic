@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
 import { AnimatePresence, MotionConfig } from 'framer-motion'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -14,15 +15,16 @@ import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
 import ReminderBanner from './components/ReminderBanner'
 import SplashScreen from './components/SplashScreen'
+import ServicePage from './components/ServicePage'
 
 // AdminPanel is only bundled when VITE_ENABLE_ADMIN=true (offer with admin).
 // For a vitrine-only build (offer without admin) this code is tree-shaken out entirely.
 const ADMIN_ENABLED = import.meta.env.VITE_ENABLE_ADMIN === 'true'
 const AdminPanel = ADMIN_ENABLED ? lazy(() => import('./components/AdminPanel')) : null
 
-export default function App() {
+/** Home page — full landing with all sections. */
+function HomePage() {
   const { t } = useTranslation()
-  const [isAdmin, setIsAdmin] = useState(ADMIN_ENABLED && window.location.hash === '#/admin')
   const [splashDone, setSplashDone] = useState(false)
 
   useEffect(() => {
@@ -31,6 +33,32 @@ export default function App() {
       .querySelector('meta[name="description"]')
       ?.setAttribute('content', t('meta.description'))
   }, [t])
+
+  return (
+    <div className="min-h-screen overflow-x-hidden">
+      <AnimatePresence>
+        {!splashDone && <SplashScreen key="splash" onDone={() => setSplashDone(true)} />}
+      </AnimatePresence>
+      <Navbar />
+      <main>
+        <Hero splashDone={splashDone} />
+        <BeforeAfter />
+        <Services />
+        <About />
+        <Testimonials />
+        <InstagramSection />
+        <ReservationForm />
+        <Contact />
+      </main>
+      <Footer />
+      <WhatsAppButton />
+      <ReminderBanner />
+    </div>
+  )
+}
+
+export default function App() {
+  const [isAdmin, setIsAdmin] = useState(ADMIN_ENABLED && window.location.hash === '#/admin')
 
   // Listen for hash changes
   useEffect(() => {
@@ -53,26 +81,14 @@ export default function App() {
 
   // Main site
   return (
-    <MotionConfig reducedMotion="user">
-      <div className="min-h-screen overflow-x-hidden">
-        <AnimatePresence>
-          {!splashDone && <SplashScreen key="splash" onDone={() => setSplashDone(true)} />}
-        </AnimatePresence>
-        <Navbar />
-        <main>
-          <Hero splashDone={splashDone} />
-          <BeforeAfter />
-          <Services />
-          <About />
-          <Testimonials />
-          <InstagramSection />
-          <ReservationForm />
-          <Contact />
-        </main>
-        <Footer />
-        <WhatsAppButton />
-        <ReminderBanner />
-      </div>
-    </MotionConfig>
+    <BrowserRouter>
+      <MotionConfig reducedMotion="user">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/services/:slug" element={<ServicePage />} />
+          <Route path="*" element={<HomePage />} />
+        </Routes>
+      </MotionConfig>
+    </BrowserRouter>
   )
 }

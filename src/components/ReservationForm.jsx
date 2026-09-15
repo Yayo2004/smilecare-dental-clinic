@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import {
@@ -19,6 +19,7 @@ import {
 } from '../animations'
 import Tooth from './Tooth'
 import { buildWhatsAppLink, CLINIC_INFO } from '../config'
+import { getServicePage } from '../data/servicePages'
 
 const PHONE_RE = /^[+0-9 ()/.-]{6,20}$/
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -91,6 +92,17 @@ export default function ReservationForm() {
   const [form, setForm] = useState(EMPTY_FORM)
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle')
+
+  // Prefill the "service wanted" field from ?service=<slug> (service page CTA)
+  useEffect(() => {
+    const slug = new URLSearchParams(window.location.search).get('service')
+    if (!slug) return
+    const page = getServicePage(slug)
+    if (!page) return
+    const option = services[page.formOptionIndex]
+    if (option) setForm((f) => ({ ...f, service: option }))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang])
 
   const today = useMemo(() => {
     const d = new Date()

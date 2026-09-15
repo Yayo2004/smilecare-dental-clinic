@@ -21,7 +21,7 @@ const CASES = [
  * Left half = before, right half = after.
  * Auto-animates on load, then user can drag to compare.
  */
-function ComparisonSlider({ before, after, label, beforeLabel, afterLabel }) {
+export function ComparisonSlider({ before, after, label, beforeLabel, afterLabel }) {
   const containerRef = useRef(null)
   const [pos, setPos] = useState(50)
   const [dragging, setDragging] = useState(false)

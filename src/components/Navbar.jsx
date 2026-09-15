@@ -1,5 +1,6 @@
 ﻿import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { CalendarCheck, Menu, Phone, X } from 'lucide-react'
 import LanguageSwitcher from './LanguageSwitcher'
@@ -17,6 +18,8 @@ const NAV_ITEMS = [
 /** Sticky navbar with fade+slide-down entrance on page load. */
 export default function Navbar() {
   const { t } = useTranslation()
+  const location = useLocation()
+  const navigate = useNavigate()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
 
@@ -27,10 +30,35 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Scroll to the section targeted via a hash (works from service pages too)
+  useEffect(() => {
+    if (location.pathname !== '/' || !location.hash) return
+    const id = location.hash.slice(1)
+    const timer = setTimeout(() => {
+      if (id === 'home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+        return
+      }
+      const el = document.getElementById(id)
+      if (el) {
+        window.scrollTo({
+          top: el.getBoundingClientRect().top + window.scrollY - 80,
+          behavior: 'smooth',
+        })
+      }
+    }, 250)
+    return () => clearTimeout(timer)
+  }, [location])
+
   const handleLinkClick = (e, href) => {
     e.preventDefault()
     setOpen(false)
-    // Wait for the mobile menu to collapse so the target position is accurate
+    // From a service page, navigate home with the anchor target
+    if (location.pathname !== '/') {
+      navigate(`/${href}`)
+      return
+    }
+    // On the home page: smooth-scroll to the target section
     setTimeout(() => {
       const isHome = href === '#home'
       const el = isHome ? document.body : document.querySelector(href)
@@ -41,6 +69,11 @@ export default function Navbar() {
         window.scrollTo({ top, behavior: 'smooth' })
       }
     }, 250)
+  }
+
+const handleLogoClick = () => {
+    setOpen(false)
+    if (location.pathname === '/') window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   return (
@@ -69,16 +102,16 @@ export default function Navbar() {
           <div className="flex items-center justify-self-start">
             <LanguageSwitcher />
           </div>
-          <a
-            href="#home"
+          <Link
+            to="/"
             className="flex min-w-0 items-center justify-self-center px-1"
-            onClick={(e) => handleLinkClick(e, '#home')}
+            onClick={handleLogoClick}
           >
             <Logo
               src={scrolled ? '/logo.png' : '/logo-white.png'}
               className="h-7 min-w-0 shrink-0 sm:h-10 lg:h-[3.75rem]"
             />
-          </a>
+          </Link>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -114,12 +147,16 @@ export default function Navbar() {
         </div>
 
         <div className="hidden w-full items-center justify-between gap-2 lg:flex">
-          <a href="#home" className="flex min-w-0 shrink-0 items-center" onClick={(e) => handleLinkClick(e, '#home')}>
+          <Link
+            to="/"
+            className="flex min-w-0 shrink-0 items-center"
+            onClick={handleLogoClick}
+          >
             <Logo
               src={scrolled ? '/logo.png' : '/logo-white.png'}
               className="h-7 shrink-0 transition-all duration-300 sm:h-10 lg:h-[3.75rem]"
             />
-          </a>
+          </Link>
 
           <ul className="flex items-center gap-1">
             {NAV_ITEMS.map((item) => (

@@ -94,8 +94,236 @@
     ],
     "learnMore": "En savoir plus",
     "modalClose": "Fermer",
-    "ctaPrimary": "Prendre rendez-vous"
+"ctaPrimary": "Prendre rendez-vous"
   },
+  "servicePages": {
+    "facettes-dentaires-casablanca": {
+      "metaTitle": "Facettes Dentaires à Casablanca | Dr Myriam Lahlou",
+      "metaDescription": "Pose de facettes dentaires par Dr Myriam Lahlou, chirurgien-dentiste à Casablanca. Sourire naturel, resultado durable. Prenez rendez-vous.",
+      "heroBadge": "Facettes dentaires à Casablanca",
+      "heroSubtitle": "Redessinez votre sourire avec des facettes sur-mesure, naturelles et durables.",
+      "introParagraphs": [
+        "Les facettes dentaires sont de fines pellicules en céramique ou en composite, collées sur la face visible des dents pour modifier leur forme, leur teinte ou leur alignement. Elles permettent de corriger définitivement les imperfections du sourire — dents tachées, fissurées, légèrement décalées ou trop petites — sans traitement lourd.",
+        "Le Dr Myriam Lahlou conçoit chaque facette de façon entièrement personnalisée, en tenant compte de la morphologie du visage, de la couleur des dents naturelles et du souhait esthétique du patient. L'objectif : un sourire harmonieux, éclatant et tout à fait naturel.",
+        "Le traitement se déroule en 2 à 3 rendez-vous : un premier rendez-vous de préparation et d'empreinte, puis la pose définitive des facettes avec un contrôle minutieux de l'occlusion et de la symétrie."
+      ],
+      "whoFor": "Ce soin est idéal pour les personnes qui souhaitent améliorer l'esthétique de leur sourire sans laserer ou alourdir les dents. Il convient aux dents saines, sans carie ni maladie gingivale.",
+      "stepsTitle": "Déroulement du traitement",
+      "steps": [
+        { "title": "Consultation initiale", "text": "Le Dr Lahlou analyse votre sourire, prend des photos et réalisent des empreintes numériques pour concevoir les facettes idéales." },
+        { "title": "Empreinte & simulation", "text": "Un mock-up numérique vous montre le résultat final avant même la pose, pour valider la forme et la teinte souhaitées." },
+        { "title": "Préparation des dents", "text": "Une micro-couche (environ 0.5 mm) est retirée de la surface des dents pour accueillir les facettes sans volume excessif." },
+        { "title": "Pose définitive", "text": "Les facettes sont collées avec un résine composite haute adhérence. Le Dr Lahlou ajuste l'occlusion et la symétrie pour un rendu parfait." },
+        { "title": "Contrôle & suivi", "text": "Un rendez-vous de contrôle est prévu quelques jours après la pose pour vérifier le confort et l'harmonie du sourire." }
+      ],
+      "benefitsTitle": "Bénéfices des facettes dentaires",
+      "benefits": [
+        "Sourire naturel : les facettes imitent parfaitement l'émail naturel",
+        "Correction des teintes : élimine les taches et la teinte jaune",
+        "Résultat durable : 10 à 15 ans avec une bonne hygiène",
+        "Préparation douce : minimum de dentine retirée",
+        "Résultat immédiat : le sourire change dès la pose"
+      ],
+      "faqTitle": "Questions fréquentes sur les facettes",
+      "faq": [
+        { "q": "Les facettes abîment-elles les dents naturelles ?", "a": "Non, la préparation retire seulement une très fine couche d'émail (0.3 à 0.5 mm). Les dents restent saines et bien protégées." },
+        { "q": "Quel est le tarif des facettes dentaires à Casablanca ?", "a": "Le coût dépend du nombre de facettes et du matériau choisi (céramique ou composite). Le devis est établi lors du premier rendez-vous." },
+        { "q": "Combien de temps durent les facettes ?", "a": "Les facettes céramiques durent en moyenne 10 à 15 ans. Les facettes composite ont une durée de vie de 5 à 8 ans." },
+        { "q": "Puis-je manger normalement avec des facettes ?", "a": "Oui, les facettes résistent aux pressions normales. Il est toutefois déconseillé de croquer des objets durs (noix, glaçons) directement avec les dents facetées." }
+      ],
+      "galleryTitle": "Avant / Après — Facettes dentaires",
+      "otherTitle": "Autres soins",
+      "otherSubtitle": "Découvrez nos autres traitements dentaires à Casablanca."
+    },
+    "implants-dentaires-casablanca": {
+      "metaTitle": "Implants Dentaires à Casablanca | Dr Myriam Lahlou",
+      "metaDescription": "Implants dentaires à Casablanca par Dr Myriam Lahlou. Remplacement permanent des dents manquantes, naturel et durable. Prenez rendez-vous.",
+      "heroBadge": "Implants dentaires à Casablanca",
+      "heroSubtitle": "Remplacez vos dents manquantes avec des implants en titane, pour un sourire complet et naturel.",
+      "introParagraphs": [
+        "L'implant dentaire est une racine artificielle en titane, insérée chirurgicalement dans l'os de la mâchoire, sur laquelle est fixée une couronne ou un bridge définitif. C'est la solution la plus fiable et la plus durable pour remplacer une ou plusieurs dents manquantes.",
+        "Le Dr Myriam Lahlou maîtrise les techniques d'implantologie modernes : pose à charge immédiate, greffe osseuse si nécessaire, et suivi post-opératoire personnalisé. Chaque implant est planifié en 3D pour une précision maximale.",
+        "Grâce aux implants, vous retrouvez une fonction masticatoire complète, sans altérer les dents voisines, et un confort buccal comparable à celui de vos dents naturelles."
+      ],
+      "whoFor": "Les implants conviennent aux adultes en bonne santé bucco-dentaire, dont l'os de la mâchoire est suffisant. Une greffe osseuse peut être proposée si l'os est insuffisant.",
+      "stepsTitle": "Déroulement du traitement",
+      "steps": [
+        { "title": "Bilan et imagerie", "text": "Un bilan complet incluant un scan 3D (CBCT) permet d'évaluer la densité osseuse et de planifier la pose de l'implant." },
+        { "title": "Pose de l'implant", "text": "L'implant en titane est inséré dans l'os sous anesthésie locale. L'intervention dure 30 à 60 minutes." },
+        { "title": "Osseointégration", "text": "Pendant 3 à 6 mois, l'os se soude naturellement autour de l'implant. Une couronne provisoire peut être portée pendant cette période." },
+        { "title": "Couronne définitive", "text": "Une empreinte est réalisée, puis la couronne définitive en céramique est fixée sur l'implant." },
+        { "title": "Suivi à long terme", "text": "Des contrôles réguliers sont prévus pour vérifier l'état de l'implant et de la gencive." }
+      ],
+      "benefitsTitle": "Bénéfices des implants dentaires",
+      "benefits": [
+        "Solution permanente : les implants durent toute la vie avec un bon suivi",
+        "Aspect naturel : couronnes sur-mesure indiscernables des dents naturelles",
+        "Préservation de l'os : stimulation de l'os de la mâchoire",
+        "Pas d'impact sur les dents voisines : les dents saines ne sont pas altérées",
+        "Confort comparable aux dents naturelles : mastication et élocution normales"
+      ],
+      "faqTitle": "Questions fréquentes sur les implants",
+      "faq": [
+        { "q": "L'implant dentaire est-il douloureux ?", "a": "La pose se fait sous anesthésie locale. La plupart des patients décrivent une gêne minimale, comparable à l'extraction d'une dent." },
+        { "q": "Combien de temps dure le traitement complet ?", "a": "Le traitement complet dure entre 4 et 8 mois, incluant la période d'osseointégration (3 à 6 mois)." },
+        { "q": "Les implants conviennent-ils aux fumeurs ?", "a": "Les fumeurs ont un risque légèrement plus élevé d'échec de l'implant. Une diminution du tabac est recommandée avant et après l'intervention." },
+        { "q": "Peut-on poser plusieurs implants en une seule intervention ?", "a": "Oui, la pose multiple est possible lors de la même séance. Un plan de traitement personnalisé est établi lors du premier rendez-vous." }
+      ],
+      "galleryTitle": "Avant / Après — Implants dentaires",
+      "otherTitle": "Autres soins",
+      "otherSubtitle": "Découvrez nos autres traitements dentaires à Casablanca."
+    },
+    "esthetique-dentaire-casablanca": {
+      "metaTitle": "Esthétique Dentaire à Casablanca | Dr Myriam Lahlou",
+      "metaDescription": "Esthétique dentaire à Casablanca par Dr Myriam Lahlou. Sourire harmonieux, teinte éclatante, résultat durable. Prenez rendez-vous.",
+      "heroBadge": "Esthétique dentaire à Casablanca",
+      "heroSubtitle": "Sublimez votre sourire grâce à des soins esthétiques personnalisés et performants.",
+      "introParagraphs": [
+        "L'esthétique dentaire regroupe l'ensemble des traitements visant à améliorer l'apparence du sourire : blanchiment, harmonisation, comblement, ajustement de la forme et de la teinte des dents. L'objectif est d'obtenir un résultat naturel, éclatant et en parfaite adéquation avec les traits du visage.",
+        "Le Dr Myriam Lahlou combine expertise clinique et sens artistique pour proposer des solutions esthétiques sur-mesure, adaptées à chaque patient. Les résultats sont visibles dès les premières séances.",
+        "Que vous souhaitiez éclaircir vos dents, corriger une légère asymétrie ou harmoniser l'ensemble de votre sourire, un plan de traitement personnalisé vous est proposé."
+      ],
+      "whoFor": "Toute personne en bonne santé bucco-dentaire souhaitant améliorer l'esthétique de son sourire — dents ternes, tachées, légèrement asymétriques ou espacées.",
+      "stepsTitle": "Déroulement du traitement",
+      "steps": [
+        { "title": "Analyse du sourire", "text": "Photographies, empreintes et examen de la gencive et des dents pour définir les objectifs esthétiques." },
+        { "title": "Plan de traitement", "text": "Le Dr Lahlou présente les options adaptées : blanchiment, composite, facettes, ou combinaison de plusieurs techniques." },
+        { "title": "Séance de blanchiment", "text": "Pour les teintes ternes, le blambicdentaire est réalisé en cabinet en environ 1 à 2 heures, avec protection gingivale." },
+        { "title": "Comblement & ajustements", "text": "Les petits défauts (épaisseur, forme, espacement) sont corrigés au composite pour un rendu naturel." },
+        { "title": "Photo finale & suivi", "text": "Des photos comparatives confirment le résultat. Un produit d'entretien est fourni pour maintenir l'éclat." }
+      ],
+      "benefitsTitle": "Bénéfices de l'esthétique dentaire",
+      "benefits": [
+        "Sourire éclatant : teinte blanche, naturelle et harmonieuse",
+        "Résultat rapide : modifications visibles dès la première séance",
+        "Traitement non invasif : préservation maximale des dents naturelles",
+        "Solutions combinables : blanchiment + composite + facettes selon vos besoins",
+        "Effet psychologique positif : confiance renforcée en soi"
+      ],
+      "faqTitle": "Questions fréquentes sur l'esthétique dentaire",
+      "faq": [
+        { "q": "Le blanchiment est-il nocif pour les dents ?", "a": "Non, lorsque réalisé sous contrôle médical, le blanchiment est sûr et n'altère pas l'émail. Le Dr Lahlou utilise des produits de qualité professionnelle." },
+        { "q": "Combien de temps dure un blanchiment ?", "a": "Les résultats durent 1 à 2 ans en moyenne, selon vos habitudes (tabac, café, thé). Des réflexions périodiques permettent de maintenir l'éclat." },
+        { "q": "Peut-on combiner blanchiment et facettes ?", "a": "Oui, dans certains cas le blanchiment est réalisé avant les facettes, pour définir la teinte idéale." },
+        { "q": "Est-ce que le composite résiste bien ?", "a": "Oui, les composites modernes offrent une grande résistance à la coloration et à l'usure, avec un rendu esthétique excellent." }
+      ],
+      "galleryTitle": "Avant / Après — Esthétique dentaire",
+      "otherTitle": "Autres soins",
+      "otherSubtitle": "Découvrez nos autres traitements dentaires à Casablanca."
+    },
+    "orthodontie-casablanca": {
+      "metaTitle": "Orthodontie à Casablanca | Dr Myriam Lahlou",
+      "metaDescription": "Orthodontie à Casablanca par Dr Myriam Lahlou. Alignement discret et efficace pour un sourire harmonieux. Prenez rendez-vous.",
+      "heroBadge": "Orthodontie à Casablanca",
+      "heroSubtitle": "Corrigez l'alignement de vos dents avec des solutions discrètes et sur-mesure.",
+      "introParagraphs": [
+        "L'orthodontie permet de corriger les décalages dentaires, les problèmes d'occlusion et les espaces indésirables, pour un sourire harmonieux et fonctionnel. Elle concerne aussi bien les enfants que les adultes.",
+        "Le Dr Myriam Lahlou propose des solutions modernes et discrètes : aligneurs transparents (type Invisalign), bagues céramique et techniques adaptées à chaque cas, avec un suivi régulier.",
+        "Au-delà de l'esthétique, l'orthodontie améliore la santé bucco-dentaire en facilitant le brossage, en réduisant les risques de carie et en soulageant les tensions articulaires."
+      ],
+      "whoFor": "Toute personne présentant un décalage dentaire, une malocclusion ou un espace entre les dents, quel que soit l'âge. Les adultes représentent aujourd'hui une part importante des patients orthodontiques.",
+      "stepsTitle": "Déroulement du traitement",
+      "steps": [
+        { "title": "Bilan orthodontique", "text": "Prises de vue et modélisation 3D pour analyser la position des dents et de l'arcade dentaire." },
+        { "title": "Choix de l'appareillage", "text": "Aligneurs transparents, bagues céramique ou mixtes selon le cas et les préférences du patient." },
+        { "title": "Mise en place", "text": "Les aligneurs sont confectionnés sur mesure et portés 20 à 22 heures par jour. Changement toutes les 2 semaines." },
+        { "title": "Suivi régulier", "text": "Des rendez-vous de contrôle toutes les 6 à 8 semaines permettent d'ajuster le traitement." },
+        { "title": "Retention", "text": "Après le traitement, un appareil de rétition (fil collé ou gouttière) maintient les résultats définitivement." }
+      ],
+      "benefitsTitle": "Pourquoi choisir ce traitement",
+      "benefits": [
+        "Alignement précis : les aligneurs transparents corrigent les décalages avec précision",
+        "Discretion : les bagues céramique et aligneurs sont quasiment invisibles",
+        "Confort : pas de fil visible, ajustements simples et rapides",
+        "Santé bucco-dentaire : brossage facilité après le traitement",
+        "Résultat stable : maintien définitif grâce à la rétention"
+      ],
+      "faqTitle": "Questions fréquentes sur l'orthodontie",
+      "faq": [
+        { "q": "L'orthodontie est-elle possible à tout âge ?", "a": "Oui, l'orthodontie s'adresse aussi bien aux adultes qu'aux enfants. L'os adulte bouge moins vite mais le résultat est tout aussi satisfaisant." },
+        { "q": "Combien de temps dure un traitement orthodontique ?", "a": "La durée varie de 6 à 24 mois selon la complexité du cas. Le Dr Lahlou établit un calendrier précis dès le bilan initial." },
+        { "q": "Les aligneurs transparents sont-ils vraiment invisibles ?", "a": "Très peu visibles, oui. En conversation normale, ils passent inaperçus. C'est la solution idéale pour les adultes souhaitant une discrétion maximale." },
+        { "q": "Faut-il porter un appareil de rétition après le traitement ?", "a": "Oui, pour stabiliser les résultats à long terme. Un fil collé derrière les dents ou une gouttière nocturne est généralement recommandé." }
+      ],
+      "otherTitle": "Autres soins",
+      "otherSubtitle": "Découvrez nos autres traitements dentaires à Casablanca."
+    },
+    "traitement-canalaire-casablanca": {
+      "metaTitle": "Traitement Canalaire à Casablanca | Dr Myriam Lahlou",
+      "metaDescription": "Traitement canalaire indolore à Casablanca par Dr Myriam Lahlou. Sauvez votre dent infectée grâce à un soin précis. Prenez rendez-vous.",
+      "heroBadge": "Traitement canalaire à Casablanca",
+      "heroSubtitle": "Sauvez votre dent infectée grâce à un traitement canalaire précis et indolore.",
+      "introParagraphs": [
+        "Le traitement canalaire (ou endodontie) est un soin qui consiste à retirer la pulpe dentaire infectée (le nerf), puis à nettoyer, désinfecter et obturer les canaux de la racine. Il permet de sauver une dent qui serait autrement perdue.",
+        "Le Dr Myriam Lahlou réalise les traitements canalaires sous microscope, avec des techniques modernes assurant une grande précision. Le soin est réalisé sous anesthésie locale, dans des conditions de confort optimales.",
+        "Après le traitement, la dent est recouverte d'une couronne pour lui redonner sa solidité. Le résultat est durable et la douleur disparaît généralement dès les premières 24 heures."
+      ],
+      "whoFor": "Le traitement canalaire est nécessaire en cas de carie profonde, de fracture dentaire ou de traumatisme ayant infecté la pulpe. Il est indiqué lorsque la dent est encore récupérable.",
+      "stepsTitle": "Déroulement du traitement",
+      "steps": [
+        { "title": "Diagnostic et imagerie", "text": "Une radiographie ou un scanner permet d'évaluer l'étendue de l'infection et la morphologie des canaux." },
+        { "title": "Anesthésie et accès", "text": "Sous anesthésie locale, une petite ouverture est réalisée dans la dent pour accéder à la pulpe." },
+        { "title": "Nettoyage des canaux", "text": "Les canaux sont élargis, nettoyés et désinfectés avec des instruments de précision sous microscope." },
+        { "title": "Obturation", "text": "Les canaux sont obturés avec un matériau biocompatible pour empêcher la réinfection." },
+        { "title": "Restauration finale", "text": "La dent est recouverte d'une couronne pour lui redonner solidité et esthétique." }
+      ],
+      "benefitsTitle": "Pourquoi choisir ce traitement",
+      "benefits": [
+        "Indolore : le soin est réalisé sous anesthésie locale, sans douleur",
+        "Précision : microscope opératoire pour un nettoyage optimal",
+        "Sauvetage de la dent : évite l'extraction et le remplacement par un implant",
+        "Résultat rapide : la douleur disparaît en 24 à 48 heures",
+        "Durabilité : la couronne protège la dent restaurée pendant des années"
+      ],
+      "faqTitle": "Questions fréquentes sur le traitement canalaire",
+      "faq": [
+        { "q": "Le traitement canalaire est-il douloureux ?", "a": "Non, il est réalisé sous anesthésie locale et est totalement indolore. La plupart des patients ne ressentent aucune douleur pendant l'intervention." },
+        { "q": "Combien de rendez-vous sont nécessaires ?", "a": "La plupart des traitements canalaires sont réalisés en une seule séance d'environ 45 à 60 minutes." },
+        { "q": "La dent reste-t-elle vivante après le traitement ?", "a": "Non, la pulpe est retirée. La dent reste cependant fonctionnelle et ancrée dans l'os. Elle est protégée par une couronne." },
+        { "q": "Que faire si une douleur persiste après le traitement ?", "a": "Une gêne mineure est normale pendant 2 à 3 jours. Si la douleur persiste au-delà, un contrôle rapide est nécessaire." }
+      ],
+      "otherTitle": "Autres soins",
+      "otherSubtitle": "Découvrez nos autres traitements dentaires à Casablanca."
+    },
+    "composite-casablanca": {
+      "metaTitle": "Composite Dentaire à Casablanca | Dr Myriam Lahlou",
+      "metaDescription": "Restauration composite esthétique à Casablanca par Dr Myriam Lahlou. Réparation naturelle et durable des dents abîmées. Prenez rendez-vous.",
+      "heroBadge": "Composite dentaire à Casablanca",
+      "heroSubtitle": "Réparez vos dents abîmées avec des restaurations esthétiques invisibles.",
+      "introParagraphs": [
+        "Le composite dentaire est un matériau de restauration esthétique, teinté à la couleur de la dent naturelle. Il permet de réparer les caries, les fractures, les éclats et les espaces entre les dents, avec un rendu totalement invisible.",
+        "Le Dr Myriam Lahlou maîtrise les techniques de Stratification Layered, un protocole avancé de pose par couches successives qui reproduit fidèlement les nuances et la translucidité de l'émail naturel.",
+        "Le composite est appliqué en une seule séance, sans empreinte ni labo. C'est une solution rapide, économique et esthétiquement performante pour les restaurations antérieures et postérieures."
+      ],
+      "whoFor": "Le composite convient aux caries, fractures, éclats, espaces diastèmes, et modifications esthétiques mineures. C'est une alternative aux facettes pour les corrections simples.",
+      "stepsTitle": "Déroulement du traitement",
+      "steps": [
+        { "title": "Préparation", "text": "La zone abîmée est nettoyée et préparée. Si une carie est présente, elle est retirée sous anesthésie locale." },
+        { "title": "Choix de la teinte", "text": "Le Dr Lahlou sélectionne avec précision la teinte du composite pour l'assortir à la dent naturelle." },
+        { "title": "Stratification en couches", "text": "Le composite est appliqué couche par couche, chaque couche étant polymérisée à la lumière pour optimiser la solidité et l'esthétique." },
+        { "title": "Polissage final", "text": "La restauration est polie pour obtenir un éclat naturel et un toucher lisse, indiscernable de la dent." },
+        { "title": "Contrôle de l'occlusion", "text": "Le Dr Lahlou vérifie que la mastication se fait correctement sans surcharge sur la restauration." }
+      ],
+      "benefitsTitle": "Pourquoi choisir ce traitement",
+      "benefits": [
+        "Rendu invisible : teinte parfaitement assortie à la dent naturelle",
+        "Rapidité : traitement réalisé en une seule séance",
+        "Conservation de la dentine : préparation minimale",
+        "Résultat esthétique immédiat : la dent retrouve sa forme naturelle",
+        "Coût accessible : alternative économique aux facettes"
+      ],
+      "faqTitle": "Questions fréquentes sur le composite",
+      "faq": [
+        { "q": "Le composite se décolore-t-il avec le temps ?", "a": "Le composite moderne résiste bien à la coloration. Avec une bonne hygiène, il conserve son éclat pendant 5 à 8 ans." },
+        { "q": "Combien de temps dure une restauration en composite ?", "a": "En moyenne 5 à 8 ans, selon la localisation, la charge masticatoire et les habitudes du patient." },
+        { "q": "Le composite est-il aussi résistant qu'une couronne ?", "a": "Pour les petites et moyennes restaurations, oui. Pour des dents très abîmées, une couronne peut être préférable." },
+        { "q": "Peut-on poser un composite sur une dent déjà restaurée ?", "a": "Oui, un ancien composite peut être remplacé ou réparé. Le Dr Lahlou évalue la meilleure option lors du rendez-vous." }
+      ],
+      "otherTitle": "Autres soins",
+      "otherSubtitle": "Découvrez nos autres traitements dentaires à Casablanca."
+    }
+  },
+
   "about": {
     "eyebrow": "À propos",
     "title": "Cabinet Dentaire Dr Myriam Lahlou",
