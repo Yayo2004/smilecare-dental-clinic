@@ -18,7 +18,7 @@ const SERVICE_PAGES = [
     serviceIndex: 1,
     formOptionIndex: 1,
     heroImage: '/images/treat-implants.webp',
-    gallery: [{ before: '/images/rehab-apres.webp', after: '/images/rehab-avant.webp' }],
+    gallery: null,
     otherSlugs: ['facettes-dentaires-casablanca', 'composite-casablanca'],
   },
   {
@@ -26,10 +26,7 @@ const SERVICE_PAGES = [
     serviceIndex: 2,
     formOptionIndex: 2,
     heroImage: '/images/treat-esthetique.webp',
-    gallery: [
-      { before: '/images/blanchiment-apres.webp', after: '/images/blanchiment-avant.webp' },
-      { before: '/images/gingival-apres.webp', after: '/images/gingival-avant.webp' },
-    ],
+    gallery: null,
     otherSlugs: ['facettes-dentaires-casablanca', 'orthodontie-casablanca'],
   },
   {
