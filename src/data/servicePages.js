@@ -6,11 +6,7 @@ const SERVICE_PAGES = [
     serviceIndex: 0, // index in services.items (name / description / detail)
     formOptionIndex: 0, // index in form.servicesOptions (prefill value)
     heroImage: '/images/treat-facettes.webp',
-    gallery: [
-      { before: '/images/fd-apres.webp', after: '/images/fd-avant.webp' },
-      { before: '/images/facettes-apres.webp', after: '/images/facettes-avant.webp' },
-      { before: '/images/fca-apres.webp', after: '/images/fca-avant.webp' },
-    ],
+    gallery: [{ before: '/images/fd-apres.webp', after: '/images/fd-avant.webp' }],
     otherSlugs: ['implants-dentaires-casablanca', 'esthetique-dentaire-casablanca'],
   },
   {
