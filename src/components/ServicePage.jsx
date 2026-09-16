@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
@@ -25,10 +26,8 @@ import { ComparisonSlider } from './BeforeAfter'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import WhatsAppButton from './WhatsAppButton'
-import { buildWhatsAppLink, CLINIC_INFO } from '../config'
+import { buildWhatsAppLink, CLINIC_INFO, SITE_URL } from '../config'
 import SERVICE_PAGES, { getServicePage } from '../data/servicePages'
-
-const SITE_URL = 'https://dentistemyriamlahlou.vercel.app'
 
 const STEP_ICONS = [ClipboardList, Camera, Layers, BadgeCheck, CalendarCheck]
 const BENEFIT_ICONS = [Sparkles, CheckCircle2, ShieldCheck, HeartPulse, Star, HeartHandshake, Award, Zap]
@@ -76,16 +75,6 @@ export default function ServicePage() {
   const ui = UI[lang]
 
   useEffect(() => {
-    if (!content) return
-    document.title = content.metaTitle
-    document.querySelector('meta[name="description"]')?.setAttribute('content', content.metaDescription)
-    document.querySelector('meta[property="og:title"]')?.setAttribute('content', content.metaTitle)
-    document.querySelector('meta[property="og:description"]')?.setAttribute('content', content.metaDescription)
-    document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', content.metaTitle)
-    document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', content.metaDescription)
-  }, [content])
-
-  useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' })
     setOpenFaq(null)
   }, [slug])
@@ -99,32 +88,42 @@ export default function ServicePage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'MedicalProcedure',
-    name: `${serviceName} ${ui.city}`,
+    name: serviceName,
     description: content.metaDescription,
     url: `${SITE_URL}/services/${page.slug}`,
-    image: `${SITE_URL}${page.heroImage}`,
-    procedureType: 'https://schema.org/TherapeuticProcedure',
-    bodyLocation: 'Teeth',
-    performingPhysician: {
+    image: `${SITE_URL}/og-image.png`,
+    provider: {
       '@type': 'Dentist',
       name: 'Dr Myriam Lahlou',
-      url: SITE_URL,
-      telephone: '+212522492440',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: '47 Boulevard Hassan II, Rdc',
-        addressLocality: 'Casablanca',
-        addressCountry: 'MA',
-      },
+      url: `${SITE_URL}/`,
     },
+    areaServed: { '@type': 'City', name: 'Casablanca' },
   }
 
   return (
     <div className="min-h-screen overflow-x-hidden">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <Helmet>
+        <title>{content.metaTitle}</title>
+        <meta name="description" content={content.metaDescription} />
+        <link rel="canonical" href={`${SITE_URL}/services/${page.slug}`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content={lang === 'fr' ? 'fr_MA' : 'en_US'} />
+        <meta property="og:url" content={`${SITE_URL}/services/${page.slug}`} />
+        <meta property="og:title" content={content.metaTitle} />
+        <meta property="og:description" content={content.metaDescription} />
+        <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={heroAlt} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={content.metaTitle} />
+        <meta name="twitter:description" content={content.metaDescription} />
+        <meta name="twitter:image" content={`${SITE_URL}/og-image.png`} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </Helmet>
 
       <Navbar />
 

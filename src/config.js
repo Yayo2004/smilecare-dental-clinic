@@ -3,6 +3,9 @@
  * Replace the values below with the real clinic details before going live.
  */
 
+/** Production domain used for canonical URLs, Open Graph and schema.org. */
+export const SITE_URL = 'https://drmyriamlahlou.com'
+
 export const CLINIC_INFO = {
   name: 'Myriam Lahlou — Cabinet Dentaire',
   shortName: 'Myriam Lahlou',

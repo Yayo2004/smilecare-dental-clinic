@@ -1,7 +1,9 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { AnimatePresence, MotionConfig } from 'framer-motion'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { SITE_URL } from './config'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import BeforeAfter from './components/BeforeAfter'
@@ -26,7 +28,8 @@ const SPLASH_KEY = 'clinic_splash_seen'
 
 /** Home page — full landing with all sections. */
 function HomePage() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
   // Welcome animation shows once per browsing session (sessionStorage, not localStorage)
   const [splashDone, setSplashDone] = useState(() => {
     try {
@@ -45,15 +48,26 @@ function HomePage() {
     setSplashDone(true)
   }
 
-  useEffect(() => {
-    document.title = t('meta.title')
-    document
-      .querySelector('meta[name="description"]')
-      ?.setAttribute('content', t('meta.description'))
-  }, [t])
-
   return (
     <div className="min-h-screen overflow-x-hidden">
+      <Helmet>
+        <title>{t('meta.title')}</title>
+        <meta name="description" content={t('meta.description')} />
+        <link rel="canonical" href={`${SITE_URL}/`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content={lang === 'fr' ? 'fr_MA' : 'en_US'} />
+        <meta property="og:url" content={`${SITE_URL}/`} />
+        <meta property="og:title" content={t('meta.title')} />
+        <meta property="og:description" content={t('meta.description')} />
+        <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={t('meta.description')} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={t('meta.title')} />
+        <meta name="twitter:description" content={t('meta.description')} />
+        <meta name="twitter:image" content={`${SITE_URL}/og-image.png`} />
+      </Helmet>
       <AnimatePresence>
         {!splashDone && <SplashScreen key="splash" onDone={handleSplashDone} />}
       </AnimatePresence>
