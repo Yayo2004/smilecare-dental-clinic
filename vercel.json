@@ -4,5 +4,13 @@
       "source": "/services/:path*",
       "destination": "/index.html"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.drmyriamlahlou.com" }],
+      "destination": "https://drmyriamlahlou.com/:path*",
+      "permanent": true
+    }
   ]
 }
